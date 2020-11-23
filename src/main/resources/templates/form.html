@@ -9,7 +9,7 @@
 
 <!--<div th:text="${event}"></div>-->
 <h1>Logging System</h1>
-
+<div id="eventdetails" >
 <fieldset>
 <label class="labels">Event (Single Selection)</label>
 <!--THIS SELECT CAN BE REPLACED WITH DATA TAKEN FROM THE DATABASE-->
@@ -22,7 +22,6 @@
     <option value="Evaluation and Quality Assurance">Evaluation and Quality Assurance</option>
 </select>
 </fieldset>
-
 <br>
 
 <fieldset>
@@ -53,8 +52,13 @@
     <option value="Other">Other (this will open a textinput area)</option>
 </select>
 </fieldset>
-<br>
 
+<br>
+    <button class="btn" type="button" onclick="document.getElementById('eventdetails').style.display='none';document.getElementById('tagselect').style.display='block'"> Next </button>
+
+</div>
+
+<div id="tagselect">
 <fieldset>
     <label class="labels">Impact (Multiple Selection)</label><br>
     <input type="checkbox" id="Self" name="Impact" value="Self">
@@ -135,7 +139,10 @@
 </fieldset>
 
 <br>
-
+    <button class="btn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('eventdetails').style.display='block'"> Back </button>
+    <button class="btn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('reflection').style.display='block'"> Next </button>
+</div>
+<div id = "reflection">
 <fieldset>
     <label class="labels">Reflection</label>
     <br>
@@ -162,6 +169,42 @@
 </fieldset>
 
 <br>
+    <button class="btn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('tagselect').style.display='block'"> Back </button>
+    <button class="btn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block'"> Next </button>
+</div>
 
+<br>
+
+<div id = "overview">
+    <h2>Overview</h2>
+    <p class="description">Here's an overview of your event entry. Submit your entry with the button below if you're satisfied with your inputs.</p>
+    <br>
+    <p>Event Details:</p>
+    <br>
+    <p>Tags:</p>
+    <br>
+    <p>Reflection:</p>
+    <p class="description"> See something you want to change? <a id ="clickhere" onclick="document.getElementById('overview').style.display='None';document.getElementById('eventdetails').style.display='block'">Click here</a> to revisit your inputs in sequence. </p>
+    <button class="btn" type="submit" onclick="confirmsubmit();document.getElementById('reflection').style.display='none';document.getElementById('placeholder').style.display='block'"> Submit </button>
+</div>
+<br>
+<p id="subresult"></p>
+
+
+
+
+
+
+<script>
+    function confirmsubmit() {
+        var txt;
+        if (confirm("Submit this entry?")) {
+            txt = "Your entry has been added. (Redirect somewhere instead?)";
+        } else {
+            txt = "Submission cancelled";
+        }
+        document.getElementById("subresult").innerHTML = txt;
+    }
+</script>
 </body>
 </html>

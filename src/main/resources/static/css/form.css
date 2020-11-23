@@ -4,3 +4,27 @@
 .labels {
 
 }
+.btn{
+    cursor:pointer;
+}
+#eventdetails{
+    display: block;
+}
+#tagselect{
+    display: none;
+}
+#reflection{
+    display: none;
+}
+#overview{
+    display: none;
+}
+#clickhere{
+    color: darkblue;
+    text-decoration: underline;
+}
+#clickhere:hover {
+    color:  blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
