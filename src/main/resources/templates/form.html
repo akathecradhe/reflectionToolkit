@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www/thymeleaf.org">
+<html lang="en" xmlns:th="http://www/thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <title>Logging Form</title>
@@ -7,8 +7,161 @@
 </head>
 <body>
 
-<div th:text="${event}"></div>
-<h1>This is a test form. </h1>
+<!--<div th:text="${event}"></div>-->
+<h1>Logging System</h1>
+
+<fieldset>
+<label class="labels">Event (Single Selection)</label>
+<!--THIS SELECT CAN BE REPLACED WITH DATA TAKEN FROM THE DATABASE-->
+<select name="event" id="event" REQUIRED>
+    <option value="Teaching or Supervision">Teaching or Supervision</option>
+    <option value="Design or Plan">Design or Plan</option>
+    <option value="Assess or Give Feedback">Assess or Give Feedback</option>
+    <option value="Discussion">Discussion</option>
+    <option value="Scholarship">Scholarship</option>
+    <option value="Evaluation and Quality Assurance">Evaluation and Quality Assurance</option>
+</select>
+</fieldset>
+
+<br>
+
+<fieldset>
+<label class="labels">Short Description (MAX 140 Characters)</label>
+<br>
+<textarea maxlength="140" name="ShortDescription" cols="60" rows="3" placeholder="Enter Description Here" REQUIRED></textarea>
+</fieldset>
+
+<br>
+
+<fieldset>
+<label class="labels">Role (Single Selection)</label>
+<select name="role" id="role" REQUIRED>
+    <option value="Lead or Facilitate">Lead or Facilitate</option>
+    <option value="Participate">Participate</option>
+    <option value="Review">Review</option>
+</select>
+</fieldset>
+<br>
+
+<fieldset>
+<label class="labels">Others Involved (Single Selection)</label>
+<select name="Others Involved" id="Others Involved" REQUIRED>
+    <option value="No-one">No-one</option>
+    <option value="Students">Students</option>
+    <option value="Staff">Staff</option>
+    <option value="Students and Staff">Students and Staff</option>
+    <option value="Other">Other (this will open a textinput area)</option>
+</select>
+</fieldset>
+<br>
+
+<fieldset>
+    <label class="labels">Impact (Multiple Selection)</label><br>
+    <input type="checkbox" id="Self" name="Impact" value="Self">
+    <label for="Self">Self</label><br>
+    <input type="checkbox" id="SID" name="Impact" value="School, Institute or Department">
+    <label for="SID">School, Institute or Department</label><br>
+    <input type="checkbox" id="Institution" name="Impact" value="Institution">
+    <label for="Institution">Institution</label><br>
+    <input type="checkbox" id="National" name="Impact" value="National">
+    <label for="National">National</label><br>
+    <input type="checkbox" id="International" name="Impact" value="International">
+    <label for="International">International</label><br>
+</fieldset>
+
+<br>
+
+<fieldset>
+<!--Need JS implementation so that checking NONE unchecks the other boxes-->
+    <label class="labels">Learning Technologies (Multiple Selection)</label><br>
+    <input type="checkbox" id="None" name="Learning Technologies" value="None">
+    <label for="None">None</label><br>
+    <input type="checkbox" id="OLER" name="Learning Technologies" value="Online learning environment or resource">
+    <label for="OLER">Online learning environment or resource</label><br>
+    <input type="checkbox" id="BWSM" name="Learning Technologies" value="Blog, Wiki or Social Media">
+    <label for="BWSM">Blog, Wiki or Social Media</label><br>
+    <input type="checkbox" id="PRS" name="Learning Technologies" value="Polling or response system">
+    <label for="PRS">Polling or response system</label><br>
+    <input type="checkbox" id="RLP" name="Learning Technologies" value="Reflective log or portfolio">
+    <label for="RLP">Reflective log or portfolio</label><br>
+    <input type="checkbox" id="MAT" name="Learning Technologies" value="Mobile and app technology">
+    <label for="MAT"></label>Mobile and app technology<br>
+    <input type="checkbox" id="AT" name="Learning Technologies" value="Analogue Technology">
+    <label for="AT">Analogue technology</label><br>
+</fieldset>
+
+<br>
+
+<fieldset>
+    <label class="labels">Thought Cloud (Multiple Selection)</label><br>
+    <input type="checkbox" id="Worked Well" name="Thought Cloud" value="Worked Well">
+    <label for="Worked Well">Worked Well</label><br>
+    <input type="checkbox" id="Motivational" name="Thought Cloud" value="Motivational">
+    <label for="Motivational">Motivational</label><br>
+    <input type="checkbox" id="Context" name="Thought Cloud" value="Context">
+    <label for="Context">Context</label><br>
+    <input type="checkbox" id="Something New" name="Thought Cloud" value="Something New">
+    <label for="Something New">Something New</label><br>
+    <input type="checkbox" id="Out of my comfort zone" name="Thought Cloud" value="Out of my comfort zone">
+    <label for="Out of my comfort zone">Out of my comfort zone</label><br>
+    <input type="checkbox" id="Had a go" name="Thought Cloud" value="Had a go">
+    <label for="Had a go">Had a go</label><br>
+    <input type="checkbox" id="Good response" name="Thought Cloud" value="Good response">
+    <label for="Good response">Good response</label><br>
+    <input type="checkbox" id="Needs more work" name="Thought Cloud" value="Needs more work">
+    <label for="Needs more work">Needs more work</label><br>
+    <input type="checkbox" id="Back to the drawing board" name="Thought Cloud" value="Back to the drawing board">
+    <label for="Back to the drawing board">Back to the drawing board</label><br>
+    <input type="checkbox" id="Phone a friend" name="Thought Cloud" value="Phone a friend">
+    <label for="Phone a friend">Phone a friend</label><br>
+    <input type="checkbox" id="Apprehensive" name="Thought Cloud" value="Apprehensive">
+    <label for="Apprehensive">Apprehensive</label><br>
+    <input type="checkbox" id="Cautious" name="Thought Cloud" value="Cautious">
+    <label for="Cautious">Cautious</label><br>
+    <input type="checkbox" id="Confident" name="Thought Cloud" value="Confident">
+    <label for="Confident">Confident</label><br>
+    <input type="checkbox" id="Excited" name="Thought Cloud" value="Excited">
+    <label for="Excited">Excited</label><br>
+    <input type="checkbox" id="Depressed" name="Thought Cloud" value="Depressed">
+    <label for="Depressed">Depressed</label><br>
+    <input type="checkbox" id="Frustrated" name="Thought Cloud" value="Frustrated">
+    <label for="Frustrated">Frustrated</label><br>
+
+<br>
+
+    <label class="labels">Any other thoughts for the Thought Cloud? (MAX 25 Characters) (Optional)</label>
+    <br>
+    <input maxlength="25" type="text" name="otherThoughtCloud" placeholder="Enter Thought Cloud" REQUIRED/>
+</fieldset>
+
+<br>
+
+<fieldset>
+    <label class="labels">Reflection</label>
+    <br>
+    <textarea name="Whatdidyoudo" cols="60" rows="3" placeholder="What did you do? (provide a clear record)" REQUIRED></textarea>
+    <br>
+    <textarea name="Whatpromptedyourapproach" cols="60" rows="3" placeholder="What prompted your approach?" REQUIRED></textarea>
+    <br>
+    <textarea name="Whathappened" cols="60" rows="3" placeholder="What happened? (Consider your own and others' viewpoints and feelings - put yourself in their shoes!)" REQUIRED></textarea>
+    <br>
+<!--IF K4 was tagged (learning tech chosen) show this-->
+    <textarea name="whatimpactdidthelearningtech" cols="60" rows="3" placeholder="What impact did the learning technologies have on your activity?" REQUIRED></textarea>
+    <br>
+    <textarea name="Collecting Evidence" cols="60" rows="3" placeholder="Collecting Evidence (How will you evaluate this activity later? What evidence do you need?)" REQUIRED></textarea>
+    <br>
+    <textarea name="Alternateactions" cols="60" rows="3" placeholder="Alternate actions or responses (What could you have done differently?)" REQUIRED></textarea>
+    <br>
+    <label class="labels">Three learning points for you</label>
+    <br>
+    <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="Learning Point" REQUIRED></textarea>
+    <br>
+    <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="Learning Point" REQUIRED></textarea>
+    <br>
+    <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="Learning Point" REQUIRED></textarea>
+</fieldset>
+
+<br>
 
 </body>
 </html>
