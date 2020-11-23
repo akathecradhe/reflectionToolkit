@@ -29,7 +29,13 @@ public class Event {
 //    private ThoughtCloud thoughtCloud;
 //    @OneToOne
 //    @JoinColumn(name = "reflection", referencedColumnName = "reflectionid")
-//    private Reflection reflection;
+//    private Reflection reflection
+//    @ManyToMany
+//    private UKPSFDimension ukpsfDimension;
+    private boolean isPrivate;
+    @ManyToOne
+    @JoinColumn(name="username")
+    private User username;
 
 
 
