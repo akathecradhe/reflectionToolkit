@@ -5,23 +5,20 @@ SET IGNORECASE=TRUE;
 -- USE LoggingSystemDB ;
 -- DROP TABLE IF EXISTS event;
 -- Let's create a new table now
-
-SET MODE MySQL;
-SET IGNORECASE=TRUE;
 --Data for all the tags
 
 -- Let's create a new table now
 CREATE TABLE IF NOT EXISTS `event` (
    `eventId` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `eventName` VARCHAR(45) NOT NULL,
-  `eventDate` DATE NOT NULL
+  `Name` VARCHAR(45) NOT NULL,
+  `EventDate` DATE NOT NULL
   )
 ENGINE = InnoDB;
 
 -- REFLECTION TABLE
 
 CREATE TABLE IF NOT EXISTS `role` (
-  `roleId` int UNIQUE NOT NULL PRIMARY KEY ,
+  `roleId` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `name` VARCHAR(45) NOT NULL
   )
 ENGINE = InnoDB;
@@ -29,7 +26,7 @@ ENGINE = InnoDB;
 -- USER TABLE
 
 CREATE TABLE IF NOT EXISTS `user` (
-  `username` VARCHAR(45) UNIQUE NOT NULL PRIMARY KEY ,
+  `username` VARCHAR(45) NOT NULL PRIMARY KEY,
   `name` VARCHAR(45) NOT NULL,
   `accountCreated` DATE NOT NULL
   )
@@ -38,7 +35,7 @@ ENGINE = InnoDB;
 -- REFLECTION TABLE
 
 CREATE TABLE IF NOT EXISTS `reflection` (
-  `reflectionId` Int UNIQUE NOT NULL PRIMARY KEY ,
+  `reflectionId` Int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `box1` VARCHAR(45) NOT NULL,
   `box2` VARCHAR(45) NOT NULL,
   `box3` VARCHAR(45) NOT NULL,
@@ -54,9 +51,9 @@ ENGINE = InnoDB;
 -- Tag TABLE
 
 CREATE TABLE IF NOT EXISTS `tags` (
-  `tagId` VARCHAR(45) UNIQUE NOT NULL PRIMARY KEY ,
+  `tagId` VARCHAR(45) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `category` VARCHAR(45) NOT NULL,
-  `tagename` VARCHAR(45) NOT NULL
+  `tagname` VARCHAR(45) NOT NULL
   )
 ENGINE = InnoDB;
 
@@ -70,11 +67,13 @@ ENGINE = InnoDB;
 
 -- form-table
 CREATE TABLE IF NOT EXISTS `form` (
-  `formId` VARCHAR(45)  NOT NULL ,
+  `formId` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `eventId` VARCHAR(45) NOT NULL,
   `shortDescription` VARCHAR(200)  NOT NULL ,
   `roleId` VARCHAR(45) NOT NULL,
-  `reflectionId` VARCHAR(45) NOT NULL
+  `username` VARCHAR(45) NOT NULL,
+  `reflectionId` VARCHAR(45) NOT NULL,
+  `lastEdited` TIMESTAMP NOT NULL
   )
 ENGINE = InnoDB;
 
@@ -83,7 +82,10 @@ ALTER TABLE `form`
 ADD FOREIGN KEY  (`eventId`) REFERENCES event(`eventId`);
 
 ALTER TABLE `form`
-ADD FOREIGN KEY  (`roleId`) REFERENCES roleId(`roleId`);
+ADD FOREIGN KEY  (`username`) REFERENCES user(`username`);
+
+ALTER TABLE `form`
+ADD FOREIGN KEY  (`roleId`) REFERENCES role(`roleId`);
 
 ALTER TABLE `form`
 ADD FOREIGN KEY  (`reflectionId`) REFERENCES reflection(`reflectionId`);
@@ -92,5 +94,5 @@ ALTER TABLE `Tagform`
 ADD FOREIGN KEY  (`formId`) REFERENCES form(`formId`);
 
 ALTER TABLE `Tagform`
-ADD FOREIGN KEY  (`tagId`) REFERENCES form(`tagId`);
+ADD FOREIGN KEY  (`tagId`) REFERENCES tags(`tagId`);
 
