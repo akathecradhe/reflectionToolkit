@@ -19,39 +19,36 @@ public class FormController {
     @GetMapping("form")
     public String runForm(Model model) {
 
-//        List<Tags> allTags = formRepo.findAll();
-//
-//        List<Tags> othersInvolved = null;
-//        List<Tags> impact = null;
-//        List<Tags> learningTechnologies = null;
-//        List<Tags> thoughtCloud = null;
-//
-//        for (int i = 0; i < allTags.size(); i++){
-//            String whichCategory = allTags.get(i).getCategory();
-//            Tags addingTag = allTags.get(i);
-//
-//            if (whichCategory.equals("Others Involved")) {
-//                othersInvolved.add(addingTag);
-//            }
-//            else if (whichCategory.equals("Impact")) {
-//                impact.add(addingTag);
-//            }
-//            else if (whichCategory.equals("Learning Technologies")) {
-//                learningTechnologies.add(addingTag);
-//            }
-//            else if (whichCategory.equals("Thought Cloud")) {
-//                thoughtCloud.add(addingTag);
-//            }
-//            else {}
-//
-//        }
-//
-//        allTags.get(0).getCategory();
-//
-//        model.addAttribute("othersInvolved", othersInvolved);
-//        model.addAttribute("impact", impact);
-//        model.addAttribute("learningTechnologies", learningTechnologies);
-//        model.addAttribute("thoughtCloud", thoughtCloud);
+        List<Tags> allTags = formRepo.findAll();
+
+        List<Tags> othersInvolved = new ArrayList<Tags>();
+        List<Tags> impact = new ArrayList<Tags>();
+        List<Tags> learningTechnologies = new ArrayList<Tags>();
+        List<Tags> thoughtCloud = new ArrayList<Tags>();
+
+        for (int i = 0; i < allTags.size(); i++){
+            String whichCategory = allTags.get(i).getCategory();
+            Tags addingTag = allTags.get(i);
+
+            if ("Others Involved".equals(whichCategory)) {
+                othersInvolved.add(addingTag);
+            }
+            else if ("Impact".equals(whichCategory)) {
+                impact.add(addingTag);
+            }
+            else if ("Learning Technologies".equals(whichCategory)) {
+                learningTechnologies.add(addingTag);
+            }
+            else if ("Thought Cloud".equals(whichCategory)) {
+                thoughtCloud.add(addingTag);
+            }
+            else {}
+        }
+
+        model.addAttribute("othersInvolved", othersInvolved);
+        model.addAttribute("impact", impact);
+        model.addAttribute("learningTechnologies", learningTechnologies);
+        model.addAttribute("thoughtCloud", thoughtCloud);
 
         return "form";
     }
