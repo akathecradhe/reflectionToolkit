@@ -6,13 +6,21 @@
     <link href="../static/css/form.css" th:href="@{/css/form.css}" rel="stylesheet" />
 </head>
 <body>
+<!--<div id="page-container">-->
+<!--    <div id="content-wrap">-->
+<header>
+    <ul>
+        <li><a href="">Home</a></li>
+        <li><a href="">Event Manager</a></li>
+        <li><a href="">Reflections</a></li>
+    </ul>
+</header>
 
 <!--<div th:text="${event}"></div>-->
-<h1 id="logtitle">Logging System</h1>
-<div id="eventdetails" >
+<div id="eventdetails" class="container">
+    <h2>Event details</h2>
 <fieldset>
-<label class="labels">Event (Single Selection)</label>
-    <br>
+<label class="labels">Event type:</label>
 <!--THIS SELECT CAN BE REPLACED WITH DATA TAKEN FROM THE DATABASE-->
 <select name="event" id="event" REQUIRED>
     <option value="Teaching or Supervision">Teaching or Supervision</option>
@@ -23,19 +31,17 @@
     <option value="Evaluation and Quality Assurance">Evaluation and Quality Assurance</option>
 </select>
 </fieldset>
-<br>
+
 
 <fieldset>
-<label class="labels">Short Description (MAX 140 Characters)</label>
 <br>
-<textarea maxlength="140" name="ShortDescription" cols="40" rows="3" placeholder="Enter Description Here" REQUIRED></textarea>
+    <textarea maxlength="140" name="ShortDescription" rows="3"placeholder="Give a brief description of the event. (max 140 characters)" REQUIRED></textarea>
 </fieldset>
 
 <br>
 
 <fieldset>
-<label class="labels">Role (Single Selection)</label>
-    <br>
+<label class="labels">Role: </label>
 <select name="role" id="role" REQUIRED>
     <option value="Lead or Facilitate">Lead or Facilitate</option>
     <option value="Participate">Participate</option>
@@ -45,8 +51,7 @@
 <br>
 
 <fieldset>
-<label class="labels">Others Involved (Single Selection)</label>
-    <br>
+<label class="labels">Others involved:</label>
 <select name="Others Involved" id="Others Involved" REQUIRED>
     <option value="No-one">No-one</option>
     <option value="Students">Students</option>
@@ -54,23 +59,20 @@
     <option value="Students and Staff">Students and Staff</option>
     <option value="Other">Other (this will open a textinput area)</option>
 </select>
+    <br><br>
+
+    <button class="nxtbtn" type="button" onclick="document.getElementById('eventdetails').style.display='none';document.getElementById('tagselect').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+
 </fieldset>
 
-<br>
-    <button class="btn nextbtn" type="button" onclick="document.getElementById('eventdetails').style.display='none';document.getElementById('tagselect').style.display='block'"> Next </button>
+
 
 </div>
 
-<table>
-    <tr th:each="Tag: ${impact}">
-        <td th:text="${impact.category}" /></td>
-        <td th:text="${impact.tagName}" /></td>
-    </tr>
-</table>
-
-<div id="tagselect">
-<fieldset>
-    <label class="labels">Impact (Multiple Selection)</label><br>
+<div id="tagselect" class="container">
+    <h2>Tag selection</h2>
+    <fieldset>
+    <label class="labels">Impact </label><br><br>
     <input type="checkbox" id="Self" name="Impact" value="Self">
     <label for="Self">Self</label><br>
     <input type="checkbox" id="SID" name="Impact" value="School, Institute or Department">
@@ -86,8 +88,7 @@
 <br>
 
 <fieldset>
-<!--Need JS implementation so that checking NONE unchecks the other boxes-->
-    <label class="labels">Learning Technologies (Multiple Selection)</label><br>
+    <label class="labels">Learning Technologies (choose as many as applicable)</label><br><br>
     <input onclick = "uncheck('OLER', 'BWSM', 'PRS', 'RLP', 'MAT', 'AT')" type="checkbox" id="None" name="Learning Technologies" value="None">
     <label for="None">None</label><br>
     <input onclick = "uncheckNone()" type="checkbox" id="OLER" name="Learning Technologies" value="Online learning environment or resource">
@@ -107,7 +108,7 @@
 <br>
 
 <fieldset>
-    <label class="labels">Thought Cloud (Multiple Selection)</label><br>
+    <label class="labels">Thought Cloud (choose as many as applicable)</label><br><br>
     <input type="checkbox" id="Worked Well" name="Thought Cloud" value="Worked Well">
     <label for="Worked Well">Worked Well</label><br>
     <input type="checkbox" id="Motivational" name="Thought Cloud" value="Motivational">
@@ -143,79 +144,111 @@
 
 <br>
 
-    <label class="labels">Any other thoughts for the Thought Cloud? (MAX 25 Characters) (Optional)</label>
+    <label class="labels">Any other thoughts for the Thought Cloud? (Optional)</label>
     <br>
-    <input maxlength="25" type="text" name="otherThoughtCloud" placeholder="Enter Thought Cloud" REQUIRED/>
+    <input maxlength="25" type="text" name="otherThoughtCloud" placeholder="max 25 characters" REQUIRED/>
+    <br><br>
+    <button class="bckbtn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('eventdetails').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+    <button class="nxtbtn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+
 </fieldset>
 
-<br>
-    <button class="btn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('eventdetails').style.display='block'"> Back </button>
-    <button class="btn nextbtn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('reflection').style.display='block'"> Next </button>
+
 </div>
-<div id = "reflection">
-<fieldset>
-    <label class="labels">Reflection</label>
+<div id = "reflection" class="container">
+    <h2>Reflection</h2>
+
+    <fieldset>
+    <label class="labels">What did you do? (provide a clear record)</label>
     <br>
-    <textarea name="Whatdidyoudo" cols="60" rows="3" placeholder="What did you do? (provide a clear record)" REQUIRED></textarea>
-    <br>
-    <textarea name="Whatpromptedyourapproach" cols="60" rows="3" placeholder="What prompted your approach?" REQUIRED></textarea>
-    <br>
-    <textarea name="Whathappened" cols="60" rows="3" placeholder="What happened? (Consider your own and others' viewpoints and feelings - put yourself in their shoes!)" REQUIRED></textarea>
-    <br>
-<!--IF K4 was tagged (learning tech chosen) show this-->
-    <textarea name="whatimpactdidthelearningtech" cols="60" rows="3" placeholder="What impact did the learning technologies have on your activity?" REQUIRED></textarea>
-    <br>
-    <textarea name="Collecting Evidence" cols="60" rows="3" placeholder="Collecting Evidence (How will you evaluate this activity later? What evidence do you need?)" REQUIRED></textarea>
-    <br>
-    <textarea name="Alternateactions" cols="60" rows="3" placeholder="Alternate actions or responses (What could you have done differently?)" REQUIRED></textarea>
-    <br>
+    <textarea name="Whatdidyoudo" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <br>
+        <br>
+         <label class="labels">What prompted your approach?</label>    <br>
+
+        <textarea name="Whatpromptedyourapproach" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <br>
+        <br>
+         <label class="labels">What happened? (Consider your own and others' viewpoints and feelings - put yourself in their shoes!)</label>    <br>
+
+
+        <textarea name="Whathappened" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <br>
+        <br>
+         <label class="labels">What impact did the learning technologies have on your activity?</label>    <br>
+
+
+        <!--IF K4 was tagged (learning tech chosen) show this-->
+    <textarea name="whatimpactdidthelearningtech" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <br>
+        <br>
+         <label class="labels">Collecting Evidence (How will you evaluate this activity later? What evidence do you need?)</label>    <br>
+
+
+        <textarea name="Collecting Evidence" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <br>
+        <br>
+         <label class="labels">Alternate actions or responses (What could you have done differently?)</label>    <br>
+
+
+        <textarea name="Alternateactions" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+    <br><br>
     <label class="labels">Three learning points for you</label>
-    <br>
-    <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="Learning Point" REQUIRED></textarea>
-    <br>
-    <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="Learning Point" REQUIRED></textarea>
-    <br>
-    <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="Learning Point" REQUIRED></textarea>
-</fieldset>
+        <br>
+    <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
+        <br>
+        <br>
+     <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
+        <br>
+        <br>
+     <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
 
-<br>
-    <button class="btn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('tagselect').style.display='block'"> Back </button>
-    <button class="btn nextbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block'"> Next </button>
+        <br>
+        <br>
+        <button class="bckbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('tagselect').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+        <button class="nxtbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+
+    </fieldset>
+
 </div>
-
-<br>
-
-<div id = "overview">
+<div id = "overview" class="container">
+    <fieldset>
     <h2>Overview</h2>
     <p class="description">Here's an overview of your event entry. Submit your entry with the 'Submit' button below if you're satisfied with your inputs.</p>
-    <br>
+    <br>    <br>
+
     <p>Event Details:</p>
-    <br>
+    <br>    <br>
+
     <p>Tags:</p>
-    <br>
-    <p>Reflection:</p>
+    <br>    <br>
+
+    <p>Reflection:</p>    <br>    <br>
+
+
     <p class="description"> See something you want to change? <a id ="clickhere" onclick="document.getElementById('overview').style.display='None';document.getElementById('eventdetails').style.display='block'">Click here</a> to revisit your inputs in sequence. </p>
-    <div class="submitbtn">
-    <button class="btn" type="submit" onclick="confirmsubmit();document.getElementById('reflection').style.display='none';document.getElementById('placeholder').style.display='block'"> Submit </button>
-    </div>
-    </div>
+    <br>
+
+    <button class="bckbtn" type="button" onclick="document.getElementById('overview').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+    <button class="subbtn" type="submit" onclick="confirmsubmit();document.getElementById('reflection').style.display='none';document.getElementById('placeholder').style.display='block';document.documentElement.scrollTop = 0;"> Submit </button>
+
+    </fieldset>
+</div>
+
+<!--    </div>-->
+<!--    <footer id = "footer">Footer? For other info and links if we have them </footer>-->
 <br>
-<p id="subresult"></p>
-
-
-
-
-
-
+<!--</div>-->
 <script>
     function confirmsubmit() {
-        var txt;
         if (confirm("Submit this entry?")) {
-            txt = "Your entry has been added. (Redirect somewhere instead?)";
-        } else {
-            txt = "Submission cancelled";
+
+            javascript:alert('Your entry has been added.');
+
+                    } else {
+
+            javascript:alert('Submission terminated.');
         }
-        document.getElementById("subresult").innerHTML = txt;
     }
 
     function uncheck(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6) {
@@ -234,5 +267,6 @@
     }
 
 </script>
+
 </body>
 </html>
