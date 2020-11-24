@@ -61,6 +61,13 @@
 
 </div>
 
+<table>
+    <tr th:each="Tag: ${impact}">
+        <td th:text="${impact.category}" /></td>
+        <td th:text="${impact.tagName}" /></td>
+    </tr>
+</table>
+
 <div id="tagselect">
 <fieldset>
     <label class="labels">Impact (Multiple Selection)</label><br>

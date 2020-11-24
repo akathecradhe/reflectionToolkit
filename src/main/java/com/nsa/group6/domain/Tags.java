@@ -20,5 +20,16 @@ public class Tags {
     private int tagID;
     private String category;
     private String tagName;
+
+    public String getCategory(){
+        return category;
+    }
+
+    public String getTagName(){
+        return tagName;
+    }
+
+
 }
+
 
