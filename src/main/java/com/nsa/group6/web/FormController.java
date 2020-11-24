@@ -2,6 +2,7 @@ package com.nsa.group6.web;
 import com.nsa.group6.domain.Event;
 import com.nsa.group6.domain.Form;
 import com.nsa.group6.domain.TestForm;
+import org.aspectj.weaver.ast.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,9 +35,11 @@ public class FormController {
 //        } else {
             //reflections = formRetriever.findReflectionsByName(currentUser.username)
 //        }
-        TestForm form1 = new TestForm("Design Or Plan", "DESCRIPTION HERE REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE","21/11/2020","22/11/2020 11:34");
-        System.out.println(form1.getEventDate());
-        model.addAttribute("form1", form1);
+        List<TestForm> forms = new ArrayList<TestForm>();
+        forms.add(new TestForm("Design Or Plan", "DESCRIPTION HERE REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE","21/11/2020","22/11/2020 11:34"));
+        forms.add(new TestForm("Discussion", "Test data test data test data test data","25/11/2020","22/11/2020 11:39"));
+        forms.add(new TestForm("Scholarship", "!!!!!!!!!! HIIIIIII !!!!!!!!!!!!!!!!!!","21/11/2020","25/11/2020 13:34"));
+        model.addAttribute("forms", forms);
 
         return "reflection-list";
 
