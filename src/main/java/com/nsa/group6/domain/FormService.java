@@ -4,18 +4,20 @@ import java.util.List;
 import java.util.Optional;
 
 public interface FormService {
-    public void saveEvent(Event aEvent);
+    public void saveForm(Form aForm);
 
-    public void updateEvent(Event aEvent);
+    public void updateForm(Form aForm);
 
-    public void deleteEvent(Long id);
+    public void deleteForm(Long id);
 
-    List<Event> getAllEvents();
+    List<Form> getAllForms();
 
-    public List<Event> findEventsByMostRecent();
 
-    public List<Event> findEventsByName(String aName);
-
-    public Optional<Event> findEventsById(Long id);
-    
+    // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
+//    public List<Form> findFormsByMostRecent();
+//
+//    public List<Form> findFormsByName(String aName);
+//
+//    public Optional<Form> findFormsById(Long id);
+//
 }

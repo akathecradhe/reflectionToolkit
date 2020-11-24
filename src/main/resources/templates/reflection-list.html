@@ -13,10 +13,9 @@
     <p>No forms available</p>
 </div>
 <div th:each="form : ${forms}">
-    <h2 th:text="${form.eventName}">Teaching Or Supervisions</h2>
-    <p th:text="${form.shortDescription}">This is a short description of the reflection selected.</p>
-    <p>Event held on: <span th:text="${form.eventDate}">24/11/2020</span></p>
-    <p>Last updated: <span th:text="${form.lastUpdated}">25/11/2020 14:25</span></p>
+    <h2 th:text="${form.getEventID().getName()}">Teaching Or Supervision</h2>
+<p th:text="${form.shortDescription}">This is a short description of the reflection selected.</p>
+
 </div>
 
 </body>
