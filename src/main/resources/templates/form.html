@@ -8,10 +8,11 @@
 <body>
 
 <!--<div th:text="${event}"></div>-->
-<h1>Logging System</h1>
+<h1 id="logtitle">Logging System</h1>
 <div id="eventdetails" >
 <fieldset>
 <label class="labels">Event (Single Selection)</label>
+    <br>
 <!--THIS SELECT CAN BE REPLACED WITH DATA TAKEN FROM THE DATABASE-->
 <select name="event" id="event" REQUIRED>
     <option value="Teaching or Supervision">Teaching or Supervision</option>
@@ -27,13 +28,14 @@
 <fieldset>
 <label class="labels">Short Description (MAX 140 Characters)</label>
 <br>
-<textarea maxlength="140" name="ShortDescription" cols="60" rows="3" placeholder="Enter Description Here" REQUIRED></textarea>
+<textarea maxlength="140" name="ShortDescription" cols="40" rows="3" placeholder="Enter Description Here" REQUIRED></textarea>
 </fieldset>
 
 <br>
 
 <fieldset>
 <label class="labels">Role (Single Selection)</label>
+    <br>
 <select name="role" id="role" REQUIRED>
     <option value="Lead or Facilitate">Lead or Facilitate</option>
     <option value="Participate">Participate</option>
@@ -44,6 +46,7 @@
 
 <fieldset>
 <label class="labels">Others Involved (Single Selection)</label>
+    <br>
 <select name="Others Involved" id="Others Involved" REQUIRED>
     <option value="No-one">No-one</option>
     <option value="Students">Students</option>
@@ -54,7 +57,7 @@
 </fieldset>
 
 <br>
-    <button class="btn" type="button" onclick="document.getElementById('eventdetails').style.display='none';document.getElementById('tagselect').style.display='block'"> Next </button>
+    <button class="btn nextbtn" type="button" onclick="document.getElementById('eventdetails').style.display='none';document.getElementById('tagselect').style.display='block'"> Next </button>
 
 </div>
 
@@ -140,7 +143,7 @@
 
 <br>
     <button class="btn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('eventdetails').style.display='block'"> Back </button>
-    <button class="btn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('reflection').style.display='block'"> Next </button>
+    <button class="btn nextbtn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('reflection').style.display='block'"> Next </button>
 </div>
 <div id = "reflection">
 <fieldset>
@@ -170,7 +173,7 @@
 
 <br>
     <button class="btn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('tagselect').style.display='block'"> Back </button>
-    <button class="btn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block'"> Next </button>
+    <button class="btn nextbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block'"> Next </button>
 </div>
 
 <br>
@@ -185,8 +188,10 @@
     <br>
     <p>Reflection:</p>
     <p class="description"> See something you want to change? <a id ="clickhere" onclick="document.getElementById('overview').style.display='None';document.getElementById('eventdetails').style.display='block'">Click here</a> to revisit your inputs in sequence. </p>
+    <div class="submitbtn">
     <button class="btn" type="submit" onclick="confirmsubmit();document.getElementById('reflection').style.display='none';document.getElementById('placeholder').style.display='block'"> Submit </button>
-</div>
+    </div>
+    </div>
 <br>
 <p id="subresult"></p>
 
