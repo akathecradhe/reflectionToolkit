@@ -1,9 +1,20 @@
 package com.nsa.group6.web;
-import com.nsa.group6.domain.FormService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.nsa.group6.domain.Event;
+import com.nsa.group6.domain.Form;
+import com.nsa.group6.domain.TestForm;
+import org.aspectj.weaver.ast.Test;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class FormController {
@@ -14,6 +25,24 @@ public class FormController {
         model.addAttribute("event", "name");
 
         return "form";
+    }
+
+    @GetMapping("reflections/{username}")
+    public String allGreetings(@PathVariable(name = "username", required = false) Optional<String> username, Model model) {
+
+//        if (username.isPresent()) {
+            //reflections = formRetriever.findReflectionsByName(username)
+//        } else {
+            //reflections = formRetriever.findReflectionsByName(currentUser.username)
+//        }
+        List<TestForm> forms = new ArrayList<TestForm>();
+        forms.add(new TestForm("Design Or Plan", "DESCRIPTION HERE REEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE","21/11/2020","22/11/2020 11:34"));
+        forms.add(new TestForm("Discussion", "Test data test data test data test data","25/11/2020","22/11/2020 11:39"));
+        forms.add(new TestForm("Scholarship", "!!!!!!!!!! HIIIIIII !!!!!!!!!!!!!!!!!!","21/11/2020","25/11/2020 13:34"));
+        model.addAttribute("forms", forms);
+
+        return "reflection-list";
+
     }
 
 }
