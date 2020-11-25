@@ -15,10 +15,7 @@ public interface FormService {
 
     List<Form> getAllFormsByUsername(User username);
 
-
-    List<Form> getAllForms(int aId);
-
-
+    Form getFormByID(int formID);
 
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,

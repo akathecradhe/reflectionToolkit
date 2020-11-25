@@ -46,10 +46,8 @@ public class FormJPAadptor implements FormService {
     }
 
     @Override
-    public List<Form> getAllForms(int aId) {
-
-
-        return formRepository.findAllByFormID(aId);
+    public Form getFormByID(int formID) {
+        return formRepository.findByFormID(formID);
     }
 
 
