@@ -1,4 +1,5 @@
 package com.nsa.group6.web;
+import com.nsa.group6.domain.Form;
 import com.nsa.group6.domain.Tags;
 import com.nsa.group6.jpa.FormRepoJPA;
 import com.nsa.group6.jpa.FormRepoJPAAdaptor;
@@ -7,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -52,4 +55,8 @@ public class FormController {
 
         return "form";
     }
+
+
+
+
 }
