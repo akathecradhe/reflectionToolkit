@@ -35,11 +35,9 @@
 
 
 <fieldset>
-<br>
     <textarea maxlength="140" name="ShortDescription" rows="3"placeholder="Give a brief description of the event. (max 140 characters)" REQUIRED></textarea>
 </fieldset>
 
-<br>
 
 <fieldset>
 <label class="labels">Role: </label>
@@ -179,7 +177,7 @@
 <!--    <label for="Frustrated">Frustrated</label><br>-->
 
 <!--<br>-->
-
+    <br><br>
     <label class="labels">Any other thoughts for the Thought Cloud? (Optional)</label>
     <br>
     <input maxlength="25" type="text" name="otherThoughtCloud" placeholder="max 25 characters" REQUIRED/>
@@ -229,17 +227,13 @@
 
         <textarea name="Alternateactions" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
     <br><br>
-    <label class="labels">Three learning points for you</label>
+    <label class="labels">Three learning points for you:</label>
         <br>
-    <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
+        <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
         <br>
+        <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
         <br>
-     <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
-        <br>
-        <br>
-     <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
-
-        <br>
+        <textarea maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
         <br>
         <button class="bckbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('tagselect').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
         <button class="nxtbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
@@ -259,7 +253,8 @@
     <p>Tags:</p>
     <br>    <br>
 
-    <p>Reflection:</p>    <br>    <br>
+    <p>Reflection:</p>
+    <br>    <br>
 
 
     <p class="description"> See something you want to change? <a id ="clickhere" onclick="document.getElementById('overview').style.display='None';document.getElementById('eventdetails').style.display='block'">Click here</a> to revisit your inputs in sequence. </p>
