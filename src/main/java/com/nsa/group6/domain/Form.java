@@ -8,6 +8,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @AllArgsConstructor
@@ -39,10 +40,23 @@ public class Form {
     private Timestamp lastEdited;
 
     @ManyToMany
-    @JoinTable(name = "TagForm"
+    @JoinTable(name = "Tagform"
             , joinColumns = @JoinColumn(name = "formID"),
             inverseJoinColumns = @JoinColumn(name = "TagID"))
     private List<Tags> tags;
 
+
+    //Allows for you to search by tag category
+    public List<Tags> getTagsByCategory(final String category) {
+        return tags
+                .stream()
+                .filter(a -> tagMatch(a, category))
+                .collect(Collectors.toList());
+    }
+
+
+    private static boolean tagMatch(Tags tag, String category) {
+        return tag.getCategory().equals(category);
+    }
 }
 

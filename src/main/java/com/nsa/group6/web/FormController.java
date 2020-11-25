@@ -46,4 +46,14 @@ public class FormController {
 
     }
 
+    @GetMapping("/reflection/{formID}")
+    public String allGreetings(@PathVariable(name = "formID", required = true) String formID, Model model) {
+
+        //Replace this with getFormbyFormID soon
+        model.addAttribute("form", formService.getAllForms().get(0));
+
+        return "form-view";
+
+    }
+
 }

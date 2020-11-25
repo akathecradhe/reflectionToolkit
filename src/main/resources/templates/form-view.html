@@ -1,10 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>View Form</title>
 </head>
 <body>
+    <h1 th:text="${form.getEventID().getName()}"> </h1>
+    <div>
+        <p><span th:text="${form.shortDescription}">Description goes here</span></p>
+
+        <p><b>Role</b> <br><span th:text="${form.roleID.name}"></span></p>
+
+        <p><b>Others Involved</b>  <br><span th:text="${form.getTagsByCategory('Others Involved').get(0).getTagName()}"></span></p>
+
+        <b>Impact Tags</b>
+        <div th:if="${form.getTagsByCategory('Impact').isEmpty()}">
+            <p>No tags selected</p>
+        </div>
+        <ul th:each="impact : ${form.getTagsByCategory('Impact')}">
+            <li th:text = "${impact.tagName}"></li>
+        </ul>
+
+        <b>Learning Technology Tags</b>
+            <div th:if="${form.getTagsByCategory('Learning Technologies').isEmpty()}">
+                <p>No tags selected</p>
+            </div>
+            <ul th:each="learningtech : ${form.getTagsByCategory('Learning Technologies')}">
+                <li th:text = "${learningtech.tagName}"></li>
+            </ul>
+
+        <b>Thought Cloud Tags</b>
+            <div th:if="${form.getTagsByCategory('Thought Cloud').isEmpty()}">
+                <p>No tags selected</p>
+            </div>
+            <ul th:each="thoughtcloud : ${form.getTagsByCategory('Thought Cloud')}">
+                <li th:text = "${thoughtcloud.tagName}"></li>
+            </ul>
+
+    </div>
+    <hr>
+    <div>
+        <h3>Reflection Answers</h3>
+        <div>
+            <p><b>What did you do?</b> <br><span th:text="${form.reflectionID.getBox1()}"></span></p>
+            <p><b>What prompted your approach?</b> <br><span th:text="${form.reflectionID.getBox2()}"></span></p>
+            <p><b>What happened?</b> <br><span th:text="${form.reflectionID.getBox3()}"></span></p>
+            <p><b>What impact did the learning technologies have on your activity?</b> <br><span th:text="${form.reflectionID.getBox4()}"></span></p>
+            <p><b>Collecting Evidence (How will you evaluate this activity later? What evidence do you need?))</b> <br><span th:text="${form.reflectionID.getBox5()}"></span></p>
+            <p><b>Alternate actions or responses (What could you have done differently?)</b> <br><span th:text="${form.reflectionID.getBox6()}"></span></p>
+        </div>
+    </div>
+    <hr>
+    <div>
+        <h3>Learning Points</h3>
+        <ol>
+            <li th:text = "${form.reflectionID.getLearningPoint1()}"></li>
+            <li th:text = "${form.reflectionID.getLearningPoint2()}"></li>
+            <li th:text = "${form.reflectionID.getLearningPoint3()}"></li>
+        </ol>
+
+    </div>
+
+
+
+
 
 </body>
 </html>
