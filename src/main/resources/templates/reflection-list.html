@@ -14,7 +14,9 @@
 </div>
 <div th:each="form : ${forms}">
     <h2 th:text="${form.getEventID().getName()}">Teaching Or Supervision</h2>
-<p th:text="${form.shortDescription}">This is a short description of the reflection selected.</p>
+    <p th:text="${form.shortDescription}">This is a short description of the reflection selected.</p>
+    <p>Event held on <span th:text="${form.getEventID().getDateString()}"></span></p>
+    <p>Last edited: <span th:text="${form.lastEdited}"></span></p>
 
 </div>
 
