@@ -1,10 +1,10 @@
-package com.nsa.group6.jpaservice;
+package com.nsa.group6.repositories;
 
 import com.nsa.group6.domain.Form;
 
-import com.nsa.group6.domain.FormService;
+import com.nsa.group6.domain.User;
+import com.nsa.group6.service.FormService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,16 +15,16 @@ public class FormJPAadptor implements FormService {
 
 
     @Autowired
-    private final FormRepoJPA formRepoJPA;
+    private final FormRepository formRepository;
 
 
-    public FormJPAadptor(FormRepoJPA formRepoJPA) {
-        this.formRepoJPA = formRepoJPA;
+    public FormJPAadptor(FormRepository formRepository) {
+        this.formRepository = formRepository;
     }
 
     @Override
     public void saveForm(Form x) {
-        formRepoJPA.save(x);
+         formRepository.save(x);
     }
 
     @Override
@@ -38,9 +38,18 @@ public class FormJPAadptor implements FormService {
     }
 
     @Override
-    public List<Form> getAllForms() {
-        return formRepoJPA.findAll();
+    public List<Form> getAllFormsByUsername(User aUsername) {
+
+        //String stringUsername = aUsername.toString();
+
+        return formRepository.findAllByUsername(aUsername);
+
     }
+
+
+
+
+
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
 

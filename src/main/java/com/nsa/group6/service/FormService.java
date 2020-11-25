@@ -1,4 +1,7 @@
-package com.nsa.group6.domain;
+package com.nsa.group6.service;
+
+import com.nsa.group6.domain.Form;
+import com.nsa.group6.domain.User;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,13 +13,16 @@ public interface FormService {
 
     public void deleteForm(Long id);
 
-    List<Form> getAllForms();
+    List<Form> getAllFormsByUsername(User username);
+
+
+
 
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
 //    public List<Form> findFormsByMostRecent();
 //
-//    public List<Form> findFormsByName(String aName);
+
 //
 //    public Optional<Form> findFormsById(Long id);
 //
