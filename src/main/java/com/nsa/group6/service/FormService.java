@@ -16,6 +16,8 @@ public interface FormService {
     List<Form> getAllFormsByUsername(User username);
 
 
+    List<Form> getAllForms(int aId);
+
 
 
 

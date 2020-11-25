@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FormJPAadptor implements FormService {
@@ -46,9 +45,12 @@ public class FormJPAadptor implements FormService {
 
     }
 
+    @Override
+    public List<Form> getAllForms(int aId) {
 
 
-
+        return formRepository.findAllByFormID(aId);
+    }
 
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
