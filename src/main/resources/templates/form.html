@@ -86,7 +86,7 @@
 <br>
 
 
-<!-- Validation for NONE needs to be figured out -->
+<!-- Validation for NONE needs to be figured out-->
     <fieldset>
         <label class="labels">Learning Technologies (choose as many as applicable)</label><br><br>
         <div th:each="learningTechnology: ${learningTechnologies}">
@@ -126,45 +126,45 @@
     <fieldset>
     <label class="labels">What did you do? (provide a clear record)</label>
     <br>
-    <textarea  name="Whatdidyoudo" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+    <textarea th:field="*{box1}" name="Whatdidyoudo" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
         <br>
         <br>
          <label class="labels">What prompted your approach?</label>    <br>
 
-        <textarea  name="Whatpromptedyourapproach" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <textarea th:field="*{box2}" name="Whatpromptedyourapproach" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
         <br>
         <br>
          <label class="labels">What happened? (Consider your own and others' viewpoints and feelings - put yourself in their shoes!)</label>    <br>
 
 
-        <textarea  name="Whathappened" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <textarea th:field="*{box3}" name="Whathappened" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
         <br>
         <br>
          <label class="labels">What impact did the learning technologies have on your activity?</label>    <br>
 
 
         <!--IF K4 was tagged (learning tech chosen) show this-->
-    <textarea  name="whatimpactdidthelearningtech" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+    <textarea th:field="*{box4}" name="whatimpactdidthelearningtech" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
         <br>
         <br>
          <label class="labels">Collecting Evidence (How will you evaluate this activity later? What evidence do you need?)</label>    <br>
 
 
-        <textarea  name="Collecting Evidence" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <textarea th:field="*{box5}" name="Collecting Evidence" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
         <br>
         <br>
          <label class="labels">Alternate actions or responses (What could you have done differently?)</label>    <br>
 
 
-        <textarea  name="Alternateactions" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <textarea th:field="*{box6}" name="Alternateactions" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
     <br><br>
     <label class="labels">Three learning points for you:</label>
         <br>
-        <textarea  maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
+        <textarea th:field="*{learningPoint1}" maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
         <br>
-        <textarea  maxlength="140" name="Learningpoint2" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
+        <textarea th:field="*{learningPoint2}" maxlength="140" name="Learningpoint2" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
         <br>
-        <textarea  maxlength="140" name="Learningpoint3" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
+        <textarea th:field="*{learningPoint3}" maxlength="140" name="Learningpoint3" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
         <br>
         <button class="bckbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('tagselect').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
         <button class="nxtbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
