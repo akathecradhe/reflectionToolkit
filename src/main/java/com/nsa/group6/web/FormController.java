@@ -29,6 +29,7 @@ public class FormController {
 
     private final FormService formService;
     private final UserService userService;
+
     @Autowired FormRepoJPA formRepo;
 
     public FormController(FormService formService, UserService userService) {
@@ -75,33 +76,16 @@ public class FormController {
         return "form";
     }
 
+    //This function retrieves the list of reflections by username
     @GetMapping("/reflections/{username}")
     public String getFormsByUsername(@PathVariable(name = "username", required = false) Optional<String> username, Model model) {
 
-        // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not
+        // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not in the db.
+        // If the username is left blank then take it to the page of the signed in user.
         List<Form> form;
         Optional<User> ausername = userService.findUserByUsername(username.get());
         User aUser = ausername.get();
         form = formService.getAllFormsByUsername(aUser);
-
-        //if (!username.isPresent()){
-
-       // }
-       // else {
-       //     form = formService.getAllFormsByUsername();
-       // }
-
-
-        // find all forms by usernameID
-
-
-     // if (username.isPresent()) {
-     //     form = formService.findFormByUsername(username);
-       // }
-       // else {
-            //reflections = FormService.findReflectionsByName(currentUser.username)
-        //   form = formService.getAllForms();
-       // }
 
         model.addAttribute("forms", form);
 
@@ -109,9 +93,10 @@ public class FormController {
 
     }
 
+    //This function retrieves a form by the ID selected.
     @GetMapping("/reflection/{formID}")
     public String getFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
-
+    // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
         //Replace this with getFormbyFormID soon
         model.addAttribute("form", formService.getFormByID(formID));
 
