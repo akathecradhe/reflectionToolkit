@@ -1,5 +1,16 @@
 package com.nsa.group6.web;
+
 import com.nsa.group6.domain.Event;
+import com.nsa.group6.domain.*;
+import com.nsa.group6.service.FormService;
+import com.nsa.group6.service.UserService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import java.util.List;
+import java.util.Optional;
+
 import com.nsa.group6.domain.Form;
 import com.nsa.group6.domain.SubmittingForm;
 import com.nsa.group6.domain.Tags;
@@ -20,19 +31,20 @@ import java.util.List;
 @Controller
 public class FormController {
 
-    @Autowired
-    FormRepoJPA formRepo;
 
-//    @GetMapping("formtest")
-//    public String readForm(Model model) {
-//
-//        model.addAttribute("form", aForm)
-//
-//
-//
-//        return "formtest";
-//
-//    }
+
+    private final FormService formService;
+    private final UserService userService;
+
+    @Autowired FormRepoJPA formRepo;
+
+
+    public FormController(FormService formService, UserService userService) {
+        this.formService = formService;
+        this.userService = userService;
+    }
+
+
 
     @GetMapping("form")
     public String runForm(Model model) {
@@ -71,6 +83,7 @@ public class FormController {
         return "form";
     }
 
+
     @PostMapping("form")
     public String submitForm(@ModelAttribute("form") SubmittingForm aSubmittingForm, BindingResult bindings, Model model) {
 
@@ -91,6 +104,35 @@ public class FormController {
         }
     }
 
+
+
+    //This function retrieves the list of reflections by username
+    @GetMapping("/reflections/{username}")
+    public String getFormsByUsername(@PathVariable(name = "username", required = false) Optional<String> username, Model model) {
+
+        // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not in the db.
+        // If the username is left blank then take it to the page of the signed in user.
+        List<Form> form;
+        Optional<User> ausername = userService.findUserByUsername(username.get());
+        User aUser = ausername.get();
+        form = formService.getAllFormsByUsername(aUser);
+
+        model.addAttribute("forms", form);
+
+        return "reflection-list";
+
+    }
+
+    //This function retrieves a form by the ID selected.
+    @GetMapping("/reflection/{formID}")
+    public String getFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
+    // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
+        //Replace this with getFormbyFormID soon
+        model.addAttribute("form", formService.getFormByID(formID));
+
+        return "form-view";
+
+    }
 
 
 }

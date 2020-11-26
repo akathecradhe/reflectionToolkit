@@ -126,7 +126,7 @@ INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_
 VALUES (1,'This event was ...',1,1,'rowbo',CURRENT_TIMESTAMP);
 
 INSERT INTO TagForm (TagID, FormID)
-VALUES (4,1);
+VALUES (2,1);
 
 INSERT INTO TagForm (TagID, FormID)
 VALUES (7,1);

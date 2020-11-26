@@ -22,15 +22,6 @@ public class Tags {
     private String tagName;
 
 
-    public String getCategory(){
-        return category;
-    }
-
-    public String getTagName(){
-        return tagName;
-    }
-
-
 }
 
 
