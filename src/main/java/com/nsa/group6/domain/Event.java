@@ -20,10 +20,30 @@ public class Event {
     private String name;
 
 
+    public int getEventId() {
+        return eventID;
+    }
+    public void setId (int eventID){
+        this.eventID = eventID;
+    }
+    public Date getEventDate() {
+        return eventDate;
+    }
+    public void setDate (Date eventDate){
+        this.eventDate = eventDate;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName (String name){
+        this.name = name;
+
+
     //This function returns the date object in the format wanted for the webpage. Previously printing the
     //event would include a timestamp of midnight.
     public String getDateString() {
         SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
         return formatter.format(eventDate);
+
     }
 }
