@@ -21,7 +21,7 @@
 <div id="eventdetails" class="container">
     <h2>Event details</h2>
 <fieldset>
-<label class="labels">Event type:</label>
+<label th:for="EventType" class="labels">Event type:</label>
 <!--THIS SELECT CAN BE REPLACED WITH DATA TAKEN FROM THE DATABASE-->
 <select name="event" id="event" REQUIRED>
     <option value="Teaching or Supervision">Teaching or Supervision</option>
@@ -49,16 +49,24 @@
 </fieldset>
 <br>
 
-<fieldset>
-<label class="labels">Others involved:</label>
-<select  name="Others Involved" id="Others Involved" REQUIRED>
-    <option value="No-one">No-one</option>
-    <option value="Students">Students</option>
-    <option value="Staff">Staff</option>
-    <option value="Students and Staff">Students and Staff</option>
-    <option value="Other">Other (this will open a textinput area)</option>
-</select>
-    <br><br>
+    <fieldset>
+        <label class="labels">Others involved</label><br>
+        <div th:each="othersInvolveds: ${othersInvolved}">
+            <input  type="checkbox" th:id="${othersInvolveds.tagName}" name="othersInvolved" th:value="${othersInvolveds.tagName}">
+            <label th:for="${othersInvolveds.tagName}" th:text="${othersInvolveds.tagName}"></label><br>
+        </div>
+<!--    </fieldset>-->
+<!--    -->
+<!--<fieldset>-->
+<!--<label class="labels">Others involved:</label>-->
+<!--<select  name="Others Involved" id="Others Involved" REQUIRED>-->
+<!--    <option value="No-one">No-one</option>-->
+<!--    <option value="Students">Students</option>-->
+<!--    <option value="Staff">Staff</option>-->
+<!--    <option value="Students and Staff">Students and Staff</option>-->
+<!--    <option value="Other">Other (this will open a textinput area)</option>-->
+<!--</select>-->
+<!--    <br><br>-->
 
     <button class="nxtbtn" type="button" onclick="document.getElementById('eventdetails').style.display='none';document.getElementById('tagselect').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
 
@@ -81,7 +89,7 @@
     <h2>Tag selection</h2>
 
     <fieldset>
-    <label class="labels">Impact </label><br><br>
+    <label class="labels">Impact </label><br>
     <div th:each="impacts: ${impact}">
         <input  type="checkbox" th:id="${impacts.tagName}" name="Impact" th:value="${impacts.tagName}">
         <label th:for="${impacts.tagName}" th:text="${impacts.tagName}"></label><br>
@@ -92,7 +100,7 @@
 
 <!-- Validation for NONE needs to be figured out -->
     <fieldset>
-        <label class="labels">Learning Technologies (choose as many as applicable)</label><br><br>
+        <label class="labels">Learning Technologies (choose as many as applicable)</label><br>
         <div th:each="learningTechnology: ${learningTechnologies}">
             <input  type="checkbox" th:id="${learningTechnology.tagName}" name="Learning Technologies" th:value="${learningTechnology.tagName}">
             <label th:for="${learningTechnology.tagName}" th:text="${learningTechnology.tagName}"></label><br>
@@ -122,7 +130,7 @@
 <!--<br>-->
 
     <fieldset>
-        <label class="labels">Thought Cloud (choose as many as applicable)</label><br><br>
+        <label class="labels">Thought Cloud (choose as many as applicable)</label><br>
         <div th:each="thoughtClouds: ${thoughtCloud}">
             <input  type="checkbox" th:id="${thoughtClouds.tagName}" name="Learning Technologies" th:value="${thoughtClouds.tagName}">
             <label th:for="${thoughtClouds.tagName}" th:text="${thoughtClouds.tagName}"></label><br>
