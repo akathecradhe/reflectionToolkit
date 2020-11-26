@@ -11,10 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,9 +60,9 @@ public class FormController {
             }
         }
 
-        SubmittingForm form = new SubmittingForm();
+        SubmittingForm submittingForm = new SubmittingForm();
 
-        model.addAttribute("form", form);
+        model.addAttribute("form", submittingForm);
         model.addAttribute("othersInvolved", othersInvolved);
         model.addAttribute("impact", impact);
         model.addAttribute("learningTechnologies", learningTechnologies);
@@ -74,7 +72,7 @@ public class FormController {
     }
 
     @PostMapping("form")
-    public String handleGreetingForm(@Validated @ModelAttribute("form") SubmittingForm aForm, BindingResult bindings, Model model) {
+    public String submitForm(@ModelAttribute("form") SubmittingForm aSubmittingForm, BindingResult bindings, Model model) {
 
 
         if (bindings.hasErrors()) {
@@ -86,11 +84,14 @@ public class FormController {
         }
         else {
 
-            model.addAttribute("form", aForm);
 
-            return "formtest.html";
+            model.addAttribute("aForm", aSubmittingForm);
+
+            return "formtest";
         }
     }
+
+
 
 }
 

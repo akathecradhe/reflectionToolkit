@@ -1,7 +1,18 @@
 package com.nsa.group6.domain;
 
+import lombok.*;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class SubmittingForm {
 
     public String eventType;
@@ -107,4 +118,8 @@ public class SubmittingForm {
     public String getLearningPoint3() {
         return learningPoint3;
     }
+//    public SubmittingForm(){
+//
+//    }
 }
+
