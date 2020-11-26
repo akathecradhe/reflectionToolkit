@@ -32,7 +32,7 @@ public class FormController {
     }
 
     @GetMapping("/reflections/{username}")
-    public String allGreetings(@PathVariable(name = "username", required = false) Optional<String> username, Model model) {
+    public String getFormsByUsername(@PathVariable(name = "username", required = false) Optional<String> username, Model model) {
 
         // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not
         List<Form> form;
@@ -66,7 +66,7 @@ public class FormController {
     }
 
     @GetMapping("/reflection/{formID}")
-    public String allGreetings(@PathVariable(name = "formID", required = true) int formID, Model model) {
+    public String getFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
 
         //Replace this with getFormbyFormID soon
         model.addAttribute("form", formService.getFormByID(formID));
