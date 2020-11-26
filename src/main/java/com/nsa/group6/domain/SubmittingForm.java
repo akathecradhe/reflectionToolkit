@@ -33,27 +33,27 @@ public class SubmittingForm {
         return role;
     }
 
-    public List<Boolean> others;
+    public List<String> others;
 
-    public List<Boolean> getOthers(){
+    public List<String> getOthers(){
         return others;
     }
 
-    public List<Boolean> impact;
+    public List<String> impact;
 
-    public List<Boolean> getImpact(){
+    public List<String> getImpact(){
         return impact;
     }
 
-    public List<Boolean> learningTechs;
+    public List<String> learningTechs;
 
-    public List<Boolean> getLearningTechs(){
+    public List<String> getLearningTechs(){
         return learningTechs;
     }
 
-    public List<Boolean> thoughtCloud;
+    public List<String> thoughtCloud;
 
-    public List<Boolean> getThoughtCloud(){
+    public List<String> getThoughtCloud(){
         return thoughtCloud;
     }
 
