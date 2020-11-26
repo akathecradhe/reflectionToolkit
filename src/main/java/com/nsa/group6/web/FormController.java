@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -23,6 +24,17 @@ public class FormController {
 
     @Autowired
     FormRepoJPA formRepo;
+
+//    @GetMapping("formtest")
+//    public String readForm(Model model) {
+//
+//        model.addAttribute("form", aForm)
+//
+//
+//
+//        return "formtest";
+//
+//    }
 
     @GetMapping("form")
     public String runForm(Model model) {
@@ -53,7 +65,6 @@ public class FormController {
         SubmittingForm form = new SubmittingForm();
 
         model.addAttribute("form", form);
-
         model.addAttribute("othersInvolved", othersInvolved);
         model.addAttribute("impact", impact);
         model.addAttribute("learningTechnologies", learningTechnologies);
@@ -63,19 +74,22 @@ public class FormController {
     }
 
     @PostMapping("form")
-    public String handleGreetingForm(@ModelAttribute("form") SubmittingForm aForm, BindingResult bindings, Model model) {
+    public String handleGreetingForm(@Validated @ModelAttribute("form") SubmittingForm aForm, BindingResult bindings, Model model) {
 
 
-//        if (bindings.hasErrors()) {
-//            System.out.println("Errors:" + bindings.getFieldErrorCount());
-//            for (ObjectError oe : bindings.getAllErrors()) {
-//                System.out.println(oe);
-//            }
-//            return "form";
-//        }
-//        else {
-            return "form" + aForm.getBox1();
-//        }
+        if (bindings.hasErrors()) {
+            System.out.println("Errors:" + bindings.getFieldErrorCount());
+            for (ObjectError oe : bindings.getAllErrors()) {
+                System.out.println(oe);
+            }
+            return "form";
+        }
+        else {
+
+            model.addAttribute("form", aForm);
+
+            return "formtest.html";
+        }
     }
 
 }
