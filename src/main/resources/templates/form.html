@@ -21,9 +21,9 @@
 <div id="eventdetails" class="container">
     <h2>Event details</h2>
 <fieldset>
-<label th:for="EventType" class="labels">Event type:</label>
+<label class="labels">Event type:</label>
 <!--THIS SELECT CAN BE REPLACED WITH DATA TAKEN FROM THE DATABASE-->
-<select th:field="*{Event.name}"name="event" id="event" REQUIRED>
+<select name="event" id="event" REQUIRED>
     <option value="Teaching or Supervision">Teaching or Supervision</option>
     <option value="Design or Plan">Design or Plan</option>
     <option value="Assess or Give Feedback">Assess or Give Feedback</option>
@@ -35,13 +35,13 @@
 
 
 <fieldset>
-    <textarea th:field="*{eventdesc}" maxlength="140" name="ShortDescription" rows="3"placeholder="Give a brief description of the event. (max 140 characters)" REQUIRED></textarea>
+    <textarea  maxlength="140" name="ShortDescription" rows="3"placeholder="Give a brief description of the event. (max 140 characters)" REQUIRED></textarea>
 </fieldset>
 
 
 <fieldset>
 <label class="labels">Role: </label>
-<select th:field="*{Role.name}" name="role" id="role" REQUIRED>
+<select  name="role" id="role" REQUIRED>
     <option value="Lead or Facilitate">Lead or Facilitate</option>
     <option value="Participate">Participate</option>
     <option value="Review">Review</option>
@@ -49,13 +49,15 @@
 </fieldset>
 <br>
 
-
-    <fieldset>
-        <label class="labels">Others involved</label><br>
-        <div th:each="othersInvolveds: ${othersInvolved}">
-            <input  th:field="*{Event.others}" type="checkbox" th:id="${othersInvolveds.tagName}" name="othersInvolved" th:value="${othersInvolveds.tagName}">
-            <label th:for="${othersInvolveds.tagName}" th:text="${othersInvolveds.tagName}"></label><br>
-        </div>
+<fieldset>
+<label class="labels">Others involved:</label>
+<select  name="Others Involved" id="Others Involved" REQUIRED>
+    <option value="No-one">No-one</option>
+    <option value="Students">Students</option>
+    <option value="Staff">Staff</option>
+    <option value="Students and Staff">Students and Staff</option>
+    <option value="Other">Other (this will open a textinput area)</option>
+</select>
     <br><br>
 
     <button class="nxtbtn" type="button" onclick="document.getElementById('eventdetails').style.display='none';document.getElementById('tagselect').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
@@ -66,13 +68,22 @@
 
 </div>
 
+
+<!--<table>-->
+<!--    <tr th:each="impacts: ${impact}">-->
+<!--        <td th:text="${impacts.tagName}" /></td>-->
+<!--    </tr>-->
+<!--</table>-->
+
+
+
 <div id="tagselect" class="container">
     <h2>Tag selection</h2>
 
     <fieldset>
-    <label class="labels">Impact </label><br>
+    <label class="labels">Impact </label><br><br>
     <div th:each="impacts: ${impact}">
-        <input th:field="*{tagName}" type="checkbox" th:id="${impacts.tagName}" name="Impact" th:value="${impacts.tagName}">
+        <input  type="checkbox" th:id="${impacts.tagName}" name="Impact" th:value="${impacts.tagName}">
         <label th:for="${impacts.tagName}" th:text="${impacts.tagName}"></label><br>
     </div>
     </fieldset>
@@ -81,19 +92,39 @@
 
 <!-- Validation for NONE needs to be figured out -->
     <fieldset>
-        <label class="labels">Learning Technologies (choose as many as applicable)</label><br>
+        <label class="labels">Learning Technologies (choose as many as applicable)</label><br><br>
         <div th:each="learningTechnology: ${learningTechnologies}">
-            <input th:field="*{tagName}" type="checkbox" th:id="${learningTechnology.tagName}" name="Learning Technologies" th:value="${learningTechnology.tagName}">
+            <input  type="checkbox" th:id="${learningTechnology.tagName}" name="Learning Technologies" th:value="${learningTechnology.tagName}">
             <label th:for="${learningTechnology.tagName}" th:text="${learningTechnology.tagName}"></label><br>
         </div>
     </fieldset>
 
 <br>
-    
+
+<!--<fieldset>-->
+<!--    <label class="labels">Learning Technologies (choose as many as applicable)</label><br><br>-->
+<!--    <input onclick = "uncheck('OLER', 'BWSM', 'PRS', 'RLP', 'MAT', 'AT')" type="checkbox" id="None" name="Learning Technologies" value="None">-->
+<!--    <label for="None">None</label><br>-->
+<!--    <input onclick = "uncheckNone()" type="checkbox" id="OLER" name="Learning Technologies" value="Online learning environment or resource">-->
+<!--    <label for="OLER">Online learning environment or resource</label><br>-->
+<!--    <input onclick = "uncheckNone()" type="checkbox" id="BWSM" name="Learning Technologies" value="Blog, Wiki or Social Media">-->
+<!--    <label for="BWSM">Blog, Wiki or Social Media</label><br>-->
+<!--    <input onclick = "uncheckNone()" type="checkbox" id="PRS" name="Learning Technologies" value="Polling or response system">-->
+<!--    <label for="PRS">Polling or response system</label><br>-->
+<!--    <input onclick = "uncheckNone()" type="checkbox" id="RLP" name="Learning Technologies" value="Reflective log or portfolio">-->
+<!--    <label for="RLP">Reflective log or portfolio</label><br>-->
+<!--    <input onclick = "uncheckNone()" type="checkbox" id="MAT" name="Learning Technologies" value="Mobile and app technology">-->
+<!--    <label for="MAT"></label>Mobile and app technology<br>-->
+<!--    <input onclick = "uncheckNone()" type="checkbox" id="AT" name="Learning Technologies" value="Analogue Technology">-->
+<!--    <label for="AT">Analogue technology</label><br>-->
+<!--</fieldset>-->
+
+<!--<br>-->
+
     <fieldset>
-        <label class="labels">Thought Cloud (choose as many as applicable)</label><br>
+        <label class="labels">Thought Cloud (choose as many as applicable)</label><br><br>
         <div th:each="thoughtClouds: ${thoughtCloud}">
-            <input th:field="*{tagName}" type="checkbox" th:id="${thoughtClouds.tagName}" name="Learning Technologies" th:value="${thoughtClouds.tagName}">
+            <input  type="checkbox" th:id="${thoughtClouds.tagName}" name="Learning Technologies" th:value="${thoughtClouds.tagName}">
             <label th:for="${thoughtClouds.tagName}" th:text="${thoughtClouds.tagName}"></label><br>
         </div>
 
@@ -101,7 +132,7 @@
     <br><br>
     <label class="labels">Any other thoughts for the Thought Cloud? (Optional)</label>
     <br>
-    <input th:field="*{thoughtDesc}" maxlength="25" type="text" name="otherThoughtCloud" placeholder="max 25 characters" REQUIRED/>
+    <input  maxlength="25" type="text" name="otherThoughtCloud" placeholder="max 25 characters" REQUIRED/>
     <br><br>
     <button class="bckbtn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('eventdetails').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
     <button class="nxtbtn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
@@ -116,45 +147,45 @@
     <fieldset>
     <label class="labels">What did you do? (provide a clear record)</label>
     <br>
-    <textarea th:field="*{box1}" name="Whatdidyoudo" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+    <textarea  name="Whatdidyoudo" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
         <br>
         <br>
          <label class="labels">What prompted your approach?</label>    <br>
 
-        <textarea th:field="*{box2}" name="Whatpromptedyourapproach" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <textarea  name="Whatpromptedyourapproach" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
         <br>
         <br>
          <label class="labels">What happened? (Consider your own and others' viewpoints and feelings - put yourself in their shoes!)</label>    <br>
 
 
-        <textarea th:field="*{box3}" name="Whathappened" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <textarea  name="Whathappened" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
         <br>
         <br>
          <label class="labels">What impact did the learning technologies have on your activity?</label>    <br>
 
 
         <!--IF K4 was tagged (learning tech chosen) show this-->
-    <textarea th:field="*{box4}" name="whatimpactdidthelearningtech" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+    <textarea  name="whatimpactdidthelearningtech" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
         <br>
         <br>
          <label class="labels">Collecting Evidence (How will you evaluate this activity later? What evidence do you need?)</label>    <br>
 
 
-        <textarea th:field="*{box5}" name="Collecting Evidence" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <textarea  name="Collecting Evidence" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
         <br>
         <br>
          <label class="labels">Alternate actions or responses (What could you have done differently?)</label>    <br>
 
 
-        <textarea th:field="*{box6}" name="Alternateactions" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <textarea  name="Alternateactions" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
     <br><br>
     <label class="labels">Three learning points for you:</label>
         <br>
-        <textarea th:field="*{learningPoint1}" maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
+        <textarea  maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
         <br>
-        <textarea th:field="*{learningPoint2}" maxlength="140" name="Learningpoint2" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
+        <textarea  maxlength="140" name="Learningpoint2" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
         <br>
-        <textarea th:field="*{learningPoint3}" maxlength="140" name="Learningpoint3" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
+        <textarea  maxlength="140" name="Learningpoint3" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
         <br>
         <button class="bckbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('tagselect').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
         <button class="nxtbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
