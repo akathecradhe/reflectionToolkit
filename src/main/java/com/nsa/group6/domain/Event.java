@@ -18,7 +18,22 @@ public class Event {
     private Date eventDate;
     private String name;
 
-
-
-
+    public int getEventId() {
+        return eventID;
+    }
+    public void setId (int eventID){
+        this.eventID = eventID;
+    }
+    public Date getEventDate() {
+        return eventDate;
+    }
+    public void setDate (Date eventDate){
+        this.eventDate = eventDate;
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName (String name){
+        this.name = name;
+    }
 }
