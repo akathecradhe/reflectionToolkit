@@ -39,8 +39,6 @@ public class FormJPAadptor implements FormService {
     @Override
     public List<Form> getAllFormsByUsername(User aUsername) {
 
-        //String stringUsername = aUsername.toString();
-
         return formRepository.findAllByUsername(aUsername);
 
     }
@@ -53,24 +51,21 @@ public class FormJPAadptor implements FormService {
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
 
-//
+
 //    @Override
 //    public List<Form> findFormsByMostRecent() {
 //        return null;
 //    }
-//
+
 //    @Override
 //    public List<Form> findFormsByName(String aName) {
 //        return null;
 //    }
-//
+
 //    @Override
-//    public Optional<Form> findFormsByCategory(Long id) {
+//    public Optional<Form> findFormsByElement(Long id) {
 //        return Optional.empty();
 //    }
 //
-//    @Override
-//    public Optional<Form> findFormsById(Long id) {
-//        return Optional.empty();
-//    }
+
 }

@@ -35,21 +35,15 @@ public class UserJPAadptor implements UserService {
 
     }
 
-
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
 
     @Override
     public Optional<User> findUserByUsername(String aName) {
-        //String name = aName.toString();
-       // User selectedName = userRepository.findByUsername(name);
         Optional<User> selectedName = userRepository.findById(aName);
-
         return selectedName ;
-
     }
-
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
 

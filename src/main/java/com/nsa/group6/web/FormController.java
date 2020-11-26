@@ -22,7 +22,6 @@ public class FormController {
         this.userService = userService;
     }
 
-
     @GetMapping("form")
     public String runForm(Model model) {
 
@@ -34,7 +33,7 @@ public class FormController {
     @GetMapping("/reflections/{username}")
     public String getFormsByUsername(@PathVariable(name = "username", required = false) Optional<String> username, Model model) {
 
-        // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not
+        // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not present
         List<Form> form;
         Optional<User> ausername = userService.findUserByUsername(username.get());
         User aUser = ausername.get();
@@ -62,9 +61,7 @@ public class FormController {
         model.addAttribute("forms", form);
 
         return "reflection-list";
-
     }
-
     @GetMapping("/reflection/{formID}")
     public String getFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
 
