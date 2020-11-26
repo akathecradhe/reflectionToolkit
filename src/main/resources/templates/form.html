@@ -57,7 +57,7 @@
             <label th:for="${othersInvolveds.tagName}" th:text="${othersInvolveds.tagName}"></label><br>
         </div>
     <br><br>
-        
+
     <button class="nxtbtn" type="button" onclick="document.getElementById('eventdetails').style.display='none';document.getElementById('tagselect').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
 
 </fieldset>
@@ -65,15 +65,6 @@
 
 
 </div>
-
-
-<!--<table>-->
-<!--    <tr th:each="impacts: ${impact}">-->
-<!--        <td th:text="${impacts.tagName}" /></td>-->
-<!--    </tr>-->
-<!--</table>-->
-
-
 
 <div id="tagselect" class="container">
     <h2>Tag selection</h2>
@@ -98,27 +89,7 @@
     </fieldset>
 
 <br>
-
-<!--<fieldset>-->
-<!--    <label class="labels">Learning Technologies (choose as many as applicable)</label><br><br>-->
-<!--    <input onclick = "uncheck('OLER', 'BWSM', 'PRS', 'RLP', 'MAT', 'AT')" type="checkbox" id="None" name="Learning Technologies" value="None">-->
-<!--    <label for="None">None</label><br>-->
-<!--    <input onclick = "uncheckNone()" type="checkbox" id="OLER" name="Learning Technologies" value="Online learning environment or resource">-->
-<!--    <label for="OLER">Online learning environment or resource</label><br>-->
-<!--    <input onclick = "uncheckNone()" type="checkbox" id="BWSM" name="Learning Technologies" value="Blog, Wiki or Social Media">-->
-<!--    <label for="BWSM">Blog, Wiki or Social Media</label><br>-->
-<!--    <input onclick = "uncheckNone()" type="checkbox" id="PRS" name="Learning Technologies" value="Polling or response system">-->
-<!--    <label for="PRS">Polling or response system</label><br>-->
-<!--    <input onclick = "uncheckNone()" type="checkbox" id="RLP" name="Learning Technologies" value="Reflective log or portfolio">-->
-<!--    <label for="RLP">Reflective log or portfolio</label><br>-->
-<!--    <input onclick = "uncheckNone()" type="checkbox" id="MAT" name="Learning Technologies" value="Mobile and app technology">-->
-<!--    <label for="MAT"></label>Mobile and app technology<br>-->
-<!--    <input onclick = "uncheckNone()" type="checkbox" id="AT" name="Learning Technologies" value="Analogue Technology">-->
-<!--    <label for="AT">Analogue technology</label><br>-->
-<!--</fieldset>-->
-
-<!--<br>-->
-
+    
     <fieldset>
         <label class="labels">Thought Cloud (choose as many as applicable)</label><br>
         <div th:each="thoughtClouds: ${thoughtCloud}">
