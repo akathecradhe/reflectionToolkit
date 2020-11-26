@@ -111,7 +111,7 @@
     <br><br>
     <label class="labels">Any other thoughts for the Thought Cloud? (Optional)</label>
     <br>
-    <input  maxlength="25" type="text" name="otherThoughtCloud" placeholder="max 25 characters" REQUIRED/>
+    <input  th:field="*{thoughtDesc}" maxlength="25" type="text" name="otherThoughtCloud" placeholder="max 25 characters" REQUIRED/>
     <br><br>
     <button class="bckbtn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('eventdetails').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
     <button class="nxtbtn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
