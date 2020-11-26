@@ -65,6 +65,7 @@ public class FormController {
     @PostMapping("form")
     public String handleGreetingForm(@ModelAttribute("form") SubmittingForm aForm, BindingResult bindings, Model model) {
 
+
 //        if (bindings.hasErrors()) {
 //            System.out.println("Errors:" + bindings.getFieldErrorCount());
 //            for (ObjectError oe : bindings.getAllErrors()) {
