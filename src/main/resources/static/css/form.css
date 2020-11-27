@@ -17,6 +17,14 @@ h2{
     color: #333;
 
 }
+h3{
+    padding-top: 13px;
+    padding-bottom: 23px;
+    background-color: white;
+    font-weight: bold;
+    font-size: 23px;
+    color: #333;
+}
 input[type=text], select {
     background-color: white;
     width: 100%;

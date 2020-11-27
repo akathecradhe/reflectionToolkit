@@ -21,29 +21,31 @@
     <h2 th:text="${form.getEventID().getName()}"> </h2>
 
     <div>
-        <p><span th:text="${form.shortDescription}">Description goes here</span></p>
+        <h3>Event Details</h3>
 
-        <p><b>Role</b> <br><span th:text="${form.roleID.name}"></span></p>
-
-        <p><b>Others Involved</b>  <br><span th:text="${form.getTagsByCategory('Others Involved').get(0).getTagName()}"></span></p>
-
-        <b>Impact Tags</b>
+        <p><label class="labels">Description</label> <br> <span th:text="${form.shortDescription}">Description goes here</span></p>
+        <br>
+        <p><label class="labels">Role</label> <br><span th:text="${form.roleID.name}"></span></p>
+        <br>
+        <p><label class="labels">Others Involved</label>  <br><span th:text="${form.getTagsByCategory('Others Involved').get(0).getTagName()}"></span></p>
+        <br>
+        <label class="labels">Impact Tags</label>
         <div th:if="${form.getTagsByCategory('Impact').isEmpty()}">
             <p>No tags selected</p>
         </div>
         <ul th:each="impact : ${form.getTagsByCategory('Impact')}">
             <li th:text = "${impact.tagName}"></li>
         </ul>
-
-        <b>Learning Technology Tags</b>
+        <br>
+        <label class="labels">Learning Technology Tags</label>
             <div th:if="${form.getTagsByCategory('Learning Technologies').isEmpty()}">
                 <p>No tags selected</p>
             </div>
             <ul th:each="learningtech : ${form.getTagsByCategory('Learning Technologies')}">
                 <li th:text = "${learningtech.tagName}"></li>
             </ul>
-
-        <b>Thought Cloud Tags</b>
+        <br>
+        <label class="labels">Thought Cloud Tags</label>
             <div th:if="${form.getTagsByCategory('Thought Cloud').isEmpty()}">
                 <p>No tags selected</p>
             </div>
@@ -52,16 +54,21 @@
             </ul>
 
     </div>
-    <hr>
+    <hr><br><br>
     <div>
         <h3>Reflection Answers</h3>
         <div>
-            <p><b>What did you do?</b> <br><span th:text="${form.reflectionID.getBox1()}"></span></p>
-            <p><b>What prompted your approach?</b> <br><span th:text="${form.reflectionID.getBox2()}"></span></p>
-            <p><b>What happened?</b> <br><span th:text="${form.reflectionID.getBox3()}"></span></p>
-            <p><b>What impact did the learning technologies have on your activity?</b> <br><span th:text="${form.reflectionID.getBox4()}"></span></p>
-            <p><b>Collecting Evidence (How will you evaluate this activity later? What evidence do you need?))</b> <br><span th:text="${form.reflectionID.getBox5()}"></span></p>
-            <p><b>Alternate actions or responses (What could you have done differently?)</b> <br><span th:text="${form.reflectionID.getBox6()}"></span></p>
+            <p><label class="labels">What did you do?</label> <br><span th:text="${form.reflectionID.getBox1()}"></span></p>
+            <br>
+            <p><label class="labels">What prompted your approach?</label> <br><span th:text="${form.reflectionID.getBox2()}"></span></p>
+            <br>
+            <p><label class="labels">What happened?</label> <br><span th:text="${form.reflectionID.getBox3()}"></span></p>
+            <br>
+            <p><label class="labels">What impact did the learning technologies have on your activity?</label> <br><span th:text="${form.reflectionID.getBox4()}"></span></p>
+            <br>
+            <p><label class="labels">Collecting Evidence (How will you evaluate this activity later? What evidence do you need?)</label> <br><span th:text="${form.reflectionID.getBox5()}"></span></p>
+            <br>
+            <p><label class="labels">Alternate actions or responses (What could you have done differently?)</label> <br><span th:text="${form.reflectionID.getBox6()}"></span></p>
         </div>
     </div>
     <hr>
