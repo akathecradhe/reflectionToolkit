@@ -16,7 +16,7 @@
     </ul>
 </header>
 
-<form action="#" method="post" th:action="@{/form}" th:object="${form}">
+<form action="#" method="post" th:action="@{/form}" th:object="${form}" onsubmit="return confirm('Submit this entry?');">
     <!--<div th:text="${event}"></div>-->
 
 <div id="eventdetails" class="container">
@@ -167,7 +167,7 @@
         <textarea th:field="*{learningPoint3}" maxlength="140" name="Learningpoint3" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
         <br>
         <button class="bckbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('tagselect').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-        <button class="nxtbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+        <button id = "validate" class="nxtbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Overview </button>
 
     </fieldset>
 
@@ -214,16 +214,7 @@
 <br>
 <!--</div>-->
 <script>
-    // function confirmsubmit() {
-    //     if (confirm("Submit this entry?")) {
-    //
-    //         javascript:alert('Your entry has been added.');
-    //
-    //                 } else {
-    //
-    //         javascript:alert('Submission terminated.');
-    //     }
-    // }
+
 
     function uncheck(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6) {
         let checkBox = document.getElementById("None");
