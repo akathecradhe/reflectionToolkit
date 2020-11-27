@@ -168,6 +168,25 @@ input.checkbox {
     width :20px;
     height :20px;
 }
+.reflection {
+    margin: 5px auto;
+    border-radius: 5px;
+    padding: 23px;
+    width: auto;
+    height: auto;
+    background-color: #d8e4ef;
+
+}
+.reflection * {
+    background-color: #d8e4ef;
+
+}
+.reflection * :hover{
+    cursor:pointer;
+}
+
+
+#a6c5dd
 /*#footer {*/
 /*    position: absolute;*/
 /*    bottom: 0;*/
