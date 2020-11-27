@@ -35,9 +35,9 @@ public class Event {
     public String getName() {
         return name;
     }
-    public void setName (String name){
+    public void setName (String name) {
         this.name = name;
-
+    }
 
     //This function returns the date object in the format wanted for the webpage. Previously printing the
     //event would include a timestamp of midnight.

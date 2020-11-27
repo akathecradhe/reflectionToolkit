@@ -35,13 +35,12 @@ public class FormController {
 
     private final FormService formService;
     private final UserService userService;
+    private final FormRepoJPA formRepo;
 
-    @Autowired FormRepoJPA formRepo;
-
-
-    public FormController(FormService formService, UserService userService) {
+    public FormController(FormService formService, UserService userService, FormRepoJPA formRepo) {
         this.formService = formService;
         this.userService = userService;
+        this.formRepo = formRepo;
     }
 
 
