@@ -9,10 +9,10 @@
 <!--<div id="page-container">-->
 <!--    <div id="content-wrap">-->
 <header>
-    <ul>
-        <li><a href="">Home</a></li>
-        <li><a href="">Event Manager</a></li>
-        <li><a href="">Reflections</a></li>
+    <ul class="navul">
+        <li class="navli"><a href="">Home</a></li>
+        <li class="navli"><a href="">Event Manager</a></li>
+        <li class="navli"><a href="">Reflections</a></li>
     </ul>
 </header>
 
@@ -167,7 +167,7 @@
         <textarea th:field="*{learningPoint3}" maxlength="140" name="Learningpoint3" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
         <br>
         <button class="bckbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('tagselect').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-        <button id = "validate" class="nxtbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Overview </button>
+        <button class="nxtbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Overview </button>
 
     </fieldset>
 

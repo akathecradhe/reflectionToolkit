@@ -5,8 +5,18 @@
 <head>
     <meta charset="UTF-8">
     <title>View Form</title>
+    <link href="../static/css/form.css" th:href="@{/css/form.css}" rel="stylesheet" />
+
 </head>
 <body>
+<header>
+    <ul class="navul">
+        <li class="navli"><a href="">Home</a></li>
+        <li class="navli"><a href="">Event Manager</a></li>
+        <li class="navli"><a href="">Reflections</a></li>
+    </ul>
+</header>
+
     <h1 th:text="${form.getEventID().getName()}"> </h1>
     <div>
         <p><span th:text="${form.shortDescription}">Description goes here</span></p>

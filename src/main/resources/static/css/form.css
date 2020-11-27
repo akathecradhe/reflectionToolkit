@@ -137,7 +137,7 @@ p{background-color: white;
 
 }
 
-ul {
+.navul{
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -145,11 +145,11 @@ ul {
     background-color: #333;
 }
 
-li {
+.navli{
     float: left;
 }
 
-li a {
+.navli a {
     background-color: #333;
     display: block;
     color: white;
@@ -158,7 +158,7 @@ li a {
     text-decoration: none;
 }
 
-li a:hover {
+.navli a:hover {
     background-color: #111;
 }
 div{

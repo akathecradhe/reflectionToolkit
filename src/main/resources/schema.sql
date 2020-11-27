@@ -36,15 +36,15 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `reflection` (
   `reflectionId` Int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `box1` VARCHAR(45) NOT NULL,
-  `box2` VARCHAR(45) NOT NULL,
-  `box3` VARCHAR(45) NOT NULL,
-  `box4` VARCHAR(45) NOT NULL,
-  `box5` VARCHAR(45) NOT NULL,
-  `box6` VARCHAR(45) NOT NULL,
-  `learning_point1` VARCHAR(200) NOT NULL,
-  `learning_point2` VARCHAR(200) NOT NULL,
-  `learning_point3` VARCHAR(200) NOT NULL
+  `box1` VARCHAR(100) NOT NULL,
+  `box2` VARCHAR(100) NOT NULL,
+  `box3` VARCHAR(100) NOT NULL,
+  `box4` VARCHAR(100) NOT NULL,
+  `box5` VARCHAR(100) NOT NULL,
+  `box6` VARCHAR(100) NOT NULL,
+  `learning_point1` VARCHAR(140) NOT NULL,
+  `learning_point2` VARCHAR(140) NOT NULL,
+  `learning_point3` VARCHAR(140) NOT NULL
   )
 ENGINE = InnoDB;
 

@@ -119,11 +119,11 @@ INSERT INTO Tags (Category, tag_name)
 VALUES ('Thought Cloud','Frustrated');
 
 INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
-VALUES ('Attended a class','I did this because...','This happened...','Impact this had was...', 'I need this evidence', 'I could have done this differently by...',
-'I learnt 1.','Learnt 2','I learnt this 3');
+VALUES ('Held a group activity, went through slides and took questions at the end','I considered my previous seminars and found this format to be effective','Key information was passed along in an interactive and effective manner','I became more comfortable using remote-meeting software', 'I sent a feedback survey to participating students', 'I could have revised some of my slides for brevity',
+'I learnt how to hold a meeting on Zoom.','I learnt how to use a custom background with my webcam','I learnt that students seemed to be more visually attentive when viewing slides with images');
 
 INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
-VALUES (1,'This event was ...',1,1,'rowbo',CURRENT_TIMESTAMP);
+VALUES (1,'Held an hour-long online seminar for Year 2 students on Presentation Skills',1,1,'rowbo',CURRENT_TIMESTAMP);
 
 INSERT INTO TagForm (TagID, FormID)
 VALUES (2,1);
