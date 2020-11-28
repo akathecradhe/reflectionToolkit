@@ -5,5 +5,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface TagService {
+
     Tags getTagByID(int tagID);
 }
