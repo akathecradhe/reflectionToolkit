@@ -9,6 +9,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
 
 @Data
 @AllArgsConstructor
@@ -50,13 +51,27 @@ public class Form {
     public List<Tags> getTagsByCategory(final String category) {
         return tags
                 .stream()
-                .filter(a -> tagMatch(a, category))
+                .filter(a -> tagCategoryMatch(a, category))
                 .collect(Collectors.toList());
     }
 
 
-    private static boolean tagMatch(Tags tag, String category) {
+    private static boolean tagCategoryMatch(Tags tag, String category) {
         return tag.getCategory().equals(category);
+    }
+
+    //Does a loop through the filters and returns if form contains the exact same tags
+    public boolean containsTags(List<Tags> filters) {
+        return filters
+                .stream()
+                .filter(a -> containsTag(a))
+                .collect(Collectors.toList())
+                .size()
+                == (filters.size());
+    }
+
+    public boolean containsTag(Tags tag) {
+        return tags.contains(tag);
     }
 }
 
