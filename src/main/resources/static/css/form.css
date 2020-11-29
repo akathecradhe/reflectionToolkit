@@ -17,6 +17,14 @@ h2{
     color: #333;
 
 }
+h3{
+    padding-top: 13px;
+    padding-bottom: 23px;
+    background-color: white;
+    font-weight: bold;
+    font-size: 23px;
+    color: #333;
+}
 input[type=text], select {
     background-color: white;
     width: 100%;
@@ -137,7 +145,7 @@ p{background-color: white;
 
 }
 
-ul {
+.navul{
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -145,11 +153,11 @@ ul {
     background-color: #333;
 }
 
-li {
+.navli{
     float: left;
 }
 
-li a {
+.navli a {
     background-color: #333;
     display: block;
     color: white;
@@ -158,7 +166,7 @@ li a {
     text-decoration: none;
 }
 
-li a:hover {
+.navli a:hover {
     background-color: #111;
 }
 div{
@@ -168,6 +176,25 @@ input.checkbox {
     width :20px;
     height :20px;
 }
+.reflection {
+    margin: 5px auto;
+    border-radius: 5px;
+    padding: 23px;
+    width: auto;
+    height: auto;
+    background-color: #d8e4ef;
+
+}
+.reflection * {
+    background-color: #d8e4ef;
+
+}
+.reflection * :hover{
+    cursor:pointer;
+}
+
+
+#a6c5dd
 /*#footer {*/
 /*    position: absolute;*/
 /*    bottom: 0;*/

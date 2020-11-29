@@ -1,8 +1,8 @@
 package com.nsa.group6.web;
 
-import com.nsa.group6.domain.Event;
 import com.nsa.group6.domain.*;
 import com.nsa.group6.service.FormService;
+import com.nsa.group6.service.TagsService;
 import com.nsa.group6.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,23 +10,14 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import java.util.List;
 import java.util.Optional;
-
 import com.nsa.group6.domain.Form;
 import com.nsa.group6.domain.SubmittingForm;
 import com.nsa.group6.domain.Tags;
-import com.nsa.group6.jpa.FormRepoJPA;
-import com.nsa.group6.jpa.FormRepoJPAAdaptor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class FormController {
@@ -35,12 +26,22 @@ public class FormController {
 
     private final FormService formService;
     private final UserService userService;
+<<<<<<< HEAD
     private final FormRepoJPA formRepo;
 
     public FormController(FormService formService, UserService userService, FormRepoJPA formRepo) {
         this.formService = formService;
         this.userService = userService;
         this.formRepo = formRepo;
+=======
+    private final TagsService tagsService;
+
+
+    public FormController(FormService formService, UserService userService, TagsService tagsService) {
+        this.formService = formService;
+        this.userService = userService;
+        this.tagsService = tagsService;
+>>>>>>> master
     }
 
 
@@ -48,7 +49,7 @@ public class FormController {
     @GetMapping("form")
     public String runForm(Model model) {
 
-        List<Tags> allTags = formRepo.findAll();
+        List<Tags> allTags = tagsService.getAllTags();
 
         List<Tags> othersInvolved = new ArrayList<Tags>();
         List<Tags> impact = new ArrayList<Tags>();

@@ -2,10 +2,12 @@ package com.nsa.group6.service;
 
 import com.nsa.group6.domain.Form;
 import com.nsa.group6.domain.User;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public interface FormService {
     public void saveForm(Form aForm);
 

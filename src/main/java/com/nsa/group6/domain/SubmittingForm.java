@@ -118,8 +118,6 @@ public class SubmittingForm {
     public String getLearningPoint3() {
         return learningPoint3;
     }
-//    public SubmittingForm(){
-//
-//    }
+
 }
 
