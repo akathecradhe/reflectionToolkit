@@ -1,6 +1,6 @@
 package com.nsa.group6.web;
 
-import com.nsa.group6.domain.Event;
+
 import com.nsa.group6.domain.*;
 import com.nsa.group6.service.FormService;
 import com.nsa.group6.service.UserService;
@@ -15,18 +15,18 @@ import com.nsa.group6.domain.Form;
 import com.nsa.group6.domain.SubmittingForm;
 import com.nsa.group6.domain.Tags;
 import com.nsa.group6.jpa.FormRepoJPA;
-import com.nsa.group6.jpa.FormRepoJPAAdaptor;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+
+
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-import org.springframework.validation.annotation.Validated;
+
 import org.springframework.web.bind.annotation.*;
-import org.springframework.data.jpa.repository.JpaRepository;
+
 
 import java.util.ArrayList;
-import java.util.List;
+
 
 @Controller
 public class FormController {
@@ -36,7 +36,8 @@ public class FormController {
     private final FormService formService;
     private final UserService userService;
 
-    @Autowired FormRepoJPA formRepo;
+    @Autowired
+    FormRepoJPA formRepo;
 
 
     public FormController(FormService formService, UserService userService) {
@@ -51,14 +52,14 @@ public class FormController {
 
         List<Tags> allTags = formRepo.findAll();
 
-        List<Tags> othersInvolved = new ArrayList<Tags>();
-        List<Tags> impact = new ArrayList<Tags>();
-        List<Tags> learningTechnologies = new ArrayList<Tags>();
-        List<Tags> thoughtCloud = new ArrayList<Tags>();
+        List<Tags> othersInvolved = new ArrayList<>();
+        List<Tags> impact = new ArrayList<>();
+        List<Tags> learningTechnologies = new ArrayList<>();
+        List<Tags> thoughtCloud = new ArrayList<>();
 
-        for (int i = 0; i < allTags.size(); i++) {
-            String whichCategory = allTags.get(i).getCategory();
-            Tags addingTag = allTags.get(i);
+        for (Tags allTag : allTags) {
+            String whichCategory = allTag.getCategory();
+            Tags addingTag = allTag;
 
             if ("Others Involved".equals(whichCategory)) {
                 othersInvolved.add(addingTag);
