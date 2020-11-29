@@ -26,14 +26,6 @@ public class FormController {
 
     private final FormService formService;
     private final UserService userService;
-<<<<<<< HEAD
-    private final FormRepoJPA formRepo;
-
-    public FormController(FormService formService, UserService userService, FormRepoJPA formRepo) {
-        this.formService = formService;
-        this.userService = userService;
-        this.formRepo = formRepo;
-=======
     private final TagsService tagsService;
 
 
@@ -41,7 +33,7 @@ public class FormController {
         this.formService = formService;
         this.userService = userService;
         this.tagsService = tagsService;
->>>>>>> master
+
     }
 
 

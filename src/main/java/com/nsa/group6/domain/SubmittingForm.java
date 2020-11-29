@@ -33,27 +33,27 @@ public class SubmittingForm {
         return role;
     }
 
-    public List<String> others;
+    public List<Integer> others;
 
-    public List<String> getOthers(){
+    public List<Integer> getOthers(){
         return others;
     }
 
-    public List<String> impact;
+    public List<Integer> impact;
 
-    public List<String> getImpact(){
+    public List<Integer> getImpact(){
         return impact;
     }
 
-    public List<String> learningTechs;
+    public List<Integer> learningTechs;
 
-    public List<String> getLearningTechs(){
+    public List<Integer> getLearningTechs(){
         return learningTechs;
     }
 
-    public List<String> thoughtCloud;
+    public List<Integer> thoughtCloud;
 
-    public List<String> getThoughtCloud(){
+    public List<Integer> getThoughtCloud(){
         return thoughtCloud;
     }
 
