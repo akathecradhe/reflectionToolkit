@@ -38,6 +38,11 @@ public class DefaultFormHandler implements FormHandler {
     }
 
     @Override
+    public List<Tags> findTagsByCategory(String category) {
+        return tagService.getTagByCategory(category);
+    }
+
+    @Override
     public List<Form> findFormsByMatchingTagIDs(List<Integer> tagIDs, String aUser) {
         List<Tags> tags = tagIDs
                 .stream()
@@ -45,4 +50,5 @@ public class DefaultFormHandler implements FormHandler {
                 .collect(Collectors.toList());
         return findFormsByMatchingTags(tags, aUser);
     }
+
 }

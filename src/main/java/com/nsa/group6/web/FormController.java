@@ -107,12 +107,21 @@ public class FormController {
 
         // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not in the db.
         // If the username is left blank then take it to the page of the signed in user.
-        List<Form> form;
+        List<Form> forms;
         Optional<User> ausername = userService.findUserByUsername(username.get());
         User aUser = ausername.get();
-        form = formService.getAllFormsByUsername(aUser);
+        forms = formService.getAllFormsByUsername(aUser);
 
-        model.addAttribute("forms", form);
+        //Gets the tags for filters
+        model.addAttribute("othersInvolved", formHandler.findTagsByCategory("Others Involved"));
+        model.addAttribute("impact", formHandler.findTagsByCategory("Impact"));
+        model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
+        model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
+        model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF Dimensions"));
+
+
+
+        model.addAttribute("forms", forms);
 
         return "reflection-list";
 
