@@ -96,7 +96,6 @@ public class FormController {
         }
         else {
 
-
             model.addAttribute("aForm", aSubmittingForm);
 
             return "formtest";

@@ -58,7 +58,7 @@
     <fieldset>
         <label class="labels">Others involved</label><br>
         <div th:each="othersInvolveds: ${othersInvolved}">
-            <input  class = "checkbox" th:field="*{others}" type="checkbox" th:id="${othersInvolveds.tagName}" name="othersInvolved" th:value="${othersInvolveds.tagName}">
+            <input  class = "checkbox" th:field="*{others}" type="checkbox" th:id="${othersInvolveds.tagName}" name="othersInvolved" th:value="${othersInvolveds.tagID}">
             <label th:for="${#ids.next('others')}" th:text="${othersInvolveds.tagName}"></label><br>
         </div>
 
@@ -79,7 +79,7 @@
     <fieldset>
     <label class="labels">Impact </label><br><br>
     <div th:each="impacts: ${impact}">
-        <input class = "checkbox" th:field="*{impact}" type="checkbox" th:id="${impacts.tagName}" name="Impact" th:value="${impacts.tagName}">
+        <input class = "checkbox" th:field="*{impact}" type="checkbox" th:id="${impacts.tagName}" name="Impact" th:value="${impacts.tagID}">
         <label th:for="${#ids.next('impact')}" th:text="${impacts.tagName}"></label><br>
     </div>
     </fieldset>
@@ -90,7 +90,7 @@
     <fieldset>
         <label class="labels">Learning Technologies (choose as many as applicable)</label><br><br>
         <div th:each="learningTechnology: ${learningTechnologies}">
-            <input class = "checkbox" th:field="*{learningTechs}" type="checkbox" th:id="${learningTechnology.tagName}" name="Learning Technologies" th:value="${learningTechnology.tagName}">
+            <input class = "checkbox" th:field="*{learningTechs}" type="checkbox" th:id="${learningTechnology.tagName}" name="Learning Technologies" th:value="${learningTechnology.tagID}">
             <label th:for="${#ids.next('learningTechs')}" th:text="${learningTechnology.tagName}"></label><br>
         </div>
     </fieldset>
@@ -103,7 +103,7 @@
     <fieldset>
         <label class="labels">Thought Cloud (choose as many as applicable)</label><br><br>
         <div th:each="thoughtClouds: ${thoughtCloud}">
-            <input class ="checkbox" th:field="*{thoughtCloud}" type="checkbox" th:id="${thoughtClouds.tagName}" name="Learning Technologies" th:value="${thoughtClouds.tagName}">
+            <input class ="checkbox" th:field="*{thoughtCloud}" type="checkbox" th:id="${thoughtClouds.tagName}" name="Learning Technologies" th:value="${thoughtClouds.tagID}">
             <label th:for="${#ids.next('thoughtCloud')}" th:text="${thoughtClouds.tagName}"></label><br>
         </div>
 
