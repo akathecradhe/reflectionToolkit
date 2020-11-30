@@ -3,13 +3,14 @@ package com.nsa.group6.repositories;
 import com.nsa.group6.domain.User;
 import com.nsa.group6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+wwimport org.springframework.core.annotation.
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserJPAadptor implements UserService {
+public class UserJPAadptor implements UserService, UserDetailsService {
 
 
     @Autowired

@@ -15,6 +15,7 @@ public class User {
     @Id
     private String username;
     private String name;
+    private String password;
     private Date accountCreated;
 
 }

@@ -1,6 +1,7 @@
 package com.nsa.group6.service;
 
 import com.nsa.group6.domain.User;
+import org.springframework.boot.autoconfigure.security.servlet.UserDetailsServiceAutoConfiguration;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -8,7 +9,7 @@ import java.util.Optional;
 
 
 @Service
-public interface UserService {
+public interface UserService  {
     public void saveUser(User aUser);
 
     public void updateUser(User aUser);
