@@ -73,6 +73,17 @@ public class Form {
     public boolean containsTag(Tags tag) {
         return tags.contains(tag);
     }
+
+    public Form(Event eventID, String shortDescription, User username, Role roleID, Reflection reflectionID, Timestamp lastEdited, List<Tags> tags) {
+        this.eventID = eventID;
+        this.shortDescription = shortDescription;
+        this.username = username;
+        this.roleID = roleID;
+        this.reflectionID = reflectionID;
+        this.lastEdited = lastEdited;
+        this.tags = tags;
+    }
+
 }
 
 

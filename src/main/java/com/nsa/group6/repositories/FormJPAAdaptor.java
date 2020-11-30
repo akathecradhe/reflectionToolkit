@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class FormJPAadptor implements FormService {
+public class FormJPAAdaptor implements FormService {
 
 
     @Autowired
     private final FormRepository formRepository;
 
 
-    public FormJPAadptor(FormRepository formRepository) {
+    public FormJPAAdaptor(FormRepository formRepository) {
         this.formRepository = formRepository;
     }
 
