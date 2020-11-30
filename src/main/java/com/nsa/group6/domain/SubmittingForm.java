@@ -31,6 +31,8 @@ public class SubmittingForm {
 
     public String thoughtDesc;
 
+    public List<Integer> dimensions;
+
     public String box1;
 
     public String box2;

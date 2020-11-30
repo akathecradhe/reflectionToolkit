@@ -23,8 +23,6 @@ import java.util.ArrayList;
 @Controller
 public class FormController {
 
-
-
     private final FormService formService;
     private final UserService userService;
     private final TagsService tagsService;
@@ -52,7 +50,7 @@ public class FormController {
         List<Tags> impact = new ArrayList<Tags>();
         List<Tags> learningTechnologies = new ArrayList<Tags>();
         List<Tags> thoughtCloud = new ArrayList<Tags>();
-
+        List<Tags> dimensions = new ArrayList<Tags>();
 
         for (int i = 0; i < allTags.size(); i++) {
             String whichCategory = allTags.get(i).getCategory();
@@ -66,8 +64,10 @@ public class FormController {
                 learningTechnologies.add(addingTag);
             } else if ("Thought Cloud".equals(whichCategory)) {
                 thoughtCloud.add(addingTag);
-            } else {
+            } else if ("UKPSF".equals(whichCategory)){
+                dimensions.add(addingTag);
             }
+            else{}
         }
 
         List<Role> role = roleService.getAllRoles();
@@ -82,6 +82,7 @@ public class FormController {
         model.addAttribute("impact", impact);
         model.addAttribute("learningTechnologies", learningTechnologies);
         model.addAttribute("thoughtCloud", thoughtCloud);
+        model.addAttribute("dimensions", dimensions);
 
         return "form";
     }
@@ -102,8 +103,6 @@ public class FormController {
 
             model.addAttribute("aForm", aSubmittingForm);
 
-
-
             Reflection reflectionInput = new Reflection(aSubmittingForm.box1, aSubmittingForm.box2, aSubmittingForm.box3, aSubmittingForm.box4,
                     aSubmittingForm.box5, aSubmittingForm.box6, aSubmittingForm.learningPoint1, aSubmittingForm.learningPoint2, aSubmittingForm.learningPoint3);
 
@@ -113,6 +112,7 @@ public class FormController {
             allTags.addAll(aSubmittingForm.thoughtCloud);
             allTags.addAll(aSubmittingForm.others);
             allTags.addAll(aSubmittingForm.learningTechs);
+            allTags.addAll(aSubmittingForm.dimensions);
 
             User userInput = new User("rowbo", "Tom Rowbotham", new Date(500000));
             List<Tags> tagsInput = tagsService.findAllTagsByID(allTags);

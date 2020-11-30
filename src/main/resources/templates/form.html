@@ -114,13 +114,23 @@
     <br>
     <input  th:field="*{thoughtDesc}" maxlength="25" type="text" name="otherThoughtCloud" placeholder="max 25 characters" REQUIRED/>
     <br><br>
+        <fieldset>
+            <label class="labels">UKPSF Dimensions (choose as many as applicable)</label><br><br>
+            <div th:each="dimension: ${dimensions}">
+                <input class ="checkbox" th:field="*{dimensions}" type="checkbox" th:id="${dimension.tagName}" name="dimension" th:value="${dimension.tagID}">
+                <label th:for="${#ids.next('dimension')}" th:text="${dimension.shortenedTag} + ' - ' + ${dimension.tagName}"></label><br>
+                <p th:text="${dimension.description}" ></p>
+            </div>
+        </fieldset>
+        <br><br>
+
     <button class="bckbtn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('eventdetails').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
     <button class="nxtbtn" type="button" onclick="document.getElementById('tagselect').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
 
 </fieldset>
 <br>
-
 </div>
+
 <div id = "reflection" class="container">
     <h2>Reflection</h2>
 
