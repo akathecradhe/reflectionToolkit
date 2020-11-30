@@ -16,5 +16,5 @@ public interface TagsService {
 
     List<Tags> getAllTags();
 
-
+    List<Tags> findAllTagsByID(List<Integer> TagIDs);
 }

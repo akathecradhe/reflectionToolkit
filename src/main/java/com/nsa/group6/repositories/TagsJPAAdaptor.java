@@ -32,4 +32,11 @@ public class TagsJPAAdaptor implements TagsService {
     public List<Tags> getAllTags() {
         return tagsRepository.findAll();
     }
+
+    @Override
+    public List<Tags> findAllTagsByID(List<Integer> TagIDs) {
+        return tagsRepository.findAllById(TagIDs);
+    }
 }
+
+

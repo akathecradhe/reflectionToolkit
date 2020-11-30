@@ -1,13 +1,14 @@
 package com.nsa.group6.web;
 
 import com.nsa.group6.domain.*;
-import com.nsa.group6.service.FormService;
-import com.nsa.group6.service.TagsService;
-import com.nsa.group6.service.UserService;
+import com.nsa.group6.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import com.nsa.group6.domain.Form;
@@ -27,13 +28,17 @@ public class FormController {
     private final FormService formService;
     private final UserService userService;
     private final TagsService tagsService;
+    private final RoleService roleService;
+    private final EventService eventService;
+    private final ReflectionService reflectionService;
 
-
-    public FormController(FormService formService, UserService userService, TagsService tagsService) {
+    public FormController(FormService formService, UserService userService, TagsService tagsService, RoleService roleService, EventService eventService, ReflectionService reflectionService) {
         this.formService = formService;
         this.userService = userService;
         this.tagsService = tagsService;
-
+        this.roleService = roleService;
+        this.eventService = eventService;
+        this.reflectionService = reflectionService;
     }
 
 
@@ -47,6 +52,7 @@ public class FormController {
         List<Tags> impact = new ArrayList<Tags>();
         List<Tags> learningTechnologies = new ArrayList<Tags>();
         List<Tags> thoughtCloud = new ArrayList<Tags>();
+
 
         for (int i = 0; i < allTags.size(); i++) {
             String whichCategory = allTags.get(i).getCategory();
@@ -64,8 +70,13 @@ public class FormController {
             }
         }
 
+        List<Role> role = roleService.getAllRoles();
+        List<Event> event = eventService.getAllEvent();
+
         SubmittingForm submittingForm = new SubmittingForm();
 
+        model.addAttribute("event", event);
+        model.addAttribute("role", role);
         model.addAttribute("form", submittingForm);
         model.addAttribute("othersInvolved", othersInvolved);
         model.addAttribute("impact", impact);
@@ -90,6 +101,29 @@ public class FormController {
         else {
 
             model.addAttribute("aForm", aSubmittingForm);
+
+
+
+            Reflection reflectionInput = new Reflection(aSubmittingForm.box1, aSubmittingForm.box2, aSubmittingForm.box3, aSubmittingForm.box4,
+                    aSubmittingForm.box5, aSubmittingForm.box6, aSubmittingForm.learningPoint1, aSubmittingForm.learningPoint2, aSubmittingForm.learningPoint3);
+
+            reflectionService.save(reflectionInput);
+
+            List<Integer> allTags = aSubmittingForm.impact;
+            allTags.addAll(aSubmittingForm.thoughtCloud);
+            allTags.addAll(aSubmittingForm.others);
+            allTags.addAll(aSubmittingForm.learningTechs);
+
+            User userInput = new User("rowbo", "Tom Rowbotham", new Date(500000));
+            List<Tags> tagsInput = tagsService.findAllTagsByID(allTags);
+            Role roleInput = roleService.getRoleByID(aSubmittingForm.role).get();
+            Event eventInput = eventService.getEventByID(aSubmittingForm.eventType).get();
+            String descInput = aSubmittingForm.shortDesc;
+            Timestamp lastEditedInput = new Timestamp(System.currentTimeMillis());
+
+            Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput);
+
+            formService.saveForm(form1);
 
             return "formtest";
         }

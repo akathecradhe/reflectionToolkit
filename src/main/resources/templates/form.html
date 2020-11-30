@@ -24,15 +24,13 @@
 <fieldset>
 
 
-<label th:for="eventType" class="labels">Event type:</label>
-<select th:field="*{eventType}"name="event" id="event" REQUIRED>
-    <option value="Teaching or Supervision">Teaching or Supervision</option>
-    <option value="Design or Plan">Design or Plan</option>
-    <option value="Assess or Give Feedback">Assess or Give Feedback</option>
-    <option value="Discussion">Discussion</option>
-    <option value="Scholarship">Scholarship</option>
-    <option value="Evaluation and Quality Assurance">Evaluation and Quality Assurance</option>
-</select>
+    <label class="labels">Event Type</label><br>
+    <select th:field="*{eventType}" name="event" id="event" REQUIRED>
+        <div th:each="events: ${event}">
+            <option th:value="${events.eventID}" th:text="${events.name}"></option>
+        </div>
+    </select>
+
 </fieldset>
 
 
@@ -43,13 +41,16 @@
 </fieldset>
 
 
+
 <fieldset>
-<label class="labels">Role: </label>
-<select th:field="*{role}" name="role" id="role" REQUIRED>
-    <option value="Lead or Facilitate">Lead or Facilitate</option>
-    <option value="Participate">Participate</option>
-    <option value="Review">Review</option>
-</select>
+
+    <label class="labels">Role</label><br>
+    <select th:field="*{role}" name="role" id="role" REQUIRED>
+        <div th:each="roles: ${role}">
+            <option th:value="${roles.roleID}" th:text="${roles.name}"></option>
+        </div>
+    </select>
+
 </fieldset>
 <br>
 
