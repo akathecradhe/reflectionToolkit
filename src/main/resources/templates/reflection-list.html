@@ -20,17 +20,72 @@
 
 <div class="container">
 <h2>Reflections</h2>
-<div th:if="${forms.empty}">
-    <p>No forms available</p>
+
+    <form action="#" method="post" th:action="@{/reflections/__${user.getUsername()}__}" th:object="${filters}">
+        <div class="dropdown">
+            <button>Others Involved</button>
+            <div class="dropdown-content" th:each="tag : ${othersInvolved}">
+                <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:text="${tag.getTagName()}"></li>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button>Impact</button>
+            <div class="dropdown-content" th:each="tag : ${impact}">
+                <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:text="${tag.getTagName()}"></li>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button>Learning Technologies</button>
+            <div class="dropdown-content" th:each="tag : ${learningTechnologies }">
+                <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:text="${tag.getTagName()}"></li>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button>Thought Cloud</button>
+            <div class="dropdown-content" th:each="tag : ${thoughtCloud}">
+                <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:text="${tag.getTagName()}"></li>
+            </div>
+        </div>
+        <button class="applybtn" type="submit">Apply </button>
+    </form>
+    </div>
+
+
+    <div th:if="${forms.empty}">
+        <p>No forms available</p>
+    </div>
+
+    <div class="reflection" th:href="@{/reflection/{furl} (furl=${form.getReflectionID().getReflectionID()})}" th:each="form : ${forms}">
+        <a th:href="@{/reflection/{furl} (furl=${form.getReflectionID().getReflectionID()})}">
+            <p class="labels" th:text="${form.getEventID().getName()}">Teaching Or Supervision</p>
+            <p th:text="${form.shortDescription}">This is a short description of the reflection selected.</p>
+            <p>Event held on <span th:text="${form.getEventID().getDateString()}"></span></p>
+            <p>Last edited: <span th:text="${form.lastEdited}"></span></p>
+        </a>
+    </div>
 </div>
-<div class="reflection" th:href="@{/reflection/{furl} (furl=${form.getReflectionID().getReflectionID()})}" th:each="form : ${forms}">
-    <a th:href="@{/reflection/{furl} (furl=${form.getReflectionID().getReflectionID()})}">
-        <p class="labels" th:text="${form.getEventID().getName()}">Teaching Or Supervision</p>
-        <p th:text="${form.shortDescription}">This is a short description of the reflection selected.</p>
-        <p>Event held on <span th:text="${form.getEventID().getDateString()}"></span></p>
-        <p>Last edited: <span th:text="${form.lastEdited}"></span></p>
-    </a>
-</div>
-</div>
+<!--<script>-->
+<!--// Code adapted from: https://www.w3schools.com/howto/howto_js_dropdown.asp-->
+
+<!--    /* When the user clicks on the button,-->
+<!--    toggle between hiding and showing the dropdown content */-->
+<!--    function dropDown() {-->
+<!--        document.getElementById("myDropdown").classList.toggle("show");-->
+<!--    }-->
+
+<!--    // Close the dropdown menu if the user clicks outside of it-->
+<!--    window.onclick = function(event) {-->
+<!--        if (!event.target.matches('.dropbtn')) {-->
+<!--            var dropdowns = document.getElementsByClassName("dropdown-content");-->
+<!--            var i;-->
+<!--            for (i = 0; i < dropdowns.length; i++) {-->
+<!--                var openDropdown = dropdowns[i];-->
+<!--                if (openDropdown.classList.contains('show')) {-->
+<!--                    openDropdown.classList.remove('show');-->
+<!--                }-->
+<!--            }-->
+<!--        }-->
+<!--    }-->
+<!--</script>-->
 </body>
 </html>

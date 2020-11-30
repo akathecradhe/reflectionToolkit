@@ -112,16 +112,17 @@ public class FormController {
         User aUser = ausername.get();
         forms = formService.getAllFormsByUsername(aUser);
 
+        FiltersForm filters = new FiltersForm();
+
         //Gets the tags for filters
         model.addAttribute("othersInvolved", formHandler.findTagsByCategory("Others Involved"));
         model.addAttribute("impact", formHandler.findTagsByCategory("Impact"));
         model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
         model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
         model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF Dimensions"));
-
-
-
+        model.addAttribute("user", aUser);
         model.addAttribute("forms", forms);
+        model.addAttribute("filters",filters);
 
         return "reflection-list";
 
@@ -133,10 +134,37 @@ public class FormController {
     // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
         //Replace this with getFormbyFormID soon
         model.addAttribute("form", formService.getFormByID(formID));
-
         return "form-view";
 
     }
+
+    @PostMapping("reflections/{username}")
+    public String submitFilters(@PathVariable(name = "username", required = false) Optional<String> username,
+                                @ModelAttribute("filters") FiltersForm filtersForm, Model model) {
+        Optional<User> ausername = userService.findUserByUsername(username.get());
+        User aUser = ausername.get();
+        List<Form> forms = formHandler.findFormsByMatchingTagIDs(filtersForm.tags,username.get());
+
+        FiltersForm filters = new FiltersForm();
+        //Gets the tags for filters
+        model.addAttribute("othersInvolved", formHandler.findTagsByCategory("Others Involved"));
+        model.addAttribute("impact", formHandler.findTagsByCategory("Impact"));
+        model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
+        model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
+        model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF Dimensions"));
+        model.addAttribute("user", aUser);
+        model.addAttribute("forms", forms);
+        model.addAttribute("filters",filters);
+
+        return "reflection-list";
+    }
+
+
+
+
+
+
+
 
 
 }
