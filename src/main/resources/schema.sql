@@ -72,7 +72,7 @@ CREATE TABLE IF NOT EXISTS `form` (
   `short_description` VARCHAR(200)  NOT NULL ,
   `roleId` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
-  `reflectionId` VARCHAR(45) NOT NULL,
+  `reflectionId` VARCHAR(45),
   `last_edited` TIMESTAMP NOT NULL
   )
 ENGINE = InnoDB;
