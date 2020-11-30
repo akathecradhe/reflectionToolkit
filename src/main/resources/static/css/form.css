@@ -73,7 +73,6 @@ input[type=submit]:hover {
 .labels {
     font-size: 17.5px;
     font-weight: bold;
-    background-color: white;
     color: #333;
 }
 .subbtn{
@@ -86,6 +85,9 @@ input[type=submit]:hover {
     border-radius: 4px;
     cursor: pointer;
     float: right
+}
+.asteriskField{
+    color: red;
 }
 .nxtbtn{
     width: 150px;
@@ -113,7 +115,7 @@ fieldset{
     background-color: white;
     border: none;
 }
-#eventdetails{
+#activitydetails{
     display: block;
 }
 #tagselect{
