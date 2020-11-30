@@ -153,7 +153,7 @@ public class FormController {
         model.addAttribute("impact", formHandler.findTagsByCategory("Impact"));
         model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
         model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
-        model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF Dimensions"));
+        model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF"));
         model.addAttribute("user", aUser);
         model.addAttribute("forms", forms);
         model.addAttribute("filters",filters);
@@ -185,7 +185,7 @@ public class FormController {
         model.addAttribute("impact", formHandler.findTagsByCategory("Impact"));
         model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
         model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
-        model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF Dimensions"));
+        model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF"));
         model.addAttribute("user", aUser);
         model.addAttribute("forms", forms);
         model.addAttribute("filters",filters);

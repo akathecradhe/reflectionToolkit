@@ -23,6 +23,12 @@
 
     <form action="#" method="post" th:action="@{/reflections/__${user.getUsername()}__}" th:object="${filters}">
         <div class="dropdown">
+            <button>UKPSF Dimensions</button>
+            <div class="dropdown-content" th:each="tag : ${ukpsf}">
+                <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
+            </div>
+        </div>
+        <div class="dropdown">
             <button>Others Involved</button>
             <div class="dropdown-content" th:each="tag : ${othersInvolved}">
                 <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:text="${tag.getTagName()}"></li>
@@ -46,6 +52,7 @@
                 <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:text="${tag.getTagName()}"></li>
             </div>
         </div>
+
         <button class="applybtn" type="submit">Apply </button>
     </form>
     </div>
