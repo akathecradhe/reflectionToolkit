@@ -112,6 +112,7 @@ public class FormController {
             allTags.addAll(aSubmittingForm.thoughtCloud);
             allTags.addAll(aSubmittingForm.others);
             allTags.addAll(aSubmittingForm.learningTechs);
+            allTags.addAll(aSubmittingForm.dimensions);
 
             User userInput = new User("rowbo", "Tom Rowbotham", new Date(500000));
             List<Tags> tagsInput = tagsService.findAllTagsByID(allTags);
