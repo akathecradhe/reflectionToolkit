@@ -53,7 +53,10 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tags` (
   `tagId` VARCHAR(45) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `category` VARCHAR(45) NOT NULL,
-  `tag_name` VARCHAR(45) NOT NULL
+  `tag_name` VARCHAR(200) NOT NULL,
+  `shortened_tag` VARCHAR(5),
+  `description` VARCHAR(1500)
+
   )
 ENGINE = InnoDB;
 
@@ -72,7 +75,7 @@ CREATE TABLE IF NOT EXISTS `form` (
   `short_description` VARCHAR(200)  NOT NULL ,
   `roleId` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
-  `reflectionId` VARCHAR(45) NOT NULL,
+  `reflectionId` VARCHAR(45),
   `last_edited` TIMESTAMP NOT NULL
   )
 ENGINE = InnoDB;

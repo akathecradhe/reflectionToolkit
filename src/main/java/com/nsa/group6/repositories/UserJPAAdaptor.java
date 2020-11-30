@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserJPAadptor implements UserService {
+public class UserJPAAdaptor implements UserService {
 
 
     @Autowired
     private final UserRepository userRepository;
 
 
-    public UserJPAadptor(UserRepository userRepository) {
+    public UserJPAAdaptor(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
 

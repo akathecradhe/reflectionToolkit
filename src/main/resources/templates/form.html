@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Logging Form</title>
     <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
-<!--    <link href="../static/css/form.css" th:href="@{/css/form.css}" rel="stylesheet" />-->
 
 </head>
 <body>
@@ -129,7 +128,7 @@
 
                     <div class="form-group">
                         <div>
-                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('activitydetails').style.display='none';document.getElementById('impact').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('activitydetails').style.display='none';document.getElementById('ukpsf').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
                         </div>
                     </div>
               </div>
@@ -137,6 +136,38 @@
 </div>
 
 
+
+    <div id="ukpsf" class="container">
+        <h1 class="mt-5">Map event to Framework (UKPSF)</h1><br>
+        <div class="row">
+            <div class="col-md-8 order-md-1">
+                <div class="form-group ">
+                    <label class="labels" th:for="dimension">
+                        UKPSF Dimensions
+                        <span class="asteriskField">
+                    *
+                       </span>
+                    </label>
+                    <div class=" ">
+                        <div th:each="dimension: ${dimensions}">
+                            <input class ="checkbox" th:field="*{dimensions}" type="checkbox" th:id="${dimension.tagName}" name="dimension" th:value="${dimension.tagID}">
+                            <label th:for="${#ids.next('dimension')}" th:text="${dimension.shortenedTag} + ' - ' + ${dimension.tagName}"></label><br>
+                            <p th:text="${dimension.description}" ></p>
+                        </div>
+                    </div>
+                    <span class="help-block">
+                        What are some of your thoughts having completed this activity? Choose as many options as applicable.
+                       </span>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='none';document.getElementById('activitydetails').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+                        <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='none';document.getElementById('impact').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <div id="impact" class="container">
     <h1 class="mt-5">Tag Selection</h1><br>
@@ -161,7 +192,7 @@
                 </div>
                 <div class="form-group">
                 <div>
-                    <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('activitydetails').style.display='block';document.getElementById('impact').style.display='none';document.documentElement.scrollTop = 0;"> Back </button>
+                    <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='block';document.getElementById('impact').style.display='none';document.documentElement.scrollTop = 0;"> Back </button>
                     <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('impact').style.display='none';document.getElementById('learntechs').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
                 </div>
             </div>
@@ -201,8 +232,8 @@
             </div>
             </div>
         </div>
-
     </div>
+
 
 
     <div id="thoughtcld" class="container">
@@ -214,29 +245,37 @@
                         Thought Cloud
                         <span class="asteriskField">
                     *
-                   </span>
-                    </label>
-                    <div class=" ">
-                        <div th:each="thoughtClouds: ${thoughtCloud}">
-                            <input class ="checkbox" th:field="*{thoughtCloud}" type="checkbox" th:id="${thoughtClouds.tagName}" name="Learning Technologies" th:value="${thoughtClouds.tagName}">
-                            <label th:for="${#ids.next('thoughtCloud')}" th:text="${thoughtClouds.tagName}"></label><br>
+                       </span>
+                        </label>
+                        <div class=" ">
+                            <div th:each="thoughtClouds: ${thoughtCloud}">
+                                <input class ="checkbox" th:field="*{thoughtCloud}" type="checkbox" th:id="${thoughtClouds.tagName}" name="Learning Technologies" th:value="${thoughtClouds.tagName}">
+                                <label th:for="${#ids.next('thoughtCloud')}" th:text="${thoughtClouds.tagName}"></label><br>
+                            </div>
                         </div>
+                        <span class="help-block">
+                        What are some of your thoughts having completed this activity? Choose as many options as applicable.
+                       </span>
                     </div>
+                <div class="form-group ">
+                    <label class="labels">
+                        Other
+                    </label>
+                    <textarea class="form-control" cols="40" rows="3" th:field="*{thoughtDesc}" maxlength="25" name="otherThoughtCloud" placeholder="(max 25 characters)"></textarea>
                     <span class="help-block">
-                    What are some of your thoughts having completed this activity? Choose as many options as applicable.
-                   </span>
+                   Please provide a comment if applicable.
+                  </span>
                 </div>
-                <div class="form-group">
-                <div>
-                    <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('learntechs').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                    <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                    <div class="form-group">
+                    <div>
+                        <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('learntechs').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+                        <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                    </div>
                 </div>
             </div>
         </div>
-
-        </div>
     </div>
-
+<!-- Validation for NONE needs to be figured out-->
 
     <div id="reflection" class="container">
         <h1 class="mt-5">Reflection</h1><br>
@@ -329,12 +368,11 @@
         </div>
     </div>
 
-
     <div id="learningpoints" class="container">
         <h1 class="mt-5">Learning Points For You</h1><br>
-            <div class="row">
-                <div class="col-md-8 order-md-1">
-                    <div class="form-group ">
+        <div class="row">
+            <div class="col-md-8 order-md-1">
+                <div class="form-group ">
                     <label class="labels">
                         Learning Point 1
                         <span class="asteriskField">
@@ -346,36 +384,34 @@
                                What key takeaways did you gain from this experience? Type them in the text fields.
                   </span>
                 </div>
-                    <div class="form-group ">
-                        <label class="labels">
-                            Learning Point 2
-                            <span class="asteriskField">
+                <div class="form-group ">
+                    <label class="labels">
+                        Learning Point 2
+                        <span class="asteriskField">
                                 *
                                </span>
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:field="*{learningPoint2}" maxlength="140" name="Learningpoint2" placeholder="(max 140 characters)" REQUIRED></textarea>
-                    </div>
-                    <div class="form-group ">
-                        <label class="labels">
-                            Learning Point 3
-                            <span class="asteriskField">
+                    </label>
+                    <textarea class="form-control" cols="40" rows="5" th:field="*{learningPoint2}" maxlength="140" name="Learningpoint2" placeholder="(max 140 characters)" REQUIRED></textarea>
+                </div>
+                <div class="form-group ">
+                    <label class="labels">
+                        Learning Point 3
+                        <span class="asteriskField">
                                 *
                                </span>
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:field="*{learningPoint3}" maxlength="140" name="Learningpoint3" placeholder="(max 140 characters)" REQUIRED></textarea>
+                    </label>
+                    <textarea class="form-control" cols="40" rows="5" th:field="*{learningPoint3}" maxlength="140" name="Learningpoint3" placeholder="(max 140 characters)" REQUIRED></textarea>
+                </div>
+                <div class="form-group">
+                    <div>
+                        <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+                        <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Overview </button>
                     </div>
-                    <div class="form-group">
-                        <div>
-                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Overview </button>
-                        </div>
-                    </div>
+                </div>
             </div>
         </div>
     </div>
 
-
-</div>
 <div id = "overview" class="container">
     <fieldset>
     <h1 class="mt-5">Overview</h1>
