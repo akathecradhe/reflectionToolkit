@@ -14,9 +14,9 @@ INSERT INTO Event (Name, event_date)
 VALUES ('Evaluation and Quality Assurance',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
 
 INSERT INTO User (username, name,password ,account_created)
-VALUES ('rowbo','Tom Rowbotham',"hello123" ,TO_DATE('2020-11-23', 'YYYY-MM-DD'));
-INSERT INTO User (username, name, password  , account_created)
-VALUES ('clive99','Clive Tsungu',"youtube4" ,TO_DATE('2020-11-23', 'YYYY-MM-DD'));
+VALUES ('rowbo','Tom Rowbotham','hello123',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
+INSERT INTO User (username, name,password , account_created)
+VALUES ('clive99','Clive Tsungu','youtube4',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
 
 INSERT INTO Role (name)
 VALUES ('Lead or Facilitate');

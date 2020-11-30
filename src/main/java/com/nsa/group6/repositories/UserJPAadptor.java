@@ -3,18 +3,22 @@ package com.nsa.group6.repositories;
 import com.nsa.group6.domain.User;
 import com.nsa.group6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-wwimport org.springframework.core.annotation.
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UserJPAadptor implements UserService, UserDetailsService {
-
+public class UserJPAadptor implements UserService {
 
     @Autowired
     private final UserRepository userRepository;
+
+
+
 
 
     public UserJPAadptor(UserRepository userRepository) {
@@ -50,6 +54,8 @@ public class UserJPAadptor implements UserService, UserDetailsService {
         return selectedName ;
 
     }
+
+
 
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
