@@ -23,8 +23,6 @@ import java.util.ArrayList;
 @Controller
 public class FormController {
 
-
-
     private final FormService formService;
     private final UserService userService;
     private final TagsService tagsService;
