@@ -147,11 +147,11 @@
                         <span class="asteriskField">
                     *
                        </span>
-                    </label>
+                    </label><br>
                     <div class=" ">
-                        <div th:each="dimension: ${dimensions}">
+                        <div class="pairs" th:each="dimension: ${dimensions}">
                             <input class ="checkbox" th:field="*{dimensions}" type="checkbox" th:id="${dimension.tagName}" name="dimension" th:value="${dimension.tagID}">
-                            <label data-toggle="tooltip" data-placement="right" th:attr="data-title=${dimension.description}" th:for="${#ids.next('dimension')}" th:text="${dimension.shortenedTag} + ' - ' + ${dimension.tagName}"></label><br>
+                            <label data-toggle="tooltip" data-placement="top" th:attr="data-title=${dimension.description}" th:for="${#ids.next('dimension')}" th:text="${dimension.shortenedTag} + ' - ' + ${dimension.tagName}"></label><br>
                         </div>
                     </div>
                     <span class="help-block">

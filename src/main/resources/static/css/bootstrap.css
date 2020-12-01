@@ -295,7 +295,10 @@ button::-moz-focus-inner,
   padding: 0;
   border-style: none;
 }
-
+input.checkbox {
+  width :18px;
+  height :18px;
+}
 input[type="radio"],
 input[type="checkbox"] {
   box-sizing: border-box;
