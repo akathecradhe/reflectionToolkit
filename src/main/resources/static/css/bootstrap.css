@@ -2559,13 +2559,16 @@ fieldset:disabled a.btn {
   background-color: #007bff;
   border-color: #007bff;
 }
+.pairs{
+white-space: nowrap;display:inline
+}
 
 .btn-primary:hover {
   color: #fff;
   background-color: #0069d9;
   border-color: #0062cc;
 }
-
+.glyphicon-info-sign:before{content:"\e086"}
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
   background-color: #0069d9;
@@ -6255,11 +6258,11 @@ a.close.disabled {
 }
 
 .tooltip-inner {
-  max-width: 200px;
+  max-width: 300px;
   padding: 0.25rem 0.5rem;
-  color: #fff;
+  color: #000000;
   text-align: center;
-  background-color: #000;
+  background-color: lightgrey;
   border-radius: 0.25rem;
 }
 
