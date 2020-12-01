@@ -1,6 +1,6 @@
 package com.nsa.group6.repositories;
 
-import com.nsa.group6.domain.User;
+import com.nsa.group6.domain.*;
 import com.nsa.group6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -8,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.nio.file.attribute.UserPrincipal;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,9 +17,6 @@ public class UserJPAadptor implements UserService {
 
     @Autowired
     private final UserRepository userRepository;
-
-
-
 
 
     public UserJPAadptor(UserRepository userRepository) {
@@ -54,7 +52,6 @@ public class UserJPAadptor implements UserService {
         return selectedName ;
 
     }
-
 
 
 

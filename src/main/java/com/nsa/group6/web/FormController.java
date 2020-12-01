@@ -108,8 +108,9 @@ public class FormController {
 
 
     //This function retrieves the list of reflections by username
-    @GetMapping("/reflection/{username}")
-    public String getFormsByUsername(@PathVariable(name = "username", required = false) Optional<String> username, Model model) {
+    @GetMapping("/reflection/user/{username}")
+    public String getFormsByUsername(@PathVariable(name = "username",
+            required = false) Optional<String> username, Model model) {
 
         // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not in the db.
         // If the username is left blank then take it to the page of the signed in user.
