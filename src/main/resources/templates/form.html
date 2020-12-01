@@ -178,7 +178,7 @@
                         <span class="asteriskField">
                     *
                    </span>
-                    </label>
+                    </label><br>
                     <div class=" ">
                         <div th:each="impacts: ${impact}">
                             <input class = "checkbox" th:field="*{impact}" type="checkbox" th:id="${impacts.tagName}" name="Impact" th:value="${impacts.tagName}">
@@ -212,7 +212,7 @@
                         <span class="asteriskField">
                     *
                    </span>
-                    </label>
+                    </label><br>
                     <div class=" ">
                         <div th:each="learningTechnology: ${learningTechnologies}">
                             <input class = "checkbox" th:field="*{learningTechs}" type="checkbox" th:id="${learningTechnology.tagName}" name="Learning Technologies" th:value="${learningTechnology.tagName}">
@@ -245,7 +245,7 @@
                         <span class="asteriskField">
                     *
                        </span>
-                        </label>
+                        </label><br>
                         <div class=" ">
                             <div th:each="thoughtClouds: ${thoughtCloud}">
                                 <input class ="checkbox" th:field="*{thoughtCloud}" type="checkbox" th:id="${thoughtClouds.tagName}" name="Learning Technologies" th:value="${thoughtClouds.tagName}">
