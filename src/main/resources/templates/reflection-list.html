@@ -43,8 +43,10 @@
 
 <div class="container">
 <h2>Reflections</h2>
-        <p class="labels">Filters </p>
-        <form action="#" method="post" th:action="@{/reflections/__${user.getUsername()}__}" th:object="${filters}">
+        <div id="filterBtn">
+            <p class="labels">Filters &#8595;</p>
+        </div>
+        <form action="#" method="post" id="filters" th:action="@{/reflections/__${user.getUsername()}__}" th:object="${filters}">
 
                 <button class="btn btn-primary col-sm drop" id="ukpsf" type="button">UKPSF Dimensions</button>
                 <div class="w-100" id="ukpsf-drop">
@@ -103,6 +105,7 @@
 
 <script>
     $(document).ready(function(){
+        $("#filters").hide();
         $("#ukpsf").show();
         $("#impact").show();
         $("#ukpsf-drop").hide();
@@ -110,6 +113,9 @@
         $("#learningTechnologies-drop").hide();
         $("#thoughtCloud-drop").hide();
         $("#impact-drop").hide();
+        $("#filterBtn").click(function(){
+            $("#filters").toggle()
+        });
         $("#ukpsf").click(function(){
             $("#ukpsf-drop").toggle()
         });
