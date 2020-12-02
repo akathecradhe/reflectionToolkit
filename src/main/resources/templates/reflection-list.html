@@ -85,14 +85,11 @@
 
             <button class="applybtn float-right" type="submit">Apply </button>
         </form>
-    <br>
-    <br>
-
     <div th:if="${forms.empty}">
         <p>No forms available</p>
     </div>
 
-    <div class="card" th:each="form : ${forms}">
+    <div class="card w-100" th:each="form : ${forms}">
         <div class="card-body">
             <h5 class="card-title" th:text="${form.getEventID().getName()}">Teaching Or Supervision</h5>
             <p class="card-text"><span th:text="${form.shortDescription}">Held an hour-long online seminar for Year 2 students on Presentation Skills</span>
