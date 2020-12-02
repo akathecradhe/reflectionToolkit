@@ -156,6 +156,31 @@ public class FormController {
 
     }
 
+    @GetMapping("/reflectionedit/{formID}")
+    public String editForm(@PathVariable(name = "formID", required = true) int formID, Model model){
+        Form editingForm = formService.getFormByID(formID);
+
+        editingForm.getTags();
+
+        List<Integer> allTags = new ArrayList<Integer>();
+
+        for (int i = 0; i < editingForm.getTags().size(); i++) {
+            allTags.add(editingForm.getTags().get(i).getTagID());
+        }
+
+        Event eventInput = editingForm.getEventID();
+        Role roleInput = editingForm.getRoleID();
+        Reflection reflectionInput = editingForm.getReflectionID();
+
+        model.addAttribute("tagsEdit", allTags);
+        model.addAttribute("roleEdit", roleInput);
+        model.addAttribute("eventEdit", eventInput);
+        model.addAttribute("descEdit", editingForm);
+        model.addAttribute("reflectionEdit", reflectionInput);
+
+        return getString(model);
+    }
+
     //This function retrieves a form by the ID selected.
     @GetMapping("/reflection/{formID}")
     public String getFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {

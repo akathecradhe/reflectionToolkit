@@ -16,9 +16,9 @@
         <li class="navli"><a href="">Reflections</a></li>
     </ul>
 </header>
-
 <div class="container">
     <h2 th:text="${form.getEventID().getName()}"> </h2>
+    <a style="float:right" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
 
     <div>
         <h3>Event Details</h3>
