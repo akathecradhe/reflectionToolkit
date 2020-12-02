@@ -79,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5rem;
 }
 .labels {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #333;
 }
@@ -2571,7 +2571,6 @@ white-space: nowrap;display:inline
   background-color: #0069d9;
   border-color: #0062cc;
 }
-.glyphicon-info-sign:before{content:"\e086"}
 .btn-primary:focus, .btn-primary.focus {
   color: #fff;
   background-color: #0069d9;
@@ -6261,7 +6260,7 @@ a.close.disabled {
 }
 
 .tooltip-inner {
-  max-width: 300px;
+  max-width: 400px !important;
   padding: 0.25rem 0.5rem;
   color: #000000;
   text-align: center;
@@ -9994,6 +9993,7 @@ button.bg-dark:focus {
 .text-left {
   text-align: left !important;
 }
+.glyphicon-info-sign:before{content:"\e086"}
 
 .text-right {
   text-align: right !important;
@@ -10221,9 +10221,6 @@ a.text-dark:hover, a.text-dark:focus {
   display: none;
 }
 #learningpoints{
-  display: none;
-}
-#overview{
   display: none;
 }
 #clickhere{
