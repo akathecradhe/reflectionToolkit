@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
+import java.text.SimpleDateFormat;
 
 @Data
 @AllArgsConstructor
@@ -46,6 +47,9 @@ public class Form {
             inverseJoinColumns = @JoinColumn(name = "TagID"))
     private List<Tags> tags;
 
+    public String getLastEditedString() {
+        return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(lastEdited);
+    }
 
     //Allows for you to search by tag category
     public List<Tags> getTagsByCategory(final String category) {

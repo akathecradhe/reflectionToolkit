@@ -94,7 +94,7 @@
             <h5 class="card-title" th:text="${form.getEventID().getName()}">Teaching Or Supervision</h5>
             <p class="card-text"><span th:text="${form.shortDescription}">Held an hour-long online seminar for Year 2 students on Presentation Skills</span>
                 <br>Event held on <span th:text="${form.getEventID.getName()}">23-11-2020</span>
-                <br>Last edited: <span th:text="${form.lastEdited}">2020-12-01 18:25:55.996301</span></p>
+                <br>Last edited: <span th:text="${form.getLastEditedString()}">2020-12-01 18:25:55</span></p>
             <a th:href="@{/reflection/{furl} (furl=${form.getReflectionID().getReflectionID()})}"  class="btn btn-primary">View Reflection</a>
         </div>
     </div>
