@@ -1,0 +1,10 @@
+.drop{
+    border-radius: 0;
+    border-style:groove;
+    background: linear-gradient(to bottom, #0066cc 0%, #3399ff 100%);
+}
+
+.applybtn{
+    margin-top: 5px;
+
+}
