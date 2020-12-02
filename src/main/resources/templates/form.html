@@ -9,38 +9,35 @@
 <body>
 
 <header>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">Professional Development Logging System
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Professional Development Logging System
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarsExample04">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Activities</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Activity Form</a>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-md-0">
-            <input class="form-control" type="text" placeholder="Search">
-        </form>
-    </div>
-</nav>
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Activities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Activity Form</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 </header>
 
 <main role="main" class="flex-shrink-0">
-<form action="#" method="post" th:action="@{/form}" th:object="${form}" onsubmit="return confirm('Submit this entry?');">
-    <!--<div th:text="${event}"></div>-->
+    <form action="#" method="post" th:action="@{/form}" th:object="${form}" onsubmit="return confirm('Submit this entry?');">
+        <!--<div th:text="${event}"></div>-->
 
-<div id="activitydetails" class="container">
-    <h1 class="mt-5">Activity Details</h1><br>
+        <div id="activitydetails" class="container">
+            <h1 class="mt-5">Activity Details</h1><br>
             <div class="row">
                 <div class="col-md-8 order-md-1">
                     <div class="form-group ">
@@ -49,399 +46,401 @@
                             <span class="asteriskField">
         *
        </span>
-                            </label>
-                            <select class="form-control" th:field="*{eventType}"name="event" id="event" REQUIRED>
-                                <option value="Teaching or Supervision">
-                                    Teaching or Supervision
-                                </option>
-                                <option value="Design or Plan">
-                                    Design or Plan
-                                </option>
-                                <option value="Assess or Give Feedback">
-                                    Assess or Give Feedback
-                                </option>
-                                <option value="Discussion">
-                                    Discussion
-                                </option>
-                                <option value="Scholarship">
-                                    Scholarship
-                                </option>
-                                <option value="Evaluation and Quality Assurance">
-                                    Evaluation and Quality Assurance
-                                </option>
-                            </select>
-                            <span class="help-block">
+                        </label>
+                        <div style="display: none" th:if="${formID != null}">
+                            <select name="formID" id="formID"><option th:value="${formID}" REQUIRED></option></select>
+                        </div>
+
+                        <select class="form-control" name="eventType" id="eventType" REQUIRED>
+                            <div th:each="events: ${event}">
+                                <option th:value="${events.eventID}" th:text="${events.name}" th:selected="${events.eventID == eventEdit?.eventID}" ></option>
+                            </div>
+                        </select>
+
+                        <span class="help-block">
        Select the applicable activity type from the drop-down list.
       </span>
-                        </div>
-                        <div class="form-group ">
-                             <label th:for="shortDesc" class="labels">
-                                Activity Description
-                                <span class="asteriskField">
+                    </div>
+                    <div class="form-group ">
+                        <label th:for="shortDesc" class="labels">
+                            Activity Description
+                            <span class="asteriskField">
         *
        </span>
-                            </label>
-                            <textarea class="form-control" cols="40" rows="5" th:field="*{shortDesc}" maxlength="140" name="ShortDescription" placeholder="(max 140 characters)" REQUIRED></textarea>
-                            <span class="help-block">
+                        </label>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${descEdit?.shortDescription}" maxlength="140" id="shortDesc" name="shortDesc" placeholder="(max 140 characters)" REQUIRED></textarea>
+                        <span class="help-block">
        Give a short description of the purpose of the activity you attended.
       </span>
-                        </div>
-                        <div class="form-group ">
-                             <label class="labels" th:for="role">
-                                Role
-                                <span class="asteriskField">
+                    </div>
+                    <div class="form-group ">
+                        <label class="labels" th:for="role">
+                            Role
+                            <span class="asteriskField">
         *
        </span>
-                            </label>
-                            <select class="form-control" th:field="*{role}" name="role" id="role" >
-                                <option value="Lead or Facilitate">
-                                    Lead or Facilitate
-                                </option>
-                                <option value="Participate">
-                                    Participate
-                                </option>
-                                <option value="Review">
-                                    Review
-                                </option>
-                            </select>
-                            <span class="help-block">
+                        </label>
+                        <select class="form-control" name="role" id="role" REQUIRED>
+                            <div th:each="roles: ${role}">
+                                <option th:value="${roles.roleID}" th:text="${roles.name}" th:selected="${roles.roleID == roleEdit?.roleID}"></option>
+                            </div>
+                        </select>
+
+                        <span class="help-block">
        What role did you play during the activity? Choose the applicable option from the drop-down menu.
       </span>
-                        </div>
-                        <div class="form-group ">
-                             <label class="labels" th:for="othersInvolveds">
-                                Others Involved
-                                <span class="asteriskField">
+                    </div>
+                    <div class="form-group ">
+                        <label class="labels" th:for="othersInvolveds">
+                            Others Involved
+                            <span class="asteriskField">
         *
        </span>
-                            </label>
-                            <div class=" ">
-                                <div th:each="othersInvolveds: ${othersInvolved}">
-                                    <input  class = "checkbox" th:field="*{others}" type="checkbox" th:id="${othersInvolveds.tagName}" name="othersInvolved" th:value="${othersInvolveds.tagName}">
-                                    <label th:for="${#ids.next('others')}" th:text="${othersInvolveds.tagName}"></label><br>
-                                </div>
+                        </label>
+                        <div th:each="othersInvolveds: ${othersInvolved}">
+
+                            <div th:if="${tagsEdit != null}">
+                                <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}" th:checked="${#lists.contains(tagsEdit, othersInvolveds.tagID)}" name="others" th:value="${othersInvolveds.tagID}">
                             </div>
-                                <span class="help-block">
+                            <div th:unless="${tagsEdit != null}">
+                                <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}"
+                                        name="others" th:value="${othersInvolveds.tagID}">
+                            </div>
+                            <label th:for="${#ids.next('others')}" th:text="${othersInvolveds.tagName}"></label><br>
+                        </div>
+
+                        <span class="help-block">
         Who else was in attendance? Choose an option above.
        </span>
-                            </div>
+                    </div>
 
                     <div class="form-group">
                         <div>
                             <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('activitydetails').style.display='none';document.getElementById('ukpsf').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
                         </div>
                     </div>
-              </div>
-        </div>
-</div>
-
-
-
-    <div id="ukpsf" class="container">
-        <h1 class="mt-5">Map event to Framework (UKPSF)</h1><br>
-        <div class="row">
-            <div class="col-md-8 order-md-1">
-                <div class="form-group ">
-                    <label class="labels" th:for="dimension">
-                        UKPSF Dimensions
-                        <span class="asteriskField">
-                    *
-                       </span>
-                    </label><br>
-                    <div class=" ">
-                        <div class="pairs" th:each="dimension: ${dimensions}">
-                            <input class ="checkbox" th:field="*{dimensions}" type="checkbox" th:id="${dimension.tagName}" name="dimension" th:value="${dimension.tagID}">
-                            <label data-toggle="tooltip" data-placement="top" th:attr="data-title=${dimension.description}" th:for="${#ids.next('dimension')}" th:text="${dimension.shortenedTag} + ' - ' + ${dimension.tagName}"></label><br>
-                        </div>
-                    </div>
-                    <span class="help-block">
-                        What are some of your thoughts having completed this activity? Choose as many options as applicable.
-                       </span>
-                </div>
-                <div class="form-group">
-                    <div>
-                        <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='none';document.getElementById('activitydetails').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                        <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='none';document.getElementById('impact').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-<div id="impact" class="container">
-    <h1 class="mt-5">Tag Selection</h1><br>
-        <div class="row">
-            <div class="col-md-8 order-md-1">
-                <div class="form-group ">
-                    <label class="labels" th:for="impacts">
-                        Impact
-                        <span class="asteriskField">
-                    *
-                   </span>
-                    </label><br>
-                    <div class=" ">
-                        <div th:each="impacts: ${impact}">
-                            <input class = "checkbox" th:field="*{impact}" type="checkbox" th:id="${impacts.tagName}" name="Impact" th:value="${impacts.tagName}">
-                            <label th:for="${#ids.next('impact')}" th:text="${impacts.tagName}"></label><br>
-                        </div>
-                    </div>
-                    <span class="help-block">
-                    How would you classify the scale of the impact of this activity? Choose as many options as applicable.
-                   </span>
-                </div>
-                <div class="form-group">
-                <div>
-                    <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='block';document.getElementById('impact').style.display='none';document.documentElement.scrollTop = 0;"> Back </button>
-                    <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('impact').style.display='none';document.getElementById('learntechs').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
-                </div>
-            </div>
-
-            </div>
-        </div>
-
-</div>
-
-
-    <div id="learntechs" class="container">
-        <h1 class="mt-5">Tag Selection</h1><br>
-        <div class="row">
-            <div class="col-md-8 order-md-1">
-                <div class="form-group ">
-                    <label class="labels" th:for="learningTechnology">
-                        Learning Technologies
-                        <span class="asteriskField">
-                    *
-                   </span>
-                    </label><br>
-                    <div class=" ">
-                        <div th:each="learningTechnology: ${learningTechnologies}">
-                            <input class = "checkbox" th:field="*{learningTechs}" type="checkbox" th:id="${learningTechnology.tagName}" name="Learning Technologies" th:value="${learningTechnology.tagName}">
-                            <label th:for="${#ids.next('learningTechs')}" th:text="${learningTechnology.tagName}"></label><br>
-                        </div>
-                    </div>
-                    <span class="help-block">
-                    Which learning technologies were utilised for this activity? Choose as many options as applicable.
-                   </span>
-                </div>
-                <div class="form-group">
-                <div>
-                    <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('impact').style.display='block';document.getElementById('learntechs').style.display='none';document.documentElement.scrollTop = 0;"> Back </button>
-                    <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('learntechs').style.display='none';document.getElementById('thoughtcld').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
-                </div>
-            </div>
-            </div>
-        </div>
-    </div>
 
 
 
-    <div id="thoughtcld" class="container">
-        <h1 class="mt-5">Tag Selection</h1><br>
-        <div class="row">
-            <div class="col-md-8 order-md-1">
-                <div class="form-group ">
-                    <label class="labels" th:for="thoughtClouds">
-                        Thought Cloud
-                        <span class="asteriskField">
+        <div id="ukpsf" class="container">
+            <h1 class="mt-5">Map event to Framework (UKPSF)</h1><br>
+            <div class="row">
+                <div class="col-md-8 order-md-1">
+                    <div class="form-group ">
+                        <label class="labels" th:for="dimension">
+                            UKPSF Dimensions
+                            <span class="asteriskField">
                     *
                        </span>
                         </label><br>
-                        <div class=" ">
-                            <div th:each="thoughtClouds: ${thoughtCloud}">
-                                <input class ="checkbox" th:field="*{thoughtCloud}" type="checkbox" th:id="${thoughtClouds.tagName}" name="Learning Technologies" th:value="${thoughtClouds.tagName}">
-                                <label th:for="${#ids.next('thoughtCloud')}" th:text="${thoughtClouds.tagName}"></label><br>
+<!--                            <div class="pairs" th:each="dimension: ${dimensions}">-->
+<!--                                <input class ="checkbox" th:field="*{dimensions}" type="checkbox" th:id="${dimension.tagName}" name="dimension" th:value="${dimension.tagID}">-->
+<!--                                <label data-toggle="tooltip" data-placement="top" th:attr="data-title=${dimension.description}" th:for="${#ids.next('dimension')}" th:text="${dimension.shortenedTag} + ' - ' + ${dimension.tagName}"></label><br>-->
+<!--                            </div>-->
+                        <div th:each="dimension: ${dimensions}">
+                            <div th:if="${tagsEdit != null}">
+                                <input class ="checkbox" th:checked="${#lists.contains(tagsEdit, dimension.tagID)}" type="checkbox" th:id="${dimension.tagID}" name="dimensions" th:value="${dimension.tagID}">
                             </div>
+                            <div th:unless="${tagsEdit != null}">
+                                <input class ="checkbox" type="checkbox" th:id="${dimension.tagID}" name="dimensions" th:value="${dimension.tagID}">
+                            </div>
+                            <label data-toggle="tooltip" data-placement="top" th:attr="data-title=${dimension.description}" th:for="${#ids.next('dimension')}" th:text="${dimension.shortenedTag} + ' - ' + ${dimension.tagName}"></label><br>
+                        </div>
+
+                        <span class="help-block">
+                        What are some of your thoughts having completed this activity? Choose as many options as applicable.
+                       </span>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='none';document.getElementById('activitydetails').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='none';document.getElementById('impact').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="impact" class="container">
+            <h1 class="mt-5">Tag Selection</h1><br>
+            <div class="row">
+                <div class="col-md-8 order-md-1">
+                    <div class="form-group ">
+                        <label class="labels" th:for="impacts">
+                            Impact
+                            <span class="asteriskField">
+                    *
+                   </span>
+                        </label><br>
+                        <div th:each="impacts: ${impact}">
+                            <div th:if="${tagsEdit != null}">
+                                <input class = "checkbox" type="checkbox" th:id="${impacts.tagID}" th:checked="${#lists.contains(tagsEdit, impacts.tagID)}" name="impact" th:value="${impacts.tagID}">
+                            </div>
+                            <div th:unless="${tagsEdit != null}">
+                                <input class = "checkbox" type="checkbox" th:id="${impacts.tagID}" name="impact" th:value="${impacts.tagID}">
+                            </div>
+                            <label th:for="${#ids.next('impact')}" th:text="${impacts.tagName}"></label><br>
+                        </div>
+
+                        <span class="help-block">
+                    How would you classify the scale of the impact of this activity? Choose as many options as applicable.
+                   </span>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='block';document.getElementById('impact').style.display='none';document.documentElement.scrollTop = 0;"> Back </button>
+                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('impact').style.display='none';document.getElementById('learntechs').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div id="learntechs" class="container">
+            <h1 class="mt-5">Tag Selection</h1><br>
+            <div class="row">
+                <div class="col-md-8 order-md-1">
+                    <div class="form-group ">
+                        <label class="labels" th:for="learningTechnology">
+                            Learning Technologies
+                            <span class="asteriskField">
+                    *
+                   </span>
+                        </label><br>
+                        <div th:each="learningTechnology: ${learningTechnologies}">
+                            <div th:if="${tagsEdit != null}">
+                                <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:checked="${#lists.contains(tagsEdit, learningTechnology.tagID)}" th:value="${learningTechnology.tagID}">
+                            </div>
+                            <div th:unless="${tagsEdit != null}">
+                                <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:value="${learningTechnology.tagID}">
+                            </div>
+
+                            <label th:for="${#ids.next('learningTechs')}" th:text="${learningTechnology.tagName}"></label><br>
+                        </div>
+
+                        <span class="help-block">
+                    Which learning technologies were utilised for this activity? Choose as many options as applicable.
+                   </span>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('impact').style.display='block';document.getElementById('learntechs').style.display='none';document.documentElement.scrollTop = 0;"> Back </button>
+                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('learntechs').style.display='none';document.getElementById('thoughtcld').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div id="thoughtcld" class="container">
+            <h1 class="mt-5">Tag Selection</h1><br>
+            <div class="row">
+                <div class="col-md-8 order-md-1">
+                    <div class="form-group ">
+                        <label class="labels" th:for="thoughtClouds">
+                            Thought Cloud
+                            <span class="asteriskField">
+                    *
+                       </span>
+                        </label><br>
+                        <div th:each="thoughtClouds: ${thoughtCloud}">
+                            <div th:if="${tagsEdit != null}">
+                                <input class ="checkbox"  type="checkbox" th:checked="${#lists.contains(tagsEdit, thoughtClouds.tagID)}" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
+                            </div>
+                            <div th:unless="${tagsEdit != null}">
+                                <input class ="checkbox"  type="checkbox" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
+                            </div>
+                            <label th:for="${#ids.next('thoughtCloud')}" th:text="${thoughtClouds.tagName}"></label><br>
                         </div>
                         <span class="help-block">
                         What are some of your thoughts having completed this activity? Choose as many options as applicable.
                        </span>
                     </div>
-                <div class="form-group ">
-                    <label class="labels">
-                        Other
-                    </label>
-                    <textarea class="form-control" cols="40" rows="3" th:field="*{thoughtDesc}" maxlength="25" name="otherThoughtCloud" placeholder="(max 25 characters)"></textarea>
-                    <span class="help-block">
-                   Please provide a comment if applicable.
-                  </span>
-                </div>
                     <div class="form-group">
-                    <div>
-                        <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('learntechs').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                        <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                        <div>
+                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('learntechs').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-<!-- Validation for NONE needs to be figured out-->
+        <!-- Validation for NONE needs to be figured out-->
 
-    <div id="reflection" class="container">
-        <h1 class="mt-5">Reflection</h1><br>
-        <div class="row">
-            <div class="col-md-8 order-md-1">
-                <div class="form-group ">
-                    <label class="labels">
-                        What did you do?
-                        <span class="asteriskField">
+        <div id="reflection" class="container">
+            <h1 class="mt-5">Reflection</h1><br>
+            <div class="row">
+                <div class="col-md-8 order-md-1">
+                    <div class="form-group ">
+                        <label class="labels">
+                            What did you do?
+                            <span class="asteriskField">
                     *
                    </span>
-                    </label>
-                    <textarea class="form-control" cols="40" rows="5" th:field="*{box1}" maxlength="100" name="Whatdidyoudo" placeholder="(max 100 characters)" REQUIRED></textarea>
-                    <span class="help-block">
+                        </label>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box1}" maxlength="100" name="box1" id="box1" placeholder="(max 100 characters)" REQUIRED></textarea>
+                        <span class="help-block">
                    Provide a clear record.
                   </span>
-             </div>
+                    </div>
 
-                <div class="form-group ">
-                    <label class="labels">
-                        What prompted your approach?
-                        <span class="asteriskField">
+                    <div class="form-group ">
+                        <label class="labels">
+                            What prompted your approach?
+                            <span class="asteriskField">
                     *
                    </span>
-                    </label>
-                    <textarea class="form-control" cols="40" rows="5" th:field="*{box2}" maxlength="100" name="Whatpromptedyourapproach" placeholder="(max 100 characters)" REQUIRED></textarea>
-                    <span class="help-block">
+                        </label>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box2}" maxlength="100" name="box2" id="box2" placeholder="(max 100 characters)" REQUIRED></textarea>
+                        <span class="help-block">
                    Consider your past experiences and how they might have been of influence here.
                   </span>
-                </div>
+                    </div>
 
-                <div class="form-group ">
-                    <label class="labels">
-                        What happened?
-                        <span class="asteriskField">
+                    <div class="form-group ">
+                        <label class="labels">
+                            What happened?
+                            <span class="asteriskField">
                     *
                    </span>
-                    </label>
-                    <textarea class="form-control" cols="40" rows="5" th:field="*{box3}" maxlength="100" name="Whathappened" placeholder="(max 100 characters)" REQUIRED></textarea>
-                    <span class="help-block">
+                        </label>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box3}" maxlength="100" name="box3" id="box3" placeholder="(max 100 characters)" REQUIRED></textarea>
+                        <span class="help-block">
                    Consider your own and others' viewpoints and feelings - put yourself in their shoes!
                   </span>
-                </div>
+                    </div>
 
-                <div class="form-group ">
-                    <label class="labels">
-                        What impact did the learning technologies have on your activity?
-                        <span class="asteriskField">
+                    <div class="form-group ">
+                        <label class="labels">
+                            What impact did the learning technologies have on your activity?
+                            <span class="asteriskField">
                     *
                    </span>
-                    </label>
-                    <textarea class="form-control" cols="40" rows="5" th:field="*{box4}" maxlength="100" name="whatimpactdidthelearningtech" placeholder="(max 100 characters)" REQUIRED></textarea>
-                    <span class="help-block">
+                        </label>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box4}" maxlength="100" name="box4" id="box4" placeholder="(max 100 characters)" REQUIRED></textarea>
+                        <span class="help-block">
                    Think about how your development might have been affected had you utilised a different technology.
                   </span>
-                </div>
+                    </div>
 
-                <div class="form-group ">
-                    <label class="labels">
-                        Collecting Evidence
-                        <span class="asteriskField">
+                    <div class="form-group ">
+                        <label class="labels">
+                            Collecting Evidence
+                            <span class="asteriskField">
                     *
                    </span>
-                    </label>
-                    <textarea class="form-control" cols="40" rows="5" th:field="*{box5}" maxlength="100" name="Collecting Evidence" placeholder="(max 100 characters)" REQUIRED></textarea>
-                    <span class="help-block">
+                        </label>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box5}" maxlength="100" name="box5" id="box5" placeholder="(max 100 characters)" REQUIRED></textarea>
+                        <span class="help-block">
                    How will you evaluate this activity later? What evidence do you need?
                   </span>
-                </div>
+                    </div>
 
-                <div class="form-group ">
-                    <label class="labels">
-                        Alternate actions or responses
-                        <span class="asteriskField">
+                    <div class="form-group ">
+                        <label class="labels">
+                            Alternate actions or responses
+                            <span class="asteriskField">
                     *
                    </span>
-                    </label>
-                    <textarea class="form-control" cols="40" rows="5" th:field="*{box6}" maxlength="100" name="Alternateactions" placeholder="(max 100 characters)" REQUIRED></textarea>
-                    <span class="help-block">
+                        </label>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box6}" maxlength="100" name="box6" id="box6" placeholder="(max 100 characters)" REQUIRED></textarea>
+                        <span class="help-block">
                    What could you have done differently?
                   </span>
-                </div>
-                <div class="form-group">
-                    <div>
-                        <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('thoughtcld').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                        <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('learningpoints').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('thoughtcld').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('learningpoints').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div id="learningpoints" class="container">
-        <h1 class="mt-5">Learning Points For You</h1><br>
-        <div class="row">
-            <div class="col-md-8 order-md-1">
-                <div class="form-group ">
-                    <label class="labels">
-                        Learning Point 1
-                        <span class="asteriskField">
+        <div id="learningpoints" class="container">
+            <h1 class="mt-5">Learning Points For You</h1><br>
+            <div class="row">
+                <div class="col-md-8 order-md-1">
+                    <div class="form-group ">
+                        <label class="labels">
+                            Learning Point 1
+                            <span class="asteriskField">
                                 *
                                </span>
-                    </label>
-                    <textarea class="form-control" cols="40" rows="5" th:field="*{learningPoint1}" maxlength="140" name="Learningpoint1" placeholder="(max 140 characters)" REQUIRED></textarea>
-                    <span class="help-block">
+                        </label>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint1}" maxlength="140" name="learningPoint1" id="learningPoint1" placeholder="(max 140 characters)" REQUIRED></textarea>
+                        <span class="help-block">
                                What key takeaways did you gain from this experience? Type them in the text fields.
                   </span>
-                </div>
-                <div class="form-group ">
-                    <label class="labels">
-                        Learning Point 2
-                        <span class="asteriskField">
+                    </div>
+                    <div class="form-group ">
+                        <label class="labels">
+                            Learning Point 2
+                            <span class="asteriskField">
                                 *
                                </span>
-                    </label>
-                    <textarea class="form-control" cols="40" rows="5" th:field="*{learningPoint2}" maxlength="140" name="Learningpoint2" placeholder="(max 140 characters)" REQUIRED></textarea>
-                </div>
-                <div class="form-group ">
-                    <label class="labels">
-                        Learning Point 3
-                        <span class="asteriskField">
+                        </label>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint2}" maxlength="140" name="learningPoint2" id="learningPoint2" placeholder="(max 140 characters)" REQUIRED></textarea>
+                    </div>
+                    <div class="form-group ">
+                        <label class="labels">
+                            Learning Point 3
+                            <span class="asteriskField">
                                 *
                                </span>
-                    </label>
-                    <textarea class="form-control" cols="40" rows="5" th:field="*{learningPoint3}" maxlength="140" name="Learningpoint3" placeholder="(max 140 characters)" REQUIRED></textarea>
-                </div>
-                <div class="form-group">
-                    <div>
-                        <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                        <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Overview </button>
+                        </label>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint3}" maxlength="140" name="learningPoint3" id="learningPoint3" placeholder="(max 140 characters)" REQUIRED></textarea>
+                    </div>
+                    <div class="form-group">
+                        <div>
+                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Overview </button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
 
-<div id = "overview" class="container">
-    <fieldset>
-    <h1 class="mt-5">Overview</h1>
-    <p class="description">Here's an overview of your event entry. Submit your entry with the 'Submit' button below if you're satisfied with your inputs.</p>
-    <br>    <br>
+        <div id = "overview" class="container">
+            <fieldset>
+                <h1 class="mt-5">Overview</h1>
+                <p class="description">Here's an overview of your event entry. Submit your entry with the 'Submit' button below if you're satisfied with your inputs.</p>
+                <br>    <br>
 
-        <p>Event Details:</p>
-        <br>
+                <p>Event Details:</p>
+                <br>
 
-        <br>    <br>
+                <br>    <br>
 
-        <p>Tags:</p>
-        <br>
+                <p>Tags:</p>
+                <br>
 
-        <br>    <br>
+                <br>    <br>
 
-        <p>Reflection:</p>
-        <br>
+                <p>Reflection:</p>
+                <br>
 
-        <br>    <br>
+                <br>    <br>
 
-    <p class="description"> See something you want to change? <a id ="clickhere" onclick="document.getElementById('overview').style.display='None';document.getElementById('activitydetails').style.display='block'">Click here</a> to revisit your inputs in sequence. </p>
-    <br>
+                <p class="description"> See something you want to change? <a id ="clickhere" onclick="document.getElementById('overview').style.display='None';document.getElementById('activitydetails').style.display='block'">Click here</a> to revisit your inputs in sequence. </p>
+                <br>
 
-    <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('overview').style.display='none';document.getElementById('learningpoints').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-    <button style="float: right;" class="btn btn-primary " type="submit" value="Submit" onclick="confirmsubmit()"> Submit </button>
+                <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('overview').style.display='none';document.getElementById('learningpoints').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+                <button style="float: right;" class="btn btn-primary " type="submit" value="Submit" onclick="confirmsubmit()"> Submit </button>
 
-    </fieldset>
-</div>
-</form>
-    </main>
+            </fieldset>
+        </div>
+    </form>
+</main>
 
 <br>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

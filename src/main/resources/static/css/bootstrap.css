@@ -79,7 +79,7 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 0.5rem;
 }
 .labels {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
   font-weight: bold;
   color: #333;
 }
@@ -6261,7 +6261,7 @@ a.close.disabled {
 }
 
 .tooltip-inner {
-  max-width: 300px;
+  max-width: 400px !important;
   padding: 0.25rem 0.5rem;
   color: #000000;
   text-align: center;

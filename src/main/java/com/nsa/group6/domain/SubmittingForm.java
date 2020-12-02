@@ -15,6 +15,8 @@ import java.util.List;
 @Setter
 public class SubmittingForm {
 
+    public Integer formID;
+
     public Integer eventType;
 
     public String shortDesc;
@@ -28,8 +30,6 @@ public class SubmittingForm {
     public List<Integer> learningTechs;
 
     public List<Integer> thoughtCloud;
-
-    public String thoughtDesc;
 
     public List<Integer> dimensions;
 
@@ -51,7 +51,25 @@ public class SubmittingForm {
 
     public String learningPoint3;
 
-
+    public SubmittingForm(Integer eventType, String shortDesc, Integer role, List<Integer> others, List<Integer> impact, List<Integer> learningTechs, List<Integer> thoughtCloud, List<Integer> dimensions, String box1, String box2, String box3, String box4, String box5, String box6, String learningPoint1, String learningPoint2, String learningPoint3) {
+        this.eventType = eventType;
+        this.shortDesc = shortDesc;
+        this.role = role;
+        this.others = others;
+        this.impact = impact;
+        this.learningTechs = learningTechs;
+        this.thoughtCloud = thoughtCloud;
+        this.dimensions = dimensions;
+        this.box1 = box1;
+        this.box2 = box2;
+        this.box3 = box3;
+        this.box4 = box4;
+        this.box5 = box5;
+        this.box6 = box6;
+        this.learningPoint1 = learningPoint1;
+        this.learningPoint2 = learningPoint2;
+        this.learningPoint3 = learningPoint3;
+    }
 
 }
 
