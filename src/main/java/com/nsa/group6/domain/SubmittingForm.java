@@ -31,6 +31,8 @@ public class SubmittingForm {
 
     public List<Integer> thoughtCloud;
 
+    public List<Integer> dimensions;
+
     public String box1;
 
     public String box2;
@@ -49,7 +51,7 @@ public class SubmittingForm {
 
     public String learningPoint3;
 
-    public SubmittingForm(Integer eventType, String shortDesc, Integer role, List<Integer> others, List<Integer> impact, List<Integer> learningTechs, List<Integer> thoughtCloud, String box1, String box2, String box3, String box4, String box5, String box6, String learningPoint1, String learningPoint2, String learningPoint3) {
+    public SubmittingForm(Integer eventType, String shortDesc, Integer role, List<Integer> others, List<Integer> impact, List<Integer> learningTechs, List<Integer> thoughtCloud, List<Integer> dimensions, String box1, String box2, String box3, String box4, String box5, String box6, String learningPoint1, String learningPoint2, String learningPoint3) {
         this.eventType = eventType;
         this.shortDesc = shortDesc;
         this.role = role;
@@ -57,6 +59,7 @@ public class SubmittingForm {
         this.impact = impact;
         this.learningTechs = learningTechs;
         this.thoughtCloud = thoughtCloud;
+        this.dimensions = dimensions;
         this.box1 = box1;
         this.box2 = box2;
         this.box3 = box3;
