@@ -5,6 +5,7 @@
     <title>Logging Form</title>
     <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
 
+
 </head>
 <body>
 
@@ -32,9 +33,8 @@
     </nav>
 </header>
 
-<main role="main" class="flex-shrink-0">
+<main role="main" class="container-fluid">
     <form action="#" method="post" th:action="@{/form}" th:object="${form}" onsubmit="return confirm('Submit this entry?');">
-        <!--<div th:text="${event}"></div>-->
 
         <div id="activitydetails" class="container">
             <h1 class="mt-5">Activity Details</h1><br>
@@ -134,7 +134,7 @@
                             UKPSF Dimensions
                             <span class="asteriskField">
                     *
-                       </span>
+                            </span><span class="glyphicon glyphicon-envelope"></span>
                         </label><br>
 <!--                            <div class="pairs" th:each="dimension: ${dimensions}">-->
 <!--                                <input class ="checkbox" th:field="*{dimensions}" type="checkbox" th:id="${dimension.tagName}" name="dimension" th:value="${dimension.tagID}">-->
@@ -403,42 +403,14 @@
                     <div class="form-group">
                         <div>
                             <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Overview </button>
+                            <button style="float: right;" class="btn btn-primary " type="submit" value="Submit" onclick="confirmsubmit()"> Submit </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div id = "overview" class="container">
-            <fieldset>
-                <h1 class="mt-5">Overview</h1>
-                <p class="description">Here's an overview of your event entry. Submit your entry with the 'Submit' button below if you're satisfied with your inputs.</p>
-                <br>    <br>
 
-                <p>Event Details:</p>
-                <br>
-
-                <br>    <br>
-
-                <p>Tags:</p>
-                <br>
-
-                <br>    <br>
-
-                <p>Reflection:</p>
-                <br>
-
-                <br>    <br>
-
-                <p class="description"> See something you want to change? <a id ="clickhere" onclick="document.getElementById('overview').style.display='None';document.getElementById('activitydetails').style.display='block'">Click here</a> to revisit your inputs in sequence. </p>
-                <br>
-
-                <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('overview').style.display='none';document.getElementById('learningpoints').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                <button style="float: right;" class="btn btn-primary " type="submit" value="Submit" onclick="confirmsubmit()"> Submit </button>
-
-            </fieldset>
-        </div>
     </form>
 </main>
 
