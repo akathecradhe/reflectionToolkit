@@ -101,7 +101,7 @@ public class FormController {
             model.addAttribute("descEdit", form1);
             model.addAttribute("reflectionEdit", reflectionInput);
 
-            return getString(model);
+            return getFormsByUsername(Optional.of("rowbo"), model);
         }
     }
 
