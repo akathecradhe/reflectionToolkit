@@ -129,7 +129,7 @@ VALUES ('UKPSF','Assess and give feedback to learners', 'A3','Clear differentiat
 
 INSERT INTO Tags (Category, tag_name, shortened_tag, description)
 VALUES ('UKPSF','Develop effective learning environments and approaches to student support and guidance', 'A4','The
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis lorem urna. Sed sagittis nunc.inition of ‘learning environments’ has been widely contested and is open to diverse interpretation. Individual practitioners work beyond the local physical environment of the classroom, the laboratory, studio or work place or the distance learning or electronic learning environment. They take the nature of the learning environment, the learning culture being developed, the nature and extent of the support infrastructures into account and are able to distinguish between academic and pastoral interventions. Individuals also take the range of environments available to students into account as well as how they are enabled to access, understand and utilise them.');
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis lorem urna. Sed sagittis nunc.inition of "learning environments’ has been widely contested and is open to diverse interpretation. Individual practitioners work beyond the local physical environment of the classroom, the laboratory, studio or work place or the distance learning or electronic learning environment. They take the nature of the learning environment, the learning culture being developed, the nature and extent of the support infrastructures into account and are able to distinguish between academic and pastoral interventions. Individuals also take the range of environments available to students into account as well as how they are enabled to access, understand and utilise them.');
 
 INSERT INTO Tags (Category, tag_name, shortened_tag, description)
 VALUES ('UKPSF','Engage in continuing professional developments in subjects/disciplines and their pedagogy, incorporating research, scholarship and the evaluation of professional practices', 'A5','The Framework provides a powerful means of articulating the varied aspects of role and the potential for development in all areas of the teaching and supporting learning endeavour. This Area of Activity is concerned with enhancement and comprises three elements integral to teaching and supporting learning roles. Whilst the three elements might be viewed holistically it is important the elements are understood and demonstrated, particularly at Descriptors 1 and 2 to ensure successful integration. The three elements are: 1. Continuing professional development in subjects/disciplines and their pedagogy 2. Incorporating research and scholarship 3. The evaluation of (one’s own) professional practices. Evidence could appropriately focus on the question: How might an individual demonstrate that they have become a better teacher through continuing professional development, research and the evaluation of their teaching and learning related practices?');
@@ -153,7 +153,7 @@ INSERT INTO Tags (Category, tag_name, shortened_tag, description)
 VALUES ('UKPSF','The implications of quality assurance and quality enhancement for academic and professional practice with a particular focus on teaching', 'K6','Quality assurance and quality enhancement are deeply embedded in higher education through procedures such as programme validation, monitoring and review. These processes shape academic practice and are implicit in what individuals do. Key to evidencing this area is how an individual might demonstrate engagement with feedback to enhance practice and the student learning experience. This might include an account of how they seek opportunities to obtain feedback other than relying on the institutional procedures already in place. For those working outside higher education institutional policies and practices, they will need to evidence a personal interest, understanding and commitment to quality assurance and enhancement procedures established and embedded within their practice. This will include knowledge and understanding of the quality assurance frameworks at a national level and how these are manifested at an institutional level.');
 
 INSERT INTO Tags (Category, tag_name, shortened_tag, description)
-VALUES ('UKPSF','Respect individual learners and diverse learning communities', 'V1','This focuses on the way teaching and supporting learning incorporate activities, actions and approaches which respect individual learners. It depicts the ways we communicate and interact with individuals and different communities in the context of teaching and supporting learning. The term ‘diverse learning communities’ might include campus based groups of students, electronic communicates, work based communities, or be Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non sapien porta, fringilla mi at.ined on the basis of ethnicity, faith, social class, age etc. The practitioner needs to be able to demonstrate that they value and can work effectively with and within these diverse communities.');
+VALUES ('UKPSF','Respect individual learners and diverse learning communities', 'V1','This focuses on the way teaching and supporting learning incorporate activities, actions and approaches which respect individual learners. It depicts the ways we communicate and interact with individuals and different communities in the context of teaching and supporting learning. The term "diverse learning communities’ might include campus based groups of students, electronic communicates, work based communities, or be Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non sapien porta, fringilla mi at.ined on the basis of ethnicity, faith, social class, age etc. The practitioner needs to be able to demonstrate that they value and can work effectively with and within these diverse communities.');
 
 INSERT INTO Tags (Category, tag_name, shortened_tag, description)
 VALUES ('UKPSF','Promote participation in higher education and equality of opportunity for learners', 'V2','The focus here is on providing evidence of how a commitment to participation in Higher Education and equality of opportunity for learners underpins practice related to teaching and supporting learning. There is potential to cover a broad spectrum of activities, approaches and behaviours linked to all the Areas of Activity and Core Knowledge. Evidence should ideally indicate wide and pervasive approaches to ensuring equality of opportunity.');
@@ -227,3 +227,115 @@ VALUES (30,1);
 
 INSERT INTO TagForm (TagID, FormID)
 VALUES (43,1);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (1,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (5,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (6,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (10,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (17,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (24,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (35,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (40,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (45,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (2,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (6,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (12,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (22,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (25,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (34,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (39,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (2,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (6,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (12,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (22,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (25,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (34,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (39,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (1,5);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (8,5);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (12,5);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (18,5);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (34,5);
+
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (1,6);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (7,6);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (11,6);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (19,6);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (45,6);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (3,7);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (8,7);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (12,7);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (45,7);
