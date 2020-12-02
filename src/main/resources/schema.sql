@@ -28,7 +28,8 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `user` (
   `username` VARCHAR(45) NOT NULL PRIMARY KEY,
   `name` VARCHAR(45) NOT NULL,
-  `password` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(150) NOT NULL,
+  `roles` VARCHAR(45) NOT NULL,
   `account_created` DATE NOT NULL
   )
 ENGINE = InnoDB;

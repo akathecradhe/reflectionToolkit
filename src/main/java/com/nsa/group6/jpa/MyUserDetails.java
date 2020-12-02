@@ -1,51 +1,60 @@
 package com.nsa.group6.jpa;
 
+import com.nsa.group6.domain.User;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.StringUtils;
 
+import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class MyUserDetails implements UserDetails {
 
 
-    private final String userName;
-
-    public MyUserDetails(String userName) {
-        this.userName = userName;
-    }
+    private User user;
+    private List<String> userRoles;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        String roles = StringUtils.collectionToCommaDelimitedString(userRoles);
+        return AuthorityUtils.commaSeparatedStringToAuthorityList(roles);
     }
 
     @Override
     public String getPassword() {
-        return null;
+        return user.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return userName;
+        return user.getUsername();
     }
 
     @Override
     public boolean isAccountNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return false;
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return false;
+        return true;
+    }
+
+    public User getUser() {
+        return user;
     }
 }

@@ -13,10 +13,10 @@ VALUES ('Scholarship',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
 INSERT INTO Event (Name, event_date)
 VALUES ('Evaluation and Quality Assurance',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
 
-INSERT INTO User (username, name,password ,account_created)
-VALUES ('rowbo','Tom Rowbotham','hello123',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
-INSERT INTO User (username, name,password , account_created)
-VALUES ('clive99','Clive Tsungu','youtube4',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
+INSERT INTO User (username, name,password, roles,account_created)
+VALUES ('rowbo','Tom Rowbotham','$2y$12$WjMvIYEmf0oEJxqkydW5M.QJ6jCv/AGT/p7bvwP82bAC5ZhMikNp2','ADMIN',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
+INSERT INTO User (username, name,password ,roles,account_created)
+VALUES ('clive99','Clive Tsungu','youtube4','USER',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
 
 INSERT INTO Role (name)
 VALUES ('Lead or Facilitate');
