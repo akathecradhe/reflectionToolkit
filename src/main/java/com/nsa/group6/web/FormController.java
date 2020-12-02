@@ -1,6 +1,8 @@
 package com.nsa.group6.web;
 
 import com.nsa.group6.domain.*;
+import com.nsa.group6.service.FormService;
+import com.nsa.group6.service.UserService;
 import com.nsa.group6.service.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,14 +27,16 @@ public class FormController {
 
     private final FormService formService;
     private final UserService userService;
+    private final FormHandler formHandler;
     private final TagsService tagsService;
     private final RoleService roleService;
     private final EventService eventService;
     private final ReflectionService reflectionService;
 
-    public FormController(FormService formService, UserService userService, TagsService tagsService, RoleService roleService, EventService eventService, ReflectionService reflectionService) {
+    public FormController(FormService formService, UserService userService, FormHandler formHandler, TagsService tagsService, RoleService roleService, EventService eventService, ReflectionService reflectionService) {
         this.formService = formService;
         this.userService = userService;
+        this.formHandler = formHandler;
         this.tagsService = tagsService;
         this.roleService = roleService;
         this.eventService = eventService;
@@ -157,12 +161,22 @@ public class FormController {
 
         // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not in the db.
         // If the username is left blank then take it to the page of the signed in user.
-        List<Form> form;
+        List<Form> forms;
         Optional<User> ausername = userService.findUserByUsername(username.get());
         User aUser = ausername.get();
-        form = formService.getAllFormsByUsername(aUser);
+        forms = formService.getAllFormsByUsername(aUser);
 
-        model.addAttribute("forms", form);
+        FiltersForm filters = new FiltersForm();
+
+        //Gets the tags for filters
+        model.addAttribute("othersInvolved", formHandler.findTagsByCategory("Others Involved"));
+        model.addAttribute("impact", formHandler.findTagsByCategory("Impact"));
+        model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
+        model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
+        model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF"));
+        model.addAttribute("user", aUser);
+        model.addAttribute("forms", forms);
+        model.addAttribute("filters",filters);
 
         return "reflection-list";
 
@@ -200,10 +214,37 @@ public class FormController {
     // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
         //Replace this with getFormbyFormID soon
         model.addAttribute("form", formService.getFormByID(formID));
-
         return "form-view";
 
     }
+
+    @PostMapping("reflections/{username}")
+    public String submitFilters(@PathVariable(name = "username", required = false) Optional<String> username,
+                                @ModelAttribute("filters") FiltersForm filtersForm, Model model) {
+        Optional<User> ausername = userService.findUserByUsername(username.get());
+        User aUser = ausername.get();
+        List<Form> forms = formHandler.findFormsByMatchingTagIDs(filtersForm.tags,username.get());
+
+        FiltersForm filters = new FiltersForm();
+        //Gets the tags for filters
+        model.addAttribute("othersInvolved", formHandler.findTagsByCategory("Others Involved"));
+        model.addAttribute("impact", formHandler.findTagsByCategory("Impact"));
+        model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
+        model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
+        model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF"));
+        model.addAttribute("user", aUser);
+        model.addAttribute("forms", forms);
+        model.addAttribute("filters",filters);
+
+        return "reflection-list";
+    }
+
+
+
+
+
+
+
 
 
 }
