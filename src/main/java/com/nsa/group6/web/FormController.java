@@ -46,44 +46,7 @@ public class FormController {
     @GetMapping("form")
     public String runForm(Model model) {
 
-        List<Tags> allTags = tagsService.getAllTags();
-
-        List<Tags> othersInvolved = new ArrayList<Tags>();
-        List<Tags> impact = new ArrayList<Tags>();
-        List<Tags> learningTechnologies = new ArrayList<Tags>();
-        List<Tags> thoughtCloud = new ArrayList<Tags>();
-
-
-        for (int i = 0; i < allTags.size(); i++) {
-            String whichCategory = allTags.get(i).getCategory();
-            Tags addingTag = allTags.get(i);
-
-            if ("Others Involved".equals(whichCategory)) {
-                othersInvolved.add(addingTag);
-            } else if ("Impact".equals(whichCategory)) {
-                impact.add(addingTag);
-            } else if ("Learning Technologies".equals(whichCategory)) {
-                learningTechnologies.add(addingTag);
-            } else if ("Thought Cloud".equals(whichCategory)) {
-                thoughtCloud.add(addingTag);
-            } else {
-            }
-        }
-
-        List<Role> role = roleService.getAllRoles();
-        List<Event> event = eventService.getAllEvent();
-
-        SubmittingForm submittingForm = new SubmittingForm();
-
-        model.addAttribute("event", event);
-        model.addAttribute("role", role);
-        model.addAttribute("form", submittingForm);
-        model.addAttribute("othersInvolved", othersInvolved);
-        model.addAttribute("impact", impact);
-        model.addAttribute("learningTechnologies", learningTechnologies);
-        model.addAttribute("thoughtCloud", thoughtCloud);
-
-        return "form";
+        return getString(model);
     }
 
 
@@ -125,10 +88,56 @@ public class FormController {
 
             formService.saveForm(form1);
 
-            return "formtest";
+            model.addAttribute("tagsEdit", allTags);
+            model.addAttribute("roleEdit", roleInput);
+            model.addAttribute("eventEdit", eventInput);
+            model.addAttribute("descEdit", form1);
+            model.addAttribute("reflectionEdit", reflectionInput);
+
+            return getString(model);
         }
     }
 
+    private String getString(Model model) {
+        List<Tags> allTags = tagsService.getAllTags();
+
+        List<Tags> othersInvolved = new ArrayList<Tags>();
+        List<Tags> impact = new ArrayList<Tags>();
+        List<Tags> learningTechnologies = new ArrayList<Tags>();
+        List<Tags> thoughtCloud = new ArrayList<Tags>();
+
+
+        for (int i = 0; i < allTags.size(); i++) {
+            String whichCategory = allTags.get(i).getCategory();
+            Tags addingTag = allTags.get(i);
+
+            if ("Others Involved".equals(whichCategory)) {
+                othersInvolved.add(addingTag);
+            } else if ("Impact".equals(whichCategory)) {
+                impact.add(addingTag);
+            } else if ("Learning Technologies".equals(whichCategory)) {
+                learningTechnologies.add(addingTag);
+            } else if ("Thought Cloud".equals(whichCategory)) {
+                thoughtCloud.add(addingTag);
+            } else {
+            }
+        }
+
+        List<Role> role = roleService.getAllRoles();
+        List<Event> event = eventService.getAllEvent();
+
+        SubmittingForm submittingForm = new SubmittingForm();
+
+        model.addAttribute("event", event);
+        model.addAttribute("role", role);
+        model.addAttribute("form", submittingForm);
+        model.addAttribute("othersInvolved", othersInvolved);
+        model.addAttribute("impact", impact);
+        model.addAttribute("learningTechnologies", learningTechnologies);
+        model.addAttribute("thoughtCloud", thoughtCloud);
+
+        return "form";
+    }
 
 
     //This function retrieves the list of reflections by username
