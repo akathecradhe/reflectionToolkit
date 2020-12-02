@@ -27,7 +27,21 @@
         <br>
         <p><label class="labels">Role</label> <br><span th:text="${form.roleID.name}"></span></p>
         <br>
-        <p><label class="labels">Others Involved</label>  <br><span th:text="${form.getTagsByCategory('Others Involved').get(0).getTagName()}"></span></p>
+        <label class="labels">UKPSF Dimensions</label>
+        <div th:if="${form.getTagsByCategory('UKPSF').isEmpty()}">
+            <p>No tags selected</p>
+        </div>
+        <ul th:each="ukpsf : ${form.getTagsByCategory('UKPSF')}">
+            <li th:text = "${ukpsf.tagName}"></li>
+        </ul>
+        <br>
+        <label class="labels">Others Involved</label>
+        <div th:if="${form.getTagsByCategory('Others Involved').isEmpty()}">
+            <p>No tags selected</p>
+        </div>
+        <ul th:each="othersInvolved : ${form.getTagsByCategory('Others Involved')}">
+            <li th:text = "${othersInvolved.tagName}"></li>
+        </ul>
         <br>
         <label class="labels">Impact Tags</label>
         <div th:if="${form.getTagsByCategory('Impact').isEmpty()}">

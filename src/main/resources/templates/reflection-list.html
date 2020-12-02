@@ -6,31 +6,129 @@
 <head>
     <meta charset="UTF-8">
     <title>List Of Your Reflections</title>
-    <link href="../static/css/form.css" th:href="@{/css/form.css}" rel="stylesheet" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+    <link href="../static/css/bootstrap.css" th:href="@{/css/reflections.css}" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
 </head>
 <body>
 <header>
-    <ul class="navul">
-        <li class="navli"><a href="">Home</a></li>
-        <li class="navli"><a href="">Event Manager</a></li>
-        <li class="navli"><a href="">Reflections</a></li>
-    </ul>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Professional Development Logging System
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Activities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Activity Form</a>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-md-0">
+                <input class="form-control" type="text" placeholder="Search">
+            </form>
+        </div>
+    </nav>
 </header>
 
 <div class="container">
-<h2>Activities</h2>
-<div th:if="${forms.empty}">
-    <p>No forms available</p>
+<h2>Reflections</h2>
+        <p class="labels">Filters </p>
+        <form action="#" method="post" th:action="@{/reflections/__${user.getUsername()}__}" th:object="${filters}">
+
+                <button class="btn btn-primary col-sm drop" id="ukpsf" type="button">UKPSF Dimensions</button>
+                <div class="w-100" id="ukpsf-drop">
+                    <div  th:each="tag : ${ukpsf}">
+                       <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
+                    </div>
+                </div>
+
+            <button class="btn btn-primary col-sm drop" id="othersInvolved" type="button">Others Involved</button>
+            <div class="w-100" id="othersInvolved-drop">
+                <div  th:each="tag : ${othersInvolved}">
+                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
+                </div>
+            </div>
+
+            <button class="btn btn-primary col-sm drop" id="impact" type="button">Impact</button>
+            <div class="w-100" id="impact-drop">
+                <div  th:each="tag : ${impact}">
+                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
+                </div>
+            </div>
+
+            <button class="btn btn-primary col-sm drop" id="learningTechnologies" type="button">Learning Technologies</button>
+            <div class="w-100" id="learningTechnologies-drop">
+                <div  th:each="tag : ${learningTechnologies}">
+                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
+                </div>
+            </div>
+
+            <button class="btn btn-primary col-sm drop" id="thoughtCloud" type="button">Thought Cloud</button>
+            <div class="w-100" id="thoughtCloud-drop">
+                <div  th:each="tag : ${thoughtCloud}">
+                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
+                </div>
+            </div>
+
+            <button class="applybtn float-right" type="submit">Apply </button>
+        </form>
+    <br>
+    <br>
+
+    <div th:if="${forms.empty}">
+        <p>No forms available</p>
+    </div>
+
+    <div class="card" th:each="form : ${forms}">
+        <div class="card-body">
+            <h5 class="card-title" th:text="${form.getEventID().getName()}">Teaching Or Supervision</h5>
+            <p class="card-text"><span th:text="${form.shortDescription}">Held an hour-long online seminar for Year 2 students on Presentation Skills</span>
+                <br>Event held on <span th:text="${form.getEventID.getName()}">23-11-2020</span>
+                <br>Last edited: <span th:text="${form.lastEdited}">2020-12-01 18:25:55.996301</span></p>
+            <a th:href="@{/reflection/{furl} (furl=${form.getReflectionID().getReflectionID()})}"  class="btn btn-primary">View Reflection</a>
+        </div>
+    </div>
 </div>
-<div class="reflection" th:href="@{/reflection/{furl} (furl=${form.getReflectionID().getReflectionID()})}" th:each="form : ${forms}">
-    <a th:href="@{/reflection/{furl} (furl=${form.getFormID()})}">
-        <p class="labels" th:text="${form.getEventID().getName()}">Teaching Or Supervision</p>
-        <p th:text="${form.shortDescription}">This is a short description of the reflection selected.</p>
-        <p>Event held on <span th:text="${form.getEventID().getDateString()}"></span></p>
-        <p>Last edited: <span th:text="${form.lastEdited}"></span></p>
-    </a>
-</div>
-</div>
+
+<script>
+    $(document).ready(function(){
+        $("#ukpsf").show();
+        $("#impact").show();
+        $("#ukpsf-drop").hide();
+        $("#othersInvolved-drop").hide();
+        $("#learningTechnologies-drop").hide();
+        $("#thoughtCloud-drop").hide();
+        $("#impact-drop").hide();
+        $("#ukpsf").click(function(){
+            $("#ukpsf-drop").toggle()
+        });
+        $("#othersInvolved").click(function(){
+            $("#othersInvolved-drop").toggle()
+        });
+        $("#learningTechnologies").click(function(){
+            $("#learningTechnologies-drop").toggle()
+        });
+        $("#thoughtCloud").click(function(){
+            $("#thoughtCloud-drop").toggle()
+        });
+        $("#impact").click(function(){
+            $("#impact-drop").toggle()
+        });
+    });
+
+</script>
+
+
 </body>
 </html>
