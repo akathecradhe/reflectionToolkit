@@ -43,7 +43,69 @@ public class FormController {
 
     @GetMapping("form")
     public String runForm(Model model) {
+        return getString(model);
+    }
 
+    @PostMapping("form")
+    public String submitForm(@ModelAttribute("form") SubmittingForm aSubmittingForm, BindingResult bindings, Model model) {
+
+
+        if (bindings.hasErrors()) {
+            System.out.println("Errors:" + bindings.getFieldErrorCount());
+            for (ObjectError oe : bindings.getAllErrors()) {
+                System.out.println(oe);
+            }
+            return "form";
+        }
+        else {
+
+            model.addAttribute("aForm", aSubmittingForm);
+
+            Reflection reflectionInput = new Reflection(aSubmittingForm.box1, aSubmittingForm.box2, aSubmittingForm.box3, aSubmittingForm.box4,
+                    aSubmittingForm.box5, aSubmittingForm.box6, aSubmittingForm.learningPoint1, aSubmittingForm.learningPoint2, aSubmittingForm.learningPoint3);
+
+            reflectionService.save(reflectionInput);
+
+            List<Integer> allTags = new ArrayList<Integer>();
+            if(aSubmittingForm.impact != null) {
+                allTags.addAll(aSubmittingForm.impact);
+            }
+            if(aSubmittingForm.others != null) {
+                allTags.addAll(aSubmittingForm.others);
+            }
+            if(aSubmittingForm.thoughtCloud != null) {
+                allTags.addAll(aSubmittingForm.thoughtCloud);
+            }
+            if(aSubmittingForm.learningTechs != null) {
+                allTags.addAll(aSubmittingForm.learningTechs);
+            }
+            if(aSubmittingForm.dimensions != null) {
+                allTags.addAll(aSubmittingForm.dimensions);
+            }
+            User userInput = new User("rowbo", "Tom Rowbotham", new Date(500000));
+            List<Tags> tagsInput = tagsService.findAllTagsByID(allTags);
+            Role roleInput = roleService.getRoleByID(aSubmittingForm.role).get();
+            Event eventInput = eventService.getEventByID(aSubmittingForm.eventType).get();
+            String descInput = aSubmittingForm.shortDesc;
+            Timestamp lastEditedInput = new Timestamp(System.currentTimeMillis());
+            Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput);
+
+            if (aSubmittingForm.formID != null) {
+                form1 = new Form(aSubmittingForm.formID, eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput);
+            }
+
+            formService.saveForm(form1);
+            model.addAttribute("tagsEdit", allTags);
+            model.addAttribute("roleEdit", roleInput);
+            model.addAttribute("eventEdit", eventInput);
+            model.addAttribute("descEdit", form1);
+            model.addAttribute("reflectionEdit", reflectionInput);
+
+            return getFormsByUsername(Optional.of("rowbo"), model);
+        }
+    }
+
+    private String getString(Model model) {
         List<Tags> allTags = tagsService.getAllTags();
 
         List<Tags> othersInvolved = new ArrayList<Tags>();
@@ -68,6 +130,7 @@ public class FormController {
                 dimensions.add(addingTag);
             }
             else{}
+
         }
 
         List<Role> role = roleService.getAllRoles();
@@ -88,49 +151,6 @@ public class FormController {
     }
 
 
-    @PostMapping("form")
-    public String submitForm(@ModelAttribute("form") SubmittingForm aSubmittingForm, BindingResult bindings, Model model) {
-
-
-        if (bindings.hasErrors()) {
-            System.out.println("Errors:" + bindings.getFieldErrorCount());
-            for (ObjectError oe : bindings.getAllErrors()) {
-                System.out.println(oe);
-            }
-            return "form";
-        }
-        else {
-
-            model.addAttribute("aForm", aSubmittingForm);
-
-            Reflection reflectionInput = new Reflection(aSubmittingForm.box1, aSubmittingForm.box2, aSubmittingForm.box3, aSubmittingForm.box4,
-                    aSubmittingForm.box5, aSubmittingForm.box6, aSubmittingForm.learningPoint1, aSubmittingForm.learningPoint2, aSubmittingForm.learningPoint3);
-
-            reflectionService.save(reflectionInput);
-
-            List<Integer> allTags = aSubmittingForm.impact;
-            allTags.addAll(aSubmittingForm.thoughtCloud);
-            allTags.addAll(aSubmittingForm.others);
-            allTags.addAll(aSubmittingForm.learningTechs);
-            allTags.addAll(aSubmittingForm.dimensions);
-
-            User userInput = new User("rowbo", "Tom Rowbotham", new Date(500000));
-            List<Tags> tagsInput = tagsService.findAllTagsByID(allTags);
-            Role roleInput = roleService.getRoleByID(aSubmittingForm.role).get();
-            Event eventInput = eventService.getEventByID(aSubmittingForm.eventType).get();
-            String descInput = aSubmittingForm.shortDesc;
-            Timestamp lastEditedInput = new Timestamp(System.currentTimeMillis());
-
-            Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput);
-
-            formService.saveForm(form1);
-
-            return "formtest";
-        }
-    }
-
-
-
     //This function retrieves the list of reflections by username
     @GetMapping("/reflections/{username}")
     public String getFormsByUsername(@PathVariable(name = "username", required = false) Optional<String> username, Model model) {
@@ -146,6 +166,32 @@ public class FormController {
 
         return "reflection-list";
 
+    }
+
+    @GetMapping("/reflectionedit/{formID}")
+    public String editForm(@PathVariable(name = "formID", required = true) int formID, Model model){
+        Form editingForm = formService.getFormByID(formID);
+
+        editingForm.getTags();
+
+        List<Integer> allTags = new ArrayList<Integer>();
+
+        for (int i = 0; i < editingForm.getTags().size(); i++) {
+            allTags.add(editingForm.getTags().get(i).getTagID());
+        }
+
+        Event eventInput = editingForm.getEventID();
+        Role roleInput = editingForm.getRoleID();
+        Reflection reflectionInput = editingForm.getReflectionID();
+
+        model.addAttribute("tagsEdit", allTags);
+        model.addAttribute("roleEdit", roleInput);
+        model.addAttribute("eventEdit", eventInput);
+        model.addAttribute("descEdit", editingForm);
+        model.addAttribute("reflectionEdit", reflectionInput);
+        model.addAttribute("formID", formID);
+
+        return getString(model);
     }
 
     //This function retrieves a form by the ID selected.
