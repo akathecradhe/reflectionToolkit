@@ -137,7 +137,12 @@
         <fieldset>
             <label class="labels">UKPSF Dimensions (choose as many as applicable)</label><br><br>
             <div th:each="dimension: ${dimensions}">
-                <input class ="checkbox" th:field="*{dimensions}" type="checkbox" th:id="${dimension.tagName}" name="dimension" th:value="${dimension.tagID}">
+                <div th:if="${tagsEdit != null}">
+                <input class ="checkbox" th:checked="${#lists.contains(tagsEdit, dimension.tagID)}" type="checkbox" th:id="${dimension.tagID}" name="dimensions" th:value="${dimension.tagID}">
+                </div>
+                <div th:unless="${tagsEdit != null}">
+                    <input class ="checkbox" type="checkbox" th:id="${dimension.tagID}" name="dimensions" th:value="${dimension.tagID}">
+                </div>
                 <label th:for="${#ids.next('dimension')}" th:text="${dimension.shortenedTag} + ' - ' + ${dimension.tagName}"></label><br>
                 <p th:text="${dimension.description}" ></p>
             </div>
@@ -157,45 +162,45 @@
     <fieldset>
     <label class="labels">What did you do? (provide a clear record)</label>
     <br>
-    <textarea th:field="*{box1}" name="Whatdidyoudo" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+    <textarea name="box1" id="box1" cols="60" rows="3" placeholder="Required*" REQUIRED th:text="${reflectionEdit?.box1}"></textarea>
         <br>
         <br>
          <label class="labels">What prompted your approach?</label>    <br>
 
-        <textarea th:field="*{box2}" name="Whatpromptedyourapproach" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <textarea name="box2" id="box2" cols="60" rows="3" placeholder="Required*" REQUIRED th:text="${reflectionEdit?.box2}"></textarea>
         <br>
         <br>
          <label class="labels">What happened? (Consider your own and others' viewpoints and feelings - put yourself in their shoes!)</label>    <br>
 
 
-        <textarea th:field="*{box3}" name="Whathappened" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <textarea name="box3" id="box3" cols="60" rows="3" placeholder="Required*" REQUIRED th:text="${reflectionEdit?.box3}"></textarea>
         <br>
         <br>
          <label class="labels">What impact did the learning technologies have on your activity?</label>    <br>
 
 
         <!--IF K4 was tagged (learning tech chosen) show this-->
-    <textarea th:field="*{box4}" name="whatimpactdidthelearningtech" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+    <textarea name="box4" id="box4" cols="60" rows="3" placeholder="Required*" REQUIRED th:text="${reflectionEdit?.box4}"></textarea>
         <br>
         <br>
          <label class="labels">Collecting Evidence (How will you evaluate this activity later? What evidence do you need?)</label>    <br>
 
 
-        <textarea th:field="*{box5}" name="Collecting Evidence" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <textarea name="box5" id="box5" cols="60" rows="3" placeholder="Required*" REQUIRED th:text="${reflectionEdit?.box5}"></textarea>
         <br>
         <br>
          <label class="labels">Alternate actions or responses (What could you have done differently?)</label>    <br>
 
 
-        <textarea th:field="*{box6}" name="Alternateactions" cols="60" rows="3" placeholder="Required*" REQUIRED></textarea>
+        <textarea name="box6" id="box6"  cols="60" rows="3" placeholder="Required*" REQUIRED th:text="${reflectionEdit?.box6}"></textarea>
     <br><br>
     <label class="labels">Three learning points for you:</label>
         <br>
-        <textarea th:field="*{learningPoint1}" maxlength="140" name="Learningpoint1" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
+        <textarea name="learningPoint1" id="learningPoint1"  maxlength="140" cols="40" rows="3" placeholder="max 140 characters" REQUIRED th:text="${reflectionEdit?.learningPoint1}"></textarea>
         <br>
-        <textarea th:field="*{learningPoint2}" maxlength="140" name="Learningpoint2" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
+        <textarea name="learningPoint2" id="learningPoint2" maxlength="140" cols="40" rows="3" placeholder="max 140 characters" REQUIRED th:text="${reflectionEdit?.learningPoint1}"></textarea>
         <br>
-        <textarea th:field="*{learningPoint3}" maxlength="140" name="Learningpoint3" cols="40" rows="3" placeholder="max 140 characters" REQUIRED></textarea>
+        <textarea name="learningPoint3" id="learningPoint3" maxlength="140" cols="40" rows="3" placeholder="max 140 characters" REQUIRED th:text="${reflectionEdit?.learningPoint1}"></textarea>
         <br>
         <button class="bckbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('tagselect').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
         <button class="nxtbtn" type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('overview').style.display='block';document.documentElement.scrollTop = 0;"> Overview </button>
