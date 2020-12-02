@@ -66,23 +66,35 @@ public class FormController {
 
             reflectionService.save(reflectionInput);
 
-            List<Integer> allTags = aSubmittingForm.impact;
-            allTags.addAll(aSubmittingForm.thoughtCloud);
-            allTags.addAll(aSubmittingForm.others);
-            allTags.addAll(aSubmittingForm.learningTechs);
-            allTags.addAll(aSubmittingForm.dimensions);
-
+            List<Integer> allTags = new ArrayList<Integer>();
+            if(aSubmittingForm.impact != null) {
+                allTags.addAll(aSubmittingForm.impact);
+            }
+            if(aSubmittingForm.others != null) {
+                allTags.addAll(aSubmittingForm.others);
+            }
+            if(aSubmittingForm.thoughtCloud != null) {
+                allTags.addAll(aSubmittingForm.thoughtCloud);
+            }
+            if(aSubmittingForm.learningTechs != null) {
+                allTags.addAll(aSubmittingForm.learningTechs);
+            }
+            if(aSubmittingForm.dimensions != null) {
+                allTags.addAll(aSubmittingForm.dimensions);
+            }
             User userInput = new User("rowbo", "Tom Rowbotham", new Date(500000));
             List<Tags> tagsInput = tagsService.findAllTagsByID(allTags);
             Role roleInput = roleService.getRoleByID(aSubmittingForm.role).get();
             Event eventInput = eventService.getEventByID(aSubmittingForm.eventType).get();
             String descInput = aSubmittingForm.shortDesc;
             Timestamp lastEditedInput = new Timestamp(System.currentTimeMillis());
-
             Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput);
 
-            formService.saveForm(form1);
+            if (aSubmittingForm.formID != null) {
+                form1 = new Form(aSubmittingForm.formID, eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput);
+            }
 
+            formService.saveForm(form1);
             model.addAttribute("tagsEdit", allTags);
             model.addAttribute("roleEdit", roleInput);
             model.addAttribute("eventEdit", eventInput);
@@ -177,6 +189,7 @@ public class FormController {
         model.addAttribute("eventEdit", eventInput);
         model.addAttribute("descEdit", editingForm);
         model.addAttribute("reflectionEdit", reflectionInput);
+        model.addAttribute("formID", formID);
 
         return getString(model);
     }

@@ -23,6 +23,9 @@
     <h2>Event details</h2>
 <fieldset>
 
+    <div style="display: none" th:if="${formID != null}">
+    <select name="formID" id="formID"><option th:value="${formID}" REQUIRED></option></select>
+    </div>
 
     <label class="labels">Event Type</label><br>
     <select name="eventType" id="eventType" REQUIRED>
