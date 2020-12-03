@@ -40,27 +40,27 @@
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarsExample03">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav mr-auto" >
             <li class="nav-item active">
-                <a class="nav-link btn" onclick="menuSelect('activitydetails')">Activity Details</a>
+                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('activitydetails')">Activity Details</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link btn" onclick="menuSelect('ukpsf')">UKPSF Dimensions</a>
+                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('ukpsf')">UKPSF Dimensions</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link btn" onclick="menuSelect('impact')">Impacts</a>
+                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('impact')">Impacts</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link btn" onclick="menuSelect('learntechs')">Learning Technologies</a>
+                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('learntechs')">Learning Technologies</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link btn" onclick="menuSelect('thoughtcld')">Thought Cloud</a>
+                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('thoughtcld')">Thought Cloud</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link btn" onclick="menuSelect('reflection')">Reflection</a>
+                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('reflection')">Reflection</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link btn" onclick="menuSelect('learningpoints')">Action Points</a>
+                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('learningpoints')">Action Points</a>
             </li>
         </ul>
     </div>
@@ -490,6 +490,11 @@
     $(function () {
         $('[data-toggle="tooltip"]').tooltip()
     })
+
+    $('.navbar-collapse a').click(function(){
+        $(".navbar-collapse").collapse('hide');
+    });
+
 </script>
 
 </body>
