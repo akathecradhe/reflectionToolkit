@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www/thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Logging Form</title>
     <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
 
@@ -56,6 +57,7 @@
                                 <option th:value="${events.eventID}" th:text="${events.name}" th:selected="${events.eventID == eventEdit?.eventID}" ></option>
                             </div>
                         </select>
+
 
                         <span class="help-block">
        Select the applicable activity type from the drop-down list.

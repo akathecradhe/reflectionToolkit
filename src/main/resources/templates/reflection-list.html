@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>List Of Your Reflections</title>
+    <title>List Of Your Activities</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
     <link href="../static/css/bootstrap.css" th:href="@{/css/reflections.css}" rel="stylesheet" />
@@ -42,46 +42,46 @@
 </header>
 
 <div class="container">
-<h2>Reflections</h2>
+<h2>Activities</h2>
         <p class="labels">Filters </p>
         <form action="#" method="post" th:action="@{/reflections/__${user.getUsername()}__}" th:object="${filters}">
 
-                <button class="btn btn-primary col-sm drop" id="ukpsf" type="button">UKPSF Dimensions</button>
+                <button class="btn btn-secondary col-sm drop" id="ukpsf" type="button">UKPSF Dimensions</button>
                 <div class="w-100" id="ukpsf-drop">
                     <div  th:each="tag : ${ukpsf}">
                        <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
                     </div>
                 </div>
 
-            <button class="btn btn-primary col-sm drop" id="othersInvolved" type="button">Others Involved</button>
+            <button class="btn btn-secondary col-sm drop" id="othersInvolved" type="button">Others Involved</button>
             <div class="w-100" id="othersInvolved-drop">
                 <div  th:each="tag : ${othersInvolved}">
                     <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
                 </div>
             </div>
 
-            <button class="btn btn-primary col-sm drop" id="impact" type="button">Impact</button>
+            <button class="btn btn-secondary col-sm drop" id="impact" type="button">Impact</button>
             <div class="w-100" id="impact-drop">
                 <div  th:each="tag : ${impact}">
                     <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
                 </div>
             </div>
 
-            <button class="btn btn-primary col-sm drop" id="learningTechnologies" type="button">Learning Technologies</button>
+            <button class="btn btn-secondary col-sm drop" id="learningTechnologies" type="button">Learning Technologies</button>
             <div class="w-100" id="learningTechnologies-drop">
                 <div  th:each="tag : ${learningTechnologies}">
                     <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
                 </div>
             </div>
 
-            <button class="btn btn-primary col-sm drop" id="thoughtCloud" type="button">Thought Cloud</button>
+            <button class="btn btn-secondary col-sm drop" id="thoughtCloud" type="button">Thought Cloud</button>
             <div class="w-100" id="thoughtCloud-drop">
                 <div  th:each="tag : ${thoughtCloud}">
                     <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
                 </div>
             </div>
 
-            <button class="applybtn float-right" type="submit">Apply </button>
+            <button class="btn btn-primary applybtn float-right" type="submit">Apply </button>
         </form>
     <br>
     <br>
@@ -94,9 +94,9 @@
         <div class="card-body">
             <h5 class="card-title" th:text="${form.getEventID().getName()}">Teaching Or Supervision</h5>
             <p class="card-text"><span th:text="${form.shortDescription}">Held an hour-long online seminar for Year 2 students on Presentation Skills</span>
-                <br>Event held on <span th:text="${form.getEventID.getName()}">23-11-2020</span>
+                <br>Event held on <span th:text="${form.getEventID.getDateString()}">23-11-2020</span>
                 <br>Last edited: <span th:text="${form.lastEdited}">2020-12-01 18:25:55.996301</span></p>
-            <a th:href="@{/reflection/{furl} (furl=${form.getReflectionID().getReflectionID()})}"  class="btn btn-primary">View Reflection</a>
+            <a th:href="@{/reflection/{furl} (furl=${form.getReflectionID().getReflectionID()})}"  class="btn btn-primary">View Activity</a>
         </div>
     </div>
 </div>

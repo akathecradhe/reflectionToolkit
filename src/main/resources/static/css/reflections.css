@@ -1,10 +1,16 @@
 .drop{
     border-radius: 0;
     border-style:groove;
-    background: linear-gradient(to bottom, #0066cc 0%, #3399ff 100%);
 }
 
 .applybtn{
     margin-top: 5px;
+
+}
+h2{
+    padding-top: 26px;
+    font-weight: bold;
+    font-size: 36px;
+    color: #333;
 
 }
