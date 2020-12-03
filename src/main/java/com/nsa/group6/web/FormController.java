@@ -2,12 +2,15 @@ package com.nsa.group6.web;
 
 
 import com.nsa.group6.domain.*;
+import com.nsa.group6.jpa.MyUserDetails;
 import com.nsa.group6.service.FormService;
 import com.nsa.group6.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+
+import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 
@@ -84,6 +87,12 @@ public class FormController {
         return "form";
     }
 
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserName(MyUserDetails principal) {
+        return principal.getUsername();
+    }
+
 
     @PostMapping("form")
     public String submitForm(@ModelAttribute("form") SubmittingForm aSubmittingForm, BindingResult bindings, Model model) {
@@ -118,6 +127,8 @@ public class FormController {
         Optional<User> ausername = userService.findUserByUsername(username.get());
         User aUser = ausername.get();
         form = formService.getAllFormsByUsername(aUser);
+
+
 
         model.addAttribute("forms", form);
 
