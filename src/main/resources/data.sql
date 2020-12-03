@@ -1,17 +1,17 @@
 
 
-INSERT INTO Event (Name, event_date)
-VALUES ('Teaching or Supervision',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
-INSERT INTO Event (Name, event_date)
-VALUES ('Design or Plan',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
-INSERT INTO Event (Name, event_date)
-VALUES ('Assess or Give Feedback',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
-INSERT INTO Event (Name, event_date)
-VALUES ('Discussion',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
-INSERT INTO Event (Name, event_date)
-VALUES ('Scholarship',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
-INSERT INTO Event (Name, event_date)
-VALUES ('Evaluation and Quality Assurance',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
+INSERT INTO Event (Name)
+VALUES ('Teaching or Supervision');
+INSERT INTO Event (Name)
+VALUES ('Design or Plan');
+INSERT INTO Event (Name)
+VALUES ('Assess or Give Feedback');
+INSERT INTO Event (Name)
+VALUES ('Discussion');
+INSERT INTO Event (Name)
+VALUES ('Scholarship');
+INSERT INTO Event (Name)
+VALUES ('Evaluation and Quality Assurance');
 
 INSERT INTO User (username, name, account_created)
 VALUES ('rowbo','Tom Rowbotham', TO_DATE('2020-11-23', 'YYYY-MM-DD'));
@@ -168,50 +168,8 @@ INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, lea
 VALUES ('Held a group activity, went through slides and took questions at the end','I considered my previous seminars and found this format to be effective','Key information was passed along in an interactive and effective manner','I became more comfortable using remote-meeting software', 'I sent a feedback survey to participating students', 'I could have revised some of my slides for brevity',
 'I learnt how to hold a meeting on Zoom.','I learnt how to use a custom background with my webcam','I learnt that students seemed to be more visually attentive when viewing slides with images');
 
-INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
-VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet vestibulum sodales. Donec consectetur iaculis.','
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquet arcu lacus, ut tempor purus.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id sapien eleifend, sollicitudin magna at.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget maximus quam. Duis elementum orci.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras leo justo, viverra in porta eget.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius malesuada dolor, a malesuada purus.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta at ante in cursus. Pellentesque.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget diam mollis, pretium augue non.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci urna, sollicitudin sit amet neque.');
-
-INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
-VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque feugiat sem aliquet arcu rhoncus, sit.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quam velit, varius ornare nisi at.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur arcu in fringilla scelerisque. Sed.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in diam non nisi vulputate consequat.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula dolor ac orci ullamcorper, nec.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras accumsan est dui, id mattis purus.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna enim, ultrices ac consectetur id.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget diam mollis, pretium augue non.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tellus libero, tincidunt quis ex in.');
-
-INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
-VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim lectus vitae lacinia pharetra. Phasellus.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere scelerisque ligula, quis viverra felis.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eros sapien, congue sed ipsum et.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet et erat sit amet suscipit.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur magna et enim fermentum, in.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non lacus arcu. Aenean euismod metus.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat feugiat tortor, dictum aliquam elit.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tempus et justo vitae sollicitudin. Cras.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur molestie orci at mauris tempus, ac.');
-
-INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
-VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ultricies nisl vitae condimentum rutrum. Pellentesque.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac augue dapibus est tincidunt gravida.','
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non ligula vehicula, bibendum ipsum eget.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fringilla tristique augue, ut malesuada ligula.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum maximus quam ac odio molestie, eu.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar est et urna egestas efficitur.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare facilisis felis. Donec sollicitudin sit.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et felis eu risus volutpat facilisis.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor pellentesque velit ut placerat. Nam.');
-
-INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
-VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra tincidunt magna vitae euismod. Duis.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam posuere ligula consequat dui volutpat, sed.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat blandit enim, a posuere orci.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer varius, diam id aliquet posuere, lacus.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget ullamcorper turpis. Etiam lacus sapien.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis luctus pulvinar. Aliquam non elit.',
-'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere hendrerit finibus. Duis vitae nulla.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam accumsan scelerisque libero. Nullam vitae leo.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed urna mauris. Proin hendrerit magna.');
-
-INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
-VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo et erat sed blandit. Vivamus.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat ex sed nulla vehicula ultrices.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis lacinia nisl, eget molestie risus.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue neque nec nunc fermentum, nec.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque aliquet rutrum. Suspendisse porttitor tempus.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et venenatis mauris. Vestibulum ut leo.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris diam metus, tincidunt a consectetur bibendum.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquet est eget consequat tincidunt. Maecenas.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non ex non mauris accumsan fermentum.');
-
-INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
-VALUES (1,'Held an hour-long online seminar for Year 2 students on Presentation Skills',1,1,'rowbo',CURRENT_TIMESTAMP);
-
-INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
-VALUES (3,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac scelerisque sem. Aliquam dolor leo.',1,2,'rowbo',CURRENT_TIMESTAMP);
-
-INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
-VALUES (3,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare euismod dui a aliquet. Donec.',1,3,'rowbo',CURRENT_TIMESTAMP);
-
-INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
-VALUES (1,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac porttitor mi. Proin consequat nisi.',2,4,'rowbo',CURRENT_TIMESTAMP);
-
-INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
-VALUES (5,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis tellus non dui molestie, nec.',3,5,'rowbo',CURRENT_TIMESTAMP);
-
-INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
-VALUES (4,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac ante eros. Orci varius natoque.',3,6,'rowbo',CURRENT_TIMESTAMP);
-
-INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
-VALUES (2,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et odio dui. Proin et est.',2,7,'rowbo',CURRENT_TIMESTAMP);
+INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited, activity_date)
+VALUES (1,'Held an hour-long online seminar for Year 2 students on Presentation Skills',1,1,'rowbo',CURRENT_TIMESTAMP, TO_DATE('2020-11-23', 'YYYY-MM-DD'));
 
 INSERT INTO TagForm (TagID, FormID)
 VALUES (2,1);
@@ -228,114 +186,3 @@ VALUES (30,1);
 INSERT INTO TagForm (TagID, FormID)
 VALUES (43,1);
 
-INSERT INTO TagForm (TagID, FormID)
-VALUES (1,2);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (5,2);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (6,2);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (10,2);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (17,2);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (24,2);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (35,2);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (40,2);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (45,2);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (2,3);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (6,3);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (12,3);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (22,3);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (25,3);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (34,3);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (39,3);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (2,4);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (6,4);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (12,4);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (22,4);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (25,4);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (34,4);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (39,4);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (1,5);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (8,5);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (12,5);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (18,5);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (34,5);
-
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (1,6);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (7,6);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (11,6);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (19,6);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (45,6);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (3,7);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (8,7);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (12,7);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (45,7);

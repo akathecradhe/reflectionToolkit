@@ -92,10 +92,11 @@ public class FormController {
             Event eventInput = eventService.getEventByID(aSubmittingForm.eventType).get();
             String descInput = aSubmittingForm.shortDesc;
             Timestamp lastEditedInput = new Timestamp(System.currentTimeMillis());
-            Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput);
+            Date dateInput = new Date(696969);
+            Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, dateInput);
 
             if (aSubmittingForm.formID != null) {
-                form1 = new Form(aSubmittingForm.formID, eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput);
+                form1 = new Form(aSubmittingForm.formID, eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, dateInput);
             }
 
             formService.saveForm(form1);

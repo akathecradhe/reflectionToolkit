@@ -46,6 +46,15 @@ public class Form {
             , joinColumns = @JoinColumn(name = "formID"),
             inverseJoinColumns = @JoinColumn(name = "TagID"))
     private List<Tags> tags;
+    private Date activityDate;
+
+    //This function returns the date object in the format wanted for the webpage. Previously printing the
+    //event would include a timestamp of midnight.
+    public String getDateString () {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        return formatter.format(activityDate);
+
+    }
 
     public String getLastEditedString() {
         return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(lastEdited);
@@ -78,7 +87,7 @@ public class Form {
         return tags.contains(tag);
     }
 
-    public Form(Event eventID, String shortDescription, User username, Role roleID, Reflection reflectionID, Timestamp lastEdited, List<Tags> tags) {
+    public Form(Event eventID, String shortDescription, User username, Role roleID, Reflection reflectionID, Timestamp lastEdited, List<Tags> tags, Date activityDate) {
         this.eventID = eventID;
         this.shortDescription = shortDescription;
         this.username = username;
@@ -86,6 +95,7 @@ public class Form {
         this.reflectionID = reflectionID;
         this.lastEdited = lastEdited;
         this.tags = tags;
+        this.activityDate = activityDate;
     }
 
 }

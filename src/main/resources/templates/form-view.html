@@ -49,6 +49,8 @@
 
         <p><label class="labels">Description</label> <br> <span th:text="${form.shortDescription}">Description goes here</span></p>
         <br>
+        <p><label class="labels">Activity Date</label> <br> <span th:text="${form.getDateString()}">23/07/2001</span></p>
+        <br>
         <p><label class="labels">Role</label> <br><span th:text="${form.roleID.name}"></span></p>
         <br>
         <label class="labels">UKPSF Dimensions</label>
