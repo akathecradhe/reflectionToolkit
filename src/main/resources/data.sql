@@ -118,12 +118,100 @@ VALUES ('Thought Cloud','Depressed');
 INSERT INTO Tags (Category, tag_name)
 VALUES ('Thought Cloud','Frustrated');
 
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','Design and plan learning activities and/or programmes of study', 'A1','The evidence of Designing and Planning Learning Activities will normally be small scale for Descriptor 1, typically individual activities and/or sessions. This would range from module design to a whole programme of study for Descriptor 2 and those working towards Descriptor 3. In all cases, one would expect the design to reflect developing knowledge and understanding of the Core Knowledge and Professional Values dimensions.');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','Teach and/or support learning', 'A2','In demonstrating the activities of teaching and supporting learning the evidence should demonstrate an increasing awareness of different approaches to and methods of teaching and supporting learning as well as a growing ability to choose the most appropriate approach for the achievement of curriculum aims.');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','Assess and give feedback to learners', 'A3','Clear differentiation of how this area is evidenced would be expected for the different Descriptors. For example, for Descriptor 1 an understanding of the importance of assessment and feedback and of the criteria for making informed, formative judgements about work and the role this plays in supporting learning through activities such as tutorials, work placements, observations, and practical work would be appropriate. For Descriptors 2 and 3 there would be an increasing emphasis on the use of feedback and feed-forward approaches being routinely used to improve learning and develop learner autonomy. At Descriptor 4 the focus might be about a wider sphere of influence in policies and practices concerning assessment and feedback in supporting learning.');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','Develop effective learning environments and approaches to student support and guidance', 'A4','The
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis lorem urna. Sed sagittis nunc.inition of "learning environments’ has been widely contested and is open to diverse interpretation. Individual practitioners work beyond the local physical environment of the classroom, the laboratory, studio or work place or the distance learning or electronic learning environment. They take the nature of the learning environment, the learning culture being developed, the nature and extent of the support infrastructures into account and are able to distinguish between academic and pastoral interventions. Individuals also take the range of environments available to students into account as well as how they are enabled to access, understand and utilise them.');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','Engage in continuing professional developments in subjects/disciplines and their pedagogy, incorporating research, scholarship and the evaluation of professional practices', 'A5','The Framework provides a powerful means of articulating the varied aspects of role and the potential for development in all areas of the teaching and supporting learning endeavour. This Area of Activity is concerned with enhancement and comprises three elements integral to teaching and supporting learning roles. Whilst the three elements might be viewed holistically it is important the elements are understood and demonstrated, particularly at Descriptors 1 and 2 to ensure successful integration. The three elements are: 1. Continuing professional development in subjects/disciplines and their pedagogy 2. Incorporating research and scholarship 3. The evaluation of (one’s own) professional practices. Evidence could appropriately focus on the question: How might an individual demonstrate that they have become a better teacher through continuing professional development, research and the evaluation of their teaching and learning related practices?');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','The subject material', 'K1','This area is effectively evidenced with reference to the Areas of Activity or other areas of Core Knowledge. Evidence should fundamentally relate to how an understanding of the nature of the subject is used to inform the design and planning of learning activities and programmes of study, the teaching strategies, the assessment and feedback. This would normally make reference to the distinctive nature, or culture, of the discipline and the particular expectations of teaching; the issues or challenges arising from the context in which teaching takes place, and the appropriate methods of delivering the subject at different levels (e.g. first year undergraduate to masters level).');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','Appropriate methods for teaching and learning in the subject area and at the level of the academic programme', 'K2','This is concerned with pedagogic approaches that are distinctive and/or characteristic of the subject, or what makes the teaching or supporting of the learning in the subject different to the teaching of another one. It is also concerned with acknowledging that some approaches may be more appropriate than others given the nature of the learning desired, the level of the material being taught and the readiness of students. This is clearly linked to demonstrating Core Knowledge 1 with its focus on an understanding the subject material, but is specifically concerned with the strategies and approaches used to teach or support the learning of the subject.');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','How students learn, both generally and within their subject/discipline area? ', 'K3','How students learn might be evidenced through demonstrating how an understanding of the characteristics of different learners (such as mature students, recent school leavers or workplace learners) impacts on how their needs might be met in the context of learning, how this might reflect on the learning environment, teaching approaches and practices. Reference could be made to different theories of, or approaches to, learning and how these are evidenced by the use of different strategies for teaching and supporting learning. This might relate specifically to the nature of the subject (Core Knowledge 1).');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','The use and value of appropriate learning technologies', 'K4','Evidence needs to demonstrate how and why specific technologies, of all types and ages are used appropriately to support learning. Evidence will address what the learning and teaching needs are and why particular technology is used to address them. Evidence is likely to be linked to other areas of Core Knowledge, for example; how and why technology is used within a specific discipline, professional or vocational areas; for specific groups of learners; in specific learning contexts or environments.');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','Methods for evaluating the effectiveness of teaching', 'K5','An essential part of work in Higher Education is ensuring the effectiveness of teaching practices. This focuses on the methods (formal or informal) employed to gather information and data about the impact of teaching, how they are used and the impact of their use on developing practice.');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','The implications of quality assurance and quality enhancement for academic and professional practice with a particular focus on teaching', 'K6','Quality assurance and quality enhancement are deeply embedded in higher education through procedures such as programme validation, monitoring and review. These processes shape academic practice and are implicit in what individuals do. Key to evidencing this area is how an individual might demonstrate engagement with feedback to enhance practice and the student learning experience. This might include an account of how they seek opportunities to obtain feedback other than relying on the institutional procedures already in place. For those working outside higher education institutional policies and practices, they will need to evidence a personal interest, understanding and commitment to quality assurance and enhancement procedures established and embedded within their practice. This will include knowledge and understanding of the quality assurance frameworks at a national level and how these are manifested at an institutional level.');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','Respect individual learners and diverse learning communities', 'V1','This focuses on the way teaching and supporting learning incorporate activities, actions and approaches which respect individual learners. It depicts the ways we communicate and interact with individuals and different communities in the context of teaching and supporting learning. The term "diverse learning communities’ might include campus based groups of students, electronic communicates, work based communities, or be Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean non sapien porta, fringilla mi at.ined on the basis of ethnicity, faith, social class, age etc. The practitioner needs to be able to demonstrate that they value and can work effectively with and within these diverse communities.');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','Promote participation in higher education and equality of opportunity for learners', 'V2','The focus here is on providing evidence of how a commitment to participation in Higher Education and equality of opportunity for learners underpins practice related to teaching and supporting learning. There is potential to cover a broad spectrum of activities, approaches and behaviours linked to all the Areas of Activity and Core Knowledge. Evidence should ideally indicate wide and pervasive approaches to ensuring equality of opportunity.');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','Use evidence informed approaches and the outcomes from research, scholarship and continuing professional development', 'V3','This focuses on the use of evidence informed approaches, the ability to draw on and contribute to many sources of evidence and to use them to inform teaching and learning practice. It is about using the outcomes from research, scholarship and professional development to make principled, informed and considered judgements which enhance practice and the learning experience. This value advocates the importance of direct professional involvement in enquiry (in teaching and learning) to support the individual’s own professional development and to enhance their teaching or learning support activities.  Evidence might include consideration and application of the findings from studies, reading, personal enquiry of (for example) teaching, learning, learners, the subject, the environment etc to enhance practice and the student learning experience. Using one’s own discipline based research to enhance the curriculum should be informed by reading or research about curriculum design, the nature of the subject itself and the learners in order to provide a rationale for the design of the curriculum and its delivery.');
+
+INSERT INTO Tags (Category, tag_name, shortened_tag, description)
+VALUES ('UKPSF','Acknowledges the wider context in which higher education operates recognising the implications for professional practice', 'V4','This is concerned with being alert to the issues that may impact on institutional missions and/or which might have an influence on curriculum design and/or personal and collective professional practice. This might for example include how an individual has responded to the current demands of the Disability Discrimination Act, the employment agenda, or the widening access and participation agenda. Current agendas include; sustainability (the practice of sustainability and education for sustainability), and student engagement.');
+
 INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
 VALUES ('Held a group activity, went through slides and took questions at the end','I considered my previous seminars and found this format to be effective','Key information was passed along in an interactive and effective manner','I became more comfortable using remote-meeting software', 'I sent a feedback survey to participating students', 'I could have revised some of my slides for brevity',
 'I learnt how to hold a meeting on Zoom.','I learnt how to use a custom background with my webcam','I learnt that students seemed to be more visually attentive when viewing slides with images');
 
+INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
+VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec aliquet vestibulum sodales. Donec consectetur iaculis.','
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquet arcu lacus, ut tempor purus.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam id sapien eleifend, sollicitudin magna at.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum eget maximus quam. Duis elementum orci.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras leo justo, viverra in porta eget.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent varius malesuada dolor, a malesuada purus.',
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla porta at ante in cursus. Pellentesque.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget diam mollis, pretium augue non.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin orci urna, sollicitudin sit amet neque.');
+
+INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
+VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque feugiat sem aliquet arcu rhoncus, sit.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras quam velit, varius ornare nisi at.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur arcu in fringilla scelerisque. Sed.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean in diam non nisi vulputate consequat.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla vehicula dolor ac orci ullamcorper, nec.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras accumsan est dui, id mattis purus.',
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus urna enim, ultrices ac consectetur id.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget diam mollis, pretium augue non.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tellus libero, tincidunt quis ex in.');
+
+INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
+VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim lectus vitae lacinia pharetra. Phasellus.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam posuere scelerisque ligula, quis viverra felis.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis eros sapien, congue sed ipsum et.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed laoreet et erat sit amet suscipit.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce efficitur magna et enim fermentum, in.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin non lacus arcu. Aenean euismod metus.',
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc placerat feugiat tortor, dictum aliquam elit.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur tempus et justo vitae sollicitudin. Cras.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur molestie orci at mauris tempus, ac.');
+
+INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
+VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ultricies nisl vitae condimentum rutrum. Pellentesque.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ac augue dapibus est tincidunt gravida.','
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non ligula vehicula, bibendum ipsum eget.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque fringilla tristique augue, ut malesuada ligula.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum maximus quam ac odio molestie, eu.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi pulvinar est et urna egestas efficitur.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque ornare facilisis felis. Donec sollicitudin sit.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et felis eu risus volutpat facilisis.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean tempor pellentesque velit ut placerat. Nam.');
+
+INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
+VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis pharetra tincidunt magna vitae euismod. Duis.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam posuere ligula consequat dui volutpat, sed.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus placerat blandit enim, a posuere orci.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer varius, diam id aliquet posuere, lacus.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam eget ullamcorper turpis. Etiam lacus sapien.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla venenatis luctus pulvinar. Aliquam non elit.',
+'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque posuere hendrerit finibus. Duis vitae nulla.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam accumsan scelerisque libero. Nullam vitae leo.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla sed urna mauris. Proin hendrerit magna.');
+
+INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
+VALUES ('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo et erat sed blandit. Vivamus.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum volutpat ex sed nulla vehicula ultrices.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis lacinia nisl, eget molestie risus.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque congue neque nec nunc fermentum, nec.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc pellentesque aliquet rutrum. Suspendisse porttitor tempus.', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin et venenatis mauris. Vestibulum ut leo.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris diam metus, tincidunt a consectetur bibendum.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam aliquet est eget consequat tincidunt. Maecenas.','Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque non ex non mauris accumsan fermentum.');
+
 INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
 VALUES (1,'Held an hour-long online seminar for Year 2 students on Presentation Skills',1,1,'rowbo',CURRENT_TIMESTAMP);
+
+INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
+VALUES (3,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac scelerisque sem. Aliquam dolor leo.',1,2,'rowbo',CURRENT_TIMESTAMP);
+
+INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
+VALUES (3,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis ornare euismod dui a aliquet. Donec.',1,3,'rowbo',CURRENT_TIMESTAMP);
+
+INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
+VALUES (1,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ac porttitor mi. Proin consequat nisi.',2,4,'rowbo',CURRENT_TIMESTAMP);
+
+INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
+VALUES (5,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed venenatis tellus non dui molestie, nec.',3,5,'rowbo',CURRENT_TIMESTAMP);
+
+INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
+VALUES (4,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam ac ante eros. Orci varius natoque.',3,6,'rowbo',CURRENT_TIMESTAMP);
+
+INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited)
+VALUES (2,'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent et odio dui. Proin et est.',2,7,'rowbo',CURRENT_TIMESTAMP);
 
 INSERT INTO TagForm (TagID, FormID)
 VALUES (2,1);
@@ -136,3 +224,118 @@ VALUES (12,1);
 
 INSERT INTO TagForm (TagID, FormID)
 VALUES (30,1);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (43,1);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (1,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (5,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (6,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (10,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (17,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (24,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (35,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (40,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (45,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (2,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (6,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (12,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (22,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (25,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (34,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (39,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (2,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (6,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (12,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (22,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (25,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (34,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (39,4);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (1,5);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (8,5);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (12,5);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (18,5);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (34,5);
+
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (1,6);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (7,6);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (11,6);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (19,6);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (45,6);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (3,7);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (8,7);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (12,7);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (45,7);

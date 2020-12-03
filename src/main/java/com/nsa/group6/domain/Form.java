@@ -9,6 +9,8 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.text.SimpleDateFormat;
 
 @Data
 @AllArgsConstructor
@@ -45,19 +47,47 @@ public class Form {
             inverseJoinColumns = @JoinColumn(name = "TagID"))
     private List<Tags> tags;
 
+    public String getLastEditedString() {
+        return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(lastEdited);
+    }
 
     //Allows for you to search by tag category
     public List<Tags> getTagsByCategory(final String category) {
         return tags
                 .stream()
-                .filter(a -> tagMatch(a, category))
+                .filter(a -> tagCategoryMatch(a, category))
                 .collect(Collectors.toList());
     }
 
 
-    private static boolean tagMatch(Tags tag, String category) {
+    private static boolean tagCategoryMatch(Tags tag, String category) {
         return tag.getCategory().equals(category);
     }
+
+    //Does a loop through the filters and returns if form contains the exact same tags
+    public boolean containsTags(List<Tags> filters) {
+        return filters
+                .stream()
+                .filter(a -> containsTag(a))
+                .collect(Collectors.toList())
+                .size()
+                == (filters.size());
+    }
+
+    public boolean containsTag(Tags tag) {
+        return tags.contains(tag);
+    }
+
+    public Form(Event eventID, String shortDescription, User username, Role roleID, Reflection reflectionID, Timestamp lastEdited, List<Tags> tags) {
+        this.eventID = eventID;
+        this.shortDescription = shortDescription;
+        this.username = username;
+        this.roleID = roleID;
+        this.reflectionID = reflectionID;
+        this.lastEdited = lastEdited;
+        this.tags = tags;
+    }
+
 }
 
 

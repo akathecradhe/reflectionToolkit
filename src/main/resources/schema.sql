@@ -38,12 +38,13 @@ ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `reflection` (
   `reflectionId` Int NOT NULL PRIMARY KEY AUTO_INCREMENT,
-  `box1` VARCHAR(100) NOT NULL,
-  `box2` VARCHAR(100) NOT NULL,
-  `box3` VARCHAR(100) NOT NULL,
-  `box4` VARCHAR(100) NOT NULL,
-  `box5` VARCHAR(100) NOT NULL,
-  `box6` VARCHAR(100) NOT NULL,
+  -- CHANGE THESE BACK TO 100 CHARACTERS AFTER DEMO
+  `box1` VARCHAR(140) NOT NULL,
+  `box2` VARCHAR(140) NOT NULL,
+  `box3` VARCHAR(140) NOT NULL,
+  `box4` VARCHAR(140) NOT NULL,
+  `box5` VARCHAR(140) NOT NULL,
+  `box6` VARCHAR(140) NOT NULL,
   `learning_point1` VARCHAR(140) NOT NULL,
   `learning_point2` VARCHAR(140) NOT NULL,
   `learning_point3` VARCHAR(140) NOT NULL
@@ -55,7 +56,10 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `tags` (
   `tagId` VARCHAR(45) NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `category` VARCHAR(45) NOT NULL,
-  `tag_name` VARCHAR(45) NOT NULL
+  `tag_name` VARCHAR(200) NOT NULL,
+  `shortened_tag` VARCHAR(5),
+  `description` VARCHAR(1500)
+
   )
 ENGINE = InnoDB;
 
@@ -74,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `form` (
   `short_description` VARCHAR(200)  NOT NULL ,
   `roleId` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
-  `reflectionId` VARCHAR(45) NOT NULL,
+  `reflectionId` VARCHAR(45),
   `last_edited` TIMESTAMP NOT NULL
   )
 ENGINE = InnoDB;

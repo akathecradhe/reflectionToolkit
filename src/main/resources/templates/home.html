@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Home</title>
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
+
+
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand">Professional Development</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/reflections/rowbo">Activities</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/form">Activity Form</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main role="main" class="container h-100">
+    <div class = 'row h-50'>
+    <div class="col-md-5 m-3 p-3  bg-light rounded shadow-sm">
+        <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities</label>
+        <div class="media text-muted pt-3">
+            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">Teaching or Supervision 2020/12/01</strong>
+                Activity Description
+            </p>
+        </div>
+        <div class="media text-muted pt-3">
+            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">Design or Plan 2020/12/02</strong>
+                Activity Description
+            </p>
+        </div>
+        <div class="media text-muted pt-3">
+            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">Assess or Give Feedback 2020/12/03</strong>
+                Activity Description
+            </p>
+        </div>
+        <small class="d-block text-right mt-3">
+            <a href="/reflections/rowbo">All Activities</a>
+        </small>
+    </div>
+        <div class="col-auto flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Suggested: Dimensions to Evidence</label>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark">K3: How students learn, both generally and within their subject/disciplinary area(s)</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark">K5: Methods for evaluating the effectiveness of teaching</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark">A1: design and plan learning activities and/or programmes of study</strong>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark">V1: Respect individual learners and diverse learning communities</strong>
+                    </div>
+                </div>
+            </div>
+            <small class="d-block text-right mt-3">
+                <a href="/form">Activity Form</a>
+            </small>
+        </div>
+    </div>
+    <div class = 'row h-50'>
+    <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
+        <label class= "labels border-bottom border-gray pb-2 mb-0">Why not finish these forms?</label>
+        <div class="media text-muted pt-3">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <strong class="text-gray-dark">Discussion</strong>
+                </div>
+                <span class="d-block">Entry last updated 2020/11/28. Reflection not yet added.</span>
+            </div>
+        </div>
+        <div class="media text-muted pt-3">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <strong class="text-gray-dark">Scholarship</strong>
+                </div>
+                <span class="d-block">Entry last updated 2020/11/20. Reflection not yet added.</span>
+            </div>
+        </div>
+        <div class="media text-muted pt-3">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <strong class="text-gray-dark">Evaluation and Quality Assurance</strong>
+                </div>
+                <span class="d-block">Entry last updated 2020/11/10. UKPSF Tags not yet added.</span>
+            </div>
+        </div>
+        <small class="d-block text-right mt-3">
+            <a href="#">All Incomplete Entries</a>
+        </small>
+    </div>
+        <div class="col-md-4 h-auto m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Upcoming Activities</label>
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Communications Workshop: 2020/12/05</strong>
+                    Role: Participate
+                </p>
+            </div>
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Project Planning: 2021/01/10</strong>
+                    Role: Review
+                </p>
+            </div>
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Presentation Skills Seminar: 2021/01/15</strong>
+                    Role: Lead or Facilitate
+                </p>
+            </div>
+            <small class="d-block text-right mt-3">
+                <a href="#">Schedule</a>
+            </small>
+        </div>
+        <div class="col-auto flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">To-Do List</label>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 1</label>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 2</label>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 3</label>
+                    </div>
+                </div>
+            </div><br>
+            <small class="d-block text-right mt-3">
+                <a href="#">Edit To-Do List</a>
+            </small>
+        </div>
+  </div>
+
+ </main>
+</body>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</html>
