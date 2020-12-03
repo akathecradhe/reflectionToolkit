@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en"
       xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml"
+      xmlns:list-style-type="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="UTF-8">
     <title>List Of Your Reflections</title>
     <link href="../static/css/form.css" th:href="@{/css/form.css}" rel="stylesheet" />
+    <link href="../static/css/reflectionList.css" th:href="@{/css/reflectionList.css}" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/9b9fc493c6.js" crossorigin="anonymous"></script>
+
+
 
 </head>
 <body>
@@ -16,11 +21,39 @@
         <li class="navli"><a href="">Event Manager</a></li>
         <li class="navli"><a href="">Reflections</a></li>
     </ul>
+
+
+
 </header>
 
 <div class="container">
-<h2>Reflections</h2>
-<div th:if="${forms.empty}">
+
+    <div class="wrapper" >
+        <div class="inner" >
+            <div class="left" style="background: white;">
+                <ul style="list-style-type: none;">
+                    <li  style="float:left">
+                        <h2>Reflections</h2>
+                    </li>
+                    <li  style="float:right"  sec:authorize="isAuthenticated()">
+                        <span class="innerli" sec:authentication="name"></span>
+                    </li>
+                    <li>
+                        <i class="fas fa-user-alt"  style="float:right" ></i>
+                    </li>
+
+                </ul>
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+    <br>
+    <br>
+
+    <div th:if="${forms.empty}">
     <p>No forms available</p>
 </div>
 <div class="reflection" th:href="@{/reflection/{furl} (furl=${form.getReflectionID().getReflectionID()})}" th:each="form : ${forms}">
