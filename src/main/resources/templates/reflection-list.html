@@ -92,7 +92,7 @@
 
                 <br>Event held on <span th:text="${form.getEventID.getDateString()}">23-11-2020</span>
                 <br>Last edited: <span th:text="${form.getLastEditedString()}">2020-12-01 18:25:55.996301</span></p>
-            <a th:href="@{/reflection/{furl} (furl=${form.getEventID().getEventID()})}"  class="btn btn-primary">View Activity</a>
+            <a th:href="@{/reflection/{furl} (furl=${form.getFormID()})}"  class="btn btn-primary">View Activity</a>
 
         </div>
     </div>

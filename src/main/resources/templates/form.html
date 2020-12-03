@@ -106,7 +106,7 @@
                                 <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}"
                                         name="others" th:value="${othersInvolveds.tagID}">
                             </div>
-                            <label th:for="${#ids.next('others')}" th:text="${othersInvolveds.tagName}">
+                            <label th:for="${othersInvolveds.tagID}" th:text="${othersInvolveds.tagName}">
 
 
 
@@ -151,7 +151,7 @@
                             <div th:unless="${tagsEdit != null}">
                                 <input class ="checkbox" type="checkbox" th:id="${dimension.tagID}" name="dimensions" th:value="${dimension.tagID}">
                             </div>
-                            <label data-toggle="tooltip" data-placement="top" th:attr="data-title=${dimension.description}" th:for="${#ids.next('dimension')}" th:text="${dimension.shortenedTag} + ' - ' + ${dimension.tagName}"></label><br>
+                            <label data-toggle="tooltip" data-placement="top" th:attr="data-title=${dimension.description}" th:for="${dimension.tagID}" th:text="${dimension.shortenedTag} + ' - ' + ${dimension.tagName}"></label><br>
                         </div>
 
                         <span class="help-block">
@@ -186,7 +186,7 @@
                             <div th:unless="${tagsEdit != null}">
                                 <input class = "checkbox" type="checkbox" th:id="${impacts.tagID}" name="impact" th:value="${impacts.tagID}">
                             </div>
-                            <label th:for="${#ids.next('impact')}" th:text="${impacts.tagName}"></label><br>
+                            <label th:for="${impacts.tagID}" th:text="${impacts.tagName}"></label><br>
                         </div>
 
                         <span class="help-block">
@@ -225,7 +225,7 @@
                                 <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:value="${learningTechnology.tagID}">
                             </div>
 
-                            <label th:for="${#ids.next('learningTechs')}" th:text="${learningTechnology.tagName}"></label><br>
+                            <label th:for="${learningTechnology.tagID}" th:text="${learningTechnology.tagName}"></label><br>
                         </div>
 
                         <span class="help-block">
@@ -263,7 +263,7 @@
                             <div th:unless="${tagsEdit != null}">
                                 <input class ="checkbox"  type="checkbox" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
                             </div>
-                            <label th:for="${#ids.next('thoughtCloud')}" th:text="${thoughtClouds.tagName}"></label><br>
+                            <label th:for="${thoughtClouds.tagID}" th:text="${thoughtClouds.tagName}"></label><br>
                         </div>
                         </div>
                         <span class="help-block">
