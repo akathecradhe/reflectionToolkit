@@ -108,7 +108,7 @@
                                         name="others" th:value="${othersInvolveds.tagID}">
                             </div>
                             <label th:for="${#ids.next('others')}" th:text="${othersInvolveds.tagName}">
-                                
+
 
 
                             </label><br>
@@ -256,6 +256,7 @@
                     *
                        </span>
                         </label><br>
+                        <div class="split3">
                         <div style="display: flex;" th:each="thoughtClouds: ${thoughtCloud}">
                             <div th:if="${tagsEdit != null}">
                                 <input class ="checkbox"  type="checkbox" th:checked="${#lists.contains(tagsEdit, thoughtClouds.tagID)}" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
@@ -264,6 +265,7 @@
                                 <input class ="checkbox"  type="checkbox" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
                             </div>
                             <label th:for="${#ids.next('thoughtCloud')}" th:text="${thoughtClouds.tagName}"></label><br>
+                        </div>
                         </div>
                         <span class="help-block">
                         What are some of your thoughts having completed this activity? Choose as many options as applicable.
