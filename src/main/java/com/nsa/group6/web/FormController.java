@@ -90,11 +90,6 @@ public class FormController {
         return "form";
     }
 
-    @RequestMapping(value = "/username", method = RequestMethod.GET)
-    @ResponseBody
-    public String currentUserName(MyUserDetails principal) {
-        return principal.getUsername();
-    }
 
 
     @PostMapping("form")
@@ -127,15 +122,13 @@ public class FormController {
         // If the username is left blank then take it to the page of the signed in user.
         List<Form> form;
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
-        Optional<User> ausername = userService.findUserByUsername(userDetails.getUsername());
-        User aUser = ausername.get();
+        User userDetails = getCurrentUser();
+
         // getUsername() - Returns the username used to authenticate the user.
         System.out.println("User name: " + userDetails.getUsername());
 
 
-        form = formService.getAllFormsByUsername(aUser);
+        form = formService.getAllFormsByUsername(userDetails);
 
         model.addAttribute("forms", form);
 
@@ -152,6 +145,16 @@ public class FormController {
 
         return "form-view";
 
+    }
+
+
+    public User getCurrentUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        Optional<User> ausername = userService.findUserByUsername(userDetails.getUsername());
+        User aUser = ausername.get();
+
+        return aUser;
     }
 
 
