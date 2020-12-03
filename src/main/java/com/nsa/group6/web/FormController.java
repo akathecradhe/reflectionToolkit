@@ -5,6 +5,9 @@ import com.nsa.group6.domain.*;
 import com.nsa.group6.jpa.MyUserDetails;
 import com.nsa.group6.service.FormService;
 import com.nsa.group6.service.UserService;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -117,18 +120,22 @@ public class FormController {
 
 
     //This function retrieves the list of reflections by username
-    @GetMapping("/reflection/user/{username}")
-    public String getFormsByUsername(@PathVariable(name = "username",
-            required = false) Optional<String> username, Model model) {
+    @GetMapping("/reflection/user")
+    public String getFormsByUsername( Model model) {
 
         // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not in the db.
         // If the username is left blank then take it to the page of the signed in user.
         List<Form> form;
-        Optional<User> ausername = userService.findUserByUsername(username.get());
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        Optional<User> ausername = userService.findUserByUsername(userDetails.getUsername());
         User aUser = ausername.get();
+        // getUsername() - Returns the username used to authenticate the user.
+        System.out.println("User name: " + userDetails.getUsername());
+
+
         form = formService.getAllFormsByUsername(aUser);
-
-
 
         model.addAttribute("forms", form);
 
