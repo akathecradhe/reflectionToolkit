@@ -43,9 +43,7 @@
 
 <div class="container">
 <h2>Reflections</h2>
-        <div id="filterBtn">
-            <p class="labels">Filters &#8595;</p>
-        </div>
+    <button class="btn btn-light btn-lg" id="filterBtn">Filters</button>
         <form action="#" method="post" id="filters" th:action="@{/reflections/__${user.getUsername()}__}" th:object="${filters}">
 
                 <button class="btn btn-primary col-sm drop" id="ukpsf" type="button">UKPSF Dimensions</button>
