@@ -27,7 +27,7 @@
                     <a class="nav-link" href="/home/rowbo">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Activities<span class="sr-only">(current)</span></a>
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Reflections<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/form">Activity Form</a>
@@ -80,7 +80,7 @@
             <button class="applybtn float-right" type="submit">Apply </button>
         </form>
     <div th:if="${forms.empty}">
-        <p>No forms available</p>
+        <p>No activities available. <a id="clickhere" href="/form">Add an Activity.</a>></p>
     </div>
 
     <div style="margin-bottom: 16px;" class="card w-100 bg-light rounded shadow-sm" th:each="form : ${forms}">
