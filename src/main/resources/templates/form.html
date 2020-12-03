@@ -11,7 +11,7 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand">Professional Development
+        <a class="navbar-brand">Reflection Toolkit
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -61,6 +61,20 @@
        Select the applicable activity type from the drop-down list.
       </span>
                     </div>
+                    <div class="form-group">
+                    <label th:for="eventDate" class="labels">
+                        Activity Date
+                        <span class="asteriskField">
+        *
+       </span>
+                    </label>
+                    <input class="form-control" type="date" id="eventDate" name="eventDate" th:value="${formEdit?.activityDate}">
+
+                    <span class="help-block">
+       Select the date that the activity took place.
+      </span>
+                    </div>
+
                     <div class="form-group ">
                         <label th:for="shortDesc" class="labels">
                             Activity Description
@@ -68,7 +82,7 @@
         *
        </span>
                         </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${descEdit?.shortDescription}" maxlength="140" id="shortDesc" name="shortDesc" placeholder="(max 140 characters)" REQUIRED></textarea>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${formEdit?.shortDescription}" maxlength="140" id="shortDesc" name="shortDesc" placeholder="(max 140 characters)" REQUIRED></textarea>
                         <span class="help-block">
        Give a short description of the purpose of the activity you attended.
       </span>

@@ -1,8 +1,13 @@
 package com.nsa.group6.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -46,15 +51,19 @@ public class Form {
             , joinColumns = @JoinColumn(name = "formID"),
             inverseJoinColumns = @JoinColumn(name = "TagID"))
     private List<Tags> tags;
-    private Date activityDate;
+
+
+    private String activityDate;
+
 
     //This function returns the date object in the format wanted for the webpage. Previously printing the
     //event would include a timestamp of midnight.
     public String getDateString () {
-        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
         return formatter.format(activityDate);
 
     }
+
 
     public String getLastEditedString() {
         return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(lastEdited);
@@ -87,7 +96,7 @@ public class Form {
         return tags.contains(tag);
     }
 
-    public Form(Event eventID, String shortDescription, User username, Role roleID, Reflection reflectionID, Timestamp lastEdited, List<Tags> tags, Date activityDate) {
+    public Form(Event eventID, String shortDescription, User username, Role roleID, Reflection reflectionID, Timestamp lastEdited, List<Tags> tags, String activityDate) {
         this.eventID = eventID;
         this.shortDescription = shortDescription;
         this.username = username;

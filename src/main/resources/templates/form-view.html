@@ -16,7 +16,7 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand">Professional Development</a>
+        <a class="navbar-brand">Reflection Toolkit</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,7 +27,7 @@
                     <a class="nav-link" href="/home/rowbo">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Activities<span class="sr-only">(current)</span></a>
+                    <a class= "nav-link" href="/reflections/rowbo">Activities<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/form">Activity Form</a>
@@ -42,14 +42,17 @@
 
     <h1 class="mt-5" th:text="${form.getEventID().getName()}"> </h1>
     <hr>
-    <a class="btn btn-primary" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
+    <div>
+    <a style="float:right" class="btn btn-primary" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
+    <a class="btn btn-primary" href="/reflections/rowbo">Go Back</a>
+    </div>
 
     <div style="margin-top: 30px">
         <h2>Activity Details</h2><br>
 
         <p><label class="labels">Description</label> <br> <span th:text="${form.shortDescription}">Description goes here</span></p>
         <br>
-        <p><label class="labels">Activity Date</label> <br> <span th:text="${form.getDateString()}">23/07/2001</span></p>
+        <p><label class="labels">Activity Date</label> <br> <span th:text="${form.activityDate}">23/07/2001</span></p>
         <br>
         <p><label class="labels">Role</label> <br><span th:text="${form.roleID.name}"></span></p>
         <br>
@@ -120,6 +123,11 @@
             <li th:text = "${form.reflectionID.getLearningPoint3()}"></li>
         </ol>
 
+    </div>
+    <br>
+    <div>
+        <a style="float:right" class="btn btn-primary" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
+        <a class="btn btn-primary" href="/reflections/rowbo">Go Back</a>
     </div>
     <br><br>
 

@@ -4,6 +4,7 @@ import com.nsa.group6.domain.*;
 import com.nsa.group6.service.FormService;
 import com.nsa.group6.service.UserService;
 import com.nsa.group6.service.*;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -92,7 +93,7 @@ public class FormController {
             Event eventInput = eventService.getEventByID(aSubmittingForm.eventType).get();
             String descInput = aSubmittingForm.shortDesc;
             Timestamp lastEditedInput = new Timestamp(System.currentTimeMillis());
-            Date dateInput = new Date(696969);
+            String dateInput = aSubmittingForm.eventDate;
             Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, dateInput);
 
             if (aSubmittingForm.formID != null) {
@@ -202,7 +203,7 @@ public class FormController {
         model.addAttribute("tagsEdit", allTags);
         model.addAttribute("roleEdit", roleInput);
         model.addAttribute("eventEdit", eventInput);
-        model.addAttribute("descEdit", editingForm);
+        model.addAttribute("formEdit", editingForm);
         model.addAttribute("reflectionEdit", reflectionInput);
         model.addAttribute("formID", formID);
 

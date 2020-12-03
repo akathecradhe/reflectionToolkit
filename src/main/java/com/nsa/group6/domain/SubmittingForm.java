@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -18,6 +19,8 @@ public class SubmittingForm {
     public Integer formID;
 
     public Integer eventType;
+
+    public String eventDate;
 
     public String shortDesc;
 
@@ -51,8 +54,9 @@ public class SubmittingForm {
 
     public String learningPoint3;
 
-    public SubmittingForm(Integer eventType, String shortDesc, Integer role, List<Integer> others, List<Integer> impact, List<Integer> learningTechs, List<Integer> thoughtCloud, List<Integer> dimensions, String box1, String box2, String box3, String box4, String box5, String box6, String learningPoint1, String learningPoint2, String learningPoint3) {
+    public SubmittingForm(Integer eventType, String eventDate, String shortDesc, Integer role, List<Integer> others, List<Integer> impact, List<Integer> learningTechs, List<Integer> thoughtCloud, List<Integer> dimensions, String box1, String box2, String box3, String box4, String box5, String box6, String learningPoint1, String learningPoint2, String learningPoint3) {
         this.eventType = eventType;
+        this.eventDate = eventDate;
         this.shortDesc = shortDesc;
         this.role = role;
         this.others = others;
