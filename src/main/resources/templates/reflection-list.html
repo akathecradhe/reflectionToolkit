@@ -38,7 +38,7 @@
 </header>
 
 <div class="container">
-<h2>Reflections</h2>
+<h1 class="mt-5">Reflections</h1>
     <button class="btn btn-light btn-lg" id="filterBtn">Filters</button>
         <form action="#" method="post" id="filters" th:action="@{/reflections/__${user.getUsername()}__}" th:object="${filters}">
 
@@ -83,7 +83,7 @@
         <p>No forms available</p>
     </div>
 
-    <div class="card w-100" th:each="form : ${forms}">
+    <div style="margin-bottom: 16px;" class="card w-100 bg-light rounded shadow-sm" th:each="form : ${forms}">
         <div class="card-body">
             <h5 class="card-title" th:text="${form.getEventID().getName()}">Teaching Or Supervision</h5>
             <p class="card-text"><span th:text="${form.shortDescription}">Held an hour-long online seminar for Year 2 students on Presentation Skills</span>

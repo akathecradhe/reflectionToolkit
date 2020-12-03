@@ -33,12 +33,15 @@
     </nav>
 </header>
 
+<main role="main" class="container h-100">
 <div class="container">
-    <h2 th:text="${form.getEventID().getName()}"> </h2>
-    <a style="float:right" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
 
-    <div>
-        <h3>Activity Details</h3>
+    <h1 class="mt-5" th:text="${form.getEventID().getName()}"> </h1>
+    <hr>
+    <a class="btn btn-primary" style="float:right" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
+
+    <div style="margin-top: 30px">
+        <h2>Activity Details</h2><br>
 
         <p><label class="labels">Description</label> <br> <span th:text="${form.shortDescription}">Description goes here</span></p>
         <br>
@@ -85,9 +88,9 @@
             </ul>
 
     </div>
-    <hr><br><br>
+    <hr><br>
     <div>
-        <h3>Reflection Answers</h3>
+        <h2>Reflection Answers</h2><br>
         <div>
             <p><label class="labels">What did you do?</label> <br><span th:text="${form.reflectionID.getBox1()}"></span></p>
             <br>
@@ -102,20 +105,21 @@
             <p><label class="labels">Alternate actions or responses (What could you have done differently?)</label> <br><span th:text="${form.reflectionID.getBox6()}"></span></p>
         </div>
     </div>
-    <hr>
+    <hr><br>
     <div>
-        <h3>Learning Points</h3>
+        <h2>Learning Points</h2><br>
         <ol>
-            <li th:text = "${form.reflectionID.getLearningPoint1()}"></li>
-            <li th:text = "${form.reflectionID.getLearningPoint2()}"></li>
+            <li th:text = "${form.reflectionID.getLearningPoint1()}"></li><br>
+            <li th:text = "${form.reflectionID.getLearningPoint2()}"></li><br>
             <li th:text = "${form.reflectionID.getLearningPoint3()}"></li>
         </ol>
 
     </div>
-
+    <br><br>
 
 
 
 </div>
+</main>
 </body>
 </html>
