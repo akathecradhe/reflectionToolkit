@@ -33,7 +33,43 @@
     </nav>
 </header>
 
+<nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+    <a class="navbar-brand">Menu Bar
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExample03">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link btn" onclick="menuSelect('activitydetails')">Activity Details</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link btn" onclick="menuSelect('ukpsf')">UKPSF Dimensions</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link btn" onclick="menuSelect('impact')">Impacts</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link btn" onclick="menuSelect('learntechs')">Learning Technologies</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link btn" onclick="menuSelect('thoughtcld')">Thought Cloud</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link btn" onclick="menuSelect('reflection')">Reflection</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link btn" onclick="menuSelect('learningpoints')">Action Points</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <main role="main" class="container-fluid">
+
+
+
     <form action="#" method="post" th:action="@{/form}" th:object="${form}" onsubmit="return confirm('Submit this entry?');">
 
         <div id="activitydetails" class="container">
@@ -375,12 +411,12 @@
         </div>
 
         <div id="learningpoints" class="container">
-            <h1 class="mt-5">Learning Points For You</h1><br>
+            <h1 class="mt-5">Action Points</h1><br>
             <div class="row">
                 <div class="col-md-8 order-md-1">
                     <div class="form-group ">
                         <label class="labels">
-                            Learning Point 1
+                            Action Point 1
                             <span class="asteriskField">
                                 *
                                </span>
@@ -392,13 +428,13 @@
                     </div>
                     <div class="form-group ">
                         <label class="labels">
-                            Learning Point 2
+                            Action Point 2
                             </label>
                         <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint2}" maxlength="140" name="learningPoint2" id="learningPoint2" placeholder="(max 140 characters)"></textarea>
                     </div>
                     <div class="form-group ">
                         <label class="labels">
-                            Learning Point 3
+                            Action Point 3
                             </label>
                         <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint3}" maxlength="140" name="learningPoint3" id="learningPoint3" placeholder="(max 140 characters)"></textarea>
                     </div>
@@ -422,6 +458,19 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 <script>
+
+    function menuSelect(element) {
+        document.getElementById('activitydetails').style.display='none'
+        document.getElementById('ukpsf').style.display='none';
+        document.getElementById('thoughtcld').style.display='none';
+        document.getElementById('reflection').style.display='none';
+        document.getElementById('learningpoints').style.display='none';
+        document.getElementById('learntechs').style.display='none';
+        document.getElementById('impact').style.display='none';
+        document.getElementById(element).style.display='block';
+        document.documentElement.scrollTop = 0;
+    }
+
 
 
     function uncheck(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6) {
