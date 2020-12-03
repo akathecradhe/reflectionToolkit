@@ -5,6 +5,7 @@
 
 .applybtn{
     margin-top: 5px;
+    margin-bottom: 5px;
 
 }
 h2{
@@ -13,4 +14,7 @@ h2{
     font-size: 36px;
     color: #333;
 
+}
+form li{
+    list-style-type: none;
 }

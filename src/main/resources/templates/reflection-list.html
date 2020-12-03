@@ -16,8 +16,7 @@
 <body>
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Professional Development Logging System
-        </a>
+        <a class="navbar-brand">Professional Development</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -25,26 +24,25 @@
         <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/home/rowbo">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Activities</a>
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Activities<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Activity Form</a>
+                    <a class="nav-link" href="/form">Activity Form</a>
                 </li>
             </ul>
-            <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search">
-            </form>
-        </div>
+                    </div>
     </nav>
 </header>
 
 <div class="container">
+
 <h2>Activities</h2>
-        <p class="labels">Filters </p>
-        <form action="#" method="post" th:action="@{/reflections/__${user.getUsername()}__}" th:object="${filters}">
+    <button class="btn btn-light btn-lg" id="filterBtn">Filters</button>
+        <form id="filters" action="#" method="post" th:action="@{/reflections/__${user.getUsername()}__}" th:object="${filters}">
+
 
                 <button class="btn btn-secondary col-sm drop" id="ukpsf" type="button">UKPSF Dimensions</button>
                 <div class="w-100" id="ukpsf-drop">
@@ -83,26 +81,26 @@
 
             <button class="btn btn-primary applybtn float-right" type="submit">Apply </button>
         </form>
-    <br>
-    <br>
-
     <div th:if="${forms.empty}">
-        <p>No forms available</p>
+        <p>No activities available. <a id="clickhere" href="/form">Add an Activity.</a>></p>
     </div>
 
-    <div class="card" th:each="form : ${forms}">
+    <div style="margin-bottom: 16px;" class="card w-100 bg-light rounded shadow-sm" th:each="form : ${forms}">
         <div class="card-body">
             <h5 class="card-title" th:text="${form.getEventID().getName()}">Teaching Or Supervision</h5>
             <p class="card-text"><span th:text="${form.shortDescription}">Held an hour-long online seminar for Year 2 students on Presentation Skills</span>
+
                 <br>Event held on <span th:text="${form.getEventID.getDateString()}">23-11-2020</span>
-                <br>Last edited: <span th:text="${form.lastEdited}">2020-12-01 18:25:55.996301</span></p>
-            <a th:href="@{/reflection/{furl} (furl=${form.getReflectionID().getReflectionID()})}"  class="btn btn-primary">View Activity</a>
+                <br>Last edited: <span th:text="${form.getLastEditedString()}">2020-12-01 18:25:55.996301</span></p>
+            <a th:href="@{/reflection/{furl} (furl=${form.getEventID().getEventID()})}"  class="btn btn-primary">View Activity</a>
+
         </div>
     </div>
 </div>
 
 <script>
     $(document).ready(function(){
+        $("#filters").hide();
         $("#ukpsf").show();
         $("#impact").show();
         $("#ukpsf-drop").hide();
@@ -110,6 +108,9 @@
         $("#learningTechnologies-drop").hide();
         $("#thoughtCloud-drop").hide();
         $("#impact-drop").hide();
+        $("#filterBtn").click(function(){
+            $("#filters").toggle()
+        });
         $("#ukpsf").click(function(){
             $("#ukpsf-drop").toggle()
         });

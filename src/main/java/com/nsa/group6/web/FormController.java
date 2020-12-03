@@ -240,6 +240,17 @@ public class FormController {
     }
 
 
+    @GetMapping("/home/{username}")
+    public String getHomeData(@PathVariable(name = "username", required = false) Optional<String> username, Model model) {
+
+        // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not in the db.
+        // If the username is left blank then take it to the page of the signed in user.
+        Optional<User> ausername = userService.findUserByUsername(username.get());
+        User aUser = ausername.get();
+
+
+        return "home";
+    }
 
 
 

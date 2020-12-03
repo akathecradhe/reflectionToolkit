@@ -6,23 +6,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>View Form</title>
-    <link href="../static/css/form.css" th:href="@{/css/form.css}" rel="stylesheet" />
+    <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
 
 </head>
 <body>
-<header>
-    <ul class="navul">
-        <li class="navli"><a href="">Home</a></li>
-        <li class="navli"><a href="">Event Manager</a></li>
-        <li class="navli"><a href="">Reflections</a></li>
-    </ul>
-</header>
-<div class="container">
-    <h2 th:text="${form.getEventID().getName()}"> </h2>
-    <a style="float:right" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
 
-    <div>
-        <h3>Activity Details</h3>
+<header>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+        <a class="navbar-brand">Professional Development</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarsExample04">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/home/rowbo">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Activities<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/form">Activity Form</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+</header>
+
+<main role="main" class="container h-100">
+<div class="container">
+
+    <h1 class="mt-5" th:text="${form.getEventID().getName()}"> </h1>
+    <hr>
+    <a class="btn btn-primary" style="float:right" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
+
+    <div style="margin-top: 30px">
+        <h2>Activity Details</h2><br>
 
         <p><label class="labels">Description</label> <br> <span th:text="${form.shortDescription}">Description goes here</span></p>
         <br>
@@ -69,9 +89,9 @@
             </ul>
 
     </div>
-    <hr><br><br>
+    <hr><br>
     <div>
-        <h3>Reflection Answers</h3>
+        <h2>Reflection Answers</h2><br>
         <div>
             <p><label class="labels">What did you do?</label> <br><span th:text="${form.reflectionID.getBox1()}"></span></p>
             <br>
@@ -86,20 +106,21 @@
             <p><label class="labels">Alternate actions or responses (What could you have done differently?)</label> <br><span th:text="${form.reflectionID.getBox6()}"></span></p>
         </div>
     </div>
-    <hr>
+    <hr><br>
     <div>
-        <h3>Learning Points</h3>
+        <h2>Learning Points</h2><br>
         <ol>
-            <li th:text = "${form.reflectionID.getLearningPoint1()}"></li>
-            <li th:text = "${form.reflectionID.getLearningPoint2()}"></li>
+            <li th:text = "${form.reflectionID.getLearningPoint1()}"></li><br>
+            <li th:text = "${form.reflectionID.getLearningPoint2()}"></li><br>
             <li th:text = "${form.reflectionID.getLearningPoint3()}"></li>
         </ol>
 
     </div>
-
+    <br><br>
 
 
 
 </div>
+</main>
 </body>
 </html>
