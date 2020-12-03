@@ -6270,7 +6270,7 @@ a.close.disabled {
 }
 
 .tooltip-inner {
-  max-width: 400px !important;
+  max-width: 500px !important;
   padding: 0.25rem 0.5rem;
   color: #000000;
   text-align: center;
