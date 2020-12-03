@@ -2,6 +2,7 @@
 <html lang="en" xmlns:th="http://www/thymeleaf.org" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Logging Form</title>
     <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
 
@@ -11,7 +12,7 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">Professional Development Logging System
+        <a class="navbar-brand" href="#">Professional Development
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -20,13 +21,13 @@
         <div class="collapse navbar-collapse" id="navbarsExample04">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
-                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="#">Home</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Activities</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Activity Form</a>
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Activity Form<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
         </div>
@@ -97,7 +98,7 @@
         *
        </span>
                         </label>
-                        <div th:each="othersInvolveds: ${othersInvolved}">
+                        <div style="display: flex;" th:each="othersInvolveds: ${othersInvolved}">
 
                             <div th:if="${tagsEdit != null}">
                                 <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}" th:checked="${#lists.contains(tagsEdit, othersInvolveds.tagID)}" name="others" th:value="${othersInvolveds.tagID}">
@@ -106,7 +107,11 @@
                                 <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}"
                                         name="others" th:value="${othersInvolveds.tagID}">
                             </div>
-                            <label th:for="${#ids.next('others')}" th:text="${othersInvolveds.tagName}"></label><br>
+                            <label th:for="${#ids.next('others')}" th:text="${othersInvolveds.tagName}">
+                                
+
+
+                            </label><br>
                         </div>
 
                         <span class="help-block">
@@ -140,7 +145,7 @@
 <!--                                <input class ="checkbox" th:field="*{dimensions}" type="checkbox" th:id="${dimension.tagName}" name="dimension" th:value="${dimension.tagID}">-->
 <!--                                <label data-toggle="tooltip" data-placement="top" th:attr="data-title=${dimension.description}" th:for="${#ids.next('dimension')}" th:text="${dimension.shortenedTag} + ' - ' + ${dimension.tagName}"></label><br>-->
 <!--                            </div>-->
-                        <div th:each="dimension: ${dimensions}">
+                        <div style="display: flex;" th:each="dimension: ${dimensions}">
                             <div th:if="${tagsEdit != null}">
                                 <input class ="checkbox" th:checked="${#lists.contains(tagsEdit, dimension.tagID)}" type="checkbox" th:id="${dimension.tagID}" name="dimensions" th:value="${dimension.tagID}">
                             </div>
@@ -175,7 +180,7 @@
                     *
                    </span>
                         </label><br>
-                        <div th:each="impacts: ${impact}">
+                        <div style="display: flex;" th:each="impacts: ${impact}">
                             <div th:if="${tagsEdit != null}">
                                 <input class = "checkbox" type="checkbox" th:id="${impacts.tagID}" th:checked="${#lists.contains(tagsEdit, impacts.tagID)}" name="impact" th:value="${impacts.tagID}">
                             </div>
@@ -213,7 +218,7 @@
                     *
                    </span>
                         </label><br>
-                        <div th:each="learningTechnology: ${learningTechnologies}">
+                        <div style="display: flex;" th:each="learningTechnology: ${learningTechnologies}">
                             <div th:if="${tagsEdit != null}">
                                 <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:checked="${#lists.contains(tagsEdit, learningTechnology.tagID)}" th:value="${learningTechnology.tagID}">
                             </div>
@@ -251,7 +256,7 @@
                     *
                        </span>
                         </label><br>
-                        <div th:each="thoughtClouds: ${thoughtCloud}">
+                        <div style="display: flex;" th:each="thoughtClouds: ${thoughtCloud}">
                             <div th:if="${tagsEdit != null}">
                                 <input class ="checkbox"  type="checkbox" th:checked="${#lists.contains(tagsEdit, thoughtClouds.tagID)}" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
                             </div>

@@ -298,11 +298,15 @@ button::-moz-focus-inner,
 input.checkbox {
   width :18px;
   height :18px;
+  padding-right: 5px;
+  margin-right: 5px;
 }
 input[type="radio"],
 input[type="checkbox"] {
   box-sizing: border-box;
-  padding: 0;
+  padding-right: 5px;
+  margin-right: 5px;
+
 }
 
 textarea {
