@@ -215,6 +215,7 @@ public class FormController {
     public String getFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
     // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
         //Replace this with getFormbyFormID soon
+        System.out.println(formService.getFormByID(formID).getCompletionLevel());
         model.addAttribute("form", formService.getFormByID(formID));
         return "form-view";
 

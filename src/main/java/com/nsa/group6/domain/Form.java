@@ -107,6 +107,21 @@ public class Form {
         this.activityDate = activityDate;
     }
 
+    public String getCompletionLevel() {
+        String completionLevel = "red";
+        if(!getTagsByCategory("UKPSF").isEmpty()){
+            if(reflectionID == null){
+                completionLevel = "amber";
+            } else {
+                completionLevel = "green";
+            }
+        } else if (reflectionID != null) {
+            completionLevel = "amber";
+        }
+
+
+        return completionLevel;
+    }
 }
 
 

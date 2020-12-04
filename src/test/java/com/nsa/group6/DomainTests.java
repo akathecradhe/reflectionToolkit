@@ -1,5 +1,6 @@
 package com.nsa.group6;
 
+import com.nsa.group6.domain.Form;
 import com.nsa.group6.domain.Tags;
 import org.junit.jupiter.api.Test;
 
@@ -27,4 +28,5 @@ public class DomainTests {
         Tags ukpsf = new Tags(123,"UKPSF","Teaching Name","A1","Description...");
         Tags tag = new Tags(123,"teaching","Teaching Name");
     }
+
 }
