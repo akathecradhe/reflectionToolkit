@@ -12,5 +12,6 @@ import java.util.List;
 public class FiltersForm {
 
     public List<Integer> tags;
+    public List<String> completionStatus;
 
 }

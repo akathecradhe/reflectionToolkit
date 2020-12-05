@@ -79,6 +79,15 @@
                 </div>
             </div>
 
+            <button class="btn btn-secondary col-sm drop" id="completionStatus" type="button">Completion Status</button>
+            <div class="w-100" id="completionStatus-drop">
+                <div >
+                    <li><input type="checkbox" th:field="*{completionStatus}" value="green">Completed</li>
+                    <li><input type="checkbox" th:field="*{completionStatus}" value="amber">Partially Completed</li>
+                    <li><input type="checkbox" th:field="*{completionStatus}" value="red">Incomplete</li>
+                </div>
+            </div>
+
             <button class="btn btn-primary applybtn float-right" type="submit">Apply </button>
         </form>
     <div th:if="${forms.empty}">
@@ -109,6 +118,7 @@
         $("#learningTechnologies-drop").hide();
         $("#thoughtCloud-drop").hide();
         $("#impact-drop").hide();
+        $("#completionStatus-drop").hide();
         $("#filterBtn").click(function(){
             $("#filters").toggle()
         });
@@ -126,6 +136,9 @@
         });
         $("#impact").click(function(){
             $("#impact-drop").toggle()
+        });
+        $("#completionStatus").click(function(){
+            $("#completionStatus-drop").toggle()
         });
     });
 

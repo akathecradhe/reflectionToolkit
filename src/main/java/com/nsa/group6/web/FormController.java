@@ -238,6 +238,7 @@ public class FormController {
         Optional<User> ausername = userService.findUserByUsername(username.get());
         User aUser = ausername.get();
         List<Form> forms = formHandler.findFormsByMatchingTagIDs(filtersForm.tags,username.get());
+        forms = formHandler.filterByCompletionStatus(forms,filtersForm.completionStatus);
 
         FiltersForm filters = new FiltersForm();
         //Gets the tags for filters
