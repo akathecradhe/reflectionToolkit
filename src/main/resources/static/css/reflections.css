@@ -18,3 +18,20 @@ h2{
 form li{
     list-style-type: none;
 }
+
+#green{
+    border-color: green;
+}
+
+#red{
+    border-color: red;
+}
+
+#amber{
+    border-color: #FFBF00;
+}
+
+.reflection{
+    border-radius: 2px;
+    border-style: solid;
+}
