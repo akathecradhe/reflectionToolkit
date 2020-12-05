@@ -98,7 +98,7 @@ public class FormController {
             String descInput = aSubmittingForm.shortDesc;
             Timestamp lastEditedInput = new Timestamp(System.currentTimeMillis());
             String dateInput = aSubmittingForm.eventDate;
-            DateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+            DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
             Date activityDate = null;
             try {
                 activityDate = formatter.parse(dateInput);
