@@ -7,4 +7,6 @@ public interface FormHandler {
     List<Form> findFormsByMatchingTags(List<Tags> tags, String aUser);
 
     List<Tags> findTagsByCategory(String category);
+
+    List<Form> filterByCompletionStatus(List<Form> forms, List<String> completionStatus);
 }

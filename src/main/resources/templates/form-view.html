@@ -52,7 +52,9 @@
 
         <p><label class="labels">Description</label> <br> <span th:text="${form.shortDescription}">Description goes here</span></p>
         <br>
-        <p><label class="labels">Activity Date</label> <br> <span th:text="${form.activityDate}">23/07/2001</span></p>
+        <p th:switch="${form.getCompletionLevel()}"><label class="labels">Completion Status</label> <br> <span th:case="green">Completed</span><span th:case="amber">Partially Completed</span><span th:case="red">Incomplete</span></p>
+        <br>
+        <p><label class="labels">Activity Date</label> <br> <span th:text="${form.getDateString()}">23/07/2001</span></p>
         <br>
         <p><label class="labels">Role</label> <br><span th:text="${form.roleID.name}"></span></p>
         <br>

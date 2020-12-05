@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -94,10 +98,17 @@ public class FormController {
             String descInput = aSubmittingForm.shortDesc;
             Timestamp lastEditedInput = new Timestamp(System.currentTimeMillis());
             String dateInput = aSubmittingForm.eventDate;
-            Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, dateInput);
+            DateFormat formatter = new SimpleDateFormat("dd/mm/yyyy");
+            Date activityDate = null;
+            try {
+                activityDate = formatter.parse(dateInput);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, activityDate);
 
             if (aSubmittingForm.formID != null) {
-                form1 = new Form(aSubmittingForm.formID, eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, dateInput);
+                form1 = new Form(aSubmittingForm.formID, eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, activityDate);
             }
 
             formService.saveForm(form1);
@@ -215,6 +226,7 @@ public class FormController {
     public String getFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
     // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
         //Replace this with getFormbyFormID soon
+        System.out.println(formService.getFormByID(formID).getCompletionLevel());
         model.addAttribute("form", formService.getFormByID(formID));
         return "form-view";
 
@@ -226,6 +238,7 @@ public class FormController {
         Optional<User> ausername = userService.findUserByUsername(username.get());
         User aUser = ausername.get();
         List<Form> forms = formHandler.findFormsByMatchingTagIDs(filtersForm.tags,username.get());
+        forms = formHandler.filterByCompletionStatus(forms,filtersForm.completionStatus);
 
         FiltersForm filters = new FiltersForm();
         //Gets the tags for filters
