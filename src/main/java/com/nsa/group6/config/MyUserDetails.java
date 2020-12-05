@@ -1,4 +1,4 @@
-package com.nsa.group6.jpa;
+package com.nsa.group6.config;
 
 import com.nsa.group6.domain.User;
 import org.springframework.security.core.GrantedAuthority;

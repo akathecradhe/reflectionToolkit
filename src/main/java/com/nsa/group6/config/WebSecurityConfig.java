@@ -1,26 +1,15 @@
-package com.nsa.group6.web;
+package com.nsa.group6.config;
 
-import com.nsa.group6.jpa.MyUserDetailsService;
-import com.nsa.group6.repositories.UserJPAadptor;
-import com.nsa.group6.service.UserService;
+import com.nsa.group6.service.MyUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.cglib.proxy.NoOp;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.authentication.AuthenticationProvider;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-
-import java.net.Authenticator;
 
 
 @Configuration
@@ -37,19 +26,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-
-        http.authorizeRequests(authorizeRequests -> authorizeRequests.mvcMatchers("/**")
-                                .hasAnyRole("ADMIN")
-                                .anyRequest().denyAll()
-                )
-                .formLogin(formLogin ->
-                        formLogin
-                                .permitAll()
-                ).logout(logout ->
-                logout
-                        .permitAll());
-
-
+        http.authorizeRequests()
+                .antMatchers("/css/*.css", "/js/*.js").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .permitAll()
+                .and()
+                .logout().logoutSuccessUrl("/login")
+                .permitAll();
 
     }
 

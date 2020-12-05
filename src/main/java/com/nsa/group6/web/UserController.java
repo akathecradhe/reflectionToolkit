@@ -5,7 +5,6 @@ import com.nsa.group6.domain.Form;
 import com.nsa.group6.domain.SubmittingForm;
 import com.nsa.group6.domain.Tags;
 import com.nsa.group6.domain.User;
-import com.nsa.group6.jpa.FormRepoJPA;
 import com.nsa.group6.service.FormService;
 import com.nsa.group6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,29 +30,23 @@ public class UserController {
     private final FormService formService;
     private final UserService userService;
 
-    @Autowired
-    FormRepoJPA formRepo;
-
-
     public UserController(FormService formService, UserService userService) {
         this.formService = formService;
         this.userService = userService;
     }
 
-
-
     @GetMapping("/login")
-    public String login() {
+    public String loginPage() {
 
         return "login";
     }
 
 
     @PostMapping("/logout")
-    public String logout() {
+    public String logoutPage() {
 
 
-            return "login";
+        return "login";
 
     }
 

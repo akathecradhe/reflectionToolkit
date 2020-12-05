@@ -1,4 +1,4 @@
-package com.nsa.group6.jpa;
+package com.nsa.group6.service;
 
 import com.nsa.group6.domain.User;
 import com.nsa.group6.repositories.UserRepository;
