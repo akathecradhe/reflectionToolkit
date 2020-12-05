@@ -104,7 +104,7 @@
         *
        </span>
                     </label>
-                    <input class="form-control" type="date" id="eventDate" name="eventDate" th:value="${formEdit?.activityDate}">
+                    <input class="form-control" type="date" id="eventDate" name="eventDate" th:value="${formEdit?.getDateString()}">
 
                     <span class="help-block">
        Select the date that the activity took place.
