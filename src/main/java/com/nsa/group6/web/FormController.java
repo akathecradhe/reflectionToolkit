@@ -2,7 +2,6 @@ package com.nsa.group6.web;
 
 import com.nsa.group6.domain.Event;
 import com.nsa.group6.domain.*;
-import com.nsa.group6.jpa.MyUserDetails;
 import com.nsa.group6.service.FormService;
 import com.nsa.group6.service.UserService;
 import com.nsa.group6.service.*;
@@ -15,17 +14,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.sql.Timestamp;
-import java.util.Date;
 
-import java.security.Principal;
 import java.util.List;
 import java.util.Optional;
 import com.nsa.group6.domain.Form;
 import com.nsa.group6.domain.SubmittingForm;
 import com.nsa.group6.domain.Tags;
-import com.nsa.group6.jpa.FormRepoJPA;
-
-import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.validation.BindingResult;
@@ -101,7 +95,7 @@ public class FormController {
             if(aSubmittingForm.dimensions != null) {
                 allTags.addAll(aSubmittingForm.dimensions);
             }
-            User userInput = new User("rowbo", "Tom Rowbotham", new Date(500000));
+            User userInput = getCurrentUser();
             List<Tags> tagsInput = tagsService.findAllTagsByID(allTags);
             Role roleInput = roleService.getRoleByID(aSubmittingForm.role).get();
             Event eventInput = eventService.getEventByID(aSubmittingForm.eventType).get();
@@ -120,7 +114,7 @@ public class FormController {
             model.addAttribute("descEdit", form1);
             model.addAttribute("reflectionEdit", reflectionInput);
 
-            return getFormsByUsername(Optional.of("rowbo"), model);
+            return getFormsByUsername(model);
         }
     }
 
@@ -176,10 +170,7 @@ public class FormController {
 
         // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not in the db.
         // If the username is left blank then take it to the page of the signed in user.
-        List<Form> forms;
-        Optional<User> ausername = userService.findUserByUsername(username.get());
-        User aUser = ausername.get();
-        forms = formService.getAllFormsByUsername(aUser);
+
         List<Form> form;
 
         User userDetails = getCurrentUser();
@@ -198,8 +189,8 @@ public class FormController {
         model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
         model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
         model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF"));
-        model.addAttribute("user", aUser);
-        model.addAttribute("forms", forms);
+        model.addAttribute("user", userDetails);
+        model.addAttribute("forms", form);
         model.addAttribute("filters",filters);
 
         return "reflection-list";
@@ -242,12 +233,11 @@ public class FormController {
 
     }
 
-    @PostMapping("reflections/{username}")
-    public String submitFilters(@PathVariable(name = "username", required = false) Optional<String> username,
-                                @ModelAttribute("filters") FiltersForm filtersForm, Model model) {
-        Optional<User> ausername = userService.findUserByUsername(username.get());
-        User aUser = ausername.get();
-        List<Form> forms = formHandler.findFormsByMatchingTagIDs(filtersForm.tags,username.get());
+    @PostMapping("reflections")
+    public String submitFilters(@ModelAttribute("filters") FiltersForm filtersForm, Model model) {
+
+        User aUser = getCurrentUser();
+        List<Form> forms = formHandler.findFormsByMatchingTagIDs(filtersForm.tags,aUser.getUsername());
 
         FiltersForm filters = new FiltersForm();
         //Gets the tags for filters
@@ -264,21 +254,18 @@ public class FormController {
     }
 
 
-    @GetMapping("/home/{username}")
-    public String getHomeData(@PathVariable(name = "username", required = false) Optional<String> username, Model model) {
+    @GetMapping("/home")
+    public String getHomeData(Model model) {
 
         // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not in the db.
-        // If the username is left blank then take it to the page of the signed in user.
-        Optional<User> ausername = userService.findUserByUsername(username.get());
-        User aUser = ausername.get();
+        // If the username is left blank then take it to the page of the signed in user.;
 
+        User aUser = getCurrentUser();
+
+        model.addAttribute("user",aUser);
 
         return "home";
     }
-
-
-
-
 
 
 
