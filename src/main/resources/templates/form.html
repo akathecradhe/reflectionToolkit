@@ -56,12 +56,6 @@
             <li class="nav-item active">
                 <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('thoughtcld')">Thought Cloud</a>
             </li>
-            <li class="nav-item active">
-                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('reflection')">Reflection</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('learningpoints')">Action Points</a>
-            </li>
         </ul>
     </div>
 </nav>
@@ -323,130 +317,14 @@
                     <div class="form-group">
                         <div>
                             <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('learntechs').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Validation for NONE needs to be figured out-->
-
-        <div id="reflection" class="container">
-            <h1 class="mt-5">Reflection</h1><br>
-            <div class="row">
-                <div class="col-md-8 order-md-1">
-                    <div class="form-group ">
-                        <label class="labels">
-                            What did you do?
-                            
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box1}" maxlength="100" name="box1" id="box1" placeholder="(max 100 characters)" ></textarea>
-                        <span class="help-block">
-                   Provide a clear record.
-                  </span>
-                    </div>
-
-                    <div class="form-group ">
-                        <label class="labels">
-                            What prompted your approach?
-
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box2}" maxlength="100" name="box2" id="box2" placeholder="(max 100 characters)" ></textarea>
-                        <span class="help-block">
-                   Consider your past experiences and how they might have been of influence here.
-                  </span>
-                    </div>
-
-                    <div class="form-group ">
-                        <label class="labels">
-                            What happened?
-
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box3}" maxlength="100" name="box3" id="box3" placeholder="(max 100 characters)" ></textarea>
-                        <span class="help-block">
-                   Consider your own and others' viewpoints and feelings - put yourself in their shoes!
-                  </span>
-                    </div>
-
-                    <div class="form-group ">
-                        <label class="labels">
-                            What impact did the learning technologies have on your activity?
-
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box4}" maxlength="100" name="box4" id="box4" placeholder="(max 100 characters)" ></textarea>
-                        <span class="help-block">
-                   Think about how your development might have been affected had you utilised a different technology.
-                  </span>
-                    </div>
-
-                    <div class="form-group ">
-                        <label class="labels">
-                            Collecting Evidence
-
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box5}" maxlength="100" name="box5" id="box5" placeholder="(max 100 characters)" ></textarea>
-                        <span class="help-block">
-                   How will you evaluate this activity later? What evidence do you need?
-                  </span>
-                    </div>
-
-                    <div class="form-group ">
-                        <label class="labels">
-                            Alternate actions or responses
-
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box6}" maxlength="100" name="box6" id="box6" placeholder="(max 100 characters)" ></textarea>
-                        <span class="help-block">
-                   What could you have done differently?
-                  </span>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('thoughtcld').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('learningpoints').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="learningpoints" class="container">
-            <h1 class="mt-5">Action Points</h1><br>
-            <div class="row">
-                <div class="col-md-8 order-md-1">
-                    <div class="form-group ">
-                        <label class="labels">
-                            Action Point 1
-                            <span class="asteriskField">
-                                *
-                               </span>
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint1}" maxlength="140" name="learningPoint1" id="learningPoint1" placeholder="(max 140 characters)" REQUIRED></textarea>
-                        <span class="help-block">
-                               What key takeaways did you gain from this experience? Type them in the text fields.
-                  </span>
-                    </div>
-                    <div class="form-group ">
-                        <label class="labels">
-                            Action Point 2
-                            </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint2}" maxlength="140" name="learningPoint2" id="learningPoint2" placeholder="(max 140 characters)"></textarea>
-                    </div>
-                    <div class="form-group ">
-                        <label class="labels">
-                            Action Point 3
-                            </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint3}" maxlength="140" name="learningPoint3" id="learningPoint3" placeholder="(max 140 characters)"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
                             <button style="float: right;" class="btn btn-primary " type="submit" value="Submit" onclick="confirmsubmit()"> Submit </button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+
+
 
 
     </form>
@@ -463,8 +341,6 @@
         document.getElementById('activitydetails').style.display='none'
         document.getElementById('ukpsf').style.display='none';
         document.getElementById('thoughtcld').style.display='none';
-        document.getElementById('reflection').style.display='none';
-        document.getElementById('learningpoints').style.display='none';
         document.getElementById('learntechs').style.display='none';
         document.getElementById('impact').style.display='none';
         document.getElementById(element).style.display='block';

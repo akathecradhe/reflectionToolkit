@@ -278,9 +278,11 @@ public class FormController {
 
     }
 
-
-
-
+    @GetMapping("/addreflection/{formID}")
+    public String  addReflectionByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
+        model.addAttribute("form", formService.getFormByID(1));
+        return "formreflection";
+    }
 
 
 
