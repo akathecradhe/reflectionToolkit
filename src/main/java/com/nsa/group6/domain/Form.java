@@ -1,8 +1,13 @@
 package com.nsa.group6.domain;
 
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -47,6 +52,19 @@ public class Form {
             inverseJoinColumns = @JoinColumn(name = "TagID"))
     private List<Tags> tags;
 
+
+    private Date activityDate;
+
+
+    //This function returns the date object in the format wanted for the webpage. Previously printing the
+    //event would include a timestamp of midnight.
+    public String getDateString () {
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        return formatter.format(activityDate);
+
+    }
+
+
     public String getLastEditedString() {
         return new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(lastEdited);
     }
@@ -78,7 +96,8 @@ public class Form {
         return tags.contains(tag);
     }
 
-    public Form(Event eventID, String shortDescription, User username, Role roleID, Reflection reflectionID, Timestamp lastEdited, List<Tags> tags) {
+    //Create a form without ID
+    public Form(Event eventID, String shortDescription, User username, Role roleID, Reflection reflectionID, Timestamp lastEdited, List<Tags> tags, Date activityDate) {
         this.eventID = eventID;
         this.shortDescription = shortDescription;
         this.username = username;
@@ -86,8 +105,35 @@ public class Form {
         this.reflectionID = reflectionID;
         this.lastEdited = lastEdited;
         this.tags = tags;
+        this.activityDate = activityDate;
     }
 
+    //Create a form without a reflection or ID
+    public Form(Event eventID, String shortDescription, User username, Role roleID, Timestamp lastEdited, List<Tags> tags, Date activityDate) {
+        this.eventID = eventID;
+        this.shortDescription = shortDescription;
+        this.username = username;
+        this.roleID = roleID;
+        this.lastEdited = lastEdited;
+        this.tags = tags;
+        this.activityDate = activityDate;
+    }
+
+    public String getCompletionLevel() {
+        String completionLevel = "red";
+        if(!getTagsByCategory("UKPSF").isEmpty()){
+            if(reflectionID == null){
+                completionLevel = "amber";
+            } else {
+                completionLevel = "green";
+            }
+        } else if (reflectionID != null) {
+            completionLevel = "amber";
+        }
+
+
+        return completionLevel;
+    }
 }
 
 

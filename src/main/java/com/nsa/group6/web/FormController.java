@@ -1,20 +1,30 @@
 package com.nsa.group6.web;
 
-import com.nsa.group6.domain.Event;
 import com.nsa.group6.domain.*;
 import com.nsa.group6.service.FormService;
 import com.nsa.group6.service.UserService;
 import com.nsa.group6.service.*;
+
+
+
+
+
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.sql.Timestamp;
-
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import com.nsa.group6.domain.Form;
@@ -24,12 +34,9 @@ import com.nsa.group6.domain.Tags;
 
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
-
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.ArrayList;
-
 
 @Controller
 public class FormController {
@@ -101,10 +108,18 @@ public class FormController {
             Event eventInput = eventService.getEventByID(aSubmittingForm.eventType).get();
             String descInput = aSubmittingForm.shortDesc;
             Timestamp lastEditedInput = new Timestamp(System.currentTimeMillis());
-            Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput);
+            String dateInput = aSubmittingForm.eventDate;
+            DateFormat formatter = new SimpleDateFormat("yyyy-mm-dd");
+            Date activityDate = null;
+            try {
+                activityDate = formatter.parse(dateInput);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, activityDate);
 
             if (aSubmittingForm.formID != null) {
-                form1 = new Form(aSubmittingForm.formID, eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput);
+                form1 = new Form(aSubmittingForm.formID, eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, activityDate);
             }
 
             formService.saveForm(form1);
@@ -216,7 +231,7 @@ public class FormController {
         model.addAttribute("tagsEdit", allTags);
         model.addAttribute("roleEdit", roleInput);
         model.addAttribute("eventEdit", eventInput);
-        model.addAttribute("descEdit", editingForm);
+        model.addAttribute("formEdit", editingForm);
         model.addAttribute("reflectionEdit", reflectionInput);
         model.addAttribute("formID", formID);
 
@@ -238,6 +253,8 @@ public class FormController {
 
         User aUser = getCurrentUser();
         List<Form> forms = formHandler.findFormsByMatchingTagIDs(filtersForm.tags,aUser.getUsername());
+
+        forms = formHandler.filterByCompletionStatus(forms,filtersForm.completionStatus);
 
         FiltersForm filters = new FiltersForm();
         //Gets the tags for filters
@@ -266,6 +283,18 @@ public class FormController {
 
         return "home";
     }
+
+    //This function deletes a reflection
+    @DeleteMapping("/reflectionremove/{formID}")
+    public ResponseEntity<String> deleteFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
+        // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
+        formService.deleteForm(formID);
+        return ResponseEntity.noContent().build();
+
+
+
+    }
+
 
 
 

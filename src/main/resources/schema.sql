@@ -10,8 +10,7 @@ SET IGNORECASE=TRUE;
 -- Let's create a new table now
 CREATE TABLE IF NOT EXISTS `event` (
    `eventId` INT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `Name` VARCHAR(45) NOT NULL,
-  `event_date` DATE NOT NULL
+  `Name` VARCHAR(45) NOT NULL
   )
 ENGINE = InnoDB;
 
@@ -39,15 +38,15 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `reflection` (
   `reflectionId` Int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   -- CHANGE THESE BACK TO 100 CHARACTERS AFTER DEMO
-  `box1` VARCHAR(140) NOT NULL,
-  `box2` VARCHAR(140) NOT NULL,
-  `box3` VARCHAR(140) NOT NULL,
-  `box4` VARCHAR(140) NOT NULL,
-  `box5` VARCHAR(140) NOT NULL,
-  `box6` VARCHAR(140) NOT NULL,
+  `box1` VARCHAR(100) NOT NULL,
+  `box2` VARCHAR(100) NOT NULL,
+  `box3` VARCHAR(100) NOT NULL,
+  `box4` VARCHAR(100) NOT NULL,
+  `box5` VARCHAR(100) NOT NULL,
+  `box6` VARCHAR(100) NOT NULL,
   `learning_point1` VARCHAR(140) NOT NULL,
-  `learning_point2` VARCHAR(140) NOT NULL,
-  `learning_point3` VARCHAR(140) NOT NULL
+  `learning_point2` VARCHAR(140),
+  `learning_point3` VARCHAR(140)
   )
 ENGINE = InnoDB;
 
@@ -79,7 +78,8 @@ CREATE TABLE IF NOT EXISTS `form` (
   `roleId` VARCHAR(45) NOT NULL,
   `username` VARCHAR(45) NOT NULL,
   `reflectionId` VARCHAR(45),
-  `last_edited` TIMESTAMP NOT NULL
+  `last_edited` TIMESTAMP NOT NULL,
+  `activity_date` DATE NOT NULL
   )
 ENGINE = InnoDB;
 

@@ -13,7 +13,7 @@ public interface FormService {
 
     public void updateForm(Form aForm);
 
-    public void deleteForm(Long id);
+    public void deleteForm(int id);
 
     List<Form> getAllFormsByUsername(User username);
 

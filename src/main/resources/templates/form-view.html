@@ -6,9 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
     <link href="../static/css/bootstrap.css" th:href="@{/css/reflections.css}" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <title>Activity</title>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script src="https://kit.fontawesome.com/9b9fc493c6.js" crossorigin="anonymous"></script>
 </head>
@@ -76,12 +78,20 @@
 
     <h1 class="mt-5" th:text="${form.getEventID().getName()}"> </h1>
     <hr>
-    <a class="btn btn-primary" style="float:right" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
+    <div>
+    <a style="float:right" class="btn btn-primary" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
+        <a style="float:right; margin-right:5px" class="btn btn-primary deleteBtn">Delete</a>
+        <a class="btn btn-primary" href="/reflections/rowbo">Go Back</a>
+    </div>
 
     <div style="margin-top: 30px">
         <h2>Activity Details</h2><br>
 
         <p><label class="labels">Description</label> <br> <span th:text="${form.shortDescription}">Description goes here</span></p>
+        <br>
+        <p th:switch="${form.getCompletionLevel()}"><label class="labels">Completion Status</label> <br> <span th:case="green">Completed</span><span th:case="amber">Partially Completed</span><span th:case="red">Incomplete</span></p>
+        <br>
+        <p><label class="labels">Activity Date</label> <br> <span th:text="${form.getDateString()}">23/07/2001</span></p>
         <br>
         <p><label class="labels">Role</label> <br><span th:text="${form.roleID.name}"></span></p>
         <br>
@@ -145,12 +155,19 @@
     </div>
     <hr><br>
     <div>
-        <h2>Learning Points</h2><br>
+        <h2>Action Points</h2><br>
         <ol>
             <li th:text = "${form.reflectionID.getLearningPoint1()}"></li><br>
             <li th:text = "${form.reflectionID.getLearningPoint2()}"></li><br>
             <li th:text = "${form.reflectionID.getLearningPoint3()}"></li>
         </ol>
+
+    </div>
+    <br>
+    <div>
+        <a style="float:right" class="btn btn-primary" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
+        <a style="float:right; margin-right:5px" class="btn btn-primary deleteBtn">Delete</a>
+         <a class="btn btn-primary" href="/reflections/rowbo">Go Back</a>
 
     </div>
     <br><br>
@@ -159,5 +176,27 @@
 
 </div>
 </main>
+
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    $(document).ready(function(){
+        $(".deleteBtn").click(function(e){
+            if(!confirm('Delete this form?')) {
+                return
+            }
+            var id = /*[[${form.getFormID()}]]*/ 'default';
+            $.ajax({type: "delete",
+                url: "/reflectionremove/"+ id,
+                success:function(result){
+                    window.location = "/reflections/rowbo";
+                }
+            });
+        });
+    });
+
+    /*]]>*/
+</script>
+
 </body>
 </html>

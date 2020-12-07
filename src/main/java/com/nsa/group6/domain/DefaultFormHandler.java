@@ -43,6 +43,14 @@ public class DefaultFormHandler implements FormHandler {
     }
 
     @Override
+    public List<Form> filterByCompletionStatus(List<Form> forms, List<String> completionStatus) {
+        return forms
+                .stream()
+                .filter(a -> completionStatus.contains(a.getCompletionLevel()))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public List<Form> findFormsByMatchingTagIDs(List<Integer> tagIDs, String aUser) {
         List<Tags> tags = tagIDs
                 .stream()

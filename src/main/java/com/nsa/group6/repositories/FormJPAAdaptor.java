@@ -32,8 +32,8 @@ public class FormJPAAdaptor implements FormService {
     }
 
     @Override
-    public void deleteForm(Long id) {
-
+    public void deleteForm(int id) {
+        formRepository.deleteById(id);
     }
 
     @Override

@@ -77,8 +77,6 @@
     </nav>
 </header>
 
-
-
 <div class="container">
 
 <h2>Activities</h2>
@@ -121,6 +119,15 @@
                 </div>
             </div>
 
+            <button class="btn btn-secondary col-sm drop" id="completionStatus" type="button">Completion Status</button>
+            <div class="w-100" id="completionStatus-drop">
+                <div >
+                    <li><input type="checkbox" th:field="*{completionStatus}" value="green">Completed</li>
+                    <li><input type="checkbox" th:field="*{completionStatus}" value="amber">Partially Completed</li>
+                    <li><input type="checkbox" th:field="*{completionStatus}" value="red">Incomplete</li>
+                </div>
+            </div>
+
             <button class="btn btn-primary applybtn float-right" type="submit">Apply </button>
         </form>
     <div th:if="${forms.empty}">
@@ -128,13 +135,14 @@
     </div>
 
     <div style="margin-bottom: 16px;" class="card w-100 bg-light rounded shadow-sm" th:each="form : ${forms}">
-        <div class="card-body">
+        <div class="card-body reflection" th:id="${form.getCompletionLevel()}">
             <h5 class="card-title" th:text="${form.getEventID().getName()}">Teaching Or Supervision</h5>
-            <p class="card-text"><span th:text="${form.shortDescription}">Held an hour-long online seminar for Year 2 students on Presentation Skills</span>
+            <p class="card-text" th:switch="${form.getCompletionLevel()}"><span th:text="${form.shortDescription}">Held an hour-long online seminar for Year 2 students on Presentation Skills</span>
 
-                <br>Event held on <span th:text="${form.getEventID.getDateString()}">23-11-2020</span>
-                <br>Last edited: <span th:text="${form.getLastEditedString()}">2020-12-01 18:25:55.996301</span></p>
-            <a th:href="@{/reflection/{furl} (furl=${form.getEventID().getEventID()})}"  class="btn btn-primary">View Activity</a>
+                <br>Event held on <span th:text="${form.getDateString()}">23-11-2020</span>
+                <br>Last edited: <span th:text="${form.getLastEditedString()}">2020-12-01 18:25:55.996301</span>
+                <br>Completion Status: <span th:case="green">Completed</span><span th:case="amber">Partially Completed</span><span th:case="red">Incomplete</span></p>
+            <a th:href="@{/reflection/{furl} (furl=${form.getFormID()})}"  class="btn btn-primary">View Activity</a>
 
         </div>
     </div>
@@ -150,6 +158,7 @@
         $("#learningTechnologies-drop").hide();
         $("#thoughtCloud-drop").hide();
         $("#impact-drop").hide();
+        $("#completionStatus-drop").hide();
         $("#filterBtn").click(function(){
             $("#filters").toggle()
         });
@@ -167,6 +176,9 @@
         });
         $("#impact").click(function(){
             $("#impact-drop").toggle()
+        });
+        $("#completionStatus").click(function(){
+            $("#completionStatus-drop").toggle()
         });
     });
 

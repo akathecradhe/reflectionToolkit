@@ -68,3 +68,23 @@ ul li a:hover .icon .fa
 
 
 
+
+#green{
+    border-color: green;
+    background-color: #cfffba;
+}
+
+#red{
+    border-color: red;
+    background-color: #ffa8a8;
+}
+
+#amber{
+    border-color: #FFBF00;
+    background-color: #ffe6a8;
+}
+
+.reflection{
+    border-radius: 2px;
+    border-style: solid;
+}
