@@ -81,7 +81,7 @@
     <div>
     <a style="float:right" class="btn btn-primary" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
         <a style="float:right; margin-right:5px" class="btn btn-primary deleteBtn">Delete</a>
-        <a class="btn btn-primary" href="/reflections/rowbo">Go Back</a>
+        <a class="btn btn-primary" href="/reflection/user">Go Back</a>
     </div>
 
     <div style="margin-top: 30px">
@@ -167,7 +167,7 @@
     <div>
         <a style="float:right" class="btn btn-primary" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
         <a style="float:right; margin-right:5px" class="btn btn-primary deleteBtn">Delete</a>
-         <a class="btn btn-primary" href="/reflections/rowbo">Go Back</a>
+         <a class="btn btn-primary" href="/reflection/user">Go Back</a>
 
     </div>
     <br><br>
@@ -189,7 +189,7 @@
             $.ajax({type: "delete",
                 url: "/reflectionremove/"+ id,
                 success:function(result){
-                    window.location = "/reflections/rowbo";
+                    window.location = "/reflection/user";
                 }
             });
         });
