@@ -280,7 +280,7 @@ public class FormController {
         User aUser = getCurrentUser();
 
         List<Form> form = formService.getRecent();
-        List<Form> incompleteForm = formService.getIncomplete();
+        List<Form> incompleteForm = formService.getIncomplete(aUser);
 
         model.addAttribute("incompletes", incompleteForm);
         model.addAttribute("user", aUser);
