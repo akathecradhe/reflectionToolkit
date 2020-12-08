@@ -18,57 +18,58 @@
 <body>
 
 <header>
-    <nav class="navbar navbar-expand-md navbar-light " style="background-color: #e3f2fd;">
-        <a class="navbar-brand">Reflection Toolkit</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="background-color: #e3f2fd;">
+        <a class="navbar-brand topnavbar-brand">Reflection Toolkit</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarsExample04">
-            <ul class="navbar-nav mr-auto">
+        <div class="collapse navbar-collapse centered" id="navbarsExample04">
+            <ul class="navbar-nav mr-auto topnavbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/home">
+                    <a class="nav-link" href="/home" tabindex="-1">
                         <div class="icon">
-                            <i class="fa fa-home" aria-hidden="true"></i>
-                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <i class="fa fa-home lightgrey"></i>
+                            <i class="fa fa-home"></i>
 
                         </div>
-                        <div class="name" data-text="Home"> Home </div>
+                        Home
+
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-             disabled="true">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/reflection/user">
                         <div class="icon">
-                            <i class="fa fa-clipboard-list"></i>
+                            <i class="fa fa-clipboard-list lightgrey"></i>
                             <i class="fa fa-clipboard-list"></i>
                         </div>
 
 
-                        Activities<span class="sr-only =">(current)</span></a>
+                        Activities</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/form">
+                <li class="nav-item active">
+                    <a class="nav-link disabled" href="/form">
 
                         <div class="icon">
-                            <i class="fa fa-file-medical"></i>
+                            <i class="fa fa-file-medical lightgrey"></i>
                             <i class="fa fa-file-medical"></i>
                         </div>
 
-                        Log Activity</a>
+                        Log Activity
+                    </a>
                 </li>
-
-                <li class="nav-item last">
+                <li class="nav-item active last">
                     <a class="nav-link" href="#" th:href="@{/logout}">
                         <div class="icon">
-                            <i class="fa fa-sign-out-alt"></i>
+                            <i class="fa fa-sign-out-alt lightgrey"></i>
                             <i class="fa fa-sign-out-alt"></i>
                         </div>
                         Logout
                     </a>
-
-
-
                 </li>
+
+
+
             </ul>
         </div>
     </nav>
