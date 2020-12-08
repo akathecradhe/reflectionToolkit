@@ -190,6 +190,9 @@ public class FormController {
 
         User userDetails = getCurrentUser();
 
+        ;
+        System.out.println(userDetails.getRoles());
+
         // getUsername() - Returns the username used to authenticate the user.
         System.out.println("User name: " + userDetails.getUsername());
 
