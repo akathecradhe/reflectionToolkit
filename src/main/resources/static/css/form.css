@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans&display=swap');
+
 * {
     background-color: #f2f2f2;
-    font-family: Arial, Helvetica, Verdana, sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
     font-size:17px;
     margin:0;
 }
@@ -171,6 +173,9 @@ p{background-color: white;
 .navli a:hover {
     background-color: #111;
 }
+
+
+
 div{
     background-color: white;
 }
