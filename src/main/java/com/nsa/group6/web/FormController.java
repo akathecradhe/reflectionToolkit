@@ -4,6 +4,14 @@ import com.nsa.group6.domain.*;
 import com.nsa.group6.service.FormService;
 import com.nsa.group6.service.UserService;
 import com.nsa.group6.service.*;
+
+
+
+
+
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -22,6 +30,8 @@ import java.util.Optional;
 import com.nsa.group6.domain.Form;
 import com.nsa.group6.domain.SubmittingForm;
 import com.nsa.group6.domain.Tags;
+
+
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
@@ -92,7 +102,7 @@ public class FormController {
             if(aSubmittingForm.dimensions != null) {
                 allTags.addAll(aSubmittingForm.dimensions);
             }
-            User userInput = new User("rowbo", "Tom Rowbotham", new Date(500000));
+            User userInput = getCurrentUser();
             List<Tags> tagsInput = tagsService.findAllTagsByID(allTags);
             Role roleInput = roleService.getRoleByID(aSubmittingForm.role).get();
             Event eventInput = eventService.getEventByID(aSubmittingForm.eventType).get();
@@ -122,7 +132,7 @@ public class FormController {
 
 //            model.addAttribute("reflectionEdit", reflectionInput);
 
-            return getFormsByUsername(Optional.of("rowbo"), model);
+            return getFormsByUsername(model);
         }
     }
 
@@ -173,15 +183,21 @@ public class FormController {
 
 
     //This function retrieves the list of reflections by username
-    @GetMapping("/reflections/{username}")
-    public String getFormsByUsername(@PathVariable(name = "username", required = false) Optional<String> username, Model model) {
+    @GetMapping("/reflection/user")
+    public String getFormsByUsername( Model model) {
 
         // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not in the db.
         // If the username is left blank then take it to the page of the signed in user.
-        List<Form> forms;
-        Optional<User> ausername = userService.findUserByUsername(username.get());
-        User aUser = ausername.get();
-        forms = formService.getAllFormsByUsername(aUser);
+
+        List<Form> form;
+
+        User userDetails = getCurrentUser();
+
+        // getUsername() - Returns the username used to authenticate the user.
+        System.out.println("User name: " + userDetails.getUsername());
+
+
+        form = formService.getAllFormsByUsername(userDetails);
 
         FiltersForm filters = new FiltersForm();
 
@@ -191,8 +207,8 @@ public class FormController {
         model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
         model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
         model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF"));
-        model.addAttribute("user", aUser);
-        model.addAttribute("forms", forms);
+        model.addAttribute("user", userDetails);
+        model.addAttribute("forms", form);
         model.addAttribute("filters",filters);
 
         return "reflection-list";
@@ -245,12 +261,12 @@ public class FormController {
 
     }
 
-    @PostMapping("reflections/{username}")
-    public String submitFilters(@PathVariable(name = "username", required = false) Optional<String> username,
-                                @ModelAttribute("filters") FiltersForm filtersForm, Model model) {
-        Optional<User> ausername = userService.findUserByUsername(username.get());
-        User aUser = ausername.get();
-        List<Form> forms = formHandler.findFormsByMatchingTagIDs(filtersForm.tags,username.get());
+    @PostMapping("reflections")
+    public String submitFilters(@ModelAttribute("filters") FiltersForm filtersForm, Model model) {
+
+        User aUser = getCurrentUser();
+        List<Form> forms = formHandler.findFormsByMatchingTagIDs(filtersForm.tags,aUser.getUsername());
+
         forms = formHandler.filterByCompletionStatus(forms,filtersForm.completionStatus);
 
         FiltersForm filters = new FiltersForm();
@@ -268,13 +284,20 @@ public class FormController {
     }
 
 
-    @GetMapping("/home/{username}")
-    public String getHomeData(@PathVariable(name = "username", required = false) Optional<String> username, Model model) {
+    @GetMapping("/home")
+    public String getHomeData(Model model) {
 
         // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not in the db.
-        // If the username is left blank then take it to the page of the signed in user.
-        Optional<User> ausername = userService.findUserByUsername(username.get());
-        User aUser = ausername.get();
+        // If the username is left blank then take it to the page of the signed in user.;
+
+        User aUser = getCurrentUser();
+
+        List<Form> form = formService.getRecent();
+        List<Form> incompleteForm = formService.getIncomplete();
+
+        model.addAttribute("incompletes", incompleteForm);
+        model.addAttribute("user", aUser);
+        model.addAttribute("forms", form);
 
 
         return "home";
@@ -296,6 +319,16 @@ public class FormController {
         model.addAttribute("form", formService.getFormByID(formID));
         return "formreflection";
     }
+
+
+    public User getCurrentUser(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+        Optional<User> ausername = userService.findUserByUsername(userDetails.getUsername());
+        User aUser = ausername.get();
+        return aUser;
+    }
+
 
     @PostMapping("/addreflection/{formID}")
     public String postReflectionByID(@ModelAttribute("form") ReflectionForm reflectionForm, @PathVariable(name = "formID", required = true) int formID, BindingResult bindings, Model model) {
@@ -323,7 +356,6 @@ public class FormController {
             return getFormsByUsername(Optional.of("rowbo"), model);
         }
     }
-
 
 
 
