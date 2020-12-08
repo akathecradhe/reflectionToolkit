@@ -269,6 +269,19 @@ public class FormController {
 
         return "reflection-list";
     }
+    
+    @GetMapping("/admin")
+    public String getAdminData(Model model) {
+
+        // TODO: 25/11/2020 Validation- what to do when the user entered in the url is not in the db.
+        // If the username is left blank then take it to the page of the signed in user.;
+
+        User aUser = getCurrentUser();
+
+        model.addAttribute("user",aUser);
+
+        return "admin";
+    }
 
 
     @GetMapping("/home")
