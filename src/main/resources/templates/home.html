@@ -37,24 +37,43 @@
 <main role="main" class="container h-100">
     <div class = 'row h-50'>
     <div class="col-md-5 m-3 p-3  bg-light rounded shadow-sm">
-        <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities</label>
-        <div class="media text-muted pt-3">
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark">Teaching or Supervision 2020/12/01</strong>
-                Activity Description
-            </p>
-        </div>
-        <div class="media text-muted pt-3">
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark">Design or Plan 2020/12/02</strong>
-                Activity Description
-            </p>
-        </div>
-        <div class="media text-muted pt-3">
-            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <strong class="d-block text-gray-dark">Assess or Give Feedback 2020/12/03</strong>
-                Activity Description
-            </p>
+        <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities Added</label>
+<!--        <div class="media text-muted pt-3">-->
+<!--            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
+<!--                <strong class="d-block text-gray-dark">Teaching or Supervision 2020/12/01</strong>-->
+<!--                Activity Description-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div class="media text-muted pt-3">-->
+<!--            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
+<!--                <strong class="d-block text-gray-dark">Design or Plan 2020/12/02</strong>-->
+<!--                Activity Description-->
+<!--            </p>-->
+<!--        </div>-->
+<!--        <div class="media text-muted pt-3">-->
+<!--            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
+<!--                <strong class="d-block text-gray-dark">Assess or Give Feedback 2020/12/03</strong>-->
+<!--                Activity Description-->
+<!--            </p>-->
+<!--        </div>-->
+
+        <div th:each="form : ${forms}">
+            <div class="media text-muted pt-3" th:id="${form.getCompletionLevel()}">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+
+                        <a style="text-decoration: none; color: #343a40; padding-bottom: 0" class="text-gray-dark" th:href="@{/reflection/{furl} (furl=${form.getFormID()})}">
+                        <strong  class="text-gray-dark" th:text="${form.getEventID().getName()}"></strong>
+                        </a>
+
+                <p th:switch="${form.getCompletionLevel()}">
+                    <span th:text="${form.shortDescription}"></span>
+                    <br>Event held on <span th:text="${form.getDateString()}">0</span>
+                    <br>Last edited: <span th:text="${form.getLastEditedString()}"></span>
+                    <br>Completion Status: <span th:case="green">Completed</span><span th:case="amber">Partially Completed</span><span th:case="red">Incomplete</span>
+                </p>
+                </div>
+
+            </div>
         </div>
         <small class="d-block text-right mt-3">
             <a href="/reflections/rowbo">All Activities</a>
@@ -99,33 +118,69 @@
     <div class = 'row h-50'>
     <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
         <label class= "labels border-bottom border-gray pb-2 mb-0">Why not finish these forms?</label>
+        <div th:unless="${incompletes.size() == 0}">
+        <div th:each="incomplete: ${incompletes}">
         <div class="media text-muted pt-3">
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" th:switch="${incomplete.getCompletionLevel()}">
                 <div class="d-flex justify-content-between align-items-center w-100">
-                    <strong class="text-gray-dark">Discussion</strong>
+                    <a style="text-decoration: none; color: #343a40; padding-bottom: 0" class="text-gray-dark" th:href="@{/reflection/{furl} (furl=${incomplete.getFormID()})}">
+                    <strong class="text-gray-dark" th:text="${incomplete.getEventID().getName()}">Discussion</strong>
+                    </a>
                 </div>
-                <span class="d-block">Entry last updated 2020/11/28. Reflection not yet added.</span>
+                <span class="d-block"> Entry last edited: <span th:text="${incomplete.getLastEditedString()}"></span></span>
+                <span class="d-block">Completion Status: <span th:case="green">Completed</span><span th:case="amber">Partially Completed</span><span th:case="red">Incomplete</span></span>
+
             </div>
         </div>
-        <div class="media text-muted pt-3">
+        </div>
+            <small class="d-block text-right mt-3">
+                <a href="#">All Incomplete Entries</a>
+            </small>
+        </div>
+        <div th:if="${incompletes.size() == 0}">
+                    <div class="media text-muted pt-3">
+                        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <strong class="text-gray-dark">Congratulations, all forms are currently up to date with UKPSF dimensions and reflections!</strong>
+                            </div>
+                        </div>
+                    </div>
+            <div class="media text-muted pt-3">
             <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                 <div class="d-flex justify-content-between align-items-center w-100">
-                    <strong class="text-gray-dark">Scholarship</strong>
+                    <a href="/form">
+                        <strong class="text-gray-dark">Add a new form</strong>
+                    </a>
                 </div>
-                <span class="d-block">Entry last updated 2020/11/20. Reflection not yet added.</span>
+            </div>
             </div>
         </div>
-        <div class="media text-muted pt-3">
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <strong class="text-gray-dark">Evaluation and Quality Assurance</strong>
-                </div>
-                <span class="d-block">Entry last updated 2020/11/10. UKPSF Tags not yet added.</span>
-            </div>
-        </div>
-        <small class="d-block text-right mt-3">
-            <a href="#">All Incomplete Entries</a>
-        </small>
+
+<!--        <div class="media text-muted pt-3">-->
+<!--            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
+<!--                <div class="d-flex justify-content-between align-items-center w-100">-->
+<!--                    <strong class="text-gray-dark">Discussion</strong>-->
+<!--                </div>-->
+<!--                <span class="d-block">Entry last updated 2020/11/28. Reflection not yet added.</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="media text-muted pt-3">-->
+<!--            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
+<!--                <div class="d-flex justify-content-between align-items-center w-100">-->
+<!--                    <strong class="text-gray-dark">Scholarship</strong>-->
+<!--                </div>-->
+<!--                <span class="d-block">Entry last updated 2020/11/20. Reflection not yet added.</span>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <div class="media text-muted pt-3">-->
+<!--            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
+<!--                <div class="d-flex justify-content-between align-items-center w-100">-->
+<!--                    <strong class="text-gray-dark">Evaluation and Quality Assurance</strong>-->
+<!--                </div>-->
+<!--                <span class="d-block">Entry last updated 2020/11/10. UKPSF Tags not yet added.</span>-->
+<!--            </div>-->
+<!--        </div>-->
+
     </div>
         <div class="col-md-4 h-auto m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Upcoming Activities</label>

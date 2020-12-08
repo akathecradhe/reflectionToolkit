@@ -263,6 +263,12 @@ public class FormController {
         Optional<User> ausername = userService.findUserByUsername(username.get());
         User aUser = ausername.get();
 
+        List<Form> form = formService.getRecent();
+        List<Form> incompleteForm = formService.getIncomplete();
+
+        model.addAttribute("incompletes", incompleteForm);
+        model.addAttribute("user", aUser);
+        model.addAttribute("forms", form);
 
         return "home";
     }
