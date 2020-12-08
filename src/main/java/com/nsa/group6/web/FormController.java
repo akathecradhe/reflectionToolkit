@@ -269,7 +269,7 @@ public class FormController {
 
         return "reflection-list";
     }
-    
+
     @GetMapping("/admin")
     public String getAdminData(Model model) {
 
