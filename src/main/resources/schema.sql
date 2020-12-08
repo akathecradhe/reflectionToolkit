@@ -1,5 +1,6 @@
 SET MODE MySQL;
 SET IGNORECASE=TRUE;
+
 -- DROP SCHEMA IF EXISTS `LoggingSystemDB` ;
 -- CREATE SCHEMA `LoggingSystemDB`;
 -- USE LoggingSystemDB ;

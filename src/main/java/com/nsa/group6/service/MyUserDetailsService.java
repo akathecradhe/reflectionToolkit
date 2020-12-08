@@ -26,7 +26,7 @@ public class MyUserDetailsService implements UserDetailsService {
         if (user != null) {
             builder = org.springframework.security.core.userdetails.User.withUsername(userName);
             builder.password(user.getPassword());
-            builder.roles("ADMIN");
+            builder.roles(user.getRoles());
         } else {
             throw new UsernameNotFoundException("User not found.");
         }
