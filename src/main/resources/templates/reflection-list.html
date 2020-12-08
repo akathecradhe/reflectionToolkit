@@ -21,57 +21,61 @@
 </head>
 <body>
 <header>
-    <nav class="navbar navbar-expand-md navbar-light " style="background-color: #e3f2fd;">
-        <a class="navbar-brand">Reflection Toolkit</a>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="background-color: #e3f2fd;">
+        <a class="navbar-brand topnavbar-brand">Reflection Toolkit</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarsExample04">
-            <ul class="navbar-nav mr-auto">
+        <div class="collapse navbar-collapse centered" id="navbarsExample04">
+            <ul class="navbar-nav mr-auto topnavbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link" href="/home">
+                    <a class="nav-link" href="/home" tabindex="-1">
                         <div class="icon">
-                            <i class="fa fa-home" aria-hidden="true"></i>
-                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <i class="fa fa-home lightgrey"></i>
+                            <i class="fa fa-home"></i>
 
                         </div>
-                        <div class="name" data-text="Home"> Home </div>
+                        Home
+
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-             disabled="true">
+                <li class="nav-item active">
+                    <a class="nav-link disabled darkergrey" href="#"  aria-disabled="true">
                         <div class="icon">
-                            <i class="fa fa-clipboard-list"></i>
-                            <i class="fa fa-clipboard-list"></i>
+                            <i class="fa fa-clipboard-list darkergrey" aria-hidden="true"></i>
+                            <i class="fa fa-clipboard-list" aria-hidden="true"></i>
                         </div>
 
 
-                        Activities<span class="sr-only =">(current)</span></a>
+                        Activities
+                        <span class="sr-only =">(current)</span>
+                    </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" href="/form">
 
                         <div class="icon">
-                            <i class="fa fa-file-medical"></i>
+                            <i class="fa fa-file-medical lightgrey"></i>
                             <i class="fa fa-file-medical"></i>
                         </div>
 
-                        Log Activity</a>
-                </li>
+                        Log Activity
 
-                <li class="nav-item last">
+                    </a>
+                </li>
+                <li class="nav-item active last">
                     <a class="nav-link" href="#" th:href="@{/logout}">
                         <div class="icon">
-                            <i class="fa fa-sign-out-alt"></i>
+                            <i class="fa fa-sign-out-alt lightgrey"></i>
                             <i class="fa fa-sign-out-alt"></i>
                         </div>
                         Logout
                     </a>
-
-
-
                 </li>
+
+
+
             </ul>
         </div>
     </nav>
@@ -81,41 +85,57 @@
 
 <h2>Activities</h2>
     <button class="btn btn-light btn-lg" id="filterBtn">Filters</button>
-        <form id="filters" action="#" method="post" th:action="@{/reflections/__${user.getUsername()}__}" th:object="${filters}">
+        <form id="filters" action="#" method="post" th:action="@{/reflection/user}" th:object="${filters}">
 
 
                 <button class="btn btn-secondary col-sm drop" id="ukpsf" type="button">UKPSF Dimensions</button>
                 <div class="w-100" id="ukpsf-drop">
                     <div  th:each="tag : ${ukpsf}">
-                       <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
-                    </div>
+                        <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
+                            <label th:for="${tag.tagID}">
+                                <span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span>
+                            </label>
+                        </li>                    </div>
                 </div>
 
             <button class="btn btn-secondary col-sm drop" id="othersInvolved" type="button">Others Involved</button>
             <div class="w-100" id="othersInvolved-drop">
                 <div  th:each="tag : ${othersInvolved}">
-                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
-                </div>
+                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
+                        <label th:for="${tag.tagID}">
+                            <span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span>
+                        </label>
+                    </li>                </div>
             </div>
 
             <button class="btn btn-secondary col-sm drop" id="impact" type="button">Impact</button>
             <div class="w-100" id="impact-drop">
                 <div  th:each="tag : ${impact}">
-                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
-                </div>
+                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
+                        <label th:for="${tag.tagID}">
+                            <span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span>
+                        </label>
+                    </li>                </div>
             </div>
 
             <button class="btn btn-secondary col-sm drop" id="learningTechnologies" type="button">Learning Technologies</button>
             <div class="w-100" id="learningTechnologies-drop">
                 <div  th:each="tag : ${learningTechnologies}">
-                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
-                </div>
+                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
+                        <label th:for="${tag.tagID}">
+                            <span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span>
+                        </label>
+                    </li>                </div>
             </div>
 
             <button class="btn btn-secondary col-sm drop" id="thoughtCloud" type="button">Thought Cloud</button>
             <div class="w-100" id="thoughtCloud-drop">
                 <div  th:each="tag : ${thoughtCloud}">
-                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
+                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
+                        <label th:for="${tag.tagID}">
+                        <span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span>
+                    </label>
+                    </li>
                 </div>
             </div>
 
