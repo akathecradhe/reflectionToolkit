@@ -70,11 +70,11 @@ public class FormController {
         else {
 
             model.addAttribute("aForm", aSubmittingForm);
-
-            Reflection reflectionInput = new Reflection(aSubmittingForm.box1, aSubmittingForm.box2, aSubmittingForm.box3, aSubmittingForm.box4,
-                    aSubmittingForm.box5, aSubmittingForm.box6, aSubmittingForm.learningPoint1, aSubmittingForm.learningPoint2, aSubmittingForm.learningPoint3);
-
-            reflectionService.save(reflectionInput);
+//
+//            Reflection reflectionInput = new Reflection(aSubmittingForm.box1, aSubmittingForm.box2, aSubmittingForm.box3, aSubmittingForm.box4,
+//                    aSubmittingForm.box5, aSubmittingForm.box6, aSubmittingForm.learningPoint1, aSubmittingForm.learningPoint2, aSubmittingForm.learningPoint3);
+//
+//            reflectionService.save(reflectionInput);
 
             List<Integer> allTags = new ArrayList<Integer>();
             if(aSubmittingForm.impact != null) {
@@ -106,18 +106,18 @@ public class FormController {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, activityDate);
+            Form form1 = new Form(eventInput, descInput, userInput, roleInput, lastEditedInput, tagsInput, activityDate);
 
             if (aSubmittingForm.formID != null) {
-                form1 = new Form(aSubmittingForm.formID, eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, activityDate);
+                form1 = new Form(aSubmittingForm.formID, eventInput, descInput, userInput, roleInput, lastEditedInput, tagsInput, activityDate);
             }
 
             formService.saveForm(form1);
             model.addAttribute("tagsEdit", allTags);
             model.addAttribute("roleEdit", roleInput);
             model.addAttribute("eventEdit", eventInput);
-            model.addAttribute("descEdit", form1);
-            model.addAttribute("reflectionEdit", reflectionInput);
+            model.addAttribute("prevForm", form1);
+//            model.addAttribute("reflectionEdit", reflectionInput);
 
             return getFormsByUsername(Optional.of("rowbo"), model);
         }
@@ -280,8 +280,30 @@ public class FormController {
 
     @GetMapping("/addreflection/{formID}")
     public String  addReflectionByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
-        model.addAttribute("form", formService.getFormByID(1));
+        model.addAttribute("form", formService.getFormByID(formID));
         return "formreflection";
+    }
+
+    @PostMapping("/addreflection/{formID}")
+    public String postReflectionByID(@ModelAttribute("form") ReflectionForm reflectionForm, @PathVariable(name = "formID", required = true) int formID, BindingResult bindings, Model model) {
+        if (bindings.hasErrors()) {
+            System.out.println("Errors:" + bindings.getFieldErrorCount());
+            for (ObjectError oe : bindings.getAllErrors()) {
+                System.out.println(oe);
+            }
+            return "form";
+        }
+        else {
+
+//
+            Reflection reflectionInput = new Reflection(reflectionForm.box1, reflectionForm.box2, reflectionForm.box3, reflectionForm.box4,
+                    reflectionForm.box5, reflectionForm.box6, reflectionForm.learningPoint1, reflectionForm.learningPoint2, reflectionForm.learningPoint3);
+            reflectionService.save(reflectionInput);
+            Form form = formService.getFormByID(formID);
+            form.setReflectionID(reflectionInput);
+            formService.saveForm(form);
+            return getFormsByUsername(Optional.of("rowbo"), model);
+        }
     }
 
 

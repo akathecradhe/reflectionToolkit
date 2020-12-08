@@ -180,9 +180,6 @@
                     <div class="form-group ">
                         <label class="labels" th:for="dimension">
                             UKPSF Dimensions
-                            <span class="asteriskField">
-                    *
-                            </span><span class="glyphicon glyphicon-envelope"></span>
                         </label><br>
 <!--                            <div class="pairs" th:each="dimension: ${dimensions}">-->
 <!--                                <input class ="checkbox" th:field="*{dimensions}" type="checkbox" th:id="${dimension.tagName}" name="dimension" th:value="${dimension.tagID}">-->
@@ -317,7 +314,8 @@
                     <div class="form-group">
                         <div>
                             <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('learntechs').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="submit" value="Submit" onclick="confirmsubmit()"> Submit </button>
+                            <button style="float: left;" class="btn btn-primary " type="button"> Finish </button>
+                            <button style="float: right;" class="btn btn-primary " type="submit" value="Submit"> Submit </button>
                         </div>
                     </div>
                 </div>
@@ -326,8 +324,9 @@
 
 
 
-
     </form>
+
+
 </main>
 
 <br>

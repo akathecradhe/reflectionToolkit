@@ -55,7 +55,7 @@
 
 
 
-    <form action="#" method="post" th:action="@{/form}" th:object="${form}" onsubmit="return confirm('Submit this entry?');">
+    <form action="#" method="post" th:action="@{/addreflection/} + ${form.FormID}" th:object="${form}" onsubmit="return confirm('Submit this entry?');">
         <div id="reflection" class="container">
             <h1 class="mt-5">Reflection</h1><br>
             <div class="row">
@@ -172,6 +172,8 @@
                 </div>
             </div>
         </div>
+
+
 
 
     </form>
