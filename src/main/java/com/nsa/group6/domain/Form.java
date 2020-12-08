@@ -146,6 +146,17 @@ public class Form {
 
         return completionLevel;
     }
+
+    //Used for updating form details when saving
+    public void updateDetails(Event eventID, String shortDescription, User username, Role roleID, Timestamp lastEdited, List<Tags> tags, Date activityDate){
+        this.eventID = eventID;
+        this.shortDescription = shortDescription;
+        this.username = username;
+        this.roleID = roleID;
+        this.lastEdited = lastEdited;
+        this.tags = tags;
+        this.activityDate = activityDate;
+    }
 }
 
 

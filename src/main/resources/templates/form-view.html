@@ -43,7 +43,9 @@
     <h1 class="mt-5" th:text="${form.getEventID().getName()}"> </h1>
     <hr>
     <div>
-    <a style="float:right" class="btn btn-primary" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
+    <a style="float:right" class="btn btn-primary" th:href="@{/activityedit/{furl} (furl=${form.getFormID()})}">Edit Activity</a>
+        <a style="float:right; margin-right:5px" class="btn btn-primary" th:if="${form.reflectionID == null}" th:href="@{/addreflection/{furl} (furl=${form.getFormID()})}">Add Reflection</a>
+        <a style="float:right; margin-right:5px" class="btn btn-primary" th:if="${form.reflectionID != null}" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Reflection</a>
         <a style="float:right; margin-right:5px" class="btn btn-primary deleteBtn">Delete</a>
         <a class="btn btn-primary" href="/reflections/rowbo">Go Back</a>
     </div>
@@ -101,6 +103,7 @@
 
     </div>
     <hr><br>
+    <div th:if="${form.reflectionID != null}">
     <div>
         <h2>Reflection Answers</h2><br>
         <div>
@@ -127,9 +130,12 @@
         </ol>
 
     </div>
+    </div>
     <br>
     <div>
-        <a style="float:right" class="btn btn-primary" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Form</a>
+        <a style="float:right" class="btn btn-primary" th:href="@{/activityedit/{furl} (furl=${form.getFormID()})}">Edit Activity</a>
+        <a style="float:right; margin-right:5px" class="btn btn-primary" th:if="${form.reflectionID == null}" th:href="@{/addreflection/{furl} (furl=${form.getFormID()})}">Add Reflection</a>
+        <a style="float:right; margin-right:5px" class="btn btn-primary" th:if="${form.reflectionID != null}" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Reflection</a>
         <a style="float:right; margin-right:5px" class="btn btn-primary deleteBtn">Delete</a>
          <a class="btn btn-primary" href="/reflections/rowbo">Go Back</a>
 

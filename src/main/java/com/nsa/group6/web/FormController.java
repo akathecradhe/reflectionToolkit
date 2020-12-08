@@ -109,14 +109,17 @@ public class FormController {
             Form form1 = new Form(eventInput, descInput, userInput, roleInput, lastEditedInput, tagsInput, activityDate);
 
             if (aSubmittingForm.formID != null) {
-                form1 = new Form(aSubmittingForm.formID, eventInput, descInput, userInput, roleInput, lastEditedInput, tagsInput, activityDate);
+                form1 = formService.getFormByID(aSubmittingForm.formID);
+                form1.updateDetails(eventInput, descInput, userInput, roleInput, lastEditedInput, tagsInput, activityDate);
+            } else{
+                model.addAttribute("prevForm", form1);
             }
 
             formService.saveForm(form1);
             model.addAttribute("tagsEdit", allTags);
             model.addAttribute("roleEdit", roleInput);
             model.addAttribute("eventEdit", eventInput);
-            model.addAttribute("prevForm", form1);
+
 //            model.addAttribute("reflectionEdit", reflectionInput);
 
             return getFormsByUsername(Optional.of("rowbo"), model);
@@ -196,7 +199,7 @@ public class FormController {
 
     }
 
-    @GetMapping("/reflectionedit/{formID}")
+    @GetMapping("/activityedit/{formID}")
     public String editForm(@PathVariable(name = "formID", required = true) int formID, Model model){
         Form editingForm = formService.getFormByID(formID);
 
@@ -210,16 +213,26 @@ public class FormController {
 
         Event eventInput = editingForm.getEventID();
         Role roleInput = editingForm.getRoleID();
-        Reflection reflectionInput = editingForm.getReflectionID();
+//        Reflection reflectionInput = editingForm.getReflectionID();
 
         model.addAttribute("tagsEdit", allTags);
         model.addAttribute("roleEdit", roleInput);
         model.addAttribute("eventEdit", eventInput);
         model.addAttribute("formEdit", editingForm);
-        model.addAttribute("reflectionEdit", reflectionInput);
+//        model.addAttribute("reflectionEdit", reflectionInput);
         model.addAttribute("formID", formID);
 
         return getString(model);
+    }
+
+    @GetMapping("/reflectionedit/{formID}")
+    public String editReflection(@PathVariable(name = "formID", required = true) int formID, Model model){
+        Form editingForm = formService.getFormByID(formID);
+        Reflection reflectionInput = editingForm.getReflectionID();
+        model.addAttribute("reflectionEdit", reflectionInput);
+        model.addAttribute("form",editingForm);
+
+        return "formreflection";
     }
 
     //This function retrieves a form by the ID selected.
@@ -294,13 +307,18 @@ public class FormController {
             return "form";
         }
         else {
-
-//
-            Reflection reflectionInput = new Reflection(reflectionForm.box1, reflectionForm.box2, reflectionForm.box3, reflectionForm.box4,
-                    reflectionForm.box5, reflectionForm.box6, reflectionForm.learningPoint1, reflectionForm.learningPoint2, reflectionForm.learningPoint3);
-            reflectionService.save(reflectionInput);
             Form form = formService.getFormByID(formID);
-            form.setReflectionID(reflectionInput);
+            if (form.getReflectionID() != null){
+                Reflection reflection = form.getReflectionID();
+                reflection.updateFields(reflectionForm.box1, reflectionForm.box2, reflectionForm.box3, reflectionForm.box4,
+                        reflectionForm.box5, reflectionForm.box6, reflectionForm.learningPoint1, reflectionForm.learningPoint2, reflectionForm.learningPoint3);
+                reflectionService.save(reflection);
+            } else{
+                Reflection reflectionInput = new Reflection(reflectionForm.box1, reflectionForm.box2, reflectionForm.box3, reflectionForm.box4,
+                        reflectionForm.box5, reflectionForm.box6, reflectionForm.learningPoint1, reflectionForm.learningPoint2, reflectionForm.learningPoint3);
+                reflectionService.save(reflectionInput);
+                form.setReflectionID(reflectionInput);
+            }
             formService.saveForm(form);
             return getFormsByUsername(Optional.of("rowbo"), model);
         }

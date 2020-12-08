@@ -82,9 +82,9 @@
             <button class="btn btn-secondary col-sm drop" id="completionStatus" type="button">Completion Status</button>
             <div class="w-100" id="completionStatus-drop">
                 <div >
-                    <li><input type="checkbox" th:field="*{completionStatus}" value="green">Completed</li>
-                    <li><input type="checkbox" th:field="*{completionStatus}" value="amber">Partially Completed</li>
-                    <li><input type="checkbox" th:field="*{completionStatus}" value="red">Incomplete</li>
+                    <li><input type="checkbox" th:field="*{completionStatus}" value="green">Completed Test</li>
+                    <li><input type="checkbox" th:field="*{completionStatus}" class="tooltip" value="amber">Partially Completed Test<span class="tooltiptext">UKPSF dimensions and reflections required to complete.</span></li>
+                    <li><input type="checkbox" th:field="*{completionStatus}" class="tooltip" value="red">Incomplete <span class="tooltiptext">UKPSF dimensions and reflections required to complete.</span></li>
                 </div>
             </div>
 
