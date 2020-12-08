@@ -353,7 +353,7 @@ public class FormController {
                 form.setReflectionID(reflectionInput);
             }
             formService.saveForm(form);
-            return getFormsByUsername(Optional.of("rowbo"), model);
+            return getFormsByUsername(model);
         }
     }
 
