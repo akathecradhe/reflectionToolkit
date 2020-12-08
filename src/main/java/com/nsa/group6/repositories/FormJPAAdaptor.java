@@ -5,8 +5,10 @@ import com.nsa.group6.domain.Form;
 import com.nsa.group6.domain.User;
 import com.nsa.group6.service.FormService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -41,7 +43,7 @@ public class FormJPAAdaptor implements FormService {
 
         //String stringUsername = aUsername.toString();
 
-        return formRepository.findAllByUsername(aUsername);
+        return formRepository.findAllByUsername(aUsername, Sort.by(Sort.Direction.DESC, "lastEdited"));
 
     }
 
@@ -50,6 +52,48 @@ public class FormJPAAdaptor implements FormService {
         return formRepository.findByFormID(formID);
     }
 
+    @Override
+    public List<Form> getRecent() {
+
+
+        List<Form> aForms = formRepository.findAll(Sort.by(Sort.Direction.DESC, "lastEdited"));
+
+        List<Form> aForms2 = new ArrayList<>();
+
+        if (aForms.size() > 1) {
+            Form aForm = aForms.get(aForms.size() - 1);
+            Form aForm2 = aForms.get(aForms.size() - 2);
+            aForms2.add(aForm);
+            aForms2.add(aForm2);
+        }
+        else if (aForms.size() == 1) {
+            Form aForm = aForms.get(aForms.size() - 1);
+            aForms2.add(aForm);
+        }
+        else {
+
+        }
+
+        return aForms2;
+    }
+
+    @Override
+    public List<Form> getIncomplete() {
+
+        List<Form> aForms = formRepository.findAll();
+
+        for (int i = 0; i < aForms.size(); i++) {
+            String compLevel = aForms.get(i).getCompletionLevel();
+
+            if (compLevel.equals("green")) {
+                aForms.remove(i);
+            }
+
+        }
+
+        return aForms;
+
+    }
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
 

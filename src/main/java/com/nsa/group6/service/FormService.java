@@ -5,7 +5,6 @@ import com.nsa.group6.domain.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public interface FormService {
@@ -18,6 +17,10 @@ public interface FormService {
     List<Form> getAllFormsByUsername(User username);
 
     Form getFormByID(int formID);
+
+    List<Form> getRecent();
+
+    List<Form> getIncomplete();
 
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
