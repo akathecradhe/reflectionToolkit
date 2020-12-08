@@ -94,7 +94,10 @@
 
         <p><label class="labels">Description</label> <br> <span th:text="${form.shortDescription}">Description goes here</span></p>
         <br>
-        <p th:switch="${form.getCompletionLevel()}"><label class="labels">Completion Status</label> <br> <span th:case="green">Completed</span><span th:case="amber">Partially Completed</span><span th:case="red">Incomplete</span></p>
+        <p th:switch="${form.getCompletionLevel()}"><label class="labels">Completion Status</label> <br>
+            <label th:case="green" data-toggle="tooltip" data-placement="top" title="UKPSF dimensions and reflection completed">Completed</label>
+            <label th:case="amber" data-toggle="tooltip" data-placement="top" title="UKPSF dimensions or reflection required">Partially Completed</label>
+            <label th:case="red" data-toggle="tooltip" data-placement="top" title="UKPSF dimensions and reflection required">Incomplete</label>
         <br>
         <p><label class="labels">Activity Date</label> <br> <span th:text="${form.getDateString()}">23/07/2001</span></p>
         <br>
@@ -188,6 +191,9 @@
 
 <script th:inline="javascript">
     /*<![CDATA[*/
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
 
     $(document).ready(function(){
         $(".deleteBtn").click(function(e){

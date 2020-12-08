@@ -94,37 +94,37 @@
             <button class="btn btn-secondary col-sm drop" id="othersInvolved" type="button">Others Involved</button>
             <div class="w-100" id="othersInvolved-drop">
                 <div  th:each="tag : ${othersInvolved}">
-                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
+                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getTagName()}"></span></li>
                 </div>
             </div>
 
             <button class="btn btn-secondary col-sm drop" id="impact" type="button">Impact</button>
             <div class="w-100" id="impact-drop">
                 <div  th:each="tag : ${impact}">
-                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
+                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getTagName()}"></span></li>
                 </div>
             </div>
 
             <button class="btn btn-secondary col-sm drop" id="learningTechnologies" type="button">Learning Technologies</button>
             <div class="w-100" id="learningTechnologies-drop">
                 <div  th:each="tag : ${learningTechnologies}">
-                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
+                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getTagName()}"></span></li>
                 </div>
             </div>
 
             <button class="btn btn-secondary col-sm drop" id="thoughtCloud" type="button">Thought Cloud</button>
             <div class="w-100" id="thoughtCloud-drop">
                 <div  th:each="tag : ${thoughtCloud}">
-                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span></li>
+                    <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}"><span th:text="${tag.getTagName()}"></span></li>
                 </div>
             </div>
 
             <button class="btn btn-secondary col-sm drop" id="completionStatus" type="button">Completion Status</button>
             <div class="w-100" id="completionStatus-drop">
                 <div >
-                    <li><input type="checkbox" th:field="*{completionStatus}" value="green">Completed Test</li>
-                    <li><input type="checkbox" th:field="*{completionStatus}" class="tooltip" value="amber">Partially Completed Test<span class="tooltiptext">UKPSF dimensions and reflections required to complete.</span></li>
-                    <li><input type="checkbox" th:field="*{completionStatus}" class="tooltip" value="red">Incomplete <span class="tooltiptext">UKPSF dimensions and reflections required to complete.</span></li>
+                    <li><input type="checkbox" th:field="*{completionStatus}" value="green" id="green"><label for="green">Completed</label></li>
+                    <li><input type="checkbox" th:field="*{completionStatus}" value="amber" id="amber"><label for="amber">Partially Completed</label></li>
+                    <li><input type="checkbox" th:field="*{completionStatus}" value="red" id="red"><label for="red">Incomplete</label></li>
                 </div>
             </div>
 
@@ -141,7 +141,17 @@
 
                 <br>Event held on <span th:text="${form.getDateString()}">23-11-2020</span>
                 <br>Last edited: <span th:text="${form.getLastEditedString()}">2020-12-01 18:25:55.996301</span>
-                <br>Completion Status: <span th:case="green">Completed</span><span th:case="amber">Partially Completed</span><span th:case="red">Incomplete</span></p>
+
+                <br>Completion Status:
+                <label th:case="green" data-toggle="tooltip" data-placement="top" title="UKPSF dimensions and reflection completed">Completed</label>
+                <label th:case="amber" data-toggle="tooltip" data-placement="top" title="UKPSF dimensions or reflection required">Partially Completed</label>
+                <label th:case="red" data-toggle="tooltip" data-placement="top" title="UKPSF dimensions and reflection required">Incomplete</label>
+
+
+<!--                <span th:case="green" data-toggle="tooltip" data-placement="top" title="penis">Completed</span>-->
+                <span th:case="amber" class="tooltip">Partially Completed</span>
+                <span th:case="red" class="tooltip">Incomplete</span></p>
+
             <a th:href="@{/reflection/{furl} (furl=${form.getFormID()})}"  class="btn btn-primary">View Activity</a>
 
         </div>
@@ -169,7 +179,11 @@
 </div>
 
 <script>
+
     $(document).ready(function(){
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+        })
         $('#myModal').modal('show');
         $("#filters").hide();
         $("#ukpsf").show();

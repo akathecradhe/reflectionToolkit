@@ -10228,7 +10228,7 @@ a.text-dark:hover, a.text-dark:focus {
   display: none;
 }
 #reflection{
-  display: none;
+  display: block;
 }
 #learningpoints{
   display: none;
