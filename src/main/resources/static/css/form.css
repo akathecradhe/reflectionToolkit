@@ -120,11 +120,12 @@ fieldset{
 #activitydetails{
     display: block;
 }
+
 #tagselect{
     display: none;
 }
 #reflection{
-    display: none;
+    display: block;
 }
 #overview{
     display: none;

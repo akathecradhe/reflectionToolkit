@@ -93,12 +93,6 @@
                 <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('thoughtcld')">Thought Cloud</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('reflection')">Reflection</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('learningpoints')">Action Points</a>
-            </li>
-            <li class="nav-item active">
                 <a style="color:white !important;" class="nav-link btn btn-primary" onclick="document.getElementById('submitBtn').click();">Submit</a>
             </li>
 
@@ -141,7 +135,7 @@
         *
        </span>
                     </label>
-                    <input class="form-control" type="date" id="eventDate" name="eventDate" th:value="${formEdit?.getDateString()}">
+                    <input class="form-control" type="date" required id="eventDate" name="eventDate" th:value="${formEdit?.getDateString()}" oninvalid="alert('Date Missing')">
 
                     <span class="help-block">
        Select the date that the activity took place.
@@ -155,7 +149,7 @@
         *
        </span>
                         </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${formEdit?.shortDescription}" maxlength="140" id="shortDesc" name="shortDesc" placeholder="(max 140 characters)" REQUIRED></textarea>
+                        <textarea class="form-control" oninvalid="alert('Short Description Required')" cols="40" rows="5" th:text="${formEdit?.shortDescription}" maxlength="140" id="shortDesc" name="shortDesc" placeholder="(max 140 characters)" REQUIRED></textarea>
                         <span class="help-block">
        Give a short description of the purpose of the activity you attended.
       </span>
@@ -184,13 +178,13 @@
         *
        </span>
                         </label>
-                        <div style="display: flex;" th:each="othersInvolveds: ${othersInvolved}">
+                        <div class="othersInvolved" style="display: flex;" th:each="othersInvolveds: ${othersInvolved}">
 
                             <div th:if="${tagsEdit != null}">
-                                <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}" th:checked="${#lists.contains(tagsEdit, othersInvolveds.tagID)}" name="others" th:value="${othersInvolveds.tagID}">
+                                <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}" required th:checked="${#lists.contains(tagsEdit, othersInvolveds.tagID)}" name="others" th:value="${othersInvolveds.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}"
+                                <input  class = "checkbox" type="checkbox" required th:id="${othersInvolveds.tagID}"
                                         name="others" th:value="${othersInvolveds.tagID}">
                             </div>
                             <label th:for="${othersInvolveds.tagID}" th:text="${othersInvolveds.tagName}">
@@ -213,8 +207,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <div id="ukpsf" class="container">
             <h1 class="mt-5">Map event to Framework (UKPSF)</h1>
@@ -267,12 +259,12 @@
                     *
                    </span>
                         </label><br>
-                        <div style="display: flex;" th:each="impacts: ${impact}">
+                        <div style="display: flex;" th:each="impacts: ${impact}" class="impact">
                             <div th:if="${tagsEdit != null}">
-                                <input class = "checkbox" type="checkbox" th:id="${impacts.tagID}" th:checked="${#lists.contains(tagsEdit, impacts.tagID)}" name="impact" th:value="${impacts.tagID}">
+                                <input class = "checkbox" type="checkbox" required th:id="${impacts.tagID}" th:checked="${#lists.contains(tagsEdit, impacts.tagID)}" name="impact" th:value="${impacts.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input class = "checkbox" type="checkbox" th:id="${impacts.tagID}" name="impact" th:value="${impacts.tagID}">
+                                <input class = "checkbox" type="checkbox"  required th:id="${impacts.tagID}" name="impact" th:value="${impacts.tagID}">
                             </div>
                             <label th:for="${impacts.tagID}" th:text="${impacts.tagName}"></label><br>
                         </div>
@@ -316,47 +308,6 @@
                 </div>
             </div>
 
-        </div>
-
-
-<!--        <div id="learntechs" class="container">-->
-<!--            <h1 class="mt-5">Tag Selection</h1><br>-->
-<!--            <div class="row">-->
-<!--                <div class="col-md-8 order-md-1">-->
-<!--                    <div class="form-group ">-->
-<!--                        <label class="labels" th:for="learningTechnology">-->
-<!--                            Learning Technologies-->
-<!--                            <span class="asteriskField">-->
-<!--                    *-->
-<!--                   </span>-->
-<!--                        </label><br>-->
-<!--                        <div style="display: flex;" th:each="learningTechnology: ${learningTechnologies}">-->
-<!--                            <div th:if="${tagsEdit != null}">-->
-<!--                                <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:checked="${#lists.contains(tagsEdit, learningTechnology.tagID)}" th:value="${learningTechnology.tagID}">-->
-<!--                            </div>-->
-<!--                            <div th:unless="${tagsEdit != null}">-->
-<!--                                <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:value="${learningTechnology.tagID}">-->
-<!--                            </div>-->
-
-<!--                            <label th:for="${learningTechnology.tagID}" th:text="${learningTechnology.tagName}"></label><br>-->
-<!--                        </div>-->
-
-<!--                        <span class="help-block">-->
-<!--                    Which learning technologies were utilised for this activity? Choose as many options as applicable.-->
-<!--                   </span>-->
-<!--                    </div>-->
-<!--                    <div class="form-group">-->
-<!--                        <div>-->
-<!--                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('impact').style.display='block';document.getElementById('learntechs').style.display='none';document.documentElement.scrollTop = 0;"> Back </button>-->
-<!--                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('learntechs').style.display='none';document.getElementById('thoughtcld').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </div>-->
-
-
-
         <div id="thoughtcld" class="container">
             <h1 class="mt-5">Tag Selection</h1><br>
             <div class="row">
@@ -369,12 +320,12 @@
                        </span>
                         </label><br>
                         <div class="split3">
-                        <div style="display: flex;" th:each="thoughtClouds: ${thoughtCloud}">
+                        <div style="display: flex;" th:each="thoughtClouds: ${thoughtCloud}" class="thoughtCloud">
                             <div th:if="${tagsEdit != null}">
-                                <input class ="checkbox"  type="checkbox" th:checked="${#lists.contains(tagsEdit, thoughtClouds.tagID)}" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
+                                <input class ="checkbox"  type="checkbox" required th:checked="${#lists.contains(tagsEdit, thoughtClouds.tagID)}" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input class ="checkbox"  type="checkbox" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
+                                <input class ="checkbox"  type="checkbox" required th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
                             </div>
                             <label th:for="${thoughtClouds.tagID}" th:text="${thoughtClouds.tagName}"></label><br>
                         </div>
@@ -384,135 +335,24 @@
                        </span>
                     </div>
                     <div class="form-group">
-                        <div>
-                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('impact').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
-                        </div>
+                                <div>
+                                    <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('learntechs').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+                                    <button style="float: right;" id="submitBtn" class="btn btn-primary " type="submit" value="Submit"> Submit </button>
+                                </div>
                     </div>
                 </div>
             </div>
         </div>
         <!-- Validation for NONE needs to be figured out-->
 
-        <div id="reflection" class="container">
-            <h1 class="mt-5">Reflection</h1><br>
-            <div class="row">
-                <div class="col-md-8 order-md-1">
-                    <div class="form-group ">
-                        <label class="labels">
-                            What did you do?
 
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box1}" maxlength="100" name="box1" id="box1" placeholder="(max 100 characters)" ></textarea>
-                        <span class="help-block">
-                   Provide a clear record.
-                  </span>
-                    </div>
-
-                    <div class="form-group ">
-                        <label class="labels">
-                            What prompted your approach?
-
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box2}" maxlength="100" name="box2" id="box2" placeholder="(max 100 characters)" ></textarea>
-                        <span class="help-block">
-                   Consider your past experiences and how they might have been of influence here.
-                  </span>
-                    </div>
-
-                    <div class="form-group ">
-                        <label class="labels">
-                            What happened?
-
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box3}" maxlength="100" name="box3" id="box3" placeholder="(max 100 characters)" ></textarea>
-                        <span class="help-block">
-                   Consider your own and others' viewpoints and feelings - put yourself in their shoes!
-                  </span>
-                    </div>
-
-                    <div class="form-group ">
-                        <label class="labels">
-                            What impact did the learning technologies have on your activity?
-
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box4}" maxlength="100" name="box4" id="box4" placeholder="(max 100 characters)" ></textarea>
-                        <span class="help-block">
-                   Think about how your development might have been affected had you utilised a different technology.
-                  </span>
-                    </div>
-
-                    <div class="form-group ">
-                        <label class="labels">
-                            Collecting Evidence
-
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box5}" maxlength="100" name="box5" id="box5" placeholder="(max 100 characters)" ></textarea>
-                        <span class="help-block">
-                   How will you evaluate this activity later? What evidence do you need?
-                  </span>
-                    </div>
-
-                    <div class="form-group ">
-                        <label class="labels">
-                            Alternate actions or responses
-
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box6}" maxlength="100" name="box6" id="box6" placeholder="(max 100 characters)" ></textarea>
-                        <span class="help-block">
-                   What could you have done differently?
-                  </span>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('thoughtcld').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('learningpoints').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-
-        <div id="learningpoints" class="container">
-            <h1 class="mt-5">Action Points</h1><br>
-            <div class="row">
-                <div class="col-md-8 order-md-1">
-                    <div class="form-group ">
-                        <label class="labels">
-                            Action Point 1
-                            <span class="asteriskField">
-                                *
-                               </span>
-                        </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint1}" maxlength="140" name="learningPoint1" id="learningPoint1" placeholder="(max 140 characters)" REQUIRED></textarea>
-                        <span class="help-block">
-                               What key takeaways did you gain from this experience? Type them in the text fields.
-                  </span>
-                    </div>
-                    <div class="form-group ">
-                        <label class="labels">
-                            Action Point 2
-                            </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint2}" maxlength="140" name="learningPoint2" id="learningPoint2" placeholder="(max 140 characters)"></textarea>
-                    </div>
-                    <div class="form-group ">
-                        <label class="labels">
-                            Action Point 3
-                            </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint3}" maxlength="140" name="learningPoint3" id="learningPoint3" placeholder="(max 140 characters)"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <button style="float: left;" class="btn btn-primary" type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary" id="submitBtn" type="submit" value="Submit" onclick="confirmsubmit()"> Submit </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 
     </form>
+
+
 </main>
 
 <br>
@@ -526,14 +366,10 @@
         document.getElementById('activitydetails').style.display='none'
         document.getElementById('ukpsf').style.display='none';
         document.getElementById('thoughtcld').style.display='none';
-        document.getElementById('reflection').style.display='none';
-        document.getElementById('learningpoints').style.display='none';
         document.getElementById('impact').style.display='none';
         document.getElementById(element).style.display='block';
         document.documentElement.scrollTop = 0;
     }
-
-
 
     function uncheck(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6) {
         let checkBox = document.getElementById("None");
@@ -555,6 +391,52 @@
 
     $('.navbar-collapse a').click(function(){
         $(".navbar-collapse").collapse('hide');
+    });
+
+    // Code adapted from https://stackoverflow.com/questions/6218494/using-the-html5-required-attribute-for-a-group-of-checkboxes
+    $(function(){
+        var othersRequired = $('.othersInvolved :checkbox[required]');
+        othersRequired.change(function(){
+            if(othersRequired.is(':checked')) {
+                othersRequired.removeAttr('required');
+            } else {
+                othersRequired.attr('required', 'required');
+            }
+        });
+    });
+
+    $(function(){
+        var impactRequired = $('.impact :checkbox[required]');
+        impactRequired.change(function(){
+            if(impactRequired.is(':checked')) {
+                impactRequired.removeAttr('required');
+            } else {
+                impactRequired.attr('required', 'required');
+            }
+        });
+    });
+
+
+    $(function(){
+        var learningRequired = $('.learningTechnology :checkbox[required]');
+        learningRequired.change(function(){
+            if(learningRequired.is(':checked')) {
+                learningRequired.removeAttr('required');
+            } else {
+                learningRequired.attr('required', 'required');
+            }
+        });
+    });
+
+    $(function(){
+        var thoughtRequired = $('.thoughtCloud :checkbox[required]');
+        thoughtRequired.change(function(){
+            if(thoughtRequired.is(':checked')) {
+                thoughtRequired.removeAttr('required');
+            } else {
+                thoughtRequired.attr('required', 'required');
+            }
+        });
     });
 
 </script>
