@@ -134,7 +134,7 @@
         *
        </span>
                     </label>
-                    <input class="form-control" type="date" id="eventDate" name="eventDate" th:value="${formEdit?.getDateString()}">
+                    <input class="form-control" type="date" required id="eventDate" name="eventDate" th:value="${formEdit?.getDateString()}">
 
                     <span class="help-block">
        Select the date that the activity took place.
@@ -177,13 +177,13 @@
         *
        </span>
                         </label>
-                        <div style="display: flex;" th:each="othersInvolveds: ${othersInvolved}">
+                        <div class="othersInvolved" style="display: flex;" th:each="othersInvolveds: ${othersInvolved}">
 
                             <div th:if="${tagsEdit != null}">
-                                <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}" th:checked="${#lists.contains(tagsEdit, othersInvolveds.tagID)}" name="others" th:value="${othersInvolveds.tagID}">
+                                <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}" required th:checked="${#lists.contains(tagsEdit, othersInvolveds.tagID)}" name="others" th:value="${othersInvolveds.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}"
+                                <input  class = "checkbox" type="checkbox" required th:id="${othersInvolveds.tagID}"
                                         name="others" th:value="${othersInvolveds.tagID}">
                             </div>
                             <label th:for="${othersInvolveds.tagID}" th:text="${othersInvolveds.tagName}">
@@ -206,8 +206,6 @@
                 </div>
             </div>
         </div>
-
-
 
         <div id="ukpsf" class="container">
             <h1 class="mt-5">Map event to Framework (UKPSF)</h1><br>
@@ -256,12 +254,12 @@
                     *
                    </span>
                         </label><br>
-                        <div style="display: flex;" th:each="impacts: ${impact}">
+                        <div style="display: flex;" th:each="impacts: ${impact}" class="impact">
                             <div th:if="${tagsEdit != null}">
-                                <input class = "checkbox" type="checkbox" th:id="${impacts.tagID}" th:checked="${#lists.contains(tagsEdit, impacts.tagID)}" name="impact" th:value="${impacts.tagID}">
+                                <input class = "checkbox" type="checkbox" required th:id="${impacts.tagID}" th:checked="${#lists.contains(tagsEdit, impacts.tagID)}" name="impact" th:value="${impacts.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input class = "checkbox" type="checkbox" th:id="${impacts.tagID}" name="impact" th:value="${impacts.tagID}">
+                                <input class = "checkbox" type="checkbox"  required th:id="${impacts.tagID}" name="impact" th:value="${impacts.tagID}">
                             </div>
                             <label th:for="${impacts.tagID}" th:text="${impacts.tagName}"></label><br>
                         </div>
@@ -282,7 +280,6 @@
 
         </div>
 
-
         <div id="learntechs" class="container">
             <h1 class="mt-5">Tag Selection</h1><br>
             <div class="row">
@@ -294,12 +291,12 @@
                     *
                    </span>
                         </label><br>
-                        <div style="display: flex;" th:each="learningTechnology: ${learningTechnologies}">
+                        <div style="display: flex;" th:each="learningTechnology: ${learningTechnologies}" class="learningTechnology">
                             <div th:if="${tagsEdit != null}">
-                                <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:checked="${#lists.contains(tagsEdit, learningTechnology.tagID)}" th:value="${learningTechnology.tagID}">
+                                <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" required name="learningTechs" th:checked="${#lists.contains(tagsEdit, learningTechnology.tagID)}" th:value="${learningTechnology.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:value="${learningTechnology.tagID}">
+                                <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" required name="learningTechs" th:value="${learningTechnology.tagID}">
                             </div>
 
                             <label th:for="${learningTechnology.tagID}" th:text="${learningTechnology.tagName}"></label><br>
@@ -319,8 +316,6 @@
             </div>
         </div>
 
-
-
         <div id="thoughtcld" class="container">
             <h1 class="mt-5">Tag Selection</h1><br>
             <div class="row">
@@ -333,12 +328,12 @@
                        </span>
                         </label><br>
                         <div class="split3">
-                        <div style="display: flex;" th:each="thoughtClouds: ${thoughtCloud}">
+                        <div style="display: flex;" th:each="thoughtClouds: ${thoughtCloud}" class="thoughtCloud">
                             <div th:if="${tagsEdit != null}">
-                                <input class ="checkbox"  type="checkbox" th:checked="${#lists.contains(tagsEdit, thoughtClouds.tagID)}" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
+                                <input class ="checkbox"  type="checkbox" required th:checked="${#lists.contains(tagsEdit, thoughtClouds.tagID)}" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input class ="checkbox"  type="checkbox" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
+                                <input class ="checkbox"  type="checkbox" required th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
                             </div>
                             <label th:for="${thoughtClouds.tagID}" th:text="${thoughtClouds.tagName}"></label><br>
                         </div>
@@ -356,8 +351,6 @@
                 </div>
             </div>
         </div>
-
-
 
     </form>
 
@@ -381,8 +374,6 @@
         document.documentElement.scrollTop = 0;
     }
 
-
-
     function uncheck(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6) {
         let checkBox = document.getElementById("None");
         if (checkBox.checked == true); {
@@ -403,6 +394,52 @@
 
     $('.navbar-collapse a').click(function(){
         $(".navbar-collapse").collapse('hide');
+    });
+
+    // Code adapted from https://stackoverflow.com/questions/6218494/using-the-html5-required-attribute-for-a-group-of-checkboxes
+    $(function(){
+        var othersRequired = $('.othersInvolved :checkbox[required]');
+        othersRequired.change(function(){
+            if(othersRequired.is(':checked')) {
+                othersRequired.removeAttr('required');
+            } else {
+                othersRequired.attr('required', 'required');
+            }
+        });
+    });
+
+    $(function(){
+        var impactRequired = $('.impact :checkbox[required]');
+        impactRequired.change(function(){
+            if(impactRequired.is(':checked')) {
+                impactRequired.removeAttr('required');
+            } else {
+                impactRequired.attr('required', 'required');
+            }
+        });
+    });
+
+
+    $(function(){
+        var learningRequired = $('.learningTechnology :checkbox[required]');
+        learningRequired.change(function(){
+            if(learningRequired.is(':checked')) {
+                learningRequired.removeAttr('required');
+            } else {
+                learningRequired.attr('required', 'required');
+            }
+        });
+    });
+
+    $(function(){
+        var thoughtRequired = $('.thoughtCloud :checkbox[required]');
+        thoughtRequired.change(function(){
+            if(thoughtRequired.is(':checked')) {
+                thoughtRequired.removeAttr('required');
+            } else {
+                thoughtRequired.attr('required', 'required');
+            }
+        });
     });
 
 </script>
