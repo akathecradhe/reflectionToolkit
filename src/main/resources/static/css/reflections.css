@@ -164,3 +164,8 @@ ul li a:hover .icon .fa
 .navbar-dark .topnavbar-brand:hover, .navbar-dark .topnavbar-brand:focus {
     color: #fff;
 }
+@media (min-width: 768px) {
+    .bottomnavbar-brand{
+        display: none;
+    }
+}
