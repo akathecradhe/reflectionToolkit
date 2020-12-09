@@ -25,7 +25,7 @@
         <div class="collapse navbar-collapse centered" id="navbarsExample04">
             <ul class="navbar-nav mr-auto topnavbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link " href="#" >
+                    <a class="nav-link " href="/home" >
                         <div class="icon">
                             <i class="fa fa-home lightgrey" ></i>
                             <i class="fa fa-home " ></i>
@@ -73,5 +73,70 @@
 
 </header>
 
+<main>
+
+    <div class="container">
+        <h2> Manage Thought-Cloud Tags </h2>
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
+            Add New Thought</button>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Thought</th>
+                    <th scope="col">Edit</th>
+                    <th scope="col">Remove</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr  th:each = "ThoughtTag:${ThoughtTags}">
+                    <td th:text = "${ThoughtTag.tagID}" ></td>
+                    <td th:text = "${ThoughtTag.tagName}" >  </td>
+                    <td><a class ="btn btn-warning" >
+                        Edit
+                    </a></td>
+                    <td>
+                        <a class ="btn btn-danger">
+                          Delete
+                        </a></td>
+                    </td>
+
+                </tr>
+
+                </tbody>
+            </table>
+
+    </div>
+    <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                        <div class="form-group">
+                            <label  FOR="tagNameAdd"    class="col-form-label">Add a new Thought:</label>
+                            <input type="text" class="form-control" id="tagNameAdd" NAME="tagNameAdd">
+                        </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save Thought</button>
+                </div>
+            </div>
+
+        </div>
+        </form>
+    </div>
+
+
+</main>
 </body>
 </html>
