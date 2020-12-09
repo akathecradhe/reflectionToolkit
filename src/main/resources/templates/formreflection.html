@@ -73,18 +73,21 @@
 </header>
 
 <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-    <a class="navbar-brand">Menu Bar
+    <a class="navbar-brand bottomnavbar-brand">Menu Bar
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample03" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarsExample03">
-        <ul class="navbar-nav mr-auto" >
+        <ul class="navbar-nav mx-auto" >
             <li class="nav-item active">
                 <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('reflection')">Reflection</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('learningpoints')">Action Points</a>
+            </li>
+            <li class="nav-item active">
+                <a style="color:white !important;" class="nav-link btn btn-primary" onclick="document.getElementById('submitBtn').click();">Submit</a>
             </li>
         </ul>
     </div>
@@ -218,7 +221,7 @@
                     <div class="form-group">
                         <div>
                             <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="submit" value="Submit" onclick="confirmsubmit()"> Submit </button>
+                            <button style="float: right;" class="btn btn-primary " type="submit" id="submitBtn" value="Submit" onclick="confirmsubmit()"> Submit </button>
                         </div>
                     </div>
                 </div>
