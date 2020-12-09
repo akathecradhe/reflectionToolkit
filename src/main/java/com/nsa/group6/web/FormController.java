@@ -12,7 +12,6 @@ import com.nsa.group6.service.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +22,6 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -49,7 +47,7 @@ public class FormController {
     private final EventService eventService;
     private final ReflectionService reflectionService;
 
-    public FormController(FormService formService, UserService userService, FormHandler formHandler, TagsService tagsService, RoleService roleService, EventService eventService, ReflectionService reflectionService) {
+    public FormController(FormService formService, UserService userService, FormHandler formHandler, TagsService tagsService, RoleService roleService, EventService eventService, ReflectionService reflectionService, TagService tagService) {
         this.formService = formService;
         this.userService = userService;
         this.formHandler = formHandler;
@@ -57,6 +55,7 @@ public class FormController {
         this.roleService = roleService;
         this.eventService = eventService;
         this.reflectionService = reflectionService;
+
     }
 
 
@@ -370,14 +369,6 @@ public class FormController {
         }
     }
 
-    @GetMapping("/admin/edit-tags")
-
-    public String showTags(Model model) {
-
-
-
-        return "admintags";
-    }
 
 
 

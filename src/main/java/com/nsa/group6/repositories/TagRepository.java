@@ -11,9 +11,10 @@ import java.util.List;
 public interface TagRepository extends JpaRepository<Tags,Integer> {
 
     Tags findByTagID(int aTagId);
-    List<Tags> findAll();
-    List<Tags> findAllByCategory(String category);
 
+    List<Tags> findAll();
+
+    List<Tags> findAllByCategory(String category);
 
 
 }

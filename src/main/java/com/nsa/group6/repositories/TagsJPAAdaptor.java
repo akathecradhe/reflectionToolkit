@@ -21,11 +21,24 @@ public class TagsJPAAdaptor implements TagsService {
     @Override
     public void saveTags(Tags aTags) {
 
+        tagsRepository.save(aTags);
+
     }
 
     @Override
     public void updateTags(Tags aTags) {
+        tagsRepository.save(aTags);
 
+    }
+    @Override
+    public Tags getTagByID(int tagID) {
+        return tagsRepository.findByTagID(tagID);
+    }
+
+
+    @Override
+    public List<Tags> getTagByCategory(String category) {
+        return tagsRepository.findAllByCategory(category);
     }
 
     @Override

@@ -14,6 +14,10 @@ public interface TagsService {
 
     public void updateTags(Tags aTags);
 
+    Tags getTagByID(int tagID);
+
+    List<Tags> getTagByCategory(String category);
+
     List<Tags> getAllTags();
 
     List<Tags> findAllTagsByID(List<Integer> TagIDs);
