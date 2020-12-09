@@ -55,7 +55,8 @@ ul li a .icon .fa
 
 ul li a .icon .fa:last-child
 {
-    color: #e91e63;
+    /*color: #e91e63;*/
+    color: #007bff;
 
 }
 

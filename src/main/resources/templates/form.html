@@ -87,10 +87,7 @@
                 <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('ukpsf')">UKPSF Dimensions</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('impact')">Impacts</a>
-            </li>
-            <li class="nav-item active">
-                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('learntechs')">Learning Technologies</a>
+                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('impact')">Impact & Techs</a>
             </li>
             <li class="nav-item active">
                 <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('thoughtcld')">Thought Cloud</a>
@@ -101,6 +98,10 @@
             <li class="nav-item active">
                 <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('learningpoints')">Action Points</a>
             </li>
+            <li class="nav-item active">
+                <a style="color:white !important;" class="nav-link btn btn-primary" onclick="document.getElementById('submitBtn').click();">Submit</a>
+            </li>
+
         </ul>
     </div>
 </nav>
@@ -216,15 +217,15 @@
 
 
         <div id="ukpsf" class="container">
-            <h1 class="mt-5">Map event to Framework (UKPSF)</h1><br>
+            <h1 class="mt-5">Map event to Framework (UKPSF)</h1>
+            <h2 class="labels">This section may be skipped and completed later.
+            For more info on the dimensions, download <a href="https://www.heacademy.ac.uk/sites/default/files/downloads/What%20are%20the%20dimensions%20of%20practice.pdf">this PDF.</a></h2>
+            <br>
             <div class="row">
                 <div class="col-md-8 order-md-1">
                     <div class="form-group ">
                         <label class="labels" th:for="dimension">
                             UKPSF Dimensions
-                            <span class="asteriskField">
-                    *
-                            </span>
 <!--                            <span class="glyphicon glyphicon-envelope"></span>-->
                         </label><br>
 <!--                            <div class="pairs" th:each="dimension: ${dimensions}">-->
@@ -280,54 +281,79 @@
                     How would you classify the scale of the impact of this activity? Choose as many options as applicable.
                    </span>
                     </div>
-                    <div class="form-group">
-                        <div>
-                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='block';document.getElementById('impact').style.display='none';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('impact').style.display='none';document.getElementById('learntechs').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-        </div>
-
-
-        <div id="learntechs" class="container">
-            <h1 class="mt-5">Tag Selection</h1><br>
-            <div class="row">
-                <div class="col-md-8 order-md-1">
-                    <div class="form-group ">
-                        <label class="labels" th:for="learningTechnology">
-                            Learning Technologies
-                            <span class="asteriskField">
+                    <div class="row">
+                        <div class="col-md-8 order-md-1">
+                            <div class="form-group ">
+                                <label class="labels" th:for="learningTechnology">
+                                    Learning Technologies
+                                    <span class="asteriskField">
                     *
                    </span>
-                        </label><br>
-                        <div style="display: flex;" th:each="learningTechnology: ${learningTechnologies}">
-                            <div th:if="${tagsEdit != null}">
-                                <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:checked="${#lists.contains(tagsEdit, learningTechnology.tagID)}" th:value="${learningTechnology.tagID}">
-                            </div>
-                            <div th:unless="${tagsEdit != null}">
-                                <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:value="${learningTechnology.tagID}">
-                            </div>
+                                </label><br>
+                                <div style="display: flex;" th:each="learningTechnology: ${learningTechnologies}">
+                                    <div th:if="${tagsEdit != null}">
+                                        <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:checked="${#lists.contains(tagsEdit, learningTechnology.tagID)}" th:value="${learningTechnology.tagID}">
+                                    </div>
+                                    <div th:unless="${tagsEdit != null}">
+                                        <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:value="${learningTechnology.tagID}">
+                                    </div>
 
-                            <label th:for="${learningTechnology.tagID}" th:text="${learningTechnology.tagName}"></label><br>
-                        </div>
+                                    <label th:for="${learningTechnology.tagID}" th:text="${learningTechnology.tagName}"></label><br>
+                                </div>
 
-                        <span class="help-block">
+                                <span class="help-block">
                     Which learning technologies were utilised for this activity? Choose as many options as applicable.
                    </span>
-                    </div>
-                    <div class="form-group">
-                        <div>
-                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('impact').style.display='block';document.getElementById('learntechs').style.display='none';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('learntechs').style.display='none';document.getElementById('thoughtcld').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                            </div>
+                            <div class="form-group">
+                                <div>
+                                    <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='block';document.getElementById('impact').style.display='none';document.documentElement.scrollTop = 0;"> Back </button>
+                                    <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('impact').style.display='none';document.getElementById('thoughtcld').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
+
+
+<!--        <div id="learntechs" class="container">-->
+<!--            <h1 class="mt-5">Tag Selection</h1><br>-->
+<!--            <div class="row">-->
+<!--                <div class="col-md-8 order-md-1">-->
+<!--                    <div class="form-group ">-->
+<!--                        <label class="labels" th:for="learningTechnology">-->
+<!--                            Learning Technologies-->
+<!--                            <span class="asteriskField">-->
+<!--                    *-->
+<!--                   </span>-->
+<!--                        </label><br>-->
+<!--                        <div style="display: flex;" th:each="learningTechnology: ${learningTechnologies}">-->
+<!--                            <div th:if="${tagsEdit != null}">-->
+<!--                                <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:checked="${#lists.contains(tagsEdit, learningTechnology.tagID)}" th:value="${learningTechnology.tagID}">-->
+<!--                            </div>-->
+<!--                            <div th:unless="${tagsEdit != null}">-->
+<!--                                <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:value="${learningTechnology.tagID}">-->
+<!--                            </div>-->
+
+<!--                            <label th:for="${learningTechnology.tagID}" th:text="${learningTechnology.tagName}"></label><br>-->
+<!--                        </div>-->
+
+<!--                        <span class="help-block">-->
+<!--                    Which learning technologies were utilised for this activity? Choose as many options as applicable.-->
+<!--                   </span>-->
+<!--                    </div>-->
+<!--                    <div class="form-group">-->
+<!--                        <div>-->
+<!--                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('impact').style.display='block';document.getElementById('learntechs').style.display='none';document.documentElement.scrollTop = 0;"> Back </button>-->
+<!--                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('learntechs').style.display='none';document.getElementById('thoughtcld').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
 
 
@@ -359,7 +385,7 @@
                     </div>
                     <div class="form-group">
                         <div>
-                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('learntechs').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('impact').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
                             <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
                         </div>
                     </div>
@@ -477,8 +503,8 @@
                     </div>
                     <div class="form-group">
                         <div>
-                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="submit" value="Submit" onclick="confirmsubmit()"> Submit </button>
+                            <button style="float: left;" class="btn btn-primary" type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+                            <button style="float: right;" class="btn btn-primary" id="submitBtn" type="submit" value="Submit" onclick="confirmsubmit()"> Submit </button>
                         </div>
                     </div>
                 </div>
@@ -502,7 +528,6 @@
         document.getElementById('thoughtcld').style.display='none';
         document.getElementById('reflection').style.display='none';
         document.getElementById('learningpoints').style.display='none';
-        document.getElementById('learntechs').style.display='none';
         document.getElementById('impact').style.display='none';
         document.getElementById(element).style.display='block';
         document.documentElement.scrollTop = 0;

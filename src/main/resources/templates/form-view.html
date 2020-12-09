@@ -47,7 +47,7 @@
                         Activities</a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link disabled" href="/form">
+                    <a class="nav-link" href="/form">
 
                         <div class="icon">
                             <i class="fa fa-file-medical lightgrey"></i>
@@ -140,6 +140,7 @@
 
     </div>
     <hr><br>
+    <div th:unless="${form.reflectionID == null}">
     <div>
         <h2>Reflection Answers</h2><br>
         <div>
@@ -165,6 +166,7 @@
             <li th:text = "${form.reflectionID.getLearningPoint3()}"></li>
         </ol>
 
+    </div>
     </div>
     <br>
     <div>
