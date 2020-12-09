@@ -76,30 +76,33 @@
 <main>
 
     <div class="container">
-        <h2> Manage Thought-Cloud Tags </h2>
+        <h1 class="mt-5"> Manage Thought Cloud </h1>
+        <br>
         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add">
             Add New Thought</button>
+        <br>
             <table class="table table-striped">
+                <br>
                 <thead>
                 <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Thought</th>
-                    <th scope="col">Edit</th>
-                    <th scope="col">Remove</th>
+<!--                    <th scope="col">#</th>-->
+                    <th class="labels" scope="col">Thought</th>
+<!--                    <th scope="col">Edit</th>-->
+                    <th style="text-align:right;" class="labels" scope="col">Remove</th>
 
                 </tr>
                 </thead>
                 <tbody>
-                <tr  th:each = "ThoughtTag:${ThoughtTags}">
-                    <td > - </td>
+                <tr th:each = "ThoughtTag:${ThoughtTags}">
+<!--                    <td > - </td>-->
                     <td th:text = "${ThoughtTag.tagName}" >  </td>
-                    <td><a class ="btn btn-warning" >
-                        Edit
-                    </a></td>
-                    <td>
+<!--                    <td><a class ="btn btn-warning" >-->
+<!--                        Edit-->
+<!--                    </a></td>-->
+                    <td style="text-align:right;">
                         <form th:action="@{/deletetag/{tagID}(tagID=${ThoughtTag.tagID})}" th:object="${ThoughtTag}" method="post">
 
-                        <button type="submit" onclick="window.location.reload();" class ="deleteBtn btn btn-danger">
+                        <button type="submit" onclick="return confirm('Delete this tag?')" class ="deleteBtn btn btn-danger">
                           Delete
                         </button>
                         </form>

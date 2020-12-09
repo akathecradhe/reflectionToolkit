@@ -67,7 +67,6 @@ public class AdminController {
 //    This function deletes a tag
     @PostMapping("/deletetag/{tagID}")
     public ResponseEntity<String> deleteTagByID(@PathVariable(name = "tagID", required = true) int tagID, Model model) {
-        // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
         tagService.deleteTag(tagID);
 
 
