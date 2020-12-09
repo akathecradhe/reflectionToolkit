@@ -370,6 +370,16 @@ public class FormController {
         }
     }
 
+    @GetMapping("/admin/edit-tags")
+
+    public String showTags(Model model) {
+
+
+
+        return "admintags";
+    }
+
+
 
 
 }
