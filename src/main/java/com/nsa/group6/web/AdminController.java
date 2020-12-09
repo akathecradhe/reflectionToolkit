@@ -9,6 +9,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import org.springframework.http.ResponseEntity;
+
 
 import java.util.List;
 
@@ -18,9 +23,11 @@ public class AdminController {
 
 
     private final TagsService tagsService;
+    private final TagService tagService;
 
     public AdminController(TagService tagService, TagsService tagsService, TagsRepository tagsRepository) {
         this.tagsService = tagsService;
+        this.tagService = tagService;
 
     }
 
@@ -56,6 +63,19 @@ public class AdminController {
 
          return "admintags";
     }
+
+//    This function deletes a tag
+    @PostMapping("/deletetag/{tagID}")
+    public ResponseEntity<String> deleteTagByID(@PathVariable(name = "tagID", required = true) int tagID, Model model) {
+        // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
+        tagService.deleteTag(tagID);
+
+
+        return ResponseEntity.noContent().build();
+
+    }
+
+
 
 
 

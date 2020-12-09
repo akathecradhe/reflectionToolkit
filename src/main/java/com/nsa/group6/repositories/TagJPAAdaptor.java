@@ -34,6 +34,11 @@ public class TagJPAAdaptor implements TagService {
     }
 
     @Override
+    public void deleteTag(int id) {
+        tagRepository.deleteById(id);
+    }
+
+    @Override
     public List<Tags> getTagByCategory(String category) {
         return tagRepository.findAllByCategory(category);
     }

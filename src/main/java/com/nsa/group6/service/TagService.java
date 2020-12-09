@@ -12,7 +12,9 @@ public interface TagService {
     List<Tags> getAllTags();
     void saveTags(Tags aTags);
 
+    public void deleteTag(int id);
     List<Tags> getTagByCategory(String category);
+
 
 
 }
