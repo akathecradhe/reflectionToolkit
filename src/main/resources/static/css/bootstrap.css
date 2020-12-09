@@ -1172,9 +1172,9 @@ pre code {
     max-width: 91.666667%;
   }
   .col-md-12 {
-    -ms-flex: 0 0 100%;
-    flex: 0 0 100%;
-    max-width: 100%;
+    -ms-flex: 0 0 36.3333333%;
+    flex: 0 0 36.333333%;
+    max-width: 36.333333%;
   }
   .order-md-first {
     -ms-flex-order: -1;
@@ -10321,4 +10321,3 @@ a.text-dark:hover, a.text-dark:focus {
     border-color: #dee2e6;
   }
 }
-/*# sourceMappingURL=bootstrap.css.map */

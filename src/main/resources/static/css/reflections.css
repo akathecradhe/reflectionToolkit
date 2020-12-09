@@ -55,7 +55,8 @@ ul li a .icon .fa
 
 ul li a .icon .fa:last-child
 {
-    color: #e91e63;
+    /*color: #e91e63;*/
+    color: #007bff;
 
 }
 
@@ -162,4 +163,9 @@ ul li a:hover .icon .fa
 
 .navbar-dark .topnavbar-brand:hover, .navbar-dark .topnavbar-brand:focus {
     color: #fff;
+}
+@media (min-width: 768px) {
+    .bottomnavbar-brand{
+        display: none;
+    }
 }

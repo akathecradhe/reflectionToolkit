@@ -104,27 +104,8 @@
 
 <main sec:authorize="hasRole('USER')" role="main" class="container h-100">
     <div class = 'row h-50'>
-    <div class="col-md-5 m-3 p-3  bg-light rounded shadow-sm">
-        <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities Added</label>
-<!--        <div class="media text-muted pt-3">-->
-<!--            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
-<!--                <strong class="d-block text-gray-dark">Teaching or Supervision 2020/12/01</strong>-->
-<!--                Activity Description-->
-<!--            </p>-->
-<!--        </div>-->
-<!--        <div class="media text-muted pt-3">-->
-<!--            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
-<!--                <strong class="d-block text-gray-dark">Design or Plan 2020/12/02</strong>-->
-<!--                Activity Description-->
-<!--            </p>-->
-<!--        </div>-->
-<!--        <div class="media text-muted pt-3">-->
-<!--            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
-<!--                <strong class="d-block text-gray-dark">Assess or Give Feedback 2020/12/03</strong>-->
-<!--                Activity Description-->
-<!--            </p>-->
-<!--        </div>-->
-
+    <div class="col-md-6 m-3 p-3  bg-light rounded shadow-sm">
+        <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities Edited</label>
         <div th:each="form : ${forms}">
             <div class="media text-muted pt-3" >
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -137,7 +118,22 @@
                     <span th:text="${form.shortDescription}"></span>
                     <br>Event held on <span th:text="${form.getDateString()}">0</span>
                     <br>Last edited: <span th:text="${form.getLastEditedString()}"></span>
-                    <br>Completion Status: <span th:case="green">Completed</span><span th:case="amber">Partially Completed</span><span th:case="red">Incomplete</span>
+                    <br>Completion Status:
+
+                    <span th:case="green">Completed</span>
+
+                    <span th:case="amber">
+
+                        <span th:if="${form.getTagsByCategory('UKPSF').isEmpty()}">
+                        Partially Completed - UKPSF Dimensions Required
+                            </span>
+                        <span th:unless="${form.getTagsByCategory('UKPSF').isEmpty()}">
+                        Partially Completed - Reflection Required
+                        </span>
+
+                    </span>
+
+                    <span th:case="red">Incomplete - UKPSF Dimensions and Reflection Required</span>
                 </p>
                 </div>
 
@@ -147,34 +143,33 @@
             <a href="/reflection/user">All Activities</a>
         </small>
     </div>
-<!--        <div class="col-auto flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">-->
-        <div class="col-auto m-3 p-3 flex-fill bg-light rounded shadow-sm">
+        <div class="col-md-12 m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Suggested: Dimensions to Evidence</label>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">K3: How students learn, both generally and within their subject/disciplinary area(s)</strong>
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(0).shortenedTag} + ' - ' + ${ukpsf.get(0).tagName}"></strong>
                     </div>
                 </div>
             </div>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">K5: Methods for evaluating the effectiveness of teaching</strong>
+                        <strong class="text-gray-dark"  th:text="${ukpsf.get(1).shortenedTag} + ' - ' + ${ukpsf.get(1).tagName}"></strong>
                     </div>
                 </div>
             </div>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">A1: design and plan learning activities and/or programmes of study</strong>
+                        <strong class="text-gray-dark"  th:text="${ukpsf.get(2).shortenedTag} + ' - ' + ${ukpsf.get(2).tagName}"></strong>
                     </div>
                 </div>
             </div>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">V1: Respect individual learners and diverse learning communities</strong>
+                        <strong class="text-gray-dark"  th:text="${ukpsf.get(3).shortenedTag} + ' - ' + ${ukpsf.get(3).tagName}"></strong>
                     </div>
                 </div>
             </div>
@@ -196,7 +191,20 @@
                     </a>
                 </div>
                 <span class="d-block"> Entry last edited: <span th:text="${incomplete.getLastEditedString()}"></span></span>
-                <span class="d-block">Completion Status: <span th:case="green">Completed</span><span th:case="amber">Partially Completed</span><span th:case="red">Incomplete</span></span>
+                <span class="d-block">Completion Status: <span th:case="green">Completed</span>
+                    <span th:case="amber">
+
+                        <span th:if="${incomplete.getTagsByCategory('UKPSF').isEmpty()}">
+                            Partially Completed - UKPSF Dimensions Required
+                        </span>
+
+                        <span th:unless="${incomplete.getTagsByCategory('UKPSF').isEmpty()}">
+                            Partially Completed - Reflection Required
+                        </span>
+
+                    </span>
+
+                    <span th:case="red">Incomplete - UKPSF Dimensions and Reflection Required</span></span>
 
             </div>
         </div>
@@ -250,7 +258,7 @@
 <!--        </div>-->
 
     </div>
-        <div class="col-md-4 h-auto m-3 p-3 bg-light rounded shadow-sm">
+        <div class="col-md-3 h-auto m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Upcoming Activities</label>
             <div class="media text-muted pt-3">
                 <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -274,7 +282,7 @@
                 <a href="#">Schedule</a>
             </small>
         </div>
-        <div class="col-auto flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
+        <div class="col-md-2 flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">To-Do List</label>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">

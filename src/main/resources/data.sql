@@ -163,12 +163,22 @@ VALUES ('UKPSF','Use evidence informed approaches and the outcomes from research
 INSERT INTO Tags (Category, tag_name, shortened_tag, description)
 VALUES ('UKPSF','Acknowledges the wider context in which higher education operates recognising the implications for professional practice', 'V4','This is concerned with being alert to the issues that may impact on institutional missions and/or which might have an influence on curriculum design and/or personal and collective professional practice. This might for example include how an individual has responded to the current demands of the Disability Discrimination Act, the employment agenda, or the widening access and participation agenda. Current agendas include; sustainability (the practice of sustainability and education for sustainability), and student engagement.');
 
-INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
+INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1)
 VALUES ('Held a group activity, went through slides and took questions at the end','I considered my previous seminars and found this format to be effective','Key information was passed along in an interactive and effective manner','I became more comfortable using remote-meeting software', 'I sent a feedback survey to participating students', 'I could have revised some of my slides for brevity',
-'I learnt how to hold a meeting on Zoom.','I learnt how to use a custom background with my webcam','I learnt that students seemed to be more visually attentive when viewing slides with images');
+'Students are more engaged when viewing slides with images, so I should use more images');
+
+INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1)
+VALUES ('Attended a harvard referencing workshop and cited journals using the referencing style','I thought that I needed to brush up on my skills','I managed to complete a lot of citation activities during the workshop','I used an app to check that my citations were correct', 'I have my completed citations as evidence of the activity', 'I could have spoken up more in the workshop',
+'I learnt how to hold a meeting on Zoom.');
 
 INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited, activity_date)
-VALUES (1,'Held an hour-long online seminar for Year 2 students on Presentation Skills',1,1,'rowbo',CURRENT_TIMESTAMP, TO_DATE('2020-11-23', 'YYYY-MM-DD'));
+VALUES (1,'Held an hour-long online seminar for Year 2 students on Presentation Skills.',1,1,'rowbo',TO_TIMESTAMP('25-NOV-2009:15:12.123000','DD-MON-RRHH24:MI:SS.FF'), TO_DATE('2020-11-23', 'YYYY-MM-DD'));
+
+INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited, activity_date)
+VALUES (3,'Held an in person seminar for Year 1 students on Agile Project Management',2,null,'rowbo',TO_TIMESTAMP('30-NOV-2011:35:08.123000','DD-MON-RRHH24:MI:SS.FF'), TO_DATE('2020-11-26', 'YYYY-MM-DD'));
+
+INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited, activity_date)
+VALUES (2,'Attended a 2 hour long workshop on harvard referencing and how to not accidentally plagiarize work.',3,2,'rowbo',TO_TIMESTAMP('3-DEC-2014:10:10.123000','DD-MON-RRHH24:MI:SS.FF'), TO_DATE('2020-11-30', 'YYYY-MM-DD'));
 
 INSERT INTO TagForm (TagID, FormID)
 VALUES (2,1);
@@ -185,3 +195,29 @@ VALUES (30,1);
 INSERT INTO TagForm (TagID, FormID)
 VALUES (43,1);
 
+INSERT INTO TagForm (TagID, FormID)
+VALUES (1,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (6,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (13,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (31,2);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (3,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (5,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (14,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (31,3);
+
+INSERT INTO TagForm (TagID, FormID)
+VALUES (28,3);

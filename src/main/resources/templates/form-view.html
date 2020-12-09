@@ -146,7 +146,7 @@
 
     </div>
     <hr><br>
-    <div th:if="${form.reflectionID != null}">
+    <div th:unless="${form.reflectionID == null}">
     <div>
         <h2>Reflection Answers</h2><br>
         <div>

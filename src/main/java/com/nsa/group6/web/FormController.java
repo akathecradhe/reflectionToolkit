@@ -22,9 +22,9 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.util.*;
+
 import com.nsa.group6.domain.Form;
 import com.nsa.group6.domain.SubmittingForm;
 import com.nsa.group6.domain.Tags;
@@ -33,8 +33,6 @@ import com.nsa.group6.domain.Tags;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
 
 @Controller
 public class FormController {
@@ -292,8 +290,13 @@ public class FormController {
         User aUser = getCurrentUser();
 
         List<Form> form = formService.getRecent();
-        List<Form> incompleteForm = formService.getIncomplete();
+        List<Form> incompleteForm = formService.getIncomplete(aUser);
 
+        List<Tags> dimensionsToEvidence = formHandler.findTagsByCategory("UKPSF");
+
+        Collections.shuffle(dimensionsToEvidence);
+
+        model.addAttribute("ukpsf", dimensionsToEvidence);
         model.addAttribute("incompletes", incompleteForm);
         model.addAttribute("user", aUser);
         model.addAttribute("forms", form);
