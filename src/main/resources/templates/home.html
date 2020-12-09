@@ -77,7 +77,7 @@
 <main role="main" class="container h-100">
     <div class = 'row h-50'>
     <div class="col-md-5 m-3 p-3  bg-light rounded shadow-sm">
-        <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities Added</label>
+        <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities Edited</label>
 <!--        <div class="media text-muted pt-3">-->
 <!--            <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
 <!--                <strong class="d-block text-gray-dark">Teaching or Supervision 2020/12/01</strong>-->
@@ -109,7 +109,19 @@
                     <span th:text="${form.shortDescription}"></span>
                     <br>Event held on <span th:text="${form.getDateString()}">0</span>
                     <br>Last edited: <span th:text="${form.getLastEditedString()}"></span>
-                    <br>Completion Status: <span th:case="green">Completed</span><span th:case="amber">Partially Completed</span><span th:case="red">Incomplete</span>
+                    <br>Completion Status:
+
+                    <span th:case="green">Completed</span>
+
+                    <span th:case="amber">
+
+                        <span th:if="${}">
+                        Partially Completed
+                            </span>
+
+                    </span>
+
+                    <span th:case="red">Incomplete - UKPSF Dimensions and Reflection Needed</span>
                 </p>
                 </div>
 
