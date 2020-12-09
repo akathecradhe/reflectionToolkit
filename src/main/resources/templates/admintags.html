@@ -91,7 +91,7 @@
                 </thead>
                 <tbody>
                 <tr  th:each = "ThoughtTag:${ThoughtTags}">
-                    <td th:text = "${ThoughtTag.tagID}" ></td>
+                    <td > - </td>
                     <td th:text = "${ThoughtTag.tagName}" >  </td>
                     <td><a class ="btn btn-warning" >
                         Edit
@@ -109,7 +109,7 @@
 
     </div>
     <div class="modal fade" id="add" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <form>
+        <form method="post" th:action="@{/addNew}" >
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -122,7 +122,7 @@
 
                         <div class="form-group">
                             <label  FOR="tagNameAdd"    class="col-form-label">Add a new Thought:</label>
-                            <input type="text" class="form-control" id="tagNameAdd" NAME="tagNameAdd">
+                            <input type="text" class="form-control" th:object="${tagNameAdd}" id="tagNameAdd" name="tagNameAdd">
                         </div>
 
                 </div>
