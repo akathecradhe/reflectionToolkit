@@ -134,7 +134,7 @@
         *
        </span>
                     </label>
-                    <input class="form-control" type="date" required id="eventDate" name="eventDate" th:value="${formEdit?.getDateString()}">
+                    <input class="form-control" type="date" required id="eventDate" name="eventDate" th:value="${formEdit?.getDateString()}" oninvalid="alert('Date Missing')">
 
                     <span class="help-block">
        Select the date that the activity took place.
@@ -148,7 +148,7 @@
         *
        </span>
                         </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${formEdit?.shortDescription}" maxlength="140" id="shortDesc" name="shortDesc" placeholder="(max 140 characters)" REQUIRED></textarea>
+                        <textarea class="form-control" oninvalid="alert('Short Description Required')" cols="40" rows="5" th:text="${formEdit?.shortDescription}" maxlength="140" id="shortDesc" name="shortDesc" placeholder="(max 140 characters)" REQUIRED></textarea>
                         <span class="help-block">
        Give a short description of the purpose of the activity you attended.
       </span>
