@@ -80,11 +80,11 @@ public class FormController {
         else {
 
             model.addAttribute("aForm", aSubmittingForm);
-
-            Reflection reflectionInput = new Reflection(aSubmittingForm.box1, aSubmittingForm.box2, aSubmittingForm.box3, aSubmittingForm.box4,
-                    aSubmittingForm.box5, aSubmittingForm.box6, aSubmittingForm.learningPoint1, aSubmittingForm.learningPoint2, aSubmittingForm.learningPoint3);
-
-            reflectionService.save(reflectionInput);
+//
+//            Reflection reflectionInput = new Reflection(aSubmittingForm.box1, aSubmittingForm.box2, aSubmittingForm.box3, aSubmittingForm.box4,
+//                    aSubmittingForm.box5, aSubmittingForm.box6, aSubmittingForm.learningPoint1, aSubmittingForm.learningPoint2, aSubmittingForm.learningPoint3);
+//
+//            reflectionService.save(reflectionInput);
 
             List<Integer> allTags = new ArrayList<Integer>();
             if(aSubmittingForm.impact != null) {
@@ -116,18 +116,21 @@ public class FormController {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-            Form form1 = new Form(eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, activityDate);
+            Form form1 = new Form(eventInput, descInput, userInput, roleInput, lastEditedInput, tagsInput, activityDate);
 
             if (aSubmittingForm.formID != null) {
-                form1 = new Form(aSubmittingForm.formID, eventInput, descInput, userInput, roleInput, reflectionInput, lastEditedInput, tagsInput, activityDate);
+                form1 = formService.getFormByID(aSubmittingForm.formID);
+                form1.updateDetails(eventInput, descInput, userInput, roleInput, lastEditedInput, tagsInput, activityDate);
+            } else{
+                model.addAttribute("prevForm", form1);
             }
 
             formService.saveForm(form1);
             model.addAttribute("tagsEdit", allTags);
             model.addAttribute("roleEdit", roleInput);
             model.addAttribute("eventEdit", eventInput);
-            model.addAttribute("descEdit", form1);
-            model.addAttribute("reflectionEdit", reflectionInput);
+
+//            model.addAttribute("reflectionEdit", reflectionInput);
 
             return getFormsByUsername(model);
         }
@@ -212,7 +215,7 @@ public class FormController {
 
     }
 
-    @GetMapping("/reflectionedit/{formID}")
+    @GetMapping("/activityedit/{formID}")
     public String editForm(@PathVariable(name = "formID", required = true) int formID, Model model){
         Form editingForm = formService.getFormByID(formID);
 
@@ -226,16 +229,26 @@ public class FormController {
 
         Event eventInput = editingForm.getEventID();
         Role roleInput = editingForm.getRoleID();
-        Reflection reflectionInput = editingForm.getReflectionID();
+//        Reflection reflectionInput = editingForm.getReflectionID();
 
         model.addAttribute("tagsEdit", allTags);
         model.addAttribute("roleEdit", roleInput);
         model.addAttribute("eventEdit", eventInput);
         model.addAttribute("formEdit", editingForm);
-        model.addAttribute("reflectionEdit", reflectionInput);
+//        model.addAttribute("reflectionEdit", reflectionInput);
         model.addAttribute("formID", formID);
 
         return getString(model);
+    }
+
+    @GetMapping("/reflectionedit/{formID}")
+    public String editReflection(@PathVariable(name = "formID", required = true) int formID, Model model){
+        Form editingForm = formService.getFormByID(formID);
+        Reflection reflectionInput = editingForm.getReflectionID();
+        model.addAttribute("reflectionEdit", reflectionInput);
+        model.addAttribute("form",editingForm);
+
+        return "formreflection";
     }
 
     //This function retrieves a form by the ID selected.
@@ -301,7 +314,11 @@ public class FormController {
 
     }
 
-
+    @GetMapping("/addreflection/{formID}")
+    public String  addReflectionByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
+        model.addAttribute("form", formService.getFormByID(formID));
+        return "formreflection";
+    }
 
 
     public User getCurrentUser(){
@@ -309,9 +326,37 @@ public class FormController {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         Optional<User> ausername = userService.findUserByUsername(userDetails.getUsername());
         User aUser = ausername.get();
-
         return aUser;
     }
+
+
+    @PostMapping("/addreflection/{formID}")
+    public String postReflectionByID(@ModelAttribute("form") ReflectionForm reflectionForm, @PathVariable(name = "formID", required = true) int formID, BindingResult bindings, Model model) {
+        if (bindings.hasErrors()) {
+            System.out.println("Errors:" + bindings.getFieldErrorCount());
+            for (ObjectError oe : bindings.getAllErrors()) {
+                System.out.println(oe);
+            }
+            return "form";
+        }
+        else {
+            Form form = formService.getFormByID(formID);
+            if (form.getReflectionID() != null){
+                Reflection reflection = form.getReflectionID();
+                reflection.updateFields(reflectionForm.box1, reflectionForm.box2, reflectionForm.box3, reflectionForm.box4,
+                        reflectionForm.box5, reflectionForm.box6, reflectionForm.learningPoint1, reflectionForm.learningPoint2, reflectionForm.learningPoint3);
+                reflectionService.save(reflection);
+            } else{
+                Reflection reflectionInput = new Reflection(reflectionForm.box1, reflectionForm.box2, reflectionForm.box3, reflectionForm.box4,
+                        reflectionForm.box5, reflectionForm.box6, reflectionForm.learningPoint1, reflectionForm.learningPoint2, reflectionForm.learningPoint3);
+                reflectionService.save(reflectionInput);
+                form.setReflectionID(reflectionInput);
+            }
+            formService.saveForm(form);
+            return getFormsByUsername(model);
+        }
+    }
+
 
 
 }

@@ -15,22 +15,22 @@ h2{
     color: #333;
 
 }
-form li{
-    list-style-type: none;
-}
+/*form li{*/
+/*    list-style-type: none;*/
+/*}*/
 
 
-nav a {
-    display: inline-block;
-    padding: 200px;
-    margin-right: 80px;
+/*nav a {*/
+/*    display: inline-block;*/
+/*    padding: 200px;*/
+/*    margin-right: 80px;*/
 
-}
+/*}*/
 
 
 ul li a{
-    text-decoration: none;
-    padding: 0 50px;
+/*    text-decoration: none;*/
+/*    padding: 0 50px;*/
     text-align: center;
     display: block;
 }
@@ -39,7 +39,6 @@ ul li a .icon{
     height: 40px;
     text-align: center;
     overflow: hidden;
-
 
 }
 
@@ -84,7 +83,83 @@ ul li a:hover .icon .fa
     background-color: #ffe6a8;
 }
 
+#greenhome{
+    border-color: green;
+    background-color: #cfffba;
+    color: green !important;
+}
+
+#redhome{
+    border-color: red;
+    background-color: #ffa8a8;
+    color: red !important;
+}
+
+#amberhome{
+    border-color: #FFBF00;
+    background-color: #ffe6a8;
+    color: #FFBF00 !important;
+}
+
+
 .reflection{
     border-radius: 2px;
     border-style: solid;
+}
+
+.lightgrey{
+    color:lightgrey !important;
+
+}
+
+.darkergrey{
+    color:grey !important;
+}
+.fontbig {
+    font-size: 20px;
+}
+@media (min-width: 768px) {
+    .topnavbar-nav {
+        float: none;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
+
+    }
+
+    .topnavbar-nav > li {
+        display: inline-block;
+        float: none;
+    }
+
+    .topnavbar-brand {
+        position: absolute;
+    }
+}
+.topnavbar-brand {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    line-height: inherit;
+    white-space: nowrap;
+    text-decoration: none;
+    float: none;
+}
+.topnavbar-brand-nav {
+    float:none;
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+}
+.topnavbar-brand:hover, .topnavbar-brand:focus {
+    text-decoration: none;
+}
+.navbar-dark .topnavbar-brand {
+    color: #fff;
+}
+
+.navbar-dark .topnavbar-brand:hover, .navbar-dark .topnavbar-brand:focus {
+    color: #fff;
 }

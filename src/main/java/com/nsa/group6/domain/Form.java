@@ -119,6 +119,18 @@ public class Form {
         this.activityDate = activityDate;
     }
 
+    //Create a form without a reflection but with ID
+    public Form(int formID, Event eventID, String shortDescription, User username, Role roleID, Timestamp lastEdited, List<Tags> tags, Date activityDate) {
+        this.formID = formID;
+        this.eventID = eventID;
+        this.shortDescription = shortDescription;
+        this.username = username;
+        this.roleID = roleID;
+        this.lastEdited = lastEdited;
+        this.tags = tags;
+        this.activityDate = activityDate;
+    }
+
     public String getCompletionLevel() {
         String completionLevel = "red";
         if(!getTagsByCategory("UKPSF").isEmpty()){
@@ -133,6 +145,17 @@ public class Form {
 
 
         return completionLevel;
+    }
+
+    //Used for updating form details when saving
+    public void updateDetails(Event eventID, String shortDescription, User username, Role roleID, Timestamp lastEdited, List<Tags> tags, Date activityDate){
+        this.eventID = eventID;
+        this.shortDescription = shortDescription;
+        this.username = username;
+        this.roleID = roleID;
+        this.lastEdited = lastEdited;
+        this.tags = tags;
+        this.activityDate = activityDate;
     }
 }
 
