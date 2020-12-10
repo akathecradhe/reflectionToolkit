@@ -65,7 +65,7 @@ public class AdminController {
     }
 
 //    This function deletes a tag
-    @PostMapping("/deletetag/{tagID}")
+    @DeleteMapping("/deletetag/{tagID}")
     public ResponseEntity<String> deleteTagByID(@PathVariable(name = "tagID", required = true) int tagID, Model model) {
         tagService.deleteTag(tagID);
 

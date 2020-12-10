@@ -100,12 +100,12 @@
 <!--                        Edit-->
 <!--                    </a></td>-->
                     <td style="text-align:right;">
-                        <form th:action="@{/deletetag/{tagID}(tagID=${ThoughtTag.tagID})}" th:object="${ThoughtTag}" method="post">
+<!--                        <form th:action="@{/deletetag/{tagID}(tagID=${ThoughtTag.tagID})}" th:object="${ThoughtTag}" method="post">-->
 
-                        <button type="submit" onclick="return confirm('Delete this tag?')" class ="deleteBtn btn btn-danger">
+                        <button type="submit" onclick="return confirm('Delete this tag?')" class ="deleteBtn btn btn-danger" th:id="${ThoughtTag.tagID}">
                           Delete
                         </button>
-                        </form>
+<!--                        </form>-->
                     </td>
 
                 </tr>
@@ -145,17 +145,24 @@
 
 </main>
 </body>
-<!--<script th:inline="javascript">-->
+<script th:inline="javascript">
 
-<!--    $(document).ready(function(){-->
-<!--        $(".deleteBtn").click(function(e){-->
-<!--            if(!confirm('Delete this tag?')) {-->
-<!--                window.location.reload();-->
-<!--            }-->
 
-<!--        });-->
-<!--    });-->
+    $(document).ready(function(){
+        $(".deleteBtn").click(function(e){
+            if(!confirm('Delete this form?')) {
+                return
+            }
+            var id = e.target.id;;
+            $.ajax({type: "delete",
+                url: "/deletetag/"+ id,
+                success:function(result){
+                    window.location.reload();
+                }
+            });
+        });
+    });
 
-<!--</script>-->
+</script>
 
 </html>
