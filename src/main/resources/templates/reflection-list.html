@@ -89,7 +89,7 @@
 
     <h2>Activities</h2>
     <button class="btn btn-light btn-lg" id="filterBtn">Filters</button>
-    <form id="filters" action="#" method="post" th:action="@{/reflection/user}" th:object="${filters}">
+    <form id="filters" action="#" method="get" th:action="@{/reflection/user/filters}" th:object="${filters}">
 
 
         <button class="btn btn-secondary col-sm drop" id="ukpsf" type="button">UKPSF Dimensions</button>

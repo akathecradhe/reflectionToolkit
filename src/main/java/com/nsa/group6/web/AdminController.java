@@ -43,7 +43,7 @@ public class AdminController {
         return "admintags";
     }
 
-    @RequestMapping("/addNew")
+    @PostMapping("/addNew")
     public String addThoughtCloud(Model model,
                                   @RequestParam String
                                           tagNameAdd) throws Exception {
