@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www/thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<html lang="en" xmlns:th="http://www/thymeleaf.org" xmlns="http://www.w3.org/1999/html"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
@@ -8,7 +9,6 @@
     <link href="../static/css/bootstrap.css" th:href="@{/css/reflections.css}" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-    <title>List Of Your Reflections</title>
 
     <script src="https://kit.fontawesome.com/9b9fc493c6.js" crossorigin="anonymous"></script>
 
@@ -19,7 +19,9 @@
 
 <header>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark" style="background-color: #e3f2fd;">
-        <a class="navbar-brand topnavbar-brand">Reflection Toolkit</a>
+        <a sec:authorize="hasRole('USER')" class="navbar-brand topnavbar-brand">Reflection Toolkit</a>
+        <a sec:authorize="hasRole('ADMIN')" class="navbar-brand topnavbar-brand">Administrator Panel</a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -27,7 +29,7 @@
         <div class="collapse navbar-collapse centered" id="navbarsExample04">
             <ul class="navbar-nav mr-auto topnavbar-nav">
                 <li class="nav-item active">
-                    <a class="nav-link disabled darkergrey" href="#" tabindex="-1" aria-disabled="true">
+                    <a sec:authorize="hasRole('USER')" class="nav-link disabled darkergrey" href="#" tabindex="-1" aria-disabled="true">
                         <div class="icon">
                             <i class="fa fa-home darkergrey" aria-hidden="true"></i>
                             <i class="fa fa-home" aria-hidden="true"></i>
@@ -36,9 +38,18 @@
                         Home
                         <span class="sr-only =">(current)</span>
                     </a>
+                    <a sec:authorize="hasRole('ADMIN')" class="nav-link disabled" href="#" tabindex="-1" aria-                           disabled="true">
+                        <div class="icon">
+                            <i class="fa fa-home darkergrey" aria-hidden="true"></i>
+                            <i class="fa fa-home" aria-hidden="true"></i>
+
+                        </div>
+
+                        Dashboard<span class="sr-only =">(current)</span></a>
+                    </a>
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/reflection/user">
+                    <a sec:authorize="hasRole('USER')" class="nav-link" href="/reflection/user">
                         <div class="icon">
                             <i class="fa fa-clipboard-list lightgrey"></i>
                             <i class="fa fa-clipboard-list"></i>
@@ -46,9 +57,18 @@
 
 
                         Activities</a>
+                    <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="#">
+                        <div class="icon">
+                            <i class="fa fa-clipboard-list lightgrey"></i>
+                            <i class="fa fa-clipboard-list"></i>
+                        </div>
+
+
+                        Global Overview</a>
+
                 </li>
                 <li class="nav-item active">
-                    <a class="nav-link" href="/form">
+                    <a sec:authorize="hasRole('USER')" class="nav-link" href="/form">
 
                         <div class="icon">
                             <i class="fa fa-file-medical lightgrey"></i>
@@ -56,6 +76,14 @@
                         </div>
 
                         Log Activity</a>
+                    <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="/admin/edit-tags">
+                        <div class="icon">
+                            <i class="fa fa-file-medical lightgrey"></i>
+                            <i class="fa fa-file-medical"></i>
+                        </div>
+
+
+                        Edit Tags</a>
                 </li>
                 <li class="nav-item active last">
                     <a class="nav-link" href="#" th:href="@{/logout}">
@@ -74,7 +102,7 @@
     </nav>
 </header>
 
-<main role="main" class="container h-100">
+<main sec:authorize="hasRole('USER')" role="main" class="container h-100">
     <div class = 'row h-50'>
     <div class="col-md-6 m-3 p-3  bg-light rounded shadow-sm">
         <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities Edited</label>
@@ -284,6 +312,143 @@
   </div>
 
  </main>
+<main sec:authorize="hasRole('ADMIN')" role="main" class="container h-100">
+    <div class = 'row h-50'>
+        <div class="col-md-5 m-3 p-3  bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Global Activities</label>
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">COMSC Year 2 Industry Seminar 2020/12/03</strong>
+                    <a class="clickhere" href="#">6 Attendee(s)</a> among registered users
+                </p>
+            </div>
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Communications Workshop 2020/12/02</strong>
+                    <a class="clickhere" href="#">67 Attendee(s)</a> among registered users
+                </p>
+            </div>
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Meeting with Vice Chancellor 2020/12/01</strong>
+                    <a class="clickhere" href="#">12 Attendee(s)</a> among registered users
+                </p>
+            </div>
+            <small class="d-block text-right mt-3">
+                <a href="#">All Recent Activities</a>
+            </small>
+        </div>
+        <div class="col-auto m-3 p-3 flex-fill bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Upcoming Global Activities</label>
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">COMSC Year 3 Management Seminar 2020/12/07</strong>
+                    <a class="clickhere" href="#">6 Scheduled attendee(s)</a> among registered users
+                </p>
+            </div>
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">Teaching Skills Workshop 2020/12/08</strong>
+                    <a class="clickhere" href="#">200 Scheduled attendee(s)</a> among registered users
+                </p>
+            </div>
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">MPhys Quantum Physics Guest Talk 2020/12/09</strong>
+                    <a class="clickhere" href="#">8 Scheduled attendee(s)</a> among registered users
+                </p>
+            </div>
+            <small class="d-block text-right mt-3">
+                <a href="#">All Upcoming Activities</a>
+            </small>
+        </div>
+    </div>
+    <div class = 'row h-50'>
+        <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Most Commonly Evidenced Dimensions (UKPSF)</label>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark">K1: The subject material</strong>
+                    </div>
+                    <span class="d-block">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark">A2: Teach and/or support learning</strong>
+                    </div>
+                    <span class="d-block">399 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark">D3.7: Supporting colleagues</strong>
+                    </div>
+                    <span class="d-block">378 reflections with this tag on record</span>
+                </div>
+            </div>
+            <small class="d-block text-right mt-3">
+                <a href="#">Dimension Overview</a>
+            </small>
+        </div>
+        <div class="col-md-4 h-auto m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Least Commonly Evidenced Dimensions (UKPSF)</label>
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">V1: Respect individual learners and diverse learning communities</strong>
+                    12 reflections with this tag on record
+                </p>
+            </div>
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">V4: Acknowledge the wider context in which higher education operates recognising the implications for professional practice </strong>
+                    19 reflections with this tag on record
+                </p>
+            </div>
+            <div class="media text-muted pt-3">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">K3: How students learn, both generally and within their subject/disciplinary area(s) </strong>
+                    27 reflections with this tag on record
+                </p>
+            </div>
+            <small class="d-block text-right mt-3">
+                <a href="#">Dimension Overview</a>
+            </small>
+        </div>
+        <div class="col-auto flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">To-Do List</label>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 1</label>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 2</label>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 3</label>
+                    </div>
+                </div>
+            </div><br>
+            <small class="d-block text-right mt-3">
+                <a href="#">Edit To-Do List</a>
+            </small>
+        </div>
+    </div>
+
+</main>
+
 </body>
 
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->

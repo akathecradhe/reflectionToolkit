@@ -16,10 +16,12 @@ public class TagJPAAdaptor implements TagService {
         this.tagRepository = tagRepository;
     }
 
+
     @Override
     public Tags getTagByID(int tagID) {
         return tagRepository.findByTagID(tagID);
     }
+
 
     @Override
     public List<Tags> getAllTags() {
@@ -27,7 +29,19 @@ public class TagJPAAdaptor implements TagService {
     }
 
     @Override
+    public void saveTags(Tags aTags) {
+
+    }
+
+    @Override
+    public void deleteTag(int id) {
+        tagRepository.deleteById(id);
+    }
+
+    @Override
     public List<Tags> getTagByCategory(String category) {
         return tagRepository.findAllByCategory(category);
     }
+
+
 }

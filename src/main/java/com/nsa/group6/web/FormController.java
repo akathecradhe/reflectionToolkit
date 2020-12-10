@@ -12,7 +12,6 @@ import com.nsa.group6.service.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -46,7 +45,7 @@ public class FormController {
     private final EventService eventService;
     private final ReflectionService reflectionService;
 
-    public FormController(FormService formService, UserService userService, FormHandler formHandler, TagsService tagsService, RoleService roleService, EventService eventService, ReflectionService reflectionService) {
+    public FormController(FormService formService, UserService userService, FormHandler formHandler, TagsService tagsService, RoleService roleService, EventService eventService, ReflectionService reflectionService, TagService tagService) {
         this.formService = formService;
         this.userService = userService;
         this.formHandler = formHandler;
@@ -54,6 +53,7 @@ public class FormController {
         this.roleService = roleService;
         this.eventService = eventService;
         this.reflectionService = reflectionService;
+
     }
 
 
@@ -358,6 +358,9 @@ public class FormController {
             return getFormsByUsername(model);
         }
     }
+
+
+
 
 
 

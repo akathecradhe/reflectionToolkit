@@ -10,6 +10,11 @@ public interface TagService {
 
     Tags getTagByID(int tagID);
     List<Tags> getAllTags();
+    void saveTags(Tags aTags);
 
+    public void deleteTag(int id);
     List<Tags> getTagByCategory(String category);
+
+
+
 }

@@ -9,4 +9,10 @@ import java.util.List;
 
 @Repository
 public interface TagsRepository extends JpaRepository<Tags,Integer> {
+    Tags findByTagID(int aTagId);
+
+    List<Tags> findAll();
+
+    List<Tags> findAllByCategory(String category);
+
 }
