@@ -53,10 +53,10 @@ public class FormJPAAdaptor implements FormService {
     }
 
     @Override
-    public List<Form> getRecent() {
+    public List<Form> getRecent(User aUsername) {
 
 
-        List<Form> aForms = formRepository.findAll(Sort.by(Sort.Direction.ASC, "lastEdited"));
+        List<Form> aForms = formRepository.findAllByUsername(aUsername, Sort.by(Sort.Direction.ASC, "lastEdited"));
 
         List<Form> aForms2 = new ArrayList<>();
 

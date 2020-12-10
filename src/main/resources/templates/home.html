@@ -106,6 +106,7 @@
     <div class = 'row h-50'>
     <div class="col-md-6 m-3 p-3  bg-light rounded shadow-sm">
         <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities Edited</label>
+        <span th:unless="${forms.size() == 0}">
         <div th:each="form : ${forms}">
             <div class="media text-muted pt-3" >
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -139,6 +140,25 @@
 
             </div>
         </div>
+        </span>
+            <span th:if="${forms.size() == 0}">
+                                    <div class="media text-muted pt-3">
+                        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <strong class="text-gray-dark">You have not added any forms yet.</strong>
+                            </div>
+                        </div>
+                    </div>
+            <div class="media text-muted pt-3">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <a href="/form">
+                        <strong class="text-gray-dark">Add a new form</strong>
+                    </a>
+                </div>
+            </div>
+            </div>
+            </span>
         <small class="d-block text-right mt-3">
             <a href="/reflection/user">All Activities</a>
         </small>
@@ -283,30 +303,30 @@
             </small>
         </div>
         <div class="col-md-2 flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">To-Do List</label>
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Action Points</label>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 1</label>
+                        <label><input type = checkbox class="text-gray-dark" value=""/>Action Point 1</label>
                     </div>
                 </div>
             </div>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 2</label>
+                        <label><input type = checkbox class="text-gray-dark" value=""/>Action Point 2</label>
                     </div>
                 </div>
             </div>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 3</label>
+                        <label><input type = checkbox class="text-gray-dark" value=""/>Action Point 3</label>
                     </div>
                 </div>
             </div><br>
             <small class="d-block text-right mt-3">
-                <a href="#">Edit To-Do List</a>
+                <a href="#">View All</a>
             </small>
         </div>
   </div>

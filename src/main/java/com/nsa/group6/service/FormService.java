@@ -18,7 +18,7 @@ public interface FormService {
 
     Form getFormByID(int formID);
 
-    List<Form> getRecent();
+    List<Form> getRecent(User aUsername);
 
     List<Form> getIncomplete(User aUsername);
 

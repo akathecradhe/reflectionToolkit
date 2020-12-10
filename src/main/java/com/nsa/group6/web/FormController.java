@@ -289,7 +289,7 @@ public class FormController {
 
         User aUser = getCurrentUser();
 
-        List<Form> form = formService.getRecent();
+        List<Form> form = formService.getRecent(aUser);
         List<Form> incompleteForm = formService.getIncomplete(aUser);
 
         List<Tags> dimensionsToEvidence = formHandler.findTagsByCategory("UKPSF");
