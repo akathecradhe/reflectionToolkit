@@ -14,9 +14,11 @@ INSERT INTO Event (Name)
 VALUES ('Evaluation and Quality Assurance');
 
 INSERT INTO User (username, name,password, roles,account_created)
-VALUES ('rowbo','Tom Rowbotham','$2y$12$WjMvIYEmf0oEJxqkydW5M.QJ6jCv/AGT/p7bvwP82bAC5ZhMikNp2','ADMIN',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
+VALUES ('rowbo','Tom Rowbotham','$2y$12$WjMvIYEmf0oEJxqkydW5M.QJ6jCv/AGT/p7bvwP82bAC5ZhMikNp2','USER',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
 INSERT INTO User (username, name,password ,roles,account_created)
-VALUES ('clive99','Clive Tsungu','$2y$12$RJ81jxbwYS90sHZ.8sDu2uAoPb0EFWwMy2z6u4lAnJnv21Le/zC8G','USER',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
+VALUES ('clive99','Clive Tsungu','$2y$12$RJ81jxbwYS90sHZ.8sDu2uAoPb0EFWwMy2z6u4lAnJnv21Le/zC8G','ADMIN',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
+INSERT INTO User (username, name,password ,roles,account_created)
+VALUES ('juan10','Jay Creasey','$2y$12$RJ81jxbwYS90sHZ.8sDu2uAoPb0EFWwMy2z6u4lAnJnv21Le/zC8G','ADMIN',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
 
 INSERT INTO Role (name)
 VALUES ('Lead or Facilitate');
