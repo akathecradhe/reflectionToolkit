@@ -40,6 +40,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 //        http.csrf().disable();
         http.headers().frameOptions().disable();
+        http.headers().contentSecurityPolicy("script-src 'self https://code.jquery.com/jquery-3.5.1.slim.min.js" +
+                " https://kit.fontawesome.com/9b9fc493c6.js https://code.jquery.com/jquery-3.3.1.min.js " +
+                "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" +
+                " https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " +
+                "https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js'");
 
     }
 
