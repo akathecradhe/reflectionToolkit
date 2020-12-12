@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9b9fc493c6.js" crossorigin="anonymous"></script>
+    <script src="/js/admintags.js"></script>
 
 
 </head>
@@ -145,24 +146,5 @@
 
 </main>
 </body>
-<script th:inline="javascript">
-
-
-    $(document).ready(function(){
-        $(".deleteBtn").click(function(e){
-            if(!confirm('Delete this form?')) {
-                return
-            }
-            var id = e.target.id;;
-            $.ajax({type: "delete",
-                url: "/deletetag/"+ id,
-                success:function(result){
-                    window.location.reload();
-                }
-            });
-        });
-    });
-
-</script>
 
 </html>

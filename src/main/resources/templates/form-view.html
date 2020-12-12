@@ -15,6 +15,7 @@
     <script src="https://kit.fontawesome.com/9b9fc493c6.js" crossorigin="anonymous"></script>
     <meta th:name="_csrf" th:content="${_csrf.getToken()}"/>
     <meta th:name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <script src="/js/form-view.js"></script>
 </head>
 <body>
 
@@ -80,6 +81,7 @@
 <div class="container">
 
     <h1 class="mt-5" th:text="${form.getEventID().getName()}"> </h1>
+    <input type="hidden" id="formId" name="formId" th:value="${form.getFormID()}">
     <hr>
     <div>
     <a style="float:right" class="btn btn-primary" th:href="@{/activityedit/{furl} (furl=${form.getFormID()})}">Edit Activity</a>
@@ -191,39 +193,6 @@
 </div>
 </main>
 
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-
-    $(document).ready(function(){
-        var csrfValue = $("meta[name='_csrf']").attr("content");
-        var csrfHeader = $("meta[name='_csrf_header']").attr("content");
-        $(".deleteBtn").click(function(e){
-            if(!confirm('Delete this form?')) {
-                return
-            }
-            var id = /*[[${form.getFormID()}]]*/ 'default';
-            alert(csrfHeader);
-            alert(csrfValue);
-            $.ajax({type: "delete",
-                url: "/reflectionremove/"+ id,
-                ajaxOptions: {
-                    beforeSend: function (xhr)
-                    {
-                        xhr.setRequestHeader(csrfHeader, csrfValue);
-                    }
-                },
-                success:function(result){
-                    window.location = "/reflection/user";
-                }
-            });
-        });
-    });
-
-    /*]]>*/
-</script>
 
 </body>
 </html>
