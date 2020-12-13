@@ -4,11 +4,13 @@ $(document).ready(function() {
     })
 
     $(document).ready(function () {
-        var csrfValue = $("meta[name='_csrf']").attr("content");
-        var csrfHeader = $("meta[name='_csrf_header']").attr("content");
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')
+            }
+        });
 
         $(".deleteBtn").click(function (e) {
-            alert("yay it works");
             if (!confirm('Delete this form?')) {
                 return
             }
@@ -16,11 +18,6 @@ $(document).ready(function() {
             $.ajax({
                 type: "delete",
                 url: "/reflectionremove/" + id,
-                ajaxOptions: {
-                    beforeSend: function (xhr) {
-                        xhr.setRequestHeader(csrfHeader, csrfValue);
-                    }
-                },
                 success: function (result) {
                     window.location = "/reflection/user";
                 }
