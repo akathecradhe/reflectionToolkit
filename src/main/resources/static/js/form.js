@@ -33,51 +33,6 @@ $(document).ready(function() {
         $(".navbar-collapse").collapse('hide');
     });
 
-// Code adapted from https://stackoverflow.com/questions/6218494/using-the-html5-required-attribute-for-a-group-of-checkboxes
-    $(function () {
-        var othersRequired = $('.othersInvolved :checkbox[required]');
-        othersRequired.change(function () {
-            if (othersRequired.is(':checked')) {
-                othersRequired.removeAttr('required');
-            } else {
-                othersRequired.attr('required', 'required');
-            }
-        });
-    });
-
-    $(function () {
-        var impactRequired = $('.impact :checkbox[required]');
-        impactRequired.change(function () {
-            if (impactRequired.is(':checked')) {
-                impactRequired.removeAttr('required');
-            } else {
-                impactRequired.attr('required', 'required');
-            }
-        });
-    });
-
-
-    $(function () {
-        var learningRequired = $('.learningTechnology :checkbox[required]');
-        learningRequired.change(function () {
-            if (learningRequired.is(':checked')) {
-                learningRequired.removeAttr('required');
-            } else {
-                learningRequired.attr('required', 'required');
-            }
-        });
-    });
-
-    $(function () {
-        var thoughtRequired = $('.thoughtCloud :checkbox[required]');
-        thoughtRequired.change(function () {
-            if (thoughtRequired.is(':checked')) {
-                thoughtRequired.removeAttr('required');
-            } else {
-                thoughtRequired.attr('required', 'required');
-            }
-        });
-    });
 
     document.getElementById("activityNext").onclick = function () {
         document.getElementById('activitydetails').style.display = 'none';
@@ -124,4 +79,6 @@ $(document).ready(function() {
         document.getElementById('impact').style.display = 'block';
         document.documentElement.scrollTop = 0;
     };
+
+    var othersInvolved = document.getElementsByName("others");
 });
