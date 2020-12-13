@@ -52,7 +52,30 @@ $(document).ready(function() {
         document.getElementById('reflection').style.display = 'block';
         document.documentElement.scrollTop = 0
     };
-    document.getElementById("submitBtn").onclick = function () {
-        confirmsubmit()
-    };
+
+    var box1 = document.getElementById("box1");
+    var box2 = document.getElementById("box2");
+    var box3 = document.getElementById("box3");
+    var box4 = document.getElementById("box4");
+    var box5 = document.getElementById("box5");
+    var box6 = document.getElementById("box6");
+    var lp1 = document.getElementById("learningPoint1");
+    document.getElementById("form").onsubmit = function(){return validate()};
+
+    function validate() {
+        if (box1.value == "" || box2.value == "" ||box3.value == "" ||box4.value == "" ||box5.value == "" ||box6.value == ""){
+            alert("Missing Reflection");
+            return false;
+        } else if (lp1.value=="") {
+            alert("Fill in at least 1 action point");
+            return false;
+        } else{
+            return confirm("Submit form?")
+
+    }};
+
+
+
+
+
 });

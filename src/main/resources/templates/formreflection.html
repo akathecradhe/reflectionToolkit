@@ -94,7 +94,7 @@
 </nav>
 
 <main role="main" class="container-fluid">
-    <form action="#" method="post" th:action="@{/addreflection/} + ${form.FormID}" th:object="${form}" onsubmit="return confirm('Submit this entry?');">
+    <form action="#" method="post" th:action="@{/addreflection/} + ${form.FormID}" th:object="${form}" id="form" onsubmit="return confirm('Submit this entry?');">
         <div id="reflection" class="container">
             <h1 class="mt-5">Reflection</h1><br>
             <div class="row">

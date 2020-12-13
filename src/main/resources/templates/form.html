@@ -101,7 +101,7 @@
 </nav>
 
 <main role="main" class="container-fluid">
-    <form action="#" method="post" th:action="@{/form}" th:object="${form}" onsubmit="return confirm('Submit this entry?');">
+    <form id="form" th:action="@{/form}" th:object="${form}" method='post'>
 
         <div id="activitydetails" class="container">
             <h1 class="mt-5">Activity Details</h1><br>
@@ -181,10 +181,10 @@
                         <div class="othersInvolved" style="display: flex;" th:each="othersInvolveds: ${othersInvolved}">
 
                             <div th:if="${tagsEdit != null}">
-                                <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}"  th:checked="${#lists.contains(tagsEdit, othersInvolveds.tagID)}" name="others" th:value="${othersInvolveds.tagID}">
+                                <input  class = "checkbox others" type="checkbox" th:id="${othersInvolveds.tagID}"  th:checked="${#lists.contains(tagsEdit, othersInvolveds.tagID)}" name="others" th:value="${othersInvolveds.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input  class = "checkbox" type="checkbox"  th:id="${othersInvolveds.tagID}"
+                                <input  class = "checkbox others" type="checkbox"  th:id="${othersInvolveds.tagID}"
                                         name="others" th:value="${othersInvolveds.tagID}">
                             </div>
                             <label th:for="${othersInvolveds.tagID}" th:text="${othersInvolveds.tagName}">
@@ -261,10 +261,10 @@
                         </label><br>
                         <div style="display: flex;" th:each="impacts: ${impact}" class="impact">
                             <div th:if="${tagsEdit != null}">
-                                <input class = "checkbox" type="checkbox"  th:id="${impacts.tagID}" th:checked="${#lists.contains(tagsEdit, impacts.tagID)}" name="impact" th:value="${impacts.tagID}">
+                                <input class = "checkbox impact" type="checkbox"  th:id="${impacts.tagID}" th:checked="${#lists.contains(tagsEdit, impacts.tagID)}" name="impact" th:value="${impacts.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input class = "checkbox" type="checkbox"   th:id="${impacts.tagID}" name="impact" th:value="${impacts.tagID}">
+                                <input class = "checkbox impact" type="checkbox"   th:id="${impacts.tagID}" name="impact" th:value="${impacts.tagID}">
                             </div>
                             <label th:for="${impacts.tagID}" th:text="${impacts.tagName}"></label><br>
                         </div>
@@ -284,10 +284,10 @@
                                 </label><br>
                                 <div style="display: flex;" th:each="learningTechnology: ${learningTechnologies}">
                                     <div th:if="${tagsEdit != null}">
-                                        <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:checked="${#lists.contains(tagsEdit, learningTechnology.tagID)}" th:value="${learningTechnology.tagID}">
+                                        <input class = "checkbox learningTechs" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:checked="${#lists.contains(tagsEdit, learningTechnology.tagID)}" th:value="${learningTechnology.tagID}">
                                     </div>
                                     <div th:unless="${tagsEdit != null}">
-                                        <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:value="${learningTechnology.tagID}">
+                                        <input class = "checkbox learningTechs" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:value="${learningTechnology.tagID}">
                                     </div>
 
                                     <label th:for="${learningTechnology.tagID}" th:text="${learningTechnology.tagName}"></label><br>
@@ -322,10 +322,10 @@
                         <div class="split3">
                         <div style="display: flex;" th:each="thoughtClouds: ${thoughtCloud}" class="thoughtCloud">
                             <div th:if="${tagsEdit != null}">
-                                <input class ="checkbox"  type="checkbox"  th:checked="${#lists.contains(tagsEdit, thoughtClouds.tagID)}" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
+                                <input class ="checkbox thoughtCloud"  type="checkbox"  th:checked="${#lists.contains(tagsEdit, thoughtClouds.tagID)}" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input class ="checkbox"  type="checkbox"  th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
+                                <input class ="checkbox thoughtCloud"  type="checkbox"  th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
                             </div>
                             <label th:for="${thoughtClouds.tagID}" th:text="${thoughtClouds.tagName}"></label><br>
                         </div>

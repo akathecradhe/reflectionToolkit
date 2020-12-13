@@ -79,6 +79,34 @@ $(document).ready(function() {
         document.getElementById('impact').style.display = 'block';
         document.documentElement.scrollTop = 0;
     };
+    document.getElementById("form").onsubmit = function(){return validate()};
 
-    var othersInvolved = document.getElementsByName("others");
+
+    var activityDate = document.getElementById("eventDate");
+    var shortDesc = document.getElementById("shortDesc");
+
+
+    function validate() {
+        if (activityDate.value == ""){
+            alert("Missing Date");
+            return false;
+        } else if (shortDesc.value == ""){
+            alert("Missing Description");
+            return false;
+        } else if ($('input[name="others"]:checked').length == 0) {
+            alert("Missing Others Involved Tags");
+            return false;
+        } else if ($('input[name="impact"]:checked').length == 0) {
+            alert("Missing Impact Tags");
+            return false;
+        } else if ($('input[name="learningTechs"]:checked').length == 0) {
+            alert("Missing Learning Technologies Tags");
+            return false;
+        } else if ($('input[name="thoughtCloud"]:checked').length == 0) {
+            alert("Missing Thought Cloud Tags");
+            return false;
+        } else{
+            return confirm("Are you sure you want to submit?");
+        }
+    }
 });
