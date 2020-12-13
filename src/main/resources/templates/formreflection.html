@@ -6,10 +6,10 @@
     <title>Logging Form</title>
     <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
     <link href="../static/css/bootstrap.css" th:href="@{/css/reflections.css}" rel="stylesheet" />
-    <script src="https://kit.fontawesome.com/9b9fc493c6.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9b9fc493c6.js" integrity="sha384-DAWLZRiO/qZNdnMjK7WpOGMKv+B+7w5u/COubDH3zyRYwpi3pl09nNi8RoWAmMyS" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
-
+    <script src="/js/formreflection.js"></script>
 
 </head>
 <body>
@@ -81,20 +81,20 @@
     <div class="collapse navbar-collapse" id="navbarsExample03">
         <ul class="navbar-nav mx-auto" >
             <li class="nav-item active">
-                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('reflection')">Reflection</a>
+                <a class="nav-link btn" data-toggle="collapse" id="reflectionTitle">Reflection</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('learningpoints')">Action Points</a>
+                <a class="nav-link btn" data-toggle="collapse" id="actionTitle">Action Points</a>
             </li>
             <li class="nav-item active">
-                <a style="color:white !important;" class="nav-link btn btn-primary" onclick="document.getElementById('submitBtn').click();">Submit</a>
+                <a style="color:white !important;" class="nav-link btn btn-primary" id="submitTitle">Submit</a>
             </li>
         </ul>
     </div>
 </nav>
 
 <main role="main" class="container-fluid">
-    <form action="#" method="post" th:action="@{/addreflection/} + ${form.FormID}" th:object="${form}" onsubmit="return confirm('Submit this entry?');">
+    <form action="#" method="post" th:action="@{/addreflection/} + ${form.FormID}" th:object="${form}" id="form" onsubmit="return confirm('Submit this entry?');">
         <div id="reflection" class="container">
             <h1 class="mt-5">Reflection</h1><br>
             <div class="row">
@@ -106,7 +106,7 @@
                                 *
                                </span>
                         </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box1}" maxlength="100" name="box1" id="box1" placeholder="(max 100 characters)" REQUIRED></textarea>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box1}" maxlength="100" name="box1" id="box1" placeholder="(max 100 characters)" ></textarea>
                         <span class="help-block">
                    Provide a clear record.
                   </span>
@@ -120,7 +120,7 @@
                                </span>
 
                         </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box2}" maxlength="100" name="box2" id="box2" placeholder="(max 100 characters)" REQUIRED ></textarea>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box2}" maxlength="100" name="box2" id="box2" placeholder="(max 100 characters)"  ></textarea>
                         <span class="help-block">
                    Consider your past experiences and how they might have been of influence here.
                   </span>
@@ -134,7 +134,7 @@
                                </span>
 
                         </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box3}" maxlength="100" name="box3" id="box3" placeholder="(max 100 characters)" REQUIRED></textarea>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box3}" maxlength="100" name="box3" id="box3" placeholder="(max 100 characters)" ></textarea>
                         <span class="help-block">
                    Consider your own and others' viewpoints and feelings - put yourself in their shoes!
                   </span>
@@ -148,7 +148,7 @@
                                </span>
 
                         </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box4}" maxlength="100" name="box4" id="box4" placeholder="(max 100 characters)" REQUIRED></textarea>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box4}" maxlength="100" name="box4" id="box4" placeholder="(max 100 characters)" ></textarea>
                         <span class="help-block">
                    Think about how your development might have been affected had you utilised a different technology.
                   </span>
@@ -162,7 +162,7 @@
                                </span>
 
                         </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box5}" maxlength="100" name="box5" id="box5" placeholder="(max 100 characters)" REQUIRED></textarea>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box5}" maxlength="100" name="box5" id="box5" placeholder="(max 100 characters)" ></textarea>
                         <span class="help-block">
                    How will you evaluate this activity later? What evidence do you need?
                   </span>
@@ -176,14 +176,14 @@
                                </span>
 
                         </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box6}" maxlength="100" name="box6" id="box6" placeholder="(max 100 characters)" REQUIRED></textarea>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.box6}" maxlength="100" name="box6" id="box6" placeholder="(max 100 characters)" ></textarea>
                         <span class="help-block">
                    What could you have done differently?
                   </span>
                     </div>
                     <div class="form-group">
                         <div>
-                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('reflection').style.display='none';document.getElementById('learningpoints').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                            <button style="float: right;" class="btn btn-primary " type="button" id="nextBtn"> Next </button>
                         </div>
                     </div>
                 </div>
@@ -201,7 +201,7 @@
                                 *
                                </span>
                         </label>
-                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint1}" maxlength="140" name="learningPoint1" id="learningPoint1" placeholder="(max 140 characters)" REQUIRED></textarea>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${reflectionEdit?.learningPoint1}" maxlength="140" name="learningPoint1" id="learningPoint1" placeholder="(max 140 characters)" ></textarea>
                         <span class="help-block">
                                What key takeaways did you gain from this experience? Type them in the text fields.
                   </span>
@@ -220,8 +220,8 @@
                     </div>
                     <div class="form-group">
                         <div>
-                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('learningpoints').style.display='none';document.getElementById('reflection').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="submit" id="submitBtn" value="Submit" onclick="confirmsubmit()"> Submit </button>
+                            <button style="float: left;" class="btn btn-primary " type="button" id="actionBack"> Back </button>
+                            <button style="float: right;" class="btn btn-primary " type="submit" id="submitBtn" value="Submit"> Submit </button>
                         </div>
                     </div>
                 </div>
@@ -239,40 +239,7 @@
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
 <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
 
-<script>
 
-    function menuSelect(element) {
-        document.getElementById('reflection').style.display='none';
-        document.getElementById('learningpoints').style.display='none';
-        document.getElementById(element).style.display='block';
-        document.documentElement.scrollTop = 0;
-    }
-
-
-
-    function uncheck(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6) {
-        let checkBox = document.getElementById("None");
-        if (checkBox.checked == true); {
-            document.getElementById(checkbox1).checked = false;
-            document.getElementById(checkbox2).checked = false;
-            document.getElementById(checkbox3).checked = false;
-            document.getElementById(checkbox4).checked = false;
-            document.getElementById(checkbox5).checked = false;
-            document.getElementById(checkbox6).checked = false;
-        }
-    }
-    function uncheckNone() {
-        document.getElementById('None').checked = false;
-    }
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-
-    $('.navbar-collapse a').click(function(){
-        $(".navbar-collapse").collapse('hide');
-    });
-
-</script>
 
 </body>
 </html>

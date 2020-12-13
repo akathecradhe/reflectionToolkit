@@ -20,6 +20,7 @@
     <title>List Of Your Reflections</title>
 
     <script src="https://kit.fontawesome.com/9b9fc493c6.js" crossorigin="anonymous"></script>
+    <script src="/js/reflection-list.js"></script>
 
 
 </head>
@@ -89,7 +90,7 @@
 
     <h2>Activities</h2>
     <button class="btn btn-light btn-lg" id="filterBtn">Filters</button>
-    <form id="filters" action="#" method="post" th:action="@{/reflection/user}" th:object="${filters}">
+    <form id="filters" action="#" method="get" th:action="@{/reflection/user/filters}" th:object="${filters}">
 
 
         <button class="btn btn-secondary col-sm drop" id="ukpsf" type="button">UKPSF Dimensions</button>
@@ -224,46 +225,6 @@
     </div>
 </div>
 
-<script>
-
-    $(document).ready(function () {
-        $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-        })
-        $('#myModal').modal('show');
-        $("#filters").hide();
-        $("#ukpsf").show();
-        $("#impact").show();
-        $("#ukpsf-drop").hide();
-        $("#othersInvolved-drop").hide();
-        $("#learningTechnologies-drop").hide();
-        $("#thoughtCloud-drop").hide();
-        $("#impact-drop").hide();
-        $("#completionStatus-drop").hide();
-        $("#filterBtn").click(function () {
-            $("#filters").toggle()
-        });
-        $("#ukpsf").click(function () {
-            $("#ukpsf-drop").toggle()
-        });
-        $("#othersInvolved").click(function () {
-            $("#othersInvolved-drop").toggle()
-        });
-        $("#learningTechnologies").click(function () {
-            $("#learningTechnologies-drop").toggle()
-        });
-        $("#thoughtCloud").click(function () {
-            $("#thoughtCloud-drop").toggle()
-        });
-        $("#impact").click(function () {
-            $("#impact-drop").toggle()
-        });
-        $("#completionStatus").click(function () {
-            $("#completionStatus-drop").toggle()
-        });
-    });
-
-</script>
 
 
 </body>

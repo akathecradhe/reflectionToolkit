@@ -10,6 +10,7 @@
     <title>List Of Your Reflections</title>
 
     <script src="https://kit.fontawesome.com/9b9fc493c6.js" crossorigin="anonymous"></script>
+    <script src="/js/form.js"></script>
 
 </head>
 <body>
@@ -81,26 +82,26 @@
     <div class="collapse navbar-collapse" id="navbarsExample03">
         <ul class="navbar-nav mx-auto" >
             <li class="nav-item active">
-                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('activitydetails')">Activity Details</a>
+                <a class="nav-link btn" data-toggle="collapse" id="activityTitle">Activity Details</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('ukpsf')">UKPSF Dimensions</a>
+                <a class="nav-link btn" data-toggle="collapse" id="ukpsfTitle">UKPSF Dimensions</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('impact')">Impact & Techs</a>
+                <a class="nav-link btn" data-toggle="collapse" id="impactTitle">Impact & Techs</a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link btn" data-toggle="collapse" onclick="menuSelect('thoughtcld')">Thought Cloud</a>
+                <a class="nav-link btn" data-toggle="collapse" id="thoughtTitle">Thought Cloud</a>
             </li>
             <li class="nav-item active">
-                <a style="color:white !important;" class="nav-link btn btn-primary" onclick="document.getElementById('submitBtn').click();">Submit</a>
+                <a style="color:white !important;" class="nav-link btn btn-primary" id="submitTitle">Submit</a>
             </li>
         </ul>
     </div>
 </nav>
 
 <main role="main" class="container-fluid">
-    <form action="#" method="post" th:action="@{/form}" th:object="${form}" onsubmit="return confirm('Submit this entry?');">
+    <form id="form" th:action="@{/form}" th:object="${form}" method='post'>
 
         <div id="activitydetails" class="container">
             <h1 class="mt-5">Activity Details</h1><br>
@@ -117,7 +118,7 @@
                             <select name="formID" id="formID"><option th:value="${formID}" REQUIRED></option></select>
                         </div>
 
-                        <select class="form-control" name="eventType" id="eventType" REQUIRED>
+                        <select class="form-control" name="eventType" id="eventType" >
                             <div th:each="events: ${event}">
                                 <option th:value="${events.eventID}" th:text="${events.name}" th:selected="${events.eventID == eventEdit?.eventID}" ></option>
                             </div>
@@ -134,7 +135,7 @@
         *
        </span>
                     </label>
-                    <input class="form-control" type="date" required id="eventDate" name="eventDate" th:value="${formEdit?.getDateString()}" oninvalid="alert('Date Missing')">
+                    <input class="form-control" type="date"  id="eventDate" name="eventDate" th:value="${formEdit?.getDateString()}">
 
                     <span class="help-block">
        Select the date that the activity took place.
@@ -148,7 +149,7 @@
         *
        </span>
                         </label>
-                        <textarea class="form-control" oninvalid="alert('Short Description Required')" cols="40" rows="5" th:text="${formEdit?.shortDescription}" maxlength="140" id="shortDesc" name="shortDesc" placeholder="(max 140 characters)" REQUIRED></textarea>
+                        <textarea class="form-control" cols="40" rows="5" th:text="${formEdit?.shortDescription}" maxlength="140" id="shortDesc" name="shortDesc" placeholder="(max 140 characters)" ></textarea>
                         <span class="help-block">
        Give a short description of the purpose of the activity you attended.
       </span>
@@ -160,7 +161,7 @@
         *
        </span>
                         </label>
-                        <select class="form-control" name="role" id="role" REQUIRED>
+                        <select class="form-control" name="role" id="role" >
                             <div th:each="roles: ${role}">
                                 <option th:value="${roles.roleID}" th:text="${roles.name}" th:selected="${roles.roleID == roleEdit?.roleID}"></option>
                             </div>
@@ -180,10 +181,10 @@
                         <div class="othersInvolved" style="display: flex;" th:each="othersInvolveds: ${othersInvolved}">
 
                             <div th:if="${tagsEdit != null}">
-                                <input  class = "checkbox" type="checkbox" th:id="${othersInvolveds.tagID}" required th:checked="${#lists.contains(tagsEdit, othersInvolveds.tagID)}" name="others" th:value="${othersInvolveds.tagID}">
+                                <input  class = "checkbox others" type="checkbox" th:id="${othersInvolveds.tagID}"  th:checked="${#lists.contains(tagsEdit, othersInvolveds.tagID)}" name="others" th:value="${othersInvolveds.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input  class = "checkbox" type="checkbox" required th:id="${othersInvolveds.tagID}"
+                                <input  class = "checkbox others" type="checkbox"  th:id="${othersInvolveds.tagID}"
                                         name="others" th:value="${othersInvolveds.tagID}">
                             </div>
                             <label th:for="${othersInvolveds.tagID}" th:text="${othersInvolveds.tagName}">
@@ -200,7 +201,7 @@
 
                     <div class="form-group">
                         <div>
-                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('activitydetails').style.display='none';document.getElementById('ukpsf').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                            <button style="float: right;" class="btn btn-primary " type="button" id="activityNext"> Next </button>
                         </div>
                     </div>
                 </div>
@@ -239,8 +240,8 @@
                     </div>
                     <div class="form-group">
                         <div>
-                            <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='none';document.getElementById('activitydetails').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
-                            <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='none';document.getElementById('impact').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                            <button style="float: left;" class="btn btn-primary " type="button" id="ukpsfBack"> Back </button>
+                            <button style="float: right;" class="btn btn-primary " type="button" id="ukpsfNext"> Next </button>
                         </div>
                     </div>
                 </div>
@@ -260,10 +261,10 @@
                         </label><br>
                         <div style="display: flex;" th:each="impacts: ${impact}" class="impact">
                             <div th:if="${tagsEdit != null}">
-                                <input class = "checkbox" type="checkbox" required th:id="${impacts.tagID}" th:checked="${#lists.contains(tagsEdit, impacts.tagID)}" name="impact" th:value="${impacts.tagID}">
+                                <input class = "checkbox impact" type="checkbox"  th:id="${impacts.tagID}" th:checked="${#lists.contains(tagsEdit, impacts.tagID)}" name="impact" th:value="${impacts.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input class = "checkbox" type="checkbox"  required th:id="${impacts.tagID}" name="impact" th:value="${impacts.tagID}">
+                                <input class = "checkbox impact" type="checkbox"   th:id="${impacts.tagID}" name="impact" th:value="${impacts.tagID}">
                             </div>
                             <label th:for="${impacts.tagID}" th:text="${impacts.tagName}"></label><br>
                         </div>
@@ -283,10 +284,10 @@
                                 </label><br>
                                 <div style="display: flex;" th:each="learningTechnology: ${learningTechnologies}">
                                     <div th:if="${tagsEdit != null}">
-                                        <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:checked="${#lists.contains(tagsEdit, learningTechnology.tagID)}" th:value="${learningTechnology.tagID}">
+                                        <input class = "checkbox learningTechs" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:checked="${#lists.contains(tagsEdit, learningTechnology.tagID)}" th:value="${learningTechnology.tagID}">
                                     </div>
                                     <div th:unless="${tagsEdit != null}">
-                                        <input class = "checkbox" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:value="${learningTechnology.tagID}">
+                                        <input class = "checkbox learningTechs" type="checkbox" th:id="${learningTechnology.tagID}" name="learningTechs" th:value="${learningTechnology.tagID}">
                                     </div>
 
                                     <label th:for="${learningTechnology.tagID}" th:text="${learningTechnology.tagName}"></label><br>
@@ -298,8 +299,8 @@
                             </div>
                             <div class="form-group">
                                 <div>
-                                    <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('ukpsf').style.display='block';document.getElementById('impact').style.display='none';document.documentElement.scrollTop = 0;"> Back </button>
-                                    <button style="float: right;" class="btn btn-primary " type="button" onclick="document.getElementById('impact').style.display='none';document.getElementById('thoughtcld').style.display='block';document.documentElement.scrollTop = 0;"> Next </button>
+                                    <button style="float: left;" class="btn btn-primary " type="button" id="impactBack"> Back </button>
+                                    <button style="float: right;" class="btn btn-primary " type="button" id="impactNext"> Next </button>
                                 </div>
                             </div>
                         </div>
@@ -321,10 +322,10 @@
                         <div class="split3">
                         <div style="display: flex;" th:each="thoughtClouds: ${thoughtCloud}" class="thoughtCloud">
                             <div th:if="${tagsEdit != null}">
-                                <input class ="checkbox"  type="checkbox" required th:checked="${#lists.contains(tagsEdit, thoughtClouds.tagID)}" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
+                                <input class ="checkbox thoughtCloud"  type="checkbox"  th:checked="${#lists.contains(tagsEdit, thoughtClouds.tagID)}" th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
                             </div>
                             <div th:unless="${tagsEdit != null}">
-                                <input class ="checkbox"  type="checkbox" required th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
+                                <input class ="checkbox thoughtCloud"  type="checkbox"  th:id="${thoughtClouds.tagID}" name="thoughtCloud" th:value="${thoughtClouds.tagID}">
                             </div>
                             <label th:for="${thoughtClouds.tagID}" th:text="${thoughtClouds.tagName}"></label><br>
                         </div>
@@ -335,7 +336,7 @@
                     </div>
                     <div class="form-group">
                                 <div>
-                                    <button style="float: left;" class="btn btn-primary " type="button" onclick="document.getElementById('thoughtcld').style.display='none';document.getElementById('impact').style.display='block';document.documentElement.scrollTop = 0;"> Back </button>
+                                    <button style="float: left;" class="btn btn-primary " type="button" id="thoughtBack"> Back </button>
                                     <button style="float: right;" id="submitBtn" class="btn btn-primary " type="submit" value="Submit"> Submit </button>
                                 </div>
                     </div>
@@ -359,86 +360,7 @@
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
 <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
 
-<script>
 
-    function menuSelect(element) {
-        document.getElementById('activitydetails').style.display='none'
-        document.getElementById('ukpsf').style.display='none';
-        document.getElementById('thoughtcld').style.display='none';
-        document.getElementById('impact').style.display='none';
-        document.getElementById(element).style.display='block';
-        document.documentElement.scrollTop = 0;
-    }
-
-    function uncheck(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6) {
-        let checkBox = document.getElementById("None");
-        if (checkBox.checked == true); {
-            document.getElementById(checkbox1).checked = false;
-            document.getElementById(checkbox2).checked = false;
-            document.getElementById(checkbox3).checked = false;
-            document.getElementById(checkbox4).checked = false;
-            document.getElementById(checkbox5).checked = false;
-            document.getElementById(checkbox6).checked = false;
-        }
-    }
-    function uncheckNone() {
-        document.getElementById('None').checked = false;
-    }
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-
-    $('.navbar-collapse a').click(function(){
-        $(".navbar-collapse").collapse('hide');
-    });
-
-    // Code adapted from https://stackoverflow.com/questions/6218494/using-the-html5-required-attribute-for-a-group-of-checkboxes
-    $(function(){
-        var othersRequired = $('.othersInvolved :checkbox[required]');
-        othersRequired.change(function(){
-            if(othersRequired.is(':checked')) {
-                othersRequired.removeAttr('required');
-            } else {
-                othersRequired.attr('required', 'required');
-            }
-        });
-    });
-
-    $(function(){
-        var impactRequired = $('.impact :checkbox[required]');
-        impactRequired.change(function(){
-            if(impactRequired.is(':checked')) {
-                impactRequired.removeAttr('required');
-            } else {
-                impactRequired.attr('required', 'required');
-            }
-        });
-    });
-
-
-    $(function(){
-        var learningRequired = $('.learningTechnology :checkbox[required]');
-        learningRequired.change(function(){
-            if(learningRequired.is(':checked')) {
-                learningRequired.removeAttr('required');
-            } else {
-                learningRequired.attr('required', 'required');
-            }
-        });
-    });
-
-    $(function(){
-        var thoughtRequired = $('.thoughtCloud :checkbox[required]');
-        thoughtRequired.change(function(){
-            if(thoughtRequired.is(':checked')) {
-                thoughtRequired.removeAttr('required');
-            } else {
-                thoughtRequired.attr('required', 'required');
-            }
-        });
-    });
-
-</script>
 
 </body>
 </html>

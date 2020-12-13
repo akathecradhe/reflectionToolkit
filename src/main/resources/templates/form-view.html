@@ -12,8 +12,9 @@
     <title>Activity</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-
     <script src="https://kit.fontawesome.com/9b9fc493c6.js" crossorigin="anonymous"></script>
+    <meta th:name="_csrf" th:content="${_csrf.getToken()}"/>
+    <script src="/js/form-view.js"></script>
 </head>
 <body>
 
@@ -79,6 +80,7 @@
 <div class="container">
 
     <h1 class="mt-5" th:text="${form.getEventID().getName()}"> </h1>
+    <input type="hidden" id="formId" name="formId" th:value="${form.getFormID()}">
     <hr>
     <div>
     <a style="float:right" class="btn btn-primary" th:href="@{/activityedit/{furl} (furl=${form.getFormID()})}">Edit Activity</a>
@@ -190,29 +192,6 @@
 </div>
 </main>
 
-<script th:inline="javascript">
-    /*<![CDATA[*/
-    $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-    })
-
-    $(document).ready(function(){
-        $(".deleteBtn").click(function(e){
-            if(!confirm('Delete this form?')) {
-                return
-            }
-            var id = /*[[${form.getFormID()}]]*/ 'default';
-            $.ajax({type: "delete",
-                url: "/reflectionremove/"+ id,
-                success:function(result){
-                    window.location = "/reflection/user";
-                }
-            });
-        });
-    });
-
-    /*]]>*/
-</script>
 
 </body>
 </html>

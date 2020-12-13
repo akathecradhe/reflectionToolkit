@@ -258,7 +258,7 @@ public class FormController {
 
     }
 
-    @PostMapping("reflection/user")
+    @GetMapping("reflection/user/filters")
     public String submitFilters(@ModelAttribute("filters") FiltersForm filtersForm, Model model) {
 
         User aUser = getCurrentUser();

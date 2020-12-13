@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -28,7 +27,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/","/css/*.css", "/js/*.js","/logout","/h2-console/**").permitAll()
+                .antMatchers("/","/css/*.css", "/static.js/*.js","/logout","/h2-console/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
@@ -38,8 +37,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/login")
                 .permitAll();
 
-        http.csrf().disable();
+//        http.csrf().disable();
         http.headers().frameOptions().disable();
+        http.headers().contentSecurityPolicy("script-src 'self' https://code.jquery.com/jquery-3.5.1.slim.min.js " +
+                "https://kit.fontawesome.com/9b9fc493c6.js https://code.jquery.com/jquery-3.3.1.min.js " +
+                "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js " +
+                "https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js " +
+                "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js;");
+
 
     }
 

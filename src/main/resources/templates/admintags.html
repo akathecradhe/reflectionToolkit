@@ -10,6 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9b9fc493c6.js" crossorigin="anonymous"></script>
+    <script src="/js/admintags.js"></script>
+    <meta th:name="_csrf" th:content="${_csrf.getToken()}"/>
 
 
 </head>
@@ -100,12 +102,12 @@
 <!--                        Edit-->
 <!--                    </a></td>-->
                     <td style="text-align:right;">
-                        <form th:action="@{/deletetag/{tagID}(tagID=${ThoughtTag.tagID})}" th:object="${ThoughtTag}" method="post">
+<!--                        <form th:action="@{/deletetag/{tagID}(tagID=${ThoughtTag.tagID})}" th:object="${ThoughtTag}" method="post">-->
 
-                        <button type="submit" onclick="return confirm('Delete this tag?')" class ="deleteBtn btn btn-danger">
+                        <button type="submit" class ="deleteBtn btn btn-danger" th:id="${ThoughtTag.tagID}">
                           Delete
                         </button>
-                        </form>
+<!--                        </form>-->
                     </td>
 
                 </tr>
@@ -145,17 +147,5 @@
 
 </main>
 </body>
-<!--<script th:inline="javascript">-->
-
-<!--    $(document).ready(function(){-->
-<!--        $(".deleteBtn").click(function(e){-->
-<!--            if(!confirm('Delete this tag?')) {-->
-<!--                window.location.reload();-->
-<!--            }-->
-
-<!--        });-->
-<!--    });-->
-
-<!--</script>-->
 
 </html>

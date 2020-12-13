@@ -39,7 +39,7 @@ public class DomainTests {
     @Test
     public void traffic_lights_UKPSF_complete() {
         Event event = new Event(1,"Test Event");
-        User user = new User("rowbo","Tom Rowbotham",new Date(5000));
+        User user = new User("rowbo","Tom Rowbotham","random","USER",new Date(5000));
         Role role = new Role(1,"Test role");
         List<Tags> tags = null;
         try {
@@ -61,7 +61,7 @@ public class DomainTests {
     @Test
     public void traffic_lights_all_complete() {
         Event event = new Event(1,"Test Event");
-        User user = new User("rowbo","Tom Rowbotham",new Date(5000));
+        User user = new User("rowbo","Tom Rowbotham","random","USER",new Date(5000));
         Role role = new Role(1,"Test role");
         List<Tags> tags = null;
         try {
@@ -84,7 +84,7 @@ public class DomainTests {
     @Test
     public void traffic_lights_reflection_complete() {
         Event event = new Event(1,"Test Event");
-        User user = new User("rowbo","Tom Rowbotham",new Date(5000));
+        User user = new User("rowbo","Tom Rowbotham","random","USER",new Date(5000));
         Role role = new Role(1,"Test role");
         List<Tags> tags = null;
         try {
@@ -107,7 +107,7 @@ public class DomainTests {
     @Test
     public void traffic_lights_none_complete() {
         Event event = new Event(1,"Test Event");
-        User user = new User("rowbo","Tom Rowbotham",new Date(5000));
+        User user = new User("rowbo","Tom Rowbotham","random","USER",new Date(5000));
         Role role = new Role(1,"Test role");
         List<Tags> tags = null;
         try {
