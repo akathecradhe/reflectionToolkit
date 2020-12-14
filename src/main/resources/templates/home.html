@@ -103,6 +103,11 @@
 </header>
 
 <main sec:authorize="hasRole('USER')" role="main" class="container h-100">
+    <div class = 'row h-auto'>
+        <div class="col-auto m-3 p-3  bg-light rounded shadow-sm">
+            <strong  class="d-block text-gray-dark" th:text="'Currently Logged in as ' + ${user.name}"></strong>
+        </div>
+    </div>
     <div class = 'row h-50'>
     <div class="col-md-6 m-3 p-3  bg-light rounded shadow-sm">
         <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities Edited</label>
@@ -163,7 +168,7 @@
             <a href="/reflection/user">All Activities</a>
         </small>
     </div>
-        <div class="col-md-12 m-3 p-3 bg-light rounded shadow-sm">
+        <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Suggested: Dimensions to Evidence</label>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -199,7 +204,7 @@
         </div>
     </div>
     <div class = 'row h-50'>
-    <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
+    <div class="col-md-6 m-3 p-3 bg-light rounded shadow-sm">
         <label class= "labels border-bottom border-gray pb-2 mb-0">Why not finish these forms?</label>
         <div th:unless="${incompletes.size() == 0}">
         <div th:each="incomplete: ${incompletes}">
@@ -278,60 +283,77 @@
 <!--        </div>-->
 
     </div>
-        <div class="col-md-3 h-auto m-3 p-3 bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">Upcoming Activities</label>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">Communications Workshop: 2020/12/05</strong>
-                    Role: Participate
-                </p>
-            </div>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">Project Planning: 2021/01/10</strong>
-                    Role: Review
-                </p>
-            </div>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">Presentation Skills Seminar: 2021/01/15</strong>
-                    Role: Lead or Facilitate
-                </p>
-            </div>
-            <small class="d-block text-right mt-3">
-                <a href="#">Schedule</a>
-            </small>
-        </div>
-        <div class="col-md-2 flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
+<!--        <div class="col-md-3 h-auto m-3 p-3 bg-light rounded shadow-sm">-->
+<!--            <label class= "labels border-bottom border-gray pb-2 mb-0">Upcoming Activities</label>-->
+<!--            <div class="media text-muted pt-3">-->
+<!--                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
+<!--                    <strong class="d-block text-gray-dark">Communications Workshop: 2020/12/05</strong>-->
+<!--                    Role: Participate-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class="media text-muted pt-3">-->
+<!--                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
+<!--                    <strong class="d-block text-gray-dark">Project Planning: 2021/01/10</strong>-->
+<!--                    Role: Review-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <div class="media text-muted pt-3">-->
+<!--                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
+<!--                    <strong class="d-block text-gray-dark">Presentation Skills Seminar: 2021/01/15</strong>-->
+<!--                    Role: Lead or Facilitate-->
+<!--                </p>-->
+<!--            </div>-->
+<!--            <small class="d-block text-right mt-3">-->
+<!--                <a href="#">Schedule</a>-->
+<!--            </small>-->
+<!--        </div>-->
+        <div class="col-md-5 flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Action Points</label>
+            <form action="#" method="post" th:action="@{/actionpoints}" th:object="${actionpoints}" onsubmit="return confirm('Submit this entry?');">
+                <span th:unless="${actionpoints.size() == 0}">
+                <span class="actionPoints" th:each="actionpoint: ${actionpoints}">
             <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Action Point 1</label>
-                    </div>
+                <div class="media-body pb-3 mb-0 small lh-123 border-bottom border-gray">
+                    <div>
+                        <label class="text-gray-dark" th:for="${actionpoint.actionID}">
+                    <input required type=checkbox class="checkbox" th:id="${actionpoint.actionID}" th:value="${actionpoint.actionID}" name="actionpoints">
+                            <strong  th:text="${actionpoint.learning_point}"></strong>
+                    </label>
+                        </div>
                 </div>
             </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Action Point 2</label>
-                    </div>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Action Point 3</label>
-                    </div>
-                </div>
-            </div><br>
-            <small class="d-block text-right mt-3">
-                <a href="#">View All</a>
+                </span>
+                                                    <small class="d-block text-right mt-3">
+                <input type="submit" class="btn btn-secondary">
             </small>
+                </span>
+                <span th:if="${actionpoints.size() == 0}">
+                    <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-123 border-bottom border-gray">
+                    <strong class="text-gray-dark">Congratulations, you have completed all your action points!</strong>
+                </div>
+            </div>
+                </span>
+
+        </form>
         </div>
   </div>
 
  </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <main sec:authorize="hasRole('ADMIN')" role="main" class="container h-100">
     <div class = 'row h-50'>
         <div class="col-md-5 m-3 p-3  bg-light rounded shadow-sm">
@@ -440,6 +462,7 @@
         </div>
         <div class="col-auto flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">To-Do List</label>
+
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
@@ -473,5 +496,20 @@
 
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
 <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
+
+<script>
+    $(function(){
+        var actionsRequired = $('.actionPoints :checkbox[required]');
+        actionsRequired.change(function(){
+            if(actionsRequired.is(':checked')) {
+                actionsRequired.removeAttr('required');
+            } else {
+                actionsRequired.attr('required', 'required');
+            }
+        });
+    });
+
+
+</script>
 
 </html>

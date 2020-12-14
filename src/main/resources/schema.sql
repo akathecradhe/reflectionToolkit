@@ -157,6 +157,15 @@ CREATE TABLE IF NOT EXISTS `reflection` (
   )
 ENGINE = InnoDB;
 
+-- Action Points TABLE
+CREATE TABLE IF NOT EXISTS `action_points` (
+  `actionID` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `learning_point` VARCHAR(140),
+  `checked` BIT(1) NOT NULL
+  )
+ENGINE = InnoDB;
+
 -- Tag TABLE
 
 CREATE TABLE IF NOT EXISTS `tags` (

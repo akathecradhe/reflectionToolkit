@@ -223,3 +223,6 @@ VALUES (31,3);
 
 INSERT INTO TagForm (TagID, FormID)
 VALUES (28,3);
+
+INSERT INTO action_points (username, learning_point, checked)
+VALUES ('rowbo', 'Students are more engaged when viewing slides with images, so I should use more images', 0)
