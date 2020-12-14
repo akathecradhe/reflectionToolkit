@@ -53,8 +53,11 @@ public class DefaultFormHandler implements FormHandler {
 
     @Override
     public HashMap<Tags, Integer> findAllUKPSFStats(User user) {
+        System.out.println("Test");
         List<Tags> ukpsf = tagService.getTagByCategory("ukpsf");
         HashMap<Tags, Integer> ukspfCount = new HashMap<>();
+        System.out.println(user.getRoles());
+        System.out.println("test!!");
         if (user.getRoles()=="ADMIN"){
             for (Tags tag: ukpsf) {
                 ukspfCount.put(tag,formService.getTotalTagCount(tag));

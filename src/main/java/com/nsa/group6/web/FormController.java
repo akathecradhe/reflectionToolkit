@@ -293,9 +293,10 @@ public class FormController {
         List<Form> incompleteForm = formService.getIncomplete(aUser);
 
         List<Tags> dimensionsToEvidence = formHandler.findTagsByCategory("UKPSF");
+
         HashMap<Tags,Integer> ukpsfStats = formHandler.findAllUKPSFStats(aUser);
         for (Map.Entry<Tags, Integer> entry : ukpsfStats.entrySet()) {
-            System.out.println(entry.getKey().getShortenedTag() + ":" + entry.getValue());
+            System.out.println(entry.getKey().getShortenedTag() + " : " + entry.getValue());
         }
 
         Collections.shuffle(dimensionsToEvidence);
