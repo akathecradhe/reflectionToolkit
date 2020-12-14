@@ -6,9 +6,7 @@ import com.nsa.group6.service.UserService;
 import com.nsa.group6.service.*;
 
 
-
-
-
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +20,6 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 
 import com.nsa.group6.domain.Form;
@@ -34,6 +31,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.*;
+
 @Controller
 public class FormController {
 
@@ -44,8 +43,11 @@ public class FormController {
     private final RoleService roleService;
     private final EventService eventService;
     private final ReflectionService reflectionService;
+    private final APService apService;
 
-    public FormController(FormService formService, UserService userService, FormHandler formHandler, TagsService tagsService, RoleService roleService, EventService eventService, ReflectionService reflectionService, TagService tagService) {
+    public FormController(FormService formService, UserService userService, FormHandler formHandler,
+                          TagsService tagsService, RoleService roleService, EventService eventService,
+                          ReflectionService reflectionService, TagService tagService, APService apService) {
         this.formService = formService;
         this.userService = userService;
         this.formHandler = formHandler;
@@ -53,7 +55,7 @@ public class FormController {
         this.roleService = roleService;
         this.eventService = eventService;
         this.reflectionService = reflectionService;
-
+        this.apService = apService;
     }
 
 
@@ -132,6 +134,8 @@ public class FormController {
             return getFormsByUsername(model);
         }
     }
+
+
 
     private String getString(Model model) {
         List<Tags> allTags = tagsService.getAllTags();
@@ -291,8 +295,17 @@ public class FormController {
 
         List<Form> form = formService.getRecent(aUser);
         List<Form> incompleteForm = formService.getIncomplete(aUser);
-
         List<Tags> dimensionsToEvidence = formHandler.findTagsByCategory("UKPSF");
+
+        List<ActionPoints> actionInput = apService.getRecent(aUser);
+
+        List<ActionPoints> actionpoints = new ArrayList<>();
+
+        for (int i = 0; i < actionInput.size(); i++) {
+            if (actionInput.get(i).getChecked() == 0) {
+                actionpoints.add(actionInput.get(i));
+            }
+        }
 
         Collections.shuffle(dimensionsToEvidence);
 
@@ -300,7 +313,7 @@ public class FormController {
         model.addAttribute("incompletes", incompleteForm);
         model.addAttribute("user", aUser);
         model.addAttribute("forms", form);
-
+        model.addAttribute("actionpoints", actionpoints);
 
         return "home";
     }
@@ -343,6 +356,22 @@ public class FormController {
         }
         else {
             Form form = formService.getFormByID(formID);
+
+            User currentUser = getCurrentUser();
+
+            ActionPoints action1 = new ActionPoints(currentUser, reflectionForm.learningPoint1, 0);
+            apService.saveAction(action1);
+
+            if (reflectionForm.learningPoint2 != null) {
+                ActionPoints action2 = new ActionPoints(currentUser, reflectionForm.learningPoint2, 0);
+                apService.saveAction(action2);
+            }
+
+            if (reflectionForm.learningPoint3 != null) {
+                ActionPoints action3 = new ActionPoints(currentUser, reflectionForm.learningPoint3, 0);
+                apService.saveAction(action3);
+            }
+
             if (form.getReflectionID() != null){
                 Reflection reflection = form.getReflectionID();
                 reflection.updateFields(reflectionForm.box1, reflectionForm.box2, reflectionForm.box3, reflectionForm.box4,
@@ -359,6 +388,19 @@ public class FormController {
         }
     }
 
+    @PostMapping("actionpoints")
+    public String submitAction(@ModelAttribute("actionpoints") SubmittingAP aSubmittingAP, BindingResult bindings, Model model) {
+
+        User currentUser = getCurrentUser();
+
+        for (int i = 0; i < aSubmittingAP.actionpoints.size(); i++) {
+            Integer ActionID = aSubmittingAP.actionpoints.get(i);
+            ActionPoints actionEdit = new ActionPoints(currentUser, ActionID, 1);
+            apService.saveAction(actionEdit);
+        }
+
+        return getHomeData(model);
+    }
 
 
 
