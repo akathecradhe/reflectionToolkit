@@ -1,6 +1,7 @@
 package com.nsa.group6.service;
 
 import com.nsa.group6.domain.Form;
+import com.nsa.group6.domain.Tags;
 import com.nsa.group6.domain.User;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +22,10 @@ public interface FormService {
     List<Form> getRecent(User aUsername);
 
     List<Form> getIncomplete(User aUsername);
+
+    Integer getTotalTagCount(Tags tag);
+
+    Integer getTotalTagCountByUser(Tags tag, User user);
 
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,

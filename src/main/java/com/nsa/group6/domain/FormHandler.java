@@ -1,5 +1,6 @@
 package com.nsa.group6.domain;
 
+import java.util.HashMap;
 import java.util.List;
 
 public interface FormHandler {
@@ -9,4 +10,6 @@ public interface FormHandler {
     List<Tags> findTagsByCategory(String category);
 
     List<Form> filterByCompletionStatus(List<Form> forms, List<String> completionStatus);
+
+    HashMap<Tags, Integer> findAllUKPSFStats(User user);
 }

@@ -42,6 +42,6 @@ test {
     useJUnitPlatform()
 }
 
-jar.into('templates') {
+jar.into('templateswhi') {
     from('src/main/resources')
 }
