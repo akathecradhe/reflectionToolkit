@@ -1,3 +1,16 @@
+SHOW VARIABLES;  -- This command returns all system variable (we are intereted in port, hostname) 
+
+SHOW VARIABLES WHERE Variable_name = 'port';
+
+SELECT @@port; 
+
+SHOW VARIABLES WHERE Variable_name = 'hostname';
+
+SELECT @@hostname;
+
+SELECT CONNECTION_ID();
+
+
 DROP SCHEMA IF EXISTS `LoggingSystemDB` ;
 CREATE SCHEMA `LoggingSystemDB`;
 USE LoggingSystemDB ;
