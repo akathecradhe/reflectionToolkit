@@ -1,3 +1,114 @@
+DROP SCHEMA IF EXISTS `LoggingSystemDB` ;
+CREATE SCHEMA `LoggingSystemDB`;
+USE LoggingSystemDB ;
+DROP TABLE IF EXISTS event;
+-- Let's create a new table now
+-- Data for all the tags
+
+-- Let's create a new table now
+CREATE TABLE IF NOT EXISTS `event` (
+   `eventId` int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `Name` VARCHAR(45) NOT NULL
+  )
+ENGINE = InnoDB;
+
+-- REFLECTION TABLE
+
+CREATE TABLE IF NOT EXISTS `role` (
+  `roleId` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `name` VARCHAR(45) NOT NULL
+  )
+ENGINE = InnoDB;
+
+-- USER TABLE
+
+CREATE TABLE IF NOT EXISTS `user` (
+  `username` VARCHAR(45) NOT NULL PRIMARY KEY,
+  `name` VARCHAR(45) NOT NULL,
+  `password` VARCHAR(150) NOT NULL,
+  `roles` VARCHAR(45) NOT NULL,
+  `account_created` DATE NOT NULL
+  )
+ENGINE = InnoDB;
+
+-- REFLECTION TABLE
+
+CREATE TABLE IF NOT EXISTS `reflection` (
+  `reflectionId` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  -- CHANGE THESE BACK TO 100 CHARACTERS AFTER DEMO
+  `box1` VARCHAR(100) NOT NULL,
+  `box2` VARCHAR(100) NOT NULL,
+  `box3` VARCHAR(100) NOT NULL,
+  `box4` VARCHAR(100) NOT NULL,
+  `box5` VARCHAR(100) NOT NULL,
+  `box6` VARCHAR(100) NOT NULL,
+  `learning_point1` VARCHAR(140) NOT NULL,
+  `learning_point2` VARCHAR(140),
+  `learning_point3` VARCHAR(140)
+  )
+ENGINE = InnoDB;
+
+-- Action Points TABLE
+CREATE TABLE IF NOT EXISTS `action_points` (
+  `actionID` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `username` VARCHAR(45) NOT NULL,
+  `learning_point` VARCHAR(140),
+  `checked` BIT(1) NOT NULL
+  )
+ENGINE = InnoDB;
+
+-- Tag TABLE
+
+CREATE TABLE IF NOT EXISTS `tags` (
+  `tagId` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `category` VARCHAR(45) NOT NULL,
+  `tag_name` VARCHAR(200) NOT NULL,
+  `shortened_tag` VARCHAR(5),
+  `description` VARCHAR(1500)
+
+  )
+ENGINE = InnoDB;
+
+-- Tag form table
+
+CREATE TABLE IF NOT EXISTS `tagForm` (
+  `tagId` int  NOT NULL ,
+  `formId` int NOT NULL
+  )
+ENGINE = InnoDB;
+
+-- form-table
+CREATE TABLE IF NOT EXISTS `form` (
+  `formId` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `eventId` int UNSIGNED NOT NULL,
+  `short_description` VARCHAR(200)  NOT NULL ,
+  `roleId` int NOT NULL,
+  `username` VARCHAR(45) NOT NULL,
+  `reflectionId` int,
+  `last_edited` TIMESTAMP NOT NULL,
+  `activity_date` DATE NOT NULL
+  )
+ENGINE = InnoDB;
+
+
+ALTER TABLE `form`
+ADD FOREIGN KEY  (`eventId`) REFERENCES event(`eventId`);
+
+ALTER TABLE `form`
+ADD FOREIGN KEY  (`username`) REFERENCES user(`username`);
+
+ALTER TABLE `form`
+ADD FOREIGN KEY  (`roleId`) REFERENCES role(`roleId`);
+
+ALTER TABLE `form`
+ADD FOREIGN KEY  (`reflectionId`) REFERENCES reflection(`reflectionId`);
+
+ALTER TABLE `Tagform`
+ADD FOREIGN KEY  (`formId`) REFERENCES form(`formId`);
+
+ALTER TABLE `Tagform`
+ADD FOREIGN KEY  (`tagId`) REFERENCES tags(`tagId`);
+
 
 
 INSERT INTO Event (Name)
@@ -14,11 +125,9 @@ INSERT INTO Event (Name)
 VALUES ('Evaluation and Quality Assurance');
 
 INSERT INTO User (username, name,password, roles,account_created)
-VALUES ('rowbo','Tom Rowbotham','$2y$12$WjMvIYEmf0oEJxqkydW5M.QJ6jCv/AGT/p7bvwP82bAC5ZhMikNp2','USER',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
+VALUES ('rowbo','Tom Rowbotham','$2y$12$WjMvIYEmf0oEJxqkydW5M.QJ6jCv/AGT/p7bvwP82bAC5ZhMikNp2','ADMIN','2020-11-23');
 INSERT INTO User (username, name,password ,roles,account_created)
-VALUES ('clive99','Clive Tsungu','$2y$12$RJ81jxbwYS90sHZ.8sDu2uAoPb0EFWwMy2z6u4lAnJnv21Le/zC8G','ADMIN',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
-INSERT INTO User (username, name,password ,roles,account_created)
-VALUES ('juan10','Jay Creasey','$2y$12$RJ81jxbwYS90sHZ.8sDu2uAoPb0EFWwMy2z6u4lAnJnv21Le/zC8G','USER',TO_DATE('2020-11-23', 'YYYY-MM-DD'));
+VALUES ('clive99','Clive Tsungu','$2y$12$RJ81jxbwYS90sHZ.8sDu2uAoPb0EFWwMy2z6u4lAnJnv21Le/zC8G','USER','2020-11-23');
 
 INSERT INTO Role (name)
 VALUES ('Lead or Facilitate');
@@ -165,22 +274,12 @@ VALUES ('UKPSF','Use evidence informed approaches and the outcomes from research
 INSERT INTO Tags (Category, tag_name, shortened_tag, description)
 VALUES ('UKPSF','Acknowledges the wider context in which higher education operates recognising the implications for professional practice', 'V4','This is concerned with being alert to the issues that may impact on institutional missions and/or which might have an influence on curriculum design and/or personal and collective professional practice. This might for example include how an individual has responded to the current demands of the Disability Discrimination Act, the employment agenda, or the widening access and participation agenda. Current agendas include; sustainability (the practice of sustainability and education for sustainability), and student engagement.');
 
-INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1)
+INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, learning_point2, learning_point3)
 VALUES ('Held a group activity, went through slides and took questions at the end','I considered my previous seminars and found this format to be effective','Key information was passed along in an interactive and effective manner','I became more comfortable using remote-meeting software', 'I sent a feedback survey to participating students', 'I could have revised some of my slides for brevity',
-'Students are more engaged when viewing slides with images, so I should use more images');
-
-INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1)
-VALUES ('Attended a harvard referencing workshop and cited journals using the referencing style','I thought that I needed to brush up on my skills','I managed to complete a lot of citation activities during the workshop','I used an app to check that my citations were correct', 'I have my completed citations as evidence of the activity', 'I could have spoken up more in the workshop',
-'I learnt how to hold a meeting on Zoom.');
+'I learnt how to hold a meeting on Zoom.','I learnt how to use a custom background with my webcam','I learnt that students seemed to be more visually attentive when viewing slides with images');
 
 INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited, activity_date)
-VALUES (1,'Held an hour-long online seminar for Year 2 students on Presentation Skills.',1,1,'rowbo',TO_TIMESTAMP('25-NOV-2009:15:12.123000','DD-MON-RRHH24:MI:SS.FF'), TO_DATE('2020-11-23', 'YYYY-MM-DD'));
-
-INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited, activity_date)
-VALUES (3,'Held an in person seminar for Year 1 students on Agile Project Management',2,null,'rowbo',TO_TIMESTAMP('30-NOV-2011:35:08.123000','DD-MON-RRHH24:MI:SS.FF'), TO_DATE('2020-11-26', 'YYYY-MM-DD'));
-
-INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited, activity_date)
-VALUES (2,'Attended a 2 hour long workshop on harvard referencing and how to not accidentally plagiarize work.',3,2,'rowbo',TO_TIMESTAMP('3-DEC-2014:10:10.123000','DD-MON-RRHH24:MI:SS.FF'), TO_DATE('2020-11-30', 'YYYY-MM-DD'));
+VALUES (1,'Held an hour-long online seminar for Year 2 students on Presentation Skills',1,1,'rowbo',CURRENT_TIMESTAMP, '2020-11-23');
 
 INSERT INTO TagForm (TagID, FormID)
 VALUES (2,1);
@@ -197,29 +296,6 @@ VALUES (30,1);
 INSERT INTO TagForm (TagID, FormID)
 VALUES (43,1);
 
-INSERT INTO TagForm (TagID, FormID)
-VALUES (1,2);
 
-INSERT INTO TagForm (TagID, FormID)
-VALUES (6,2);
 
-INSERT INTO TagForm (TagID, FormID)
-VALUES (13,2);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (31,2);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (3,3);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (5,3);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (14,3);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (31,3);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (28,3);
+INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited, activity_date) VALUES (1,'Held an hour-long online seminar for Year 2 students on Presentation Skills',1,1,'rowbo',CURRENT_TIMESTAMP, '2020-11-23')
