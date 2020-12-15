@@ -43,7 +43,9 @@ public class FormApi {
         HashMap<Tags,Integer> ukpsfStats = formHandler.findAllUKPSFStats(aUser);
         HashMap<String,Integer> graphData = new HashMap<>();
         for (Map.Entry<Tags, Integer> entry : ukpsfStats.entrySet()) {
-            graphData.put(entry.getKey().getShortenedTag(),entry.getValue());
+            if (entry.getValue()!=0) {
+                graphData.put(entry.getKey().getShortenedTag(), entry.getValue());
+            }
         }
         return ResponseEntity.ok(graphData);
     }
