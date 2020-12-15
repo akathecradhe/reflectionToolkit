@@ -278,23 +278,6 @@ INSERT INTO Reflection (box1, box2, box3, box4, box5, box6, learning_point1, lea
 VALUES ('Held a group activity, went through slides and took questions at the end','I considered my previous seminars and found this format to be effective','Key information was passed along in an interactive and effective manner','I became more comfortable using remote-meeting software', 'I sent a feedback survey to participating students', 'I could have revised some of my slides for brevity',
 'I learnt how to hold a meeting on Zoom.','I learnt how to use a custom background with my webcam','I learnt that students seemed to be more visually attentive when viewing slides with images');
 
-INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited, activity_date)
-VALUES (1,'Held an hour-long online seminar for Year 2 students on Presentation Skills',1,1,'rowbo',CURRENT_TIMESTAMP, '2020-11-23');
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (2,1);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (7,1);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (12,1);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (30,1);
-
-INSERT INTO TagForm (TagID, FormID)
-VALUES (43,1);
 
 
 
