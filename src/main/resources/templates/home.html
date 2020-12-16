@@ -391,50 +391,53 @@
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">K1: The subject material</strong>
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-1).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-1).tagName}"></strong>
                     </div>
-                    <span class="d-block">432 reflections with this tag on record</span>
+                    <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                 </div>
             </div>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">A2: Teach and/or support learning</strong>
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-2).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-2).tagName}"></strong>
                     </div>
-                    <span class="d-block">399 reflections with this tag on record</span>
+                    <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                 </div>
             </div>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">D3.7: Supporting colleagues</strong>
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-3).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-3).tagName}"></strong>
                     </div>
-                    <span class="d-block">378 reflections with this tag on record</span>
+                    <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-3)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                 </div>
             </div>
-            <small class="d-block text-right mt-3">
-                <a href="#">Dimension Overview</a>
-            </small>
         </div>
         <div class="col-md-4 h-auto m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Least Commonly Evidenced Dimensions (UKPSF)</label>
             <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">V1: Respect individual learners and diverse learning communities</strong>
-                    12 reflections with this tag on record
-                </p>
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(0).shortenedTag} + ' - ' + ${ukpsf.get(0).tagName}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${ukpsfcount.get(0)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
             </div>
             <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">V4: Acknowledge the wider context in which higher education operates recognising the implications for professional practice </strong>
-                    19 reflections with this tag on record
-                </p>
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(1).shortenedTag} + ' - ' + ${ukpsf.get(1).tagName}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${ukpsfcount.get(1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
             </div>
             <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">K3: How students learn, both generally and within their subject/disciplinary area(s) </strong>
-                    27 reflections with this tag on record
-                </p>
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(2).shortenedTag} + ' - ' + ${ukpsf.get(2).tagName}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${ukpsfcount.get(2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
             </div>
             <small class="d-block text-right mt-3">
                 <a href="#">Dimension Overview</a>

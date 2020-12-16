@@ -292,16 +292,49 @@ public class FormController {
         List<Form> form = formService.getRecent(aUser);
         List<Form> incompleteForm = formService.getIncomplete(aUser);
 
-        List<Tags> dimensionsToEvidence = formHandler.findTagsByCategory("UKPSF");
-
+        //Needs to be moved to form handler soon!
+        //Getting the UKPSF Stats - code adapted from https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/
         HashMap<Tags,Integer> ukpsfStats = formHandler.findAllUKPSFStats(aUser);
-        for (Map.Entry<Tags, Integer> entry : ukpsfStats.entrySet()) {
-            System.out.println(entry.getKey().getShortenedTag() + " : " + entry.getValue());
+        List<Map.Entry<Tags, Integer> > list =
+                new LinkedList<Map.Entry<Tags, Integer> >(ukpsfStats.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<Tags, Integer> >() {
+            public int compare(Map.Entry<Tags, Integer> o1,
+                               Map.Entry<Tags, Integer> o2)
+            {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+        HashMap<Tags, Integer> orderedUkpsfStats = new LinkedHashMap<Tags, Integer>();
+        for (Map.Entry<Tags, Integer> aa : list) {
+            orderedUkpsfStats.put(aa.getKey(), aa.getValue());
         }
 
-        Collections.shuffle(dimensionsToEvidence);
+        List<Tags> ukpsfOrdered = new ArrayList<Tags>(orderedUkpsfStats.keySet());
+        List<Integer> ukpsfValues = new ArrayList<Integer>(orderedUkpsfStats.values());
 
-        model.addAttribute("ukpsf", dimensionsToEvidence);
+        //ThoughtCloud Ordered List
+        HashMap<Tags,Integer> thoughtStats = formHandler.findAllThoughtCloudStats();
+        List<Map.Entry<Tags, Integer> > list2 =
+                new LinkedList<Map.Entry<Tags, Integer> >(thoughtStats.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<Tags, Integer> >() {
+            public int compare(Map.Entry<Tags, Integer> o1,
+                               Map.Entry<Tags, Integer> o2)
+            {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+        HashMap<Tags, Integer> orderedthoughtStats = new LinkedHashMap<Tags, Integer>();
+        for (Map.Entry<Tags, Integer> aa : list2) {
+            orderedthoughtStats.put(aa.getKey(), aa.getValue());
+        }
+
+        List<Tags> thoughtOrdered = new ArrayList<Tags>(orderedthoughtStats.keySet());
+        List<Integer> thoughtValues = new ArrayList<Integer>(orderedthoughtStats.values());
+
+        model.addAttribute("ukpsf", ukpsfOrdered);
+        model.addAttribute("ukpsfcount", ukpsfValues);
+        model.addAttribute("thoughtCloud", thoughtOrdered);
+        model.addAttribute("thoughtcount", thoughtValues);
         model.addAttribute("incompletes", incompleteForm);
         model.addAttribute("user", aUser);
         model.addAttribute("forms", form);

@@ -67,6 +67,16 @@ public class DefaultFormHandler implements FormHandler {
         return ukspfCount;
     }
 
+    @Override
+    public HashMap<Tags, Integer> findAllThoughtCloudStats() {
+        List<Tags> thoughtCloud = tagService.getTagByCategory("thoughtCloud");
+        HashMap<Tags, Integer> thoughtCount = new HashMap<>();
+            for (Tags tag: thoughtCloud) {
+                thoughtCount.put(tag, formService.getTotalTagCount(tag));
+            }
+
+        return thoughtCount;
+    }
 
     @Override
     public List<Form> findFormsByMatchingTagIDs(List<Integer> tagIDs, String aUser) {
