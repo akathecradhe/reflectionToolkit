@@ -17,7 +17,7 @@ function getData(){
 function addChart(){
     console.log(titles);
     console.log(values);
-    var ctx = document.getElementsByClassName("donut");
+    var ctx = document.getElementById("donut");
     var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -31,12 +31,31 @@ function addChart(){
         },
         options: {
             //cutoutPercentage: 40,
-            responsive: false,
+            responsive: true,
             display:true
 
         }
     });
 
+    var ctx2 = document.getElementById("bigdonut");
+    var myChart = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: titles,
+            datasets: [{
+                label: '# of Tag',
+                data: values,
+                backgroundColor: colours,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            //cutoutPercentage: 40,
+            responsive: true,
+            display:true
+
+        }
+    });
 }
 
 function getRandomColor() {
@@ -52,6 +71,5 @@ function getRandomColor() {
 
 $(document).ready(function () {
     getData();
-
     });
 
