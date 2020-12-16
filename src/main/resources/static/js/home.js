@@ -17,7 +17,7 @@ function getData(){
 function addChart(){
     console.log(titles);
     console.log(values);
-    var ctx = document.getElementById("donut");
+    var ctx = document.getElementsByClassName("donut");
     var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -53,8 +53,5 @@ function getRandomColor() {
 $(document).ready(function () {
     getData();
 
-
-
-
-
     });
+
