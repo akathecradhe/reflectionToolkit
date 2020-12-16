@@ -1,3 +1,34 @@
+USE mysql;
+DROP USER IF EXISTS 'administrator'@'localhost';
+
+
+
+SELECT * FROM user;
+
+-- Check the current user  
+
+SELECT user(); 
+
+-- Create an administrator user who can connect from localhost ONLY
+CREATE USER 'administrator'@'localhost' IDENTIFIED BY 'apassword';
+
+SHOW GRANTS FOR 'administrator'@'localhost';
+SHOW GRANTS FOR 'administrator'@'localhost';
+
+
+
+FLUSH PRIVILEGES;
+
+
+ALTER USER 'administrator'@'localhost' PASSWORD EXPIRE INTERVAL 15 DAY;
+
+
+FLUSH PRIVILEGES;
+
+SELECT * FROM user;
+
+
+
 DROP SCHEMA IF EXISTS `LoggingSystemDB` ;
 CREATE SCHEMA `LoggingSystemDB`;
 USE LoggingSystemDB ;
@@ -48,12 +79,11 @@ CREATE TABLE IF NOT EXISTS `reflection` (
   )
 ENGINE = InnoDB;
 
--- Action Points TABLE
 CREATE TABLE IF NOT EXISTS `action_points` (
   `actionID` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `learning_point` VARCHAR(140),
-  `checked` BIT(1) NOT NULL
+  `checked` VARCHAR(1) NOT NULL
   )
 ENGINE = InnoDB;
 
@@ -108,4 +138,65 @@ ADD FOREIGN KEY  (`formId`) REFERENCES form(`formId`);
 
 ALTER TABLE `Tagform`
 ADD FOREIGN KEY  (`tagId`) REFERENCES tags(`tagId`);
+
+USE mysql;
+
+GRANT SELECT ON LoggingSystemDB.user to 'administrator'@'localhost';
+GRANT SELECT ON LoggingSystemDB.role to 'administrator'@'localhost';
+GRANT SELECT ON LoggingSystemDB.event to 'administrator'@'localhost';
+GRANT SELECT,INSERT,DELETE, UPDATE ON LoggingSystemDB.tagform to 'administrator'@'localhost';
+GRANT SELECT,INSERT,UPDATE,DELETE ON LoggingSystemDB.reflection to 'administrator'@'localhost';
+GRANT SELECT,INSERT,UPDATE,DELETE ON LoggingSystemDB.action_points to 'administrator'@'localhost';
+GRANT SELECT,INSERT,UPDATE,DELETE ON LoggingSystemDB.form to 'administrator'@'localhost';
+GRANT SELECT, INSERT, DELETE, UPDATE ON LoggingSystemDB.tags to 'administrator'@'localhost';
+
+
+DELIMITER //
+
+USE LoggingSystemDB //
+
+CREATE DEFINER = `root`@`localhost` 
+PROCEDURE  delete_thought_cloud_bad_practise(IN id int)
+BEGIN
+  IF ((SELECT category FROM tags WHERE tagid = id) = "Thought Cloud") THEN
+    DELETE FROM LoggingSystemDB.Tags WHERE tagId = id;
+  END IF;
+END//
+
+CREATE DEFINER = `root`@`localhost` 
+PROCEDURE  delete_thought_cloud(IN id int)
+SQL SECURITY INVOKER
+BEGIN
+  IF ((SELECT category FROM tags WHERE tagid = id) = "Thought Cloud") THEN
+    DELETE FROM LoggingSystemDB.Tags WHERE tagId = id;
+  END IF;
+  
+END//
+DELIMITER ;
+GRANT EXECUTE ON PROCEDURE LoggingSystemDB.delete_thought_cloud_bad_practise TO 'administrator'@'localhost';
+
+
+CREATE TRIGGER delete_associated_tags
+BEFORE DELETE
+ON tags FOR EACH ROW
+DELETE FROM TagForm WHERE tagId = old.tagId;
+
+
+DELIMITER //
+
+CREATE DEFINER = `root`@`localhost` 
+PROCEDURE  delete_activity(IN id int)
+SQL SECURITY INVOKER
+BEGIN
+  DELETE FROM LoggingSystemDB.form WHERE formId = id;
+  DELETE FROM LoggingSystemDB.TagForm WHERE formId = id;
+  DELETE FROM LoggingSystemDB.reflection WHERE reflectionId IN (SELECT reflectionId FROM LoggingSystemDB.form WHERE formId = id); 
+END//
+
+DELIMITER ;
+GRANT EXECUTE ON PROCEDURE LoggingSystemDB.delete_activity TO 'administrator'@'localhost';
+FLUSH PRIVILEGES;
+USE loggingsystemdb;
+
+
 
