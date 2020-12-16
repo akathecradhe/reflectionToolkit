@@ -6,6 +6,7 @@ import com.nsa.group6.service.UserService;
 import com.nsa.group6.service.*;
 
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +30,8 @@ import com.nsa.group6.domain.Tags;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
+
+import javax.swing.*;
 
 @Controller
 public class FormController {
@@ -54,6 +57,8 @@ public class FormController {
         this.reflectionService = reflectionService;
         this.apService = apService;
     }
+
+
 
     @GetMapping("form")
     public String runForm(Model model) {
@@ -279,26 +284,6 @@ public class FormController {
         return "reflection-list";
     }
 
-    @GetMapping("reflection/user/incomplete")
-    public String getIncompletes(Model model) {
-
-        User aUser = getCurrentUser();
-        List<Form> forms = formService.getAllIncomplete(aUser);
-
-        FiltersForm filters = new FiltersForm();
-        //Gets the tags for filters
-        model.addAttribute("othersInvolved", formHandler.findTagsByCategory("Others Involved"));
-        model.addAttribute("impact", formHandler.findTagsByCategory("Impact"));
-        model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
-        model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
-        model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF"));
-        model.addAttribute("user", aUser);
-        model.addAttribute("forms", forms);
-        model.addAttribute("filters",filters);
-
-        return "reflection-list";
-    }
-
 
     @GetMapping("/home")
     public String getHomeData(Model model) {
@@ -377,14 +362,14 @@ public class FormController {
             ActionPoints action1 = new ActionPoints(currentUser, reflectionForm.learningPoint1, 0);
             apService.saveAction(action1);
 
-            if(reflectionForm.learningPoint2.equals("YJIoHUi9jpgngZ+GyiApyQ==")) {
+            if (reflectionForm.learningPoint2 != null) {
                 ActionPoints action2 = new ActionPoints(currentUser, reflectionForm.learningPoint2, 0);
                 apService.saveAction(action2);
             }
 
-            if(reflectionForm.learningPoint3.equals("YJIoHUi9jpgngZ+GyiApyQ==")) {
-                    ActionPoints action3 = new ActionPoints(currentUser, reflectionForm.learningPoint3, 0);
-                    apService.saveAction(action3);
+            if (reflectionForm.learningPoint3 != null) {
+                ActionPoints action3 = new ActionPoints(currentUser, reflectionForm.learningPoint3, 0);
+                apService.saveAction(action3);
             }
 
             if (form.getReflectionID() != null){
@@ -410,9 +395,8 @@ public class FormController {
 
         for (int i = 0; i < aSubmittingAP.actionpoints.size(); i++) {
             Integer ActionID = aSubmittingAP.actionpoints.get(i);
-            Optional<ActionPoints> editingAction = apService.getActionByID(ActionID);
-            editingAction.get().updateFields(currentUser, ActionID, 1);
-            apService.saveAction(editingAction.get());
+            ActionPoints actionEdit = new ActionPoints(currentUser, ActionID, 1);
+            apService.saveAction(actionEdit);
         }
 
         return getHomeData(model);

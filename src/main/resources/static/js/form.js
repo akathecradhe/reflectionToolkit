@@ -8,15 +8,6 @@ $(document).ready(function() {
         document.documentElement.scrollTop = 0;
     }
 
-    $('form#form').submit(function() {
-        $(window).unbind('beforeunload');
-    });
-
-    $(window).bind('beforeunload', function(){
-        return 'Leaving will erase your current progress, are you sure you want to leave?';
-    });
-
-
     function uncheck(checkbox1, checkbox2, checkbox3, checkbox4, checkbox5, checkbox6) {
         let checkBox = document.getElementById("None");
         if (checkBox.checked == true) ;

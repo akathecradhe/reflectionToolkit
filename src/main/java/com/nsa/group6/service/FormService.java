@@ -22,8 +22,6 @@ public interface FormService {
 
     List<Form> getIncomplete(User aUsername);
 
-    List<Form> getAllIncomplete(User aUsername);
-
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
 //    public List<Form> findFormsByMostRecent();
