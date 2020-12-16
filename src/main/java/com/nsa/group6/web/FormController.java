@@ -314,6 +314,8 @@ public class FormController {
 
         //ThoughtCloud Ordered List
         HashMap<Tags,Integer> thoughtStats = formHandler.findAllThoughtCloudStats();
+        System.out.println("HEREEEEE REEEE");
+        System.out.println(thoughtStats.toString());
         List<Map.Entry<Tags, Integer> > list2 =
                 new LinkedList<Map.Entry<Tags, Integer> >(thoughtStats.entrySet());
         Collections.sort(list, new Comparator<Map.Entry<Tags, Integer> >() {
@@ -333,11 +335,14 @@ public class FormController {
 
         model.addAttribute("ukpsf", ukpsfOrdered);
         model.addAttribute("ukpsfcount", ukpsfValues);
-        model.addAttribute("thoughtCloud", thoughtOrdered);
+        model.addAttribute("thought", thoughtOrdered);
         model.addAttribute("thoughtcount", thoughtValues);
         model.addAttribute("incompletes", incompleteForm);
         model.addAttribute("user", aUser);
         model.addAttribute("forms", form);
+        System.out.println("look here bro");
+        System.out.println(thoughtOrdered.size());
+        System.out.println(thoughtOrdered.get(thoughtOrdered.size()-1).getTagName());
 
 
         return "home";

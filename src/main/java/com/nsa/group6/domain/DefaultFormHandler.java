@@ -69,9 +69,10 @@ public class DefaultFormHandler implements FormHandler {
 
     @Override
     public HashMap<Tags, Integer> findAllThoughtCloudStats() {
-        List<Tags> thoughtCloud = tagService.getTagByCategory("thoughtCloud");
+        List<Tags> thoughtCloud = tagService.getTagByCategory("Thought Cloud");
         HashMap<Tags, Integer> thoughtCount = new HashMap<>();
             for (Tags tag: thoughtCloud) {
+                System.out.println("loop de loop");
                 thoughtCount.put(tag, formService.getTotalTagCount(tag));
             }
 

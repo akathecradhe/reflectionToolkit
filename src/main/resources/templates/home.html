@@ -391,7 +391,7 @@
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-1).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-1).tagName}"></strong>
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-1).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-1).getTagName}"></strong>
                     </div>
                     <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                 </div>
@@ -399,7 +399,7 @@
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-2).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-2).tagName}"></strong>
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-2).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-2).getTagName}"></strong>
                     </div>
                     <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                 </div>
@@ -407,7 +407,7 @@
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-3).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-3).tagName}"></strong>
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-3).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-3).getTagName}"></strong>
                     </div>
                     <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-3)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                 </div>
@@ -439,10 +439,84 @@
                     <span class="d-block" th:text="${ukpsfcount.get(2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                 </div>
             </div>
-            <small class="d-block text-right mt-3">
-                <a href="#">Dimension Overview</a>
-            </small>
         </div>
+
+
+
+
+
+
+        <div class = 'row h-50'>
+            <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
+                <label class= "labels border-bottom border-gray pb-2 mb-0">Most Common Thoughts</label>
+                <div class="media text-muted pt-3">
+                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <strong class="text-gray-dark" th:text="${thought.get(thought.size()-1).getTagName()}"></strong>
+                        </div>
+                        <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                    </div>
+                </div>
+                <div class="media text-muted pt-3">
+                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <strong class="text-gray-dark" th:text="${thought.get(thought.size()-2).getTagName()}"></strong>
+                        </div>
+                        <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                    </div>
+                </div>
+                <div class="media text-muted pt-3">
+                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <strong class="text-gray-dark" th:text="${thought.get(thought.size()-3).getTagName()}"></strong>
+                        </div>
+                        <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-3)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 h-auto m-3 p-3 bg-light rounded shadow-sm">
+                <label class= "labels border-bottom border-gray pb-2 mb-0">Least Common Thoughts</label>
+                <div class="media text-muted pt-3">
+                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <strong class="text-gray-dark" th:text="${thought.get(0).getTagName()}"></strong>
+                        </div>
+                        <span class="d-block" th:text="${thoughtcount.get(0)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                    </div>
+                </div>
+                <div class="media text-muted pt-3">
+                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <strong class="text-gray-dark" th:text="${thought.get(1).getTagName()}"></strong>
+                        </div>
+                        <span class="d-block" th:text="${thoughtcount.get(1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                    </div>
+                </div>
+                <div class="media text-muted pt-3">
+                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <strong class="text-gray-dark" th:text="${thought.get(2).getTagName()}"></strong>
+                        </div>
+                        <span class="d-block" th:text="${thoughtcount.get(2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                    </div>
+                </div>
+            </div>
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         <div class="col-auto flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">To-Do List</label>
             <div class="media text-muted pt-3">
