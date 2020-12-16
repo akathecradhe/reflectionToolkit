@@ -164,12 +164,13 @@
                 <a href="/reflection/user">All Activities</a>
             </small>
         </div>
-        <div class="col-md-12 m-3 p-3 bg-light rounded shadow-sm">
+        <div class="col-md-3 h-auto m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Suggested: Dimensions to Evidence</label>
             <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-secondary">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-danger">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark" th:text="${ukpsf.get(0).shortenedTag} + ' - ' + ${ukpsf.get(0).tagName}"></strong>
+                        <strong class="text-gray-dark"  th:text="${ukpsf.get(0).shortenedTag} + ' - ' + ${ukpsf.get(0).tagName}"></strong>
+
                     </div>
                 </div>
             </div>
@@ -181,14 +182,14 @@
                 </div>
             </div>
             <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-primary">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-danger">
                     <div class="d-flex justify-content-between align-items-center w-100">
                         <strong class="text-gray-dark"  th:text="${ukpsf.get(2).shortenedTag} + ' - ' + ${ukpsf.get(2).tagName}"></strong>
                     </div>
                 </div>
             </div>
             <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-secondary">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-primary">
                     <div class="d-flex justify-content-between align-items-center w-100">
                         <strong class="text-gray-dark"  th:text="${ukpsf.get(3).shortenedTag} + ' - ' + ${ukpsf.get(3).tagName}"></strong>
                     </div>
@@ -198,10 +199,25 @@
                 <a href="/form">Activity Form</a>
             </small>
         </div>
+
         <div>
             <label class= "labels border-bottom border-gray pb-2 mb-0">UKPSF Tags completed</label>
-            <canvas id="donut" style="width: 300px;height:200px;">
-            </canvas> </div>
+            <div>
+                <div calss="class= media-bodies pb-3 mb-0 small lh-125 border-bottom border-danger">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <canvas id="donut" style="width: 300px;height:200px;" >
+                        </canvas>
+                    </div>
+                </div>
+
+                <small class="d-block text-right mt-3">
+                    <a href="/form">click to view larger</a>
+                </small>
+
+            </div>
+
+
+        </div>
     </div>
     <div class = 'row h-50'>
         <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
