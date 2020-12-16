@@ -92,8 +92,27 @@ public class FormJPAAdaptor implements FormService {
             else if (compLevel.equals("red")) {
                 incompForms.add(aForms.get(i));
             }
-            else {
+        }
 
+        return incompForms;
+
+    }
+
+    @Override
+    public List<Form> getAllIncomplete(User aUsername) {
+
+        List<Form> aForms = formRepository.findAllByUsername(aUsername, Sort.by(Sort.Direction.DESC, "lastEdited"));
+        List<Form> incompForms = new ArrayList<>();
+
+
+        for (int i = 0; i < aForms.size(); i++) {
+            String compLevel = aForms.get(i).getCompletionLevel();
+
+            if (compLevel.equals("amber")) {
+                incompForms.add(aForms.get(i));
+            }
+            else if (compLevel.equals("red")) {
+                incompForms.add(aForms.get(i));
             }
         }
 
