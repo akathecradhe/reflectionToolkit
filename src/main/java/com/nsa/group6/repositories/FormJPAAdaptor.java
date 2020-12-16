@@ -82,18 +82,30 @@ public class FormJPAAdaptor implements FormService {
         List<Form> aForms = formRepository.findAllByUsername(aUsername, Sort.by(Sort.Direction.DESC, "lastEdited"));
         List<Form> incompForms = new ArrayList<>();
 
+        if (aForms.size() < 4) {
+            for (int i = 0; i < aForms.size(); i++) {
+                String compLevel = aForms.get(i).getCompletionLevel();
 
-        for (int i = 0; i < aForms.size(); i++) {
-            String compLevel = aForms.get(i).getCompletionLevel();
+                if (compLevel.equals("amber")) {
+                    incompForms.add(aForms.get(i));
+                } else if (compLevel.equals("red")) {
+                    incompForms.add(aForms.get(i));
+                } else {
 
-            if (compLevel.equals("amber")) {
-                incompForms.add(aForms.get(i));
+                }
             }
-            else if (compLevel.equals("red")) {
-                incompForms.add(aForms.get(i));
-            }
-            else {
+        }
+        else if (aForms.size() > 3) {
+            for (int i = 0; i < 3; i++) {
+                String compLevel = aForms.get(i).getCompletionLevel();
 
+                if (compLevel.equals("amber")) {
+                    incompForms.add(aForms.get(i));
+                } else if (compLevel.equals("red")) {
+                    incompForms.add(aForms.get(i));
+                } else {
+
+                }
             }
         }
 

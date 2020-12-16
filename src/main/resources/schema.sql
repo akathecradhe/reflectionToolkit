@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS `action_points` (
   `actionID` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `learning_point` VARCHAR(140),
-  `checked` BIT(1) NOT NULL
+  `checked` VARCHAR(1) NOT NULL
   )
 ENGINE = InnoDB;
 
@@ -108,4 +108,3 @@ ADD FOREIGN KEY  (`formId`) REFERENCES form(`formId`);
 
 ALTER TABLE `Tagform`
 ADD FOREIGN KEY  (`tagId`) REFERENCES tags(`tagId`);
-

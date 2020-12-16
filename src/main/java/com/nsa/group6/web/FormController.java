@@ -6,7 +6,6 @@ import com.nsa.group6.service.UserService;
 import com.nsa.group6.service.*;
 
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,8 +29,6 @@ import com.nsa.group6.domain.Tags;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-
-import javax.swing.*;
 
 @Controller
 public class FormController {
@@ -57,8 +54,6 @@ public class FormController {
         this.reflectionService = reflectionService;
         this.apService = apService;
     }
-
-
 
     @GetMapping("form")
     public String runForm(Model model) {
@@ -362,14 +357,14 @@ public class FormController {
             ActionPoints action1 = new ActionPoints(currentUser, reflectionForm.learningPoint1, 0);
             apService.saveAction(action1);
 
-            if (reflectionForm.learningPoint2 != null) {
+            if(reflectionForm.learningPoint2.equals("YJIoHUi9jpgngZ+GyiApyQ==")) {
                 ActionPoints action2 = new ActionPoints(currentUser, reflectionForm.learningPoint2, 0);
                 apService.saveAction(action2);
             }
 
-            if (reflectionForm.learningPoint3 != null) {
-                ActionPoints action3 = new ActionPoints(currentUser, reflectionForm.learningPoint3, 0);
-                apService.saveAction(action3);
+            if(reflectionForm.learningPoint3.equals("YJIoHUi9jpgngZ+GyiApyQ==")) {
+                    ActionPoints action3 = new ActionPoints(currentUser, reflectionForm.learningPoint3, 0);
+                    apService.saveAction(action3);
             }
 
             if (form.getReflectionID() != null){
@@ -395,8 +390,9 @@ public class FormController {
 
         for (int i = 0; i < aSubmittingAP.actionpoints.size(); i++) {
             Integer ActionID = aSubmittingAP.actionpoints.get(i);
-            ActionPoints actionEdit = new ActionPoints(currentUser, ActionID, 1);
-            apService.saveAction(actionEdit);
+            Optional<ActionPoints> editingAction = apService.getActionByID(ActionID);
+            editingAction.get().updateFields(currentUser, ActionID, 1);
+            apService.saveAction(editingAction.get());
         }
 
         return getHomeData(model);
