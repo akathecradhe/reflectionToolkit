@@ -53,24 +53,32 @@ public class APJPAAdaptor implements APService {
 
         List<ActionPoints> aPoints = apRepository.findAllByUsername(aUsername, Sort.by(Sort.Direction.ASC, "actionID"));
 
+        List<ActionPoints> actionpoints = new ArrayList<>();
+
+        for (int i = 0; i < aPoints.size(); i++) {
+            if (aPoints.get(i).getChecked() == 0) {
+                actionpoints.add(aPoints.get(i));
+            }
+        }
+
         List<ActionPoints> aPoints2 = new ArrayList<>();
 
-        if (aPoints.size() > 2) {
-            ActionPoints aPoint = aPoints.get(aPoints.size() - 1);
-            ActionPoints aPoint2 = aPoints.get(aPoints.size() - 2);
-            ActionPoints aPoint3 = aPoints.get(aPoints.size() - 3);
+        if (actionpoints.size() > 2) {
+            ActionPoints aPoint = actionpoints.get(actionpoints.size() - 1);
+            ActionPoints aPoint2 = actionpoints.get(actionpoints.size() - 2);
+            ActionPoints aPoint3 = actionpoints.get(actionpoints.size() - 3);
             aPoints2.add(aPoint);
             aPoints2.add(aPoint2);
             aPoints2.add(aPoint3);
         }
-        else if (aPoints.size() == 2) {
-            ActionPoints aPoint = aPoints.get(aPoints.size() - 1);
-            ActionPoints aPoint2 = aPoints.get(aPoints.size() - 2);
+        else if (actionpoints.size() == 2) {
+            ActionPoints aPoint = actionpoints.get(actionpoints.size() - 1);
+            ActionPoints aPoint2 = actionpoints.get(actionpoints.size() - 2);
             aPoints2.add(aPoint);
             aPoints2.add(aPoint2);
         }
-        else if (aPoints.size() == 1) {
-            ActionPoints aPoint = aPoints.get(aPoints.size() - 1);
+        else if (actionpoints.size() == 1) {
+            ActionPoints aPoint = actionpoints.get(actionpoints.size() - 1);
             aPoints2.add(aPoint);
         }
         else {

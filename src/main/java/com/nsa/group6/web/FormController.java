@@ -314,21 +314,13 @@ public class FormController {
 
         List<ActionPoints> actionInput = apService.getRecent(aUser);
 
-        List<ActionPoints> actionpoints = new ArrayList<>();
-
-        for (int i = 0; i < actionInput.size(); i++) {
-            if (actionInput.get(i).getChecked() == 0) {
-                actionpoints.add(actionInput.get(i));
-            }
-        }
-
         Collections.shuffle(dimensionsToEvidence);
 
         model.addAttribute("ukpsf", dimensionsToEvidence);
         model.addAttribute("incompletes", incompleteForm);
         model.addAttribute("user", aUser);
         model.addAttribute("forms", form);
-        model.addAttribute("actionpoints", actionpoints);
+        model.addAttribute("actionpoints", actionInput);
 
         return "home";
     }
@@ -377,12 +369,12 @@ public class FormController {
             ActionPoints action1 = new ActionPoints(currentUser, reflectionForm.learningPoint1, 0);
             apService.saveAction(action1);
 
-            if(reflectionForm.learningPoint2.equals("YJIoHUi9jpgngZ+GyiApyQ==")) {
+            if(!reflectionForm.learningPoint2.equals("")) {
                 ActionPoints action2 = new ActionPoints(currentUser, reflectionForm.learningPoint2, 0);
                 apService.saveAction(action2);
             }
 
-            if(reflectionForm.learningPoint3.equals("YJIoHUi9jpgngZ+GyiApyQ==")) {
+            if(!reflectionForm.learningPoint3.equals("")) {
                     ActionPoints action3 = new ActionPoints(currentUser, reflectionForm.learningPoint3, 0);
                     apService.saveAction(action3);
             }
