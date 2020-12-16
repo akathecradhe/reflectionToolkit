@@ -279,6 +279,26 @@ public class FormController {
         return "reflection-list";
     }
 
+    @GetMapping("reflection/user/incomplete")
+    public String getIncompletes(Model model) {
+
+        User aUser = getCurrentUser();
+        List<Form> forms = formService.getAllIncomplete(aUser);
+
+        FiltersForm filters = new FiltersForm();
+        //Gets the tags for filters
+        model.addAttribute("othersInvolved", formHandler.findTagsByCategory("Others Involved"));
+        model.addAttribute("impact", formHandler.findTagsByCategory("Impact"));
+        model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
+        model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
+        model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF"));
+        model.addAttribute("user", aUser);
+        model.addAttribute("forms", forms);
+        model.addAttribute("filters",filters);
+
+        return "reflection-list";
+    }
+
 
     @GetMapping("/home")
     public String getHomeData(Model model) {
