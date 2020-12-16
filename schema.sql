@@ -1,4 +1,4 @@
--- USE mysql;
+USE mysql;
 USE mysql;
 DROP USER IF EXISTS 'administrator'@'localhost';
 
@@ -6,11 +6,11 @@ DROP USER IF EXISTS 'administrator'@'localhost';
 
 SELECT * FROM user;
 
--- -- Check the current user  
+-- Check the current user  
 
 SELECT user(); 
 
--- -- Create an administrator user who can connect from localhost ONLY
+-- Create an administrator user who can connect from localhost ONLY
 CREATE USER 'administrator'@'localhost' IDENTIFIED BY 'apassword';
 
 SHOW GRANTS FOR 'administrator'@'localhost';
@@ -34,17 +34,17 @@ DROP SCHEMA IF EXISTS `LoggingSystemDB` ;
 CREATE SCHEMA `LoggingSystemDB`;
 USE LoggingSystemDB ;
 DROP TABLE IF EXISTS event;
--- Let's create a new table now
--- Data for all the tags
+Let's create a new table now
+Data for all the tags
 
--- Let's create a new table now
+Let's create a new table now
 CREATE TABLE IF NOT EXISTS `event` (
    `eventId` int UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY,
   `Name` VARCHAR(45) NOT NULL
   )
 ENGINE = InnoDB;
 
--- REFLECTION TABLE
+REFLECTION TABLE
 
 CREATE TABLE IF NOT EXISTS `role` (
   `roleId` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -52,7 +52,7 @@ CREATE TABLE IF NOT EXISTS `role` (
   )
 ENGINE = InnoDB;
 
--- USER TABLE
+USER TABLE
 
 CREATE TABLE IF NOT EXISTS `user` (
   `username` VARCHAR(45) NOT NULL PRIMARY KEY,
@@ -63,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   )
 ENGINE = InnoDB;
 
--- REFLECTION TABLE
+REFLECTION TABLE
 
 CREATE TABLE IF NOT EXISTS `reflection` (
   `reflectionId` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -80,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `reflection` (
   )
 ENGINE = InnoDB;
 
--- Action Points TABLE
+Action Points TABLE
 CREATE TABLE IF NOT EXISTS `action_points` (
   `actionID` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `action_points` (
   )
 ENGINE = InnoDB;
 
--- Tag TABLE
+Tag TABLE
 
 CREATE TABLE IF NOT EXISTS `tags` (
   `tagId` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -101,7 +101,7 @@ CREATE TABLE IF NOT EXISTS `tags` (
   )
 ENGINE = InnoDB;
 
--- Tag form table
+Tag form table
 
 CREATE TABLE IF NOT EXISTS `tagForm` (
   `tagId` int  NOT NULL ,
@@ -109,7 +109,7 @@ CREATE TABLE IF NOT EXISTS `tagForm` (
   )
 ENGINE = InnoDB;
 
--- form-table
+form-table
 CREATE TABLE IF NOT EXISTS `form` (
   `formId` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `eventId` int UNSIGNED NOT NULL,
@@ -143,6 +143,7 @@ ADD FOREIGN KEY  (`tagId`) REFERENCES tags(`tagId`);
 
 USE mysql;
 
+GRANT SELECT ON LoggingSystemDB.user to 'administrator'@'localhost';
 GRANT SELECT ON LoggingSystemDB.role to 'administrator'@'localhost';
 GRANT SELECT ON LoggingSystemDB.event to 'administrator'@'localhost';
 GRANT SELECT,INSERT,DELETE ON LoggingSystemDB.tagform to 'administrator'@'localhost';
@@ -198,5 +199,8 @@ DELIMITER ;
 GRANT EXECUTE ON PROCEDURE LoggingSystemDB.delete_activity TO 'administrator'@'localhost';
 FLUSH PRIVILEGES;
 SELECT * FROM tables_priv;
+USE loggingsystemdb;
+SELECT * FROM user;
+SELECT * FROM action_points;
 
 
