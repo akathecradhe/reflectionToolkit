@@ -84,7 +84,7 @@ CREATE TABLE IF NOT EXISTS `action_points` (
   `actionID` int NOT NULL PRIMARY KEY AUTO_INCREMENT,
   `username` VARCHAR(45) NOT NULL,
   `learning_point` VARCHAR(140),
-  `checked` BIT(1) NOT NULL
+  `checked` VARCHAR(1) NOT NULL
   )
 ENGINE = InnoDB;
 
@@ -189,9 +189,10 @@ CREATE DEFINER = `root`@`localhost`
 PROCEDURE  delete_activity(IN id int)
 SQL SECURITY INVOKER
 BEGIN
+DELETE FROM LoggingSystemDB.TagForm WHERE formId = id;
   DELETE FROM LoggingSystemDB.form WHERE formId = id;
-  DELETE FROM LoggingSystemDB.TagForm WHERE formId = id;
-  DELETE FROM LoggingSystemDB.reflection WHERE reflectionId IN (SELECT reflectionId FROM LoggingSystemDB.form WHERE formId = id);
+  SET @list = (SELECT reflectionId FROM LoggingSystemDB.form WHERE formId = id);
+  DELETE FROM LoggingSystemDB.reflection WHERE (reflectionId = @list);
 END//
 
 DELIMITER ;

@@ -168,4 +168,9 @@ ul li a:hover .icon .fa
     .bottomnavbar-brand{
         display: none;
     }
+
+    #filters li {
+        margin-left: 5px;
+        list-style-type: none;
+    }
 }
