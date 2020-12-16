@@ -1,42 +1,32 @@
-
 -- USE mysql;
-
--- DROP USER 'administrator'@'localhost';
-
--- DROP USER 'selectonly'@'localhost';
+USE mysql;
+DROP USER IF EXISTS 'administrator'@'localhost';
 
 
 
--- SELECT * FROM user;
+SELECT * FROM user;
 
 -- -- Check the current user  
 
--- SELECT user(); 
+SELECT user(); 
 
 -- -- Create an administrator user who can connect from localhost ONLY
--- CREATE USER 'administrator'@'localhost' IDENTIFIED BY 'apassword';
+CREATE USER 'administrator'@'localhost' IDENTIFIED BY 'apassword';
 
--- SHOW GRANTS FOR 'administrator'@'localhost';
--- GRANT ALL PRIVILEGES ON * . * TO 'administrator'@'localhost';
--- SHOW GRANTS FOR 'administrator'@'localhost';
-
-
--- CREATE USER 'selectonly'@'localhost' IDENTIFIED BY 'spassword';
-
--- SHOW GRANTS FOR 'selectonly'@'localhost';
--- GRANT SELECT ON  LoggingSystemDB.* TO 'yulia'@'localhost';
--- SHOW GRANTS FOR 'selectonly'@'localhost';
-
--- FLUSH PRIVILEGES;
+SHOW GRANTS FOR 'administrator'@'localhost';
+SHOW GRANTS FOR 'administrator'@'localhost';
 
 
--- ALTER USER 'administrator'@'localhost' PASSWORD EXPIRE INTERVAL 15 DAY;
 
--- ALTER USER 'selectonly'@'localhost' PASSWORD EXPIRE INTERVAL 30 DAY;
+FLUSH PRIVILEGES;
 
--- FLUSH PRIVILEGES;
 
--- SELECT * FROM user;
+ALTER USER 'administrator'@'localhost' PASSWORD EXPIRE INTERVAL 15 DAY;
+
+
+FLUSH PRIVILEGES;
+
+SELECT * FROM user;
 
 
 
@@ -150,4 +140,63 @@ ADD FOREIGN KEY  (`formId`) REFERENCES form(`formId`);
 
 ALTER TABLE `Tagform`
 ADD FOREIGN KEY  (`tagId`) REFERENCES tags(`tagId`);
+
+USE mysql;
+
+GRANT SELECT ON LoggingSystemDB.role to 'administrator'@'localhost';
+GRANT SELECT ON LoggingSystemDB.event to 'administrator'@'localhost';
+GRANT SELECT,INSERT,DELETE ON LoggingSystemDB.tagform to 'administrator'@'localhost';
+GRANT SELECT,INSERT,UPDATE,DELETE ON LoggingSystemDB.reflection to 'administrator'@'localhost';
+GRANT SELECT,INSERT,UPDATE,DELETE ON LoggingSystemDB.action_points to 'administrator'@'localhost';
+GRANT SELECT,INSERT,UPDATE,DELETE ON LoggingSystemDB.form to 'administrator'@'localhost';
+GRANT SELECT, INSERT, DELETE ON LoggingSystemDB.tags to 'administrator'@'localhost';
+
+
+DELIMITER //
+
+USE LoggingSystemDB //
+
+CREATE DEFINER = `root`@`localhost` 
+PROCEDURE  delete_thought_cloud_bad_practise(IN id int)
+BEGIN
+  IF ((SELECT category FROM tags WHERE tagid = id) = "Thought Cloud") THEN
+    DELETE FROM LoggingSystemDB.Tags WHERE tagId = id;
+  END IF;
+END//
+
+CREATE DEFINER = `root`@`localhost` 
+PROCEDURE  delete_thought_cloud(IN id int)
+SQL SECURITY INVOKER
+BEGIN
+  IF ((SELECT category FROM tags WHERE tagid = id) = "Thought Cloud") THEN
+    DELETE FROM LoggingSystemDB.Tags WHERE tagId = id;
+  END IF;
+  
+END//
+DELIMITER ;
+GRANT EXECUTE ON PROCEDURE LoggingSystemDB.delete_thought_cloud_bad_practise TO 'administrator'@'localhost';
+
+
+CREATE TRIGGER delete_associated_tags
+AFTER DELETE
+ON tags FOR EACH ROW
+DELETE FROM TagForm WHERE tagId = old.tagId;
+
+
+DELIMITER //
+
+CREATE DEFINER = `root`@`localhost` 
+PROCEDURE  delete_activity(IN id int)
+SQL SECURITY INVOKER
+BEGIN
+  DELETE FROM LoggingSystemDB.form WHERE formId = id;
+  DELETE FROM LoggingSystemDB.TagForm WHERE formId = id;
+  DELETE FROM LoggingSystemDB.reflection WHERE reflectionId IN (SELECT reflectionId FROM LoggingSystemDB.form WHERE formId = id); 
+END//
+
+DELIMITER ;
+GRANT EXECUTE ON PROCEDURE LoggingSystemDB.delete_activity TO 'administrator'@'localhost';
+FLUSH PRIVILEGES;
+SELECT * FROM tables_priv;
+
 
