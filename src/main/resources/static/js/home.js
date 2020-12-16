@@ -38,7 +38,7 @@ function addChart(){
     });
 
     var ctx2 = document.getElementById("bigdonut");
-    var myChart = new Chart(ctx2, {
+    var myChart2 = new Chart(ctx2, {
         type: 'doughnut',
         data: {
             labels: titles,

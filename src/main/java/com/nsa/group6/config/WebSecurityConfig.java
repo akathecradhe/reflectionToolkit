@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js " +
                 "https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js " +
                 "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " +
-                "https://cdn.jsdelivr.net/npm/chart.js@2.8.0;");
+                "https://cdn.jsdelivr.net/npm/chart.js@2.8.0 " +
                 "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " +
                 "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js; ");
 
