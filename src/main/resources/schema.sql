@@ -1,4 +1,44 @@
 
+USE mysql;
+
+DROP USER 'administrator'@'localhost';
+
+DROP USER 'selectonly'@'localhost';
+
+
+SELECT * FROM user;
+
+-- Check the current user  
+
+SELECT user(); 
+
+-- Create an administrator user who can connect from localhost ONLY
+CREATE USER 'administrator'@'localhost' IDENTIFIED BY 'apassword';
+
+SHOW GRANTS FOR 'administrator'@'localhost';
+-- add privileges here
+SHOW GRANTS FOR 'administrator'@'localhost';
+
+
+CREATE USER 'selectonly'@'localhost' IDENTIFIED BY 'spassword';
+
+SHOW GRANTS FOR 'selectonly'@'localhost';
+-- add privileges here
+SHOW GRANTS FOR 'selectonly'@'localhost';
+
+FLUSH PRIVILEGES;
+
+
+ALTER USER 'administrator'@'localhost' PASSWORD EXPIRE INTERVAL 15 DAY;
+
+ALTER USER 'selectonly'@'localhost' PASSWORD EXPIRE INTERVAL 30 DAY;
+
+FLUSH PRIVILEGES;
+
+SELECT * FROM user;
+
+
+
 DROP SCHEMA IF EXISTS `LoggingSystemDB` ;
 CREATE SCHEMA `LoggingSystemDB`;
 USE LoggingSystemDB ;
