@@ -10,6 +10,9 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" integrity="sha384-QzN1ywg2QLsf72ZkgRHgjkB/cfI4Dqjg6RJYQUqH6Wm8qp/MvmEYn+2NBsLnhLkr" crossorigin="anonymous"></script>
+
+    <script src="/js/home.js"></script>
+
     <script src="https://kit.fontawesome.com/9b9fc493c6.js" crossorigin="anonymous"></script>
     <script src="/js/home.js"></script>
 
@@ -104,6 +107,11 @@
 </header>
 
 <main sec:authorize="hasRole('USER')" role="main" class="container h-100">
+    <div class = 'row h-auto'>
+        <div class="col-auto m-3 p-3  bg-light rounded shadow-sm">
+            <strong  class="d-block text-gray-dark" th:text="'Currently Logged in as ' + ${user.name}"></strong>
+        </div>
+    </div>
     <div class = 'row h-50'>
         <div class="col-md-3 h-auto m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities Edited</label>
@@ -165,6 +173,11 @@
             </small>
         </div>
         <div class="col-md-3 h-auto m-3 p-3 bg-light rounded shadow-sm">
+        <small class="d-block text-right mt-3">
+            <a href="/reflection/user">All Activities</a>
+        </small>
+    </div>
+        <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Suggested: Dimensions to Evidence</label>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-danger">
@@ -255,6 +268,19 @@
         </div>
     </div>
     <div class = 'row h-50'>
+    <div class="col-md-6 m-3 p-3 bg-light rounded shadow-sm">
+        <label class= "labels border-bottom border-gray pb-2 mb-0">Why not finish these forms?</label>
+        <div th:unless="${incompletes.size() == 0}">
+        <div th:each="incomplete: ${incompletes}">
+        <div class="media text-muted pt-3">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" th:switch="${incomplete.getCompletionLevel()}">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <a style="text-decoration: none; color: #343a40; padding-bottom: 0" class="text-gray-dark" th:href="@{/reflection/{furl} (furl=${incomplete.getFormID()})}">
+                    <strong class="text-gray-dark" th:text="${incomplete.getEventID().getName()}">Discussion</strong>
+                    </a>
+                </div>
+                <span class="d-block"> Entry last edited: <span th:text="${incomplete.getLastEditedString()}"></span></span>
+                <span class="d-block">Completion Status: <span th:case="green">Completed</span>
         <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Why not finish these forms?</label>
             <div th:unless="${incompletes.size() == 0}">
@@ -307,6 +333,31 @@
                     </div>
                 </div>
             </div>
+            </div>
+        </div>
+        </div>
+            <small class="d-block text-right mt-3">
+                <a href="/reflection/user/incomplete">All Incomplete Entries</a>
+            </small>
+        </div>
+        <div th:if="${incompletes.size() == 0}">
+                    <div class="media text-muted pt-3">
+                        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <strong class="text-gray-dark">Congratulations, all forms are currently up to date with UKPSF dimensions and reflections!</strong>
+                            </div>
+                        </div>
+                    </div>
+            <div class="media text-muted pt-3">
+            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                    <a href="/form">
+                        <strong class="text-gray-dark">Add a new form</strong>
+                    </a>
+                </div>
+            </div>
+            </div>
+        </div>
 
             <!--        <div class="media text-muted pt-3">-->
             <!--            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">-->
@@ -337,57 +388,46 @@
         <div class="col-md-3 h-auto m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Upcoming Activities</label>
             <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">Communications Workshop: 2020/12/05</strong>
-                    Role: Participate
-                </p>
+                <div class="media-body pb-3 mb-0 small lh-123 border-bottom border-gray">
+                    <div>
+                        <label class="text-gray-dark" th:for="${actionpoint.actionID}">
+                    <input required type=checkbox class="checkbox" th:id="${actionpoint.actionID}" th:value="${actionpoint.actionID}" name="actionpoints">
+                            <strong  th:text="${actionpoint.learning_point}"></strong>
+                    </label>
+                        </div>
+                </div>
             </div>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">Project Planning: 2021/01/10</strong>
-                    Role: Review
-                </p>
-            </div>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">Presentation Skills Seminar: 2021/01/15</strong>
-                    Role: Lead or Facilitate
-                </p>
-            </div>
-            <small class="d-block text-right mt-3">
-                <a href="#">Schedule</a>
+                </span>
+                                                    <small class="d-block text-right mt-3">
+                <input type="submit" class="btn btn-secondary">
             </small>
-        </div>
-        <div class="col-md-2 flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">Action Points</label>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Action Point 1</label>
-                    </div>
+                </span>
+                <span th:if="${actionpoints.size() == 0}">
+                    <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-123 border-bottom border-gray">
+                    <strong class="text-gray-dark">Congratulations, you have completed all your action points!</strong>
                 </div>
             </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Action Point 2</label>
-                    </div>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Action Point 3</label>
-                    </div>
-                </div>
-            </div><br>
-            <small class="d-block text-right mt-3">
-                <a href="#">View All</a>
-            </small>
+                </span>
+
+        </form>
         </div>
     </div>
 
-</main>
+ </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <main sec:authorize="hasRole('ADMIN')" role="main" class="container h-100">
     <div class = 'row h-50'>
@@ -556,24 +596,25 @@
                     </div>
                 </div>
             </div>
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         <div class="col-auto flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">To-Do List</label>
+
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">

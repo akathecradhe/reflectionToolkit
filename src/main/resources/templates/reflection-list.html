@@ -88,7 +88,7 @@
 
 <div class="container">
 
-    <h2>Activities</h2>
+    <h1 class="mt-2">Activities</h1>
     <button class="btn btn-light btn-lg" id="filterBtn">Filters</button>
     <form id="filters" action="#" method="get" th:action="@{/reflection/user/filters}" th:object="${filters}">
 
@@ -96,8 +96,9 @@
         <button class="btn btn-secondary col-sm drop" id="ukpsf" type="button">UKPSF Dimensions</button>
         <div class="w-100" id="ukpsf-drop">
             <div th:each="tag : ${ukpsf}">
-                <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
-                    <label th:for="${tag.tagID}">
+                <li>
+                    <label>
+                        <input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
                         <span th:text="${tag.getShortenedTag()}"></span> - <span th:text="${tag.getTagName()}"></span>
                     </label>
                 </li>
@@ -107,8 +108,9 @@
         <button class="btn btn-secondary col-sm drop" id="othersInvolved" type="button">Others Involved</button>
         <div class="w-100" id="othersInvolved-drop">
             <div th:each="tag : ${othersInvolved}">
-                <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
-                    <label th:for="${tag.tagID}">
+                <li>
+                    <label>
+                        <input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
                         <span th:text="${tag.getTagName()}"></span>
                     </label>
                 </li>
@@ -118,8 +120,9 @@
         <button class="btn btn-secondary col-sm drop" id="impact" type="button">Impact</button>
         <div class="w-100" id="impact-drop">
             <div th:each="tag : ${impact}">
-                <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
-                    <label th:for="${tag.tagID}">
+                <li>
+                    <label>
+                        <input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
                         <span th:text="${tag.getTagName()}"></span>
                     </label>
                 </li>
@@ -130,8 +133,9 @@
         </button>
         <div class="w-100" id="learningTechnologies-drop">
             <div th:each="tag : ${learningTechnologies}">
-                <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
-                    <label th:for="${tag.tagID}">
+                <li>
+                    <label>
+                        <input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
                         <span th:text="${tag.getTagName()}"></span>
                     </label>
                 </li>
@@ -141,8 +145,9 @@
         <button class="btn btn-secondary col-sm drop" id="thoughtCloud" type="button">Thought Cloud</button>
         <div class="w-100" id="thoughtCloud-drop">
             <div th:each="tag : ${thoughtCloud}">
-                <li><input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
-                    <label th:for="${tag.tagID}">
+                <li>
+                    <label>
+                        <input type="checkbox" th:field="*{tags}" th:value="${tag.tagID}" th:id="${tag.tagID}">
                         <span th:text="${tag.getTagName()}"></span>
                     </label>
                 </li>
@@ -152,11 +157,10 @@
         <button class="btn btn-secondary col-sm drop" id="completionStatus" type="button">Completion Status</button>
         <div class="w-100" id="completionStatus-drop">
             <div>
-                <li><input type="checkbox" th:field="*{completionStatus}" value="green" id="green"><label for="green">Completed</label>
+                <li><label><input type="checkbox" th:field="*{completionStatus}" value="green" id="green">Completed</label>
                 </li>
-                <li><input type="checkbox" th:field="*{completionStatus}" value="amber" id="amber"><label for="amber">Partially
-                    Completed</label></li>
-                <li><input type="checkbox" th:field="*{completionStatus}" value="red" id="red"><label for="red">Incomplete</label>
+                <li><label><input type="checkbox" th:field="*{completionStatus}" value="amber" id="amber">Partially Completed</label></li>
+                <li><label><input type="checkbox" th:field="*{completionStatus}" value="red" id="red">Incomplete</label>
                 </li>
             </div>
         </div>

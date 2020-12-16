@@ -169,3 +169,8 @@ ul li a:hover .icon .fa
         display: none;
     }
 }
+#filters li {
+    margin-left: 5px;
+    list-style-type: none !important;
+
+}
