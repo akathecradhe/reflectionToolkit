@@ -47,6 +47,9 @@ public class FormApi {
                 graphData.put(entry.getKey().getShortenedTag(), entry.getValue());
             }
         }
+
+        System.out.println(graphData);
+
         return ResponseEntity.ok(graphData);
     }
 }
