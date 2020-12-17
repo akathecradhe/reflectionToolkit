@@ -5,6 +5,7 @@ import com.nsa.group6.domain.Tags;
 import com.nsa.group6.domain.User;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.query.Procedure;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,6 +19,9 @@ public interface FormRepository extends JpaRepository<Form,Integer>{
     Form findByFormID(int aFormId);
     Integer countByTagsContaining(Tags tag);
     Integer countByTagsContainingAndUsername(Tags tag,User user);
+
+    @Procedure("delete_activity")
+    void deleteById(int id);
 
 
 }

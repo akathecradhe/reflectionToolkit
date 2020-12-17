@@ -4,10 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Data
@@ -18,14 +15,32 @@ public class Reflection {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private int reflectionID;
+
+    @Convert(converter = AttributeEncryptor.class)
     private String box1;
+
+    @Convert(converter = AttributeEncryptor.class)
     private String box2;
+
+    @Convert(converter = AttributeEncryptor.class)
     private String box3;
+
+    @Convert(converter = AttributeEncryptor.class)
     private String box4;
+
+    @Convert(converter = AttributeEncryptor.class)
     private String box5;
+
+    @Convert(converter = AttributeEncryptor.class)
     private String box6;
+
+    @Convert(converter = AttributeEncryptor.class)
     private String learningPoint1;
+
+    @Convert(converter = AttributeEncryptor.class)
     private String learningPoint2;
+
+    @Convert(converter = AttributeEncryptor.class)
     private String learningPoint3;
 
 

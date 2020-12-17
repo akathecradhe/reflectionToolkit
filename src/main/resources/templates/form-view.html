@@ -79,7 +79,7 @@
 <main role="main" class="container h-100">
 <div class="container">
 
-    <h1 class="mt-5" th:text="${form.getEventID().getName()}"> </h1>
+    <h1 class="mt-2" th:text="${form.getEventID().getName()}"> </h1>
     <input type="hidden" id="formId" name="formId" th:value="${form.getFormID()}">
     <hr>
     <div>
@@ -170,8 +170,12 @@
         <h2>Action Points</h2><br>
         <ol>
             <li th:text = "${form.reflectionID.getLearningPoint1()}"></li><br>
+            <span th:if = "${form.reflectionID.getLearningPoint2() != ''}">
             <li th:text = "${form.reflectionID.getLearningPoint2()}"></li><br>
+                </span>
+            <span th:if = "${form.reflectionID.getLearningPoint3() != ''}">
             <li th:text = "${form.reflectionID.getLearningPoint3()}"></li>
+                </span>
         </ol>
 
     </div>

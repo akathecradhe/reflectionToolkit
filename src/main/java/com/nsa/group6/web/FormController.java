@@ -6,9 +6,6 @@ import com.nsa.group6.service.UserService;
 import com.nsa.group6.service.*;
 
 
-
-
-
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -22,7 +19,6 @@ import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.*;
 
 import com.nsa.group6.domain.Form;
@@ -44,8 +40,11 @@ public class FormController {
     private final RoleService roleService;
     private final EventService eventService;
     private final ReflectionService reflectionService;
+    private final APService apService;
 
-    public FormController(FormService formService, UserService userService, FormHandler formHandler, TagsService tagsService, RoleService roleService, EventService eventService, ReflectionService reflectionService, TagService tagService) {
+    public FormController(FormService formService, UserService userService, FormHandler formHandler,
+                          TagsService tagsService, RoleService roleService, EventService eventService,
+                          ReflectionService reflectionService, TagService tagService, APService apService) {
         this.formService = formService;
         this.userService = userService;
         this.formHandler = formHandler;
@@ -53,10 +52,8 @@ public class FormController {
         this.roleService = roleService;
         this.eventService = eventService;
         this.reflectionService = reflectionService;
-
+        this.apService = apService;
     }
-
-
 
     @GetMapping("form")
     public String runForm(Model model) {
@@ -132,6 +129,8 @@ public class FormController {
             return getFormsByUsername(model);
         }
     }
+
+
 
     private String getString(Model model) {
         List<Tags> allTags = tagsService.getAllTags();
@@ -280,6 +279,26 @@ public class FormController {
         return "reflection-list";
     }
 
+    @GetMapping("reflection/user/incomplete")
+    public String getIncompletes(Model model) {
+
+        User aUser = getCurrentUser();
+        List<Form> forms = formService.getAllIncomplete(aUser);
+
+        FiltersForm filters = new FiltersForm();
+        //Gets the tags for filters
+        model.addAttribute("othersInvolved", formHandler.findTagsByCategory("Others Involved"));
+        model.addAttribute("impact", formHandler.findTagsByCategory("Impact"));
+        model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
+        model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
+        model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF"));
+        model.addAttribute("user", aUser);
+        model.addAttribute("forms", forms);
+        model.addAttribute("filters",filters);
+
+        return "reflection-list";
+    }
+
 
     @GetMapping("/home")
     public String getHomeData(Model model) {
@@ -312,6 +331,9 @@ public class FormController {
         List<Tags> ukpsfOrdered = new ArrayList<Tags>(orderedUkpsfStats.keySet());
         List<Integer> ukpsfValues = new ArrayList<Integer>(orderedUkpsfStats.values());
 
+        List<ActionPoints> actionInput = apService.getRecent(aUser);
+
+        Collections.shuffle(dimensionsToEvidence);
         //ThoughtCloud Ordered List
         HashMap<Tags,Integer> thoughtStats = formHandler.findAllThoughtCloudStats();
         System.out.println("HEREEEEE REEEE");
@@ -340,6 +362,7 @@ public class FormController {
         model.addAttribute("incompletes", incompleteForm);
         model.addAttribute("user", aUser);
         model.addAttribute("forms", form);
+        model.addAttribute("actionpoints", actionInput);
         System.out.println("look here bro");
         System.out.println(thoughtOrdered.size());
         System.out.println(thoughtOrdered.get(thoughtOrdered.size()-1).getTagName());
@@ -386,6 +409,22 @@ public class FormController {
         }
         else {
             Form form = formService.getFormByID(formID);
+
+            User currentUser = getCurrentUser();
+
+            ActionPoints action1 = new ActionPoints(currentUser, reflectionForm.learningPoint1, 0);
+            apService.saveAction(action1);
+
+            if(!reflectionForm.learningPoint2.equals("")) {
+                ActionPoints action2 = new ActionPoints(currentUser, reflectionForm.learningPoint2, 0);
+                apService.saveAction(action2);
+            }
+
+            if(!reflectionForm.learningPoint3.equals("")) {
+                    ActionPoints action3 = new ActionPoints(currentUser, reflectionForm.learningPoint3, 0);
+                    apService.saveAction(action3);
+            }
+
             if (form.getReflectionID() != null){
                 Reflection reflection = form.getReflectionID();
                 reflection.updateFields(reflectionForm.box1, reflectionForm.box2, reflectionForm.box3, reflectionForm.box4,
@@ -402,6 +441,20 @@ public class FormController {
         }
     }
 
+    @PostMapping("actionpoints")
+    public String submitAction(@ModelAttribute("actionpoints") SubmittingAP aSubmittingAP, BindingResult bindings, Model model) {
+
+        User currentUser = getCurrentUser();
+
+        for (int i = 0; i < aSubmittingAP.actionpoints.size(); i++) {
+            Integer ActionID = aSubmittingAP.actionpoints.get(i);
+            Optional<ActionPoints> editingAction = apService.getActionByID(ActionID);
+            editingAction.get().updateFields(currentUser, ActionID, 1);
+            apService.saveAction(editingAction.get());
+        }
+
+        return getHomeData(model);
+    }
 
 
 
