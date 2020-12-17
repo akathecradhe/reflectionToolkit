@@ -12,7 +12,7 @@ $(document).ready(function(){
         $.ajax({type: "delete",
             url: "/deletetag/"+ id,
             success:function(result){
-                window.location.reload();
+                window.location.replace("/admin/edit-tags");
             }
         });
     });

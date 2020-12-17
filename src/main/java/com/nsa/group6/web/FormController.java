@@ -339,7 +339,7 @@ public class FormController {
         System.out.println(thoughtStats.toString());
         List<Map.Entry<Tags, Integer> > list2 =
                 new LinkedList<Map.Entry<Tags, Integer> >(thoughtStats.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<Tags, Integer> >() {
+        Collections.sort(list2, new Comparator<Map.Entry<Tags, Integer> >() {
             public int compare(Map.Entry<Tags, Integer> o1,
                                Map.Entry<Tags, Integer> o2)
             {
