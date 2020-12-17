@@ -1,6 +1,7 @@
 package com.nsa.group6.repositories;
 
 import com.nsa.group6.domain.Form;
+import com.nsa.group6.domain.Tags;
 import com.nsa.group6.domain.User;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -16,6 +17,8 @@ public interface FormRepository extends JpaRepository<Form,Integer>{
 
     List<Form> findAllByUsername(User username, Sort lastEdited);
     Form findByFormID(int aFormId);
+    Integer countByTagsContaining(Tags tag);
+    Integer countByTagsContainingAndUsername(Tags tag,User user);
 
     @Procedure("delete_activity")
     void deleteById(int id);

@@ -2,6 +2,7 @@ package com.nsa.group6.repositories;
 
 import com.nsa.group6.domain.Form;
 
+import com.nsa.group6.domain.Tags;
 import com.nsa.group6.domain.User;
 import com.nsa.group6.service.FormService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -130,6 +131,16 @@ public class FormJPAAdaptor implements FormService {
 
         return incompForms;
 
+    }
+
+    @Override
+    public Integer getTotalTagCount(Tags tag) {
+        return formRepository.countByTagsContaining(tag);
+    }
+
+    @Override
+    public Integer getTotalTagCountByUser(Tags tag, User user) {
+        return formRepository.countByTagsContainingAndUsername(tag,user);
     }
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
