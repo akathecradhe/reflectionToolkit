@@ -60,15 +60,6 @@
 
 
                         Activities</a>
-                    <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="#">
-                        <div class="icon">
-                            <i class="fa fa-clipboard-list lightgrey"></i>
-                            <i class="fa fa-clipboard-list"></i>
-                        </div>
-
-
-                        Global Overview</a>
-
                 </li>
                 <li class="nav-item active">
                     <a sec:authorize="hasRole('USER')" class="nav-link" href="/form">
@@ -361,54 +352,60 @@
 
 <main sec:authorize="hasRole('ADMIN')" role="main" class="container h-100">
     <div class = 'row h-50'>
-        <div class="col-md-5 m-3 p-3  bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Global Activities</label>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">COMSC Year 2 Industry Seminar 2020/12/03</strong>
-                    <a class="clickhere" href="#">6 Attendee(s)</a> among registered users
-                </p>
+        <div>
+            <div class=" m-3 p-3 bg-light rounded shadow-sm" style="width: 350px;">
+                <label class= "labels border-bottom border-gray pb-2 mb-0">UKPSF Donut Chart</label>
+                <div>
+                    <div class="media-bodies pb-3 mb-0 small lh-125">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <canvas id="donut" style="width: 300px;height:200px;" >
+                            </canvas>
+                        </div>
+                    </div>
+
+                    <small class="d-block text-right mt-3">
+                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#graphModal">
+                            Enlarge
+                        </button>
+
+                    </small>
+                </div>
+                <div class="modal fade" id="graphModal">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">UKPSF Tags completed</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+
+                                <canvas id="bigdonut" >
+                                </canvas>
+                                <h2 class="labels">
+                                    For more info on the dimensions, download <a target="_blank"
+                                                                                 href="https://www.heacademy.ac.uk/sites/default/files/downloads/What%20are%20the%20dimensions%20of%20practice.pdf">this PDF.</a></h2>
+
+
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">Communications Workshop 2020/12/02</strong>
-                    <a class="clickhere" href="#">67 Attendee(s)</a> among registered users
-                </p>
-            </div>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">Meeting with Vice Chancellor 2020/12/01</strong>
-                    <a class="clickhere" href="#">12 Attendee(s)</a> among registered users
-                </p>
-            </div>
-            <small class="d-block text-right mt-3">
-                <a href="#">All Recent Activities</a>
-            </small>
+
+
         </div>
-        <div class="col-auto m-3 p-3 flex-fill bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">Upcoming Global Activities</label>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">COMSC Year 3 Management Seminar 2020/12/07</strong>
-                    <a class="clickhere" href="#">6 Scheduled attendee(s)</a> among registered users
-                </p>
-            </div>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">Teaching Skills Workshop 2020/12/08</strong>
-                    <a class="clickhere" href="#">200 Scheduled attendee(s)</a> among registered users
-                </p>
-            </div>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">MPhys Quantum Physics Guest Talk 2020/12/09</strong>
-                    <a class="clickhere" href="#">8 Scheduled attendee(s)</a> among registered users
-                </p>
-            </div>
-            <small class="d-block text-right mt-3">
-                <a href="#">All Upcoming Activities</a>
-            </small>
-        </div>
+
     </div>
     <div class = 'row h-50'>
         <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
@@ -528,47 +525,6 @@
             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        <div class="col-auto flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">To-Do List</label>
-
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 1</label>
-                    </div>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 2</label>
-                    </div>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 3</label>
-                    </div>
-                </div>
-            </div><br>
-            <small class="d-block text-right mt-3">
-                <a href="#">Edit To-Do List</a>
-            </small>
         </div>
     </div>
 

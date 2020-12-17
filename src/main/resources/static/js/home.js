@@ -29,6 +29,7 @@ function addChart(){
     console.log(titles);
     console.log(values);
     var ctx = document.getElementById("donut");
+
     var myChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
@@ -49,7 +50,47 @@ function addChart(){
     });
 
     var ctx2 = document.getElementById("bigdonut");
-    var myChart = new Chart(ctx2, {
+    var myChart2 = new Chart(ctx2, {
+        type: 'doughnut',
+        data: {
+            labels: titles,
+            datasets: [{
+                label: '# of Tag',
+                data: values,
+                backgroundColor: colours,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            //cutoutPercentage: 40,
+            responsive: true,
+            display:true
+
+        }
+    });
+
+    var ctx3 = document.getElementById("donut2");
+    var myChart3 = new Chart(ctx3, {
+        type: 'doughnut',
+        data: {
+            labels: titles,
+            datasets: [{
+                label: '# of Tag',
+                data: values,
+                backgroundColor: colours,
+                borderWidth: 1
+            }]
+        },
+        options: {
+            //cutoutPercentage: 40,
+            responsive: true,
+            display:true
+
+        }
+    });
+
+    var ctx4 = document.getElementById("bigdonut2");
+    var myChart4 = new Chart(ctx4, {
         type: 'doughnut',
         data: {
             labels: titles,

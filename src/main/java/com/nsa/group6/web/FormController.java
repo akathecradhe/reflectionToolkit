@@ -333,7 +333,6 @@ public class FormController {
 
         List<ActionPoints> actionInput = apService.getRecent(aUser);
 
-        Collections.shuffle(dimensionsToEvidence);
         //ThoughtCloud Ordered List
         HashMap<Tags,Integer> thoughtStats = formHandler.findAllThoughtCloudStats();
         System.out.println("HEREEEEE REEEE");
