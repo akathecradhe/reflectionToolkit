@@ -82,14 +82,12 @@
     <h1 class="mt-2" th:text="${form.getEventID().getName()}"> </h1>
     <input type="hidden" id="formId" name="formId" th:value="${form.getFormID()}">
     <hr>
-    <div>
-    <a style="float:right" class="btn btn-primary" th:href="@{/activityedit/{furl} (furl=${form.getFormID()})}">Edit Activity</a>
-        <a style="float:right; margin-right:5px" class="btn btn-primary" th:if="${form.reflectionID == null}" th:href="@{/addreflection/{furl} (furl=${form.getFormID()})}">Add Reflection</a>
-        <a style="float:right; margin-right:5px" class="btn btn-primary" th:if="${form.reflectionID != null}" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Reflection</a>
-        <a style="float:right; margin-right:5px" class="btn btn-primary deleteBtn">Delete</a>
-
-        <a class="btn btn-primary" href="/reflection/user">View All</a>
-
+    <div class="btn-toolbar">
+    <a class="btn btn-primary mr-2 mt-2" th:href="@{/activityedit/{furl} (furl=${form.getFormID()})}">Edit Activity</a>
+        <a class="btn btn-primary mr-2 mt-2" th:if="${form.reflectionID == null}" th:href="@{/addreflection/{furl} (furl=${form.getFormID()})}">Add Reflection</a>
+        <a class="btn btn-primary mr-2 mt-2" th:if="${form.reflectionID != null}" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Reflection</a>
+        <a class="btn btn-primary mr-2 mt-2 deleteBtn">Delete</a>
+        <a class="btn btn-primary mt-2" href="/reflection/user">View All</a>
     </div>
 
     <div style="margin-top: 30px">
@@ -181,13 +179,12 @@
     </div>
     </div>
     <br>
-    <div>
-        <a style="float:right" class="btn btn-primary" th:href="@{/activityedit/{furl} (furl=${form.getFormID()})}">Edit Activity</a>
-        <a style="float:right; margin-right:5px" class="btn btn-primary" th:if="${form.reflectionID == null}" th:href="@{/addreflection/{furl} (furl=${form.getFormID()})}">Add Reflection</a>
-        <a style="float:right; margin-right:5px" class="btn btn-primary" th:if="${form.reflectionID != null}" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Reflection</a>
-        <a style="float:right; margin-right:5px" class="btn btn-primary deleteBtn">Delete</a>
-         <a class="btn btn-primary" href="/reflection/user">Go Back</a>
-
+    <div class="btn-toolbar">
+        <a class="btn btn-primary mr-2 mt-2" th:href="@{/activityedit/{furl} (furl=${form.getFormID()})}">Edit Activity</a>
+        <a class="btn btn-primary mr-2 mt-2" th:if="${form.reflectionID == null}" th:href="@{/addreflection/{furl} (furl=${form.getFormID()})}">Add Reflection</a>
+        <a class="btn btn-primary mr-2 mt-2" th:if="${form.reflectionID != null}" th:href="@{/reflectionedit/{furl} (furl=${form.getFormID()})}">Edit Reflection</a>
+        <a class="btn btn-primary mr-2 mt-2 deleteBtn">Delete</a>
+         <a class="btn btn-primary mt-2" href="/reflection/user">View All</a>
     </div>
     <br><br>
 

@@ -36,7 +36,6 @@
                         <div class="icon">
                             <i class="fa fa-home darkergrey" aria-hidden="true"></i>
                             <i class="fa fa-home" aria-hidden="true"></i>
-
                         </div>
                         Home
                         <span class="sr-only =">(current)</span>
@@ -103,7 +102,97 @@
         </div>
     </div>
     <div class = 'row h-50'>
-    <div class="col-md-6 m-3 p-3  bg-light rounded shadow-sm">
+        <div>
+            <div class="m-3 p-3 bg-light rounded shadow-sm" style="width: 350px; height:450px;">
+                <label class= "labels border-bottom border-gray pb-2 mb-0">UKPSF Donut Chart</label>
+                <br><br><br>
+                <div>
+                    <div class="media-bodies pb-3 mb-0 small lh-125">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <canvas id="donut" style="width: 300px;height:200px;" >
+                            </canvas>
+                        </div>
+                    </div>
+
+                    <small class="d-block text-right mt-3">
+                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#graphModal">
+                            Enlarge
+                        </button>
+
+                    </small>
+                </div>
+
+                <!-- The Modal -->
+                <div class="modal fade" id="graphModal">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">UKPSF Tags completed</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+
+                                <canvas id="bigdonut" >
+                                </canvas>
+                                <h2 class="labels">
+                                    For more info on the dimensions, download <a target="_blank"
+                                                                                 href="https://www.heacademy.ac.uk/sites/default/files/downloads/What%20are%20the%20dimensions%20of%20practice.pdf">this PDF.</a></h2>
+
+
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="col-md-3 m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Suggested: Dimensions to Evidence</label>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(0).shortenedTag} + ' - ' + ${ukpsf.get(0).tagName}"></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark"  th:text="${ukpsf.get(1).shortenedTag} + ' - ' + ${ukpsf.get(1).tagName}"></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark"  th:text="${ukpsf.get(2).shortenedTag} + ' - ' + ${ukpsf.get(2).tagName}"></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark"  th:text="${ukpsf.get(3).shortenedTag} + ' - ' + ${ukpsf.get(3).tagName}"></strong>
+                    </div>
+                </div>
+            </div>
+            <small class="d-block text-right mt-3">
+                <a href="/form">Activity Form</a>
+            </small>
+        </div>
+    <div class="col-md-4 m-3 p-3  bg-light rounded shadow-sm">
         <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities Edited</label>
         <span th:unless="${forms.size() == 0}">
         <div th:each="form : ${forms}">
@@ -162,96 +251,7 @@
             <a href="/reflection/user">All Activities</a>
         </small>
     </div>
-        <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">Suggested: Dimensions to Evidence</label>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark" th:text="${ukpsf.get(0).shortenedTag} + ' - ' + ${ukpsf.get(0).tagName}"></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark"  th:text="${ukpsf.get(1).shortenedTag} + ' - ' + ${ukpsf.get(1).tagName}"></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark"  th:text="${ukpsf.get(2).shortenedTag} + ' - ' + ${ukpsf.get(2).tagName}"></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark"  th:text="${ukpsf.get(3).shortenedTag} + ' - ' + ${ukpsf.get(3).tagName}"></strong>
-                    </div>
-                </div>
-            </div>
-            <small class="d-block text-right mt-3">
-                <a href="/form">Activity Form</a>
-            </small>
-        </div>
 
-        <div>
-            <div class=" m-3 p-3 bg-light rounded shadow-sm" style="width: 350px;">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">UKPSF Donut Chart</label>
-            <div>
-                <div class="media-bodies pb-3 mb-0 small lh-125">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <canvas id="donut" style="width: 300px;height:200px;" >
-                        </canvas>
-                    </div>
-                </div>
-
-                <small class="d-block text-right mt-3">
-                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#graphModal">
-                    Enlarge
-                </button>
-
-                </small>
-            </div>
-
-                <!-- The Modal -->
-                    <div class="modal fade" id="graphModal">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
-
-                            <!-- Modal Header -->
-                            <div class="modal-header">
-                                <h4 class="modal-title">UKPSF Tags completed</h4>
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            </div>
-
-                            <!-- Modal body -->
-                            <div class="modal-body">
-
-                                <canvas id="bigdonut" >
-                                </canvas>
-                                <h2 class="labels">
-                                    For more info on the dimensions, download <a target="_blank"
-                                                                                 href="https://www.heacademy.ac.uk/sites/default/files/downloads/What%20are%20the%20dimensions%20of%20practice.pdf">this PDF.</a></h2>
-
-
-                            </div>
-
-                            <!-- Modal footer -->
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-
-        </div>
     </div>
     <div class = 'row h-50'>
     <div class="col-md-6 m-3 p-3 bg-light rounded shadow-sm">
@@ -346,15 +346,12 @@
 
  </main>
 
-
-
-
-
 <main sec:authorize="hasRole('ADMIN')" role="main" class="container h-100">
-    <div class = 'row h-50'>
-        <div>
-            <div class=" m-3 p-3 bg-light rounded shadow-sm" style="width: 350px;">
+    <div class = 'row h-auto d-flex'>
+
+            <div class="flex-fill m-3 p-3 bg-light rounded shadow-sm" style="width: 300px; height: 450px;">
                 <label class= "labels border-bottom border-gray pb-2 mb-0">UKPSF Donut Chart</label>
+                <br><br>
                 <div>
                     <div class="media-bodies pb-3 mb-0 small lh-125">
                         <div class="d-flex justify-content-between align-items-center w-100">
@@ -402,129 +399,150 @@
                 </div>
 
             </div>
-
-
+        <div class="flex-fill col-md-3 m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Most Common Thoughts</label>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(thought.size()-1).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(thought.size()-2).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(thought.size()-3).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-3)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(thought.size()-4).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-4)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(thought.size()-5).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-5)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+        </div>
+        <div class="flex-fill col-md-4 m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Least Common Thoughts</label>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(0).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(0)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(1).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(2).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(3).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(3)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(4).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(4)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
         </div>
 
     </div>
-    <div class = 'row h-50'>
-        <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">Most Commonly Evidenced Dimensions (UKPSF)</label>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">K1: The subject material</strong>
-                    </div>
-                    <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-2).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-2).getTagName}"></strong>
-                    </div>
-                    <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-3).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-3).getTagName}"></strong>
-                    </div>
-                    <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-3)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 h-auto m-3 p-3 bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">Least Commonly Evidenced Dimensions (UKPSF)</label>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark" th:text="${ukpsf.get(0).shortenedTag} + ' - ' + ${ukpsf.get(0).tagName}"></strong>
-                    </div>
-                    <span class="d-block" th:text="${ukpsfcount.get(0)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark" th:text="${ukpsf.get(1).shortenedTag} + ' - ' + ${ukpsf.get(1).tagName}"></strong>
-                    </div>
-                    <span class="d-block" th:text="${ukpsfcount.get(1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark" th:text="${ukpsf.get(2).shortenedTag} + ' - ' + ${ukpsf.get(2).tagName}"></strong>
-                    </div>
-                    <span class="d-block" th:text="${ukpsfcount.get(2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
-                </div>
-            </div>
-        </div>
 
-
-
-
-
-
-        <div class = 'row h-50'>
-            <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
-                <label class= "labels border-bottom border-gray pb-2 mb-0">Most Common Thoughts</label>
+        <div class = 'row h-auto d-flex'>
+            <div class="widthfixoverride m-3 p-3 bg-light rounded shadow-sm">
+                <label class= "labels border-bottom border-gray pb-2 mb-0">Most Commonly Evidenced Dimensions (UKPSF)</label>
                 <div class="media text-muted pt-3">
                     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                         <div class="d-flex justify-content-between align-items-center w-100">
-                            <strong class="text-gray-dark" th:text="${thought.get(thought.size()-1).getTagName()}"></strong>
+                            <strong class="text-gray-dark">K1: The subject material</strong>
                         </div>
-                        <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                        <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                     </div>
                 </div>
                 <div class="media text-muted pt-3">
                     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                         <div class="d-flex justify-content-between align-items-center w-100">
-                            <strong class="text-gray-dark" th:text="${thought.get(thought.size()-2).getTagName()}"></strong>
+                            <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-2).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-2).getTagName}"></strong>
                         </div>
-                        <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                        <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                     </div>
                 </div>
                 <div class="media text-muted pt-3">
                     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                         <div class="d-flex justify-content-between align-items-center w-100">
-                            <strong class="text-gray-dark" th:text="${thought.get(thought.size()-3).getTagName()}"></strong>
+                            <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-3).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-3).getTagName}"></strong>
                         </div>
-                        <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-3)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                        <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-3)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4 h-auto m-3 p-3 bg-light rounded shadow-sm">
-                <label class= "labels border-bottom border-gray pb-2 mb-0">Least Common Thoughts</label>
+            <div class="widthfixoverride m-3 p-3 bg-light rounded shadow-sm">
+                <label class= "labels border-bottom border-gray pb-2 mb-0">Least Commonly Evidenced Dimensions (UKPSF)</label>
                 <div class="media text-muted pt-3">
                     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                         <div class="d-flex justify-content-between align-items-center w-100">
-                            <strong class="text-gray-dark" th:text="${thought.get(0).getTagName()}"></strong>
+                            <strong class="text-gray-dark" th:text="${ukpsf.get(0).shortenedTag} + ' - ' + ${ukpsf.get(0).tagName}"></strong>
                         </div>
-                        <span class="d-block" th:text="${thoughtcount.get(0)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                        <span class="d-block" th:text="${ukpsfcount.get(0)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                     </div>
                 </div>
                 <div class="media text-muted pt-3">
                     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                         <div class="d-flex justify-content-between align-items-center w-100">
-                            <strong class="text-gray-dark" th:text="${thought.get(1).getTagName()}"></strong>
+                            <strong class="text-gray-dark" th:text="${ukpsf.get(1).shortenedTag} + ' - ' + ${ukpsf.get(1).tagName}"></strong>
                         </div>
-                        <span class="d-block" th:text="${thoughtcount.get(1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                        <span class="d-block" th:text="${ukpsfcount.get(1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                     </div>
                 </div>
                 <div class="media text-muted pt-3">
                     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                         <div class="d-flex justify-content-between align-items-center w-100">
-                            <strong class="text-gray-dark" th:text="${thought.get(2).getTagName()}"></strong>
+                            <strong class="text-gray-dark" th:text="${ukpsf.get(2).shortenedTag} + ' - ' + ${ukpsf.get(2).tagName}"></strong>
                         </div>
-                        <span class="d-block" th:text="${thoughtcount.get(2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                        <span class="d-block" th:text="${ukpsfcount.get(2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                     </div>
                 </div>
             </div>
-
-
         </div>
     </div>
 

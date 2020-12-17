@@ -43,6 +43,11 @@ public class Tags {
             throw new IllegalStateException("Cannot use this category with these parameters.");
         }
     }
+
+    public Tags(String tagName) {
+        this.tagName = tagName;
+        category = "Thought Cloud";
+    }
 }
 
 
