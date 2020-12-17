@@ -1,12 +1,13 @@
 HOW TO SETUP APPLICATION:
-1. Open MySQLWorkbench with your root account details and make sure to adapt your application.properties to match these credentials).
+1. Open MySQLWorkbench with your root account details and make sure to adapt your application.properties to match the below format).
 2. Run schema.sql
 3. Run data.sql
-4. Run the application through your preferred method ie. Bootrun.
-5. Log into a admin account for example - rowbo:hello123
+4. Run the application through your preferred method ie. Bootrun or running the jar files.
+4.5 Go to localhost:8080
+5. Log into a user account for example - rowbo:hello123 - A new version of a user account is juan10:youtube4
 6. Navigate through each page and create/delete thought clouds of your choice.
 7. Log out
-8. Log into a user account for example - clive99:youtube4
+8. Log into a admin account for example - clive99:youtube4
 9. Navigate through each page.
 10. Create a form by clicking on the log activity icon at the top and filling in the details.
 11. Choose if you want to create your reflection now or save till later.
@@ -15,4 +16,12 @@ HOW TO SETUP APPLICATION:
 14. Click add/edit reflection (depending on your choices earlier) and test editing the reflection.
 15. Create multiple forms with some with no UKPSF, some with no reflection and some with neither - notice the traffic light implementation on the activities page.
 16. Look at the home page to see the corresponding data being displayed.
-17. Go to activities page and select one or multiple filters by clicking the drop down and see the corresponding activities appear.
+17. Go to activities page and select one or multiple filters by clicking the drop down and see the corresponding activities appear
+18. Go to src\test\java\com\nsa\group6\DomainTests.java and make sure the tests run and pass
+
+Application.properties file should be layed out like:
+spring.datasource.url=jdbc:mariadb://localhost:3306/loggingsystemdb
+spring.datasource.username=administrator
+spring.datasource.password=apassword
+#spring.jpa.hibernate.ddl-auto=update
+spring.datasource.platform=MARIADB
