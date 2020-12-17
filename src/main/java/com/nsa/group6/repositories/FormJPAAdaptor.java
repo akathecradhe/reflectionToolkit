@@ -2,6 +2,7 @@ package com.nsa.group6.repositories;
 
 import com.nsa.group6.domain.Form;
 
+import com.nsa.group6.domain.Tags;
 import com.nsa.group6.domain.User;
 import com.nsa.group6.service.FormService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -82,6 +83,40 @@ public class FormJPAAdaptor implements FormService {
         List<Form> aForms = formRepository.findAllByUsername(aUsername, Sort.by(Sort.Direction.DESC, "lastEdited"));
         List<Form> incompForms = new ArrayList<>();
 
+        if (aForms.size() < 4) {
+            for (int i = 0; i < aForms.size(); i++) {
+                String compLevel = aForms.get(i).getCompletionLevel();
+
+                if (compLevel.equals("amber")) {
+                    incompForms.add(aForms.get(i));
+                } else if (compLevel.equals("red")) {
+                    incompForms.add(aForms.get(i));
+                } else {
+
+                }
+            }
+        }
+        else if (aForms.size() > 3) {
+            for (int i = 0; i < 3; i++) {
+                String compLevel = aForms.get(i).getCompletionLevel();
+
+                if (compLevel.equals("amber")) {
+                    incompForms.add(aForms.get(i));
+                } else if (compLevel.equals("red")) {
+                    incompForms.add(aForms.get(i));
+                }
+            }
+        }
+
+        return incompForms;
+
+    }
+
+    @Override
+    public List<Form> getAllIncomplete(User aUsername) {
+
+        List<Form> aForms = formRepository.findAllByUsername(aUsername, Sort.by(Sort.Direction.DESC, "lastEdited"));
+        List<Form> incompForms = new ArrayList<>();
 
         for (int i = 0; i < aForms.size(); i++) {
             String compLevel = aForms.get(i).getCompletionLevel();
@@ -91,15 +126,24 @@ public class FormJPAAdaptor implements FormService {
             }
             else if (compLevel.equals("red")) {
                 incompForms.add(aForms.get(i));
+                }
             }
-            else {
-
-            }
-        }
 
         return incompForms;
 
     }
+
+    @Override
+    public Integer getTotalTagCount(Tags tag) {
+        return formRepository.countAllByTagsIsLike(tag);
+    }
+
+    @Override
+    public Integer getTotalTagCountByUser(Tags tag, User user) {
+        return formRepository.countAllByTagsIsLikeAndUsernameLike(tag,user);
+    }
+
+
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
 

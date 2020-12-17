@@ -7,9 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../static/css/bootstrap.css" th:href="@{/css/bootstrap.css}" rel="stylesheet" />
     <link href="../static/css/bootstrap.css" th:href="@{/css/reflections.css}" rel="stylesheet" />
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
+    <script src="/js/home.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0" integrity="sha384-QzN1ywg2QLsf72ZkgRHgjkB/cfI4Dqjg6RJYQUqH6Wm8qp/MvmEYn+2NBsLnhLkr" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/9b9fc493c6.js" crossorigin="anonymous"></script>
 
 
@@ -33,7 +36,6 @@
                         <div class="icon">
                             <i class="fa fa-home darkergrey" aria-hidden="true"></i>
                             <i class="fa fa-home" aria-hidden="true"></i>
-
                         </div>
                         Home
                         <span class="sr-only =">(current)</span>
@@ -57,15 +59,6 @@
 
 
                         Activities</a>
-                    <a sec:authorize="hasRole('ADMIN')" class="nav-link" href="#">
-                        <div class="icon">
-                            <i class="fa fa-clipboard-list lightgrey"></i>
-                            <i class="fa fa-clipboard-list"></i>
-                        </div>
-
-
-                        Global Overview</a>
-
                 </li>
                 <li class="nav-item active">
                     <a sec:authorize="hasRole('USER')" class="nav-link" href="/form">
@@ -103,15 +96,130 @@
 </header>
 
 <main sec:authorize="hasRole('USER')" role="main" class="container h-100">
-    <div class = 'row h-auto'>
-        <div class="col-auto m-3 p-3  bg-light rounded shadow-sm">
-            <strong  class="d-block text-gray-dark" th:text="'Currently Logged in as ' + ${user.name}"></strong>
+    <div class = 'row h-auto d-flex'>
+
+        <div class="widthfixoverride2 m-3 p-3  bg-light rounded shadow-sm ">
+            <div class="media-body ">
+
+                <div style="text-align: center;">
+                    <img th:src="@{/images/img_avatar3.png}" class="mr-3 rounded-circle" style="width:30px;">
+
+                    <p1 style="overflow: hidden;">Welcome <span th:text=${user.name}></span> to the Reflection Toolkit</p1>
+                </div>
+            </div>
+
         </div>
     </div>
     <div class = 'row h-50'>
-    <div class="col-md-6 m-3 p-3  bg-light rounded shadow-sm">
-        <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities Edited</label>
-        <span th:unless="${forms.size() == 0}">
+        <div>
+            <span th:if="${forms.size() != 0}">
+            <div class="m-3 p-3 bg-light rounded shadow-sm" style="width: 350px; height:450px;">
+                <label class= "labels border-bottom border-gray pb-2 mb-0">UKPSF Donut Chart</label>
+                <br><br><br>
+                <div>
+                    <div class="media-bodies pb-3 mb-0 small lh-125">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <canvas id="donut" style="width: 300px;height:200px;" >
+                            </canvas>
+                        </div>
+                    </div>
+
+                    <small class="d-block text-right mt-3">
+                        <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#graphModal">
+                            Enlarge
+                        </button>
+
+                    </small>
+                </div>
+
+                <!-- The Modal -->
+                <div class="modal fade" id="graphModal">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h4 class="modal-title">UKPSF Tags completed</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            </div>
+
+                            <!-- Modal body -->
+                            <div class="modal-body">
+
+                                <canvas id="bigdonut" >
+                                </canvas>
+                                <h2 class="labels">
+                                    For more info on the dimensions, download <a target="_blank"
+                                                                                 href="https://www.heacademy.ac.uk/sites/default/files/downloads/What%20are%20the%20dimensions%20of%20practice.pdf">this PDF.</a></h2>
+
+
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                </span>
+            <span th:if="${forms.size() == 0}">
+            <div class="m-3 p-3 bg-light rounded shadow-sm" style="width: 350px; height: 93.5%;">
+                <label class= "labels border-bottom border-gray pb-2 mb-0">UKPSF Donut Chart</label>
+                <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark">You do not have enough data to populate this donut diagram. Please add your first form.</strong>
+                    </div>
+                </div>
+            </div>
+                <small class="d-block text-right mt-3">
+                <a href="/form">Activity Form</a>
+            </small>
+            </div>
+            </span>
+
+        </div>
+        <div class="col-md-3 m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Suggested: Dimensions to Evidence</label>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(0).shortenedTag} + ' - ' + ${ukpsf.get(0).tagName}"></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark"  th:text="${ukpsf.get(1).shortenedTag} + ' - ' + ${ukpsf.get(1).tagName}"></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark"  th:text="${ukpsf.get(2).shortenedTag} + ' - ' + ${ukpsf.get(2).tagName}"></strong>
+                    </div>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark"  th:text="${ukpsf.get(3).shortenedTag} + ' - ' + ${ukpsf.get(3).tagName}"></strong>
+                    </div>
+                </div>
+            </div>
+            <small class="d-block text-right mt-3">
+                <a href="/form">Activity Form</a>
+            </small>
+        </div>
+        <div class="col-md-4 m-3 p-3  bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Activities Edited</label>
+            <span th:unless="${forms.size() == 0}">
         <div th:each="form : ${forms}">
             <div class="media text-muted pt-3" >
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
@@ -164,59 +272,26 @@
             </div>
             </div>
             </span>
-        <small class="d-block text-right mt-3">
-            <a href="/reflection/user">All Activities</a>
-        </small>
-    </div>
-        <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">Suggested: Dimensions to Evidence</label>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark" th:text="${ukpsf.get(0).shortenedTag} + ' - ' + ${ukpsf.get(0).tagName}"></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark"  th:text="${ukpsf.get(1).shortenedTag} + ' - ' + ${ukpsf.get(1).tagName}"></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark"  th:text="${ukpsf.get(2).shortenedTag} + ' - ' + ${ukpsf.get(2).tagName}"></strong>
-                    </div>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark"  th:text="${ukpsf.get(3).shortenedTag} + ' - ' + ${ukpsf.get(3).tagName}"></strong>
-                    </div>
-                </div>
-            </div>
             <small class="d-block text-right mt-3">
-                <a href="/form">Activity Form</a>
+                <a href="/reflection/user">All Activities</a>
             </small>
         </div>
+
     </div>
     <div class = 'row h-50'>
-    <div class="col-md-6 m-3 p-3 bg-light rounded shadow-sm">
-        <label class= "labels border-bottom border-gray pb-2 mb-0">Why not finish these forms?</label>
-        <div th:unless="${incompletes.size() == 0}">
-        <div th:each="incomplete: ${incompletes}">
-        <div class="media text-muted pt-3">
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" th:switch="${incomplete.getCompletionLevel()}">
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <a style="text-decoration: none; color: #343a40; padding-bottom: 0" class="text-gray-dark" th:href="@{/reflection/{furl} (furl=${incomplete.getFormID()})}">
-                    <strong class="text-gray-dark" th:text="${incomplete.getEventID().getName()}">Discussion</strong>
-                    </a>
-                </div>
-                <span class="d-block"> Entry last edited: <span th:text="${incomplete.getLastEditedString()}"></span></span>
-                <span class="d-block">Completion Status: <span th:case="green">Completed</span>
+        <div class="col-md-6 m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Why not finish these forms?</label>
+            <div th:unless="${incompletes.size() == 0}">
+                <div th:each="incomplete: ${incompletes}">
+                    <div class="media text-muted pt-3">
+                        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" th:switch="${incomplete.getCompletionLevel()}">
+                            <div class="d-flex justify-content-between align-items-center w-100">
+                                <a style="text-decoration: none; color: #343a40; padding-bottom: 0" class="text-gray-dark" th:href="@{/reflection/{furl} (furl=${incomplete.getFormID()})}">
+                                    <strong class="text-gray-dark" th:text="${incomplete.getEventID().getName()}">Discussion</strong>
+                                </a>
+                            </div>
+                            <span class="d-block"> Entry last edited: <span th:text="${incomplete.getLastEditedString()}"></span></span>
+                            <span class="d-block">Completion Status: <span th:case="green">Completed</span>
                     <span th:case="amber">
 
                         <span th:if="${incomplete.getTagsByCategory('UKPSF').isEmpty()}">
@@ -231,34 +306,36 @@
 
                     <span th:case="red">Incomplete - UKPSF Dimensions and Reflection Required</span></span>
 
-            </div>
-        </div>
-        </div>
-            <small class="d-block text-right mt-3">
-                <a href="#">All Incomplete Entries</a>
-            </small>
-        </div>
-        <div th:if="${incompletes.size() == 0}">
-                    <div class="media text-muted pt-3">
-                        <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                            <div class="d-flex justify-content-between align-items-center w-100">
-                                <strong class="text-gray-dark">Congratulations, all forms are currently up to date with UKPSF dimensions and reflections!</strong>
-                            </div>
                         </div>
                     </div>
-            <div class="media text-muted pt-3">
-            <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                <div class="d-flex justify-content-between align-items-center w-100">
-                    <a href="/form">
-                        <strong class="text-gray-dark">Add a new form</strong>
-                    </a>
+                </div>
+                <small class="d-block text-right mt-3">
+                    <a href="/reflection/user/incomplete">All Incomplete Entries</a>
+                </small>
+            </div>
+            <div th:if="${incompletes.size() == 0}">
+                <div class="media text-muted pt-3">
+                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <strong class="text-gray-dark">Congratulations, all forms are currently up to date with UKPSF dimensions and reflections!</strong>
+                        </div>
+                    </div>
+                </div>
+                <div class="media text-muted pt-3">
+                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                        <div class="d-flex justify-content-between align-items-center w-100">
+                            <a href="/form">
+                                <strong class="text-gray-dark">Add a new form</strong>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-            </div>
+
+
+
         </div>
 
-
-    </div>
 
         <div class="col-md-5 flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Action Points</label>
@@ -288,159 +365,210 @@
             </div>
                 </span>
 
-        </form>
-        </div>
-  </div>
-
- </main>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<main sec:authorize="hasRole('ADMIN')" role="main" class="container h-100">
-    <div class = 'row h-50'>
-        <div class="col-md-5 m-3 p-3  bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">Recent Global Activities</label>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">COMSC Year 2 Industry Seminar 2020/12/03</strong>
-                    <a class="clickhere" href="#">6 Attendee(s)</a> among registered users
-                </p>
-            </div>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">Communications Workshop 2020/12/02</strong>
-                    <a class="clickhere" href="#">67 Attendee(s)</a> among registered users
-                </p>
-            </div>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">Meeting with Vice Chancellor 2020/12/01</strong>
-                    <a class="clickhere" href="#">12 Attendee(s)</a> among registered users
-                </p>
-            </div>
-            <small class="d-block text-right mt-3">
-                <a href="#">All Recent Activities</a>
-            </small>
-        </div>
-        <div class="col-auto m-3 p-3 flex-fill bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">Upcoming Global Activities</label>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">COMSC Year 3 Management Seminar 2020/12/07</strong>
-                    <a class="clickhere" href="#">6 Scheduled attendee(s)</a> among registered users
-                </p>
-            </div>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">Teaching Skills Workshop 2020/12/08</strong>
-                    <a class="clickhere" href="#">200 Scheduled attendee(s)</a> among registered users
-                </p>
-            </div>
-            <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">MPhys Quantum Physics Guest Talk 2020/12/09</strong>
-                    <a class="clickhere" href="#">8 Scheduled attendee(s)</a> among registered users
-                </p>
-            </div>
-            <small class="d-block text-right mt-3">
-                <a href="#">All Upcoming Activities</a>
-            </small>
+            </form>
         </div>
     </div>
-    <div class = 'row h-50'>
-        <div class="col-md-5 m-3 p-3 bg-light rounded shadow-sm">
+
+</main>
+
+<main sec:authorize="hasRole('ADMIN')" role="main" class="container h-100">
+    <div class = 'row h-auto d-flex'>
+
+        <div class="flex-fill m-3 p-3 bg-light rounded shadow-sm" style="width: 300px; height: 450px;">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">UKPSF Donut Chart</label>
+            <br><br>
+            <div>
+                <div class="media-bodies pb-3 mb-0 small lh-125">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <canvas id="donut" style="width: 300px;height:200px;" >
+                        </canvas>
+                    </div>
+                </div>
+
+                <small class="d-block text-right mt-3">
+                    <button type="button" class="btn btn-outline-primary" data-toggle="modal" data-target="#graphModal">
+                        Enlarge
+                    </button>
+
+                </small>
+            </div>
+            <div class="modal fade" id="graphModal">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h4 class="modal-title">UKPSF Tags completed</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+
+                        <!-- Modal body -->
+                        <div class="modal-body">
+
+                            <canvas id="bigdonut" >
+                            </canvas>
+                            <h2 class="labels">
+                                For more info on the dimensions, download <a target="_blank"
+                                                                             href="https://www.heacademy.ac.uk/sites/default/files/downloads/What%20are%20the%20dimensions%20of%20practice.pdf">this PDF.</a></h2>
+
+
+                        </div>
+
+                        <!-- Modal footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="flex-fill col-md-3 m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Most Common Thoughts</label>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(thought.size()-1).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(thought.size()-2).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(thought.size()-3).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-3)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(thought.size()-4).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-4)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(thought.size()-5).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(thoughtcount.size()-5)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+        </div>
+        <div class="flex-fill col-md-4 m-3 p-3 bg-light rounded shadow-sm">
+            <label class= "labels border-bottom border-gray pb-2 mb-0">Least Common Thoughts</label>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(0).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(0)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(1).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(2).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(3).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(3)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+            <div class="media text-muted pt-3">
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${thought.get(4).getTagName()}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${thoughtcount.get(4)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class = 'row h-auto d-flex'>
+        <div class="widthfixoverride m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Most Commonly Evidenced Dimensions (UKPSF)</label>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
                         <strong class="text-gray-dark">K1: The subject material</strong>
                     </div>
-                    <span class="d-block">432 reflections with this tag on record</span>
+                    <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                 </div>
             </div>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">A2: Teach and/or support learning</strong>
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-2).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-2).getTagName}"></strong>
                     </div>
-                    <span class="d-block">399 reflections with this tag on record</span>
+                    <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                 </div>
             </div>
             <div class="media text-muted pt-3">
                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                     <div class="d-flex justify-content-between align-items-center w-100">
-                        <strong class="text-gray-dark">D3.7: Supporting colleagues</strong>
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(ukpsf.size()-3).shortenedTag} + ' - ' + ${ukpsf.get(ukpsf.size()-3).getTagName}"></strong>
                     </div>
-                    <span class="d-block">378 reflections with this tag on record</span>
+                    <span class="d-block" th:text="${ukpsfcount.get(ukpsfcount.size()-3)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
                 </div>
             </div>
-            <small class="d-block text-right mt-3">
-                <a href="#">Dimension Overview</a>
-            </small>
         </div>
-        <div class="col-md-4 h-auto m-3 p-3 bg-light rounded shadow-sm">
+        <div class="widthfixoverride m-3 p-3 bg-light rounded shadow-sm">
             <label class= "labels border-bottom border-gray pb-2 mb-0">Least Commonly Evidenced Dimensions (UKPSF)</label>
             <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">V1: Respect individual learners and diverse learning communities</strong>
-                    12 reflections with this tag on record
-                </p>
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(0).shortenedTag} + ' - ' + ${ukpsf.get(0).tagName}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${ukpsfcount.get(0)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
             </div>
             <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">V4: Acknowledge the wider context in which higher education operates recognising the implications for professional practice </strong>
-                    19 reflections with this tag on record
-                </p>
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(1).shortenedTag} + ' - ' + ${ukpsf.get(1).tagName}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${ukpsfcount.get(1)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
             </div>
             <div class="media text-muted pt-3">
-                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <strong class="d-block text-gray-dark">K3: How students learn, both generally and within their subject/disciplinary area(s) </strong>
-                    27 reflections with this tag on record
-                </p>
+                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <div class="d-flex justify-content-between align-items-center w-100">
+                        <strong class="text-gray-dark" th:text="${ukpsf.get(2).shortenedTag} + ' - ' + ${ukpsf.get(2).tagName}"></strong>
+                    </div>
+                    <span class="d-block" th:text="${ukpsfcount.get(2)} + ' activities with this tag on record'">432 reflections with this tag on record</span>
+                </div>
             </div>
-            <small class="d-block text-right mt-3">
-                <a href="#">Dimension Overview</a>
-            </small>
         </div>
-        <div class="col-auto flex-grow-1 h-auto m-3 p-3 bg-light rounded shadow-sm">
-            <label class= "labels border-bottom border-gray pb-2 mb-0">To-Do List</label>
-
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 1</label>
-                    </div>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 2</label>
-                    </div>
-                </div>
-            </div>
-            <div class="media text-muted pt-3">
-                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <label><input type = checkbox class="text-gray-dark" value=""/>Thing To-Do 3</label>
-                    </div>
-                </div>
-            </div><br>
-            <small class="d-block text-right mt-3">
-                <a href="#">Edit To-Do List</a>
-            </small>
-        </div>
+    </div>
     </div>
 
 </main>
@@ -449,20 +577,5 @@
 
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>-->
 <!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>-->
-
-<script>
-    $(function(){
-        var actionsRequired = $('.actionPoints :checkbox[required]');
-        actionsRequired.change(function(){
-            if(actionsRequired.is(':checked')) {
-                actionsRequired.removeAttr('required');
-            } else {
-                actionsRequired.attr('required', 'required');
-            }
-        });
-    });
-
-
-</script>
 
 </html>

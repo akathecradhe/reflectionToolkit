@@ -168,4 +168,15 @@ ul li a:hover .icon .fa
     .bottomnavbar-brand{
         display: none;
     }
+    .widthfixoverride{
+        width:47.1%;}
+    .widthfixoverride2{
+        width: 94.8%;
+    }
+
+}
+#filters li {
+    margin-left: 5px;
+    list-style-type: none !important;
+
 }

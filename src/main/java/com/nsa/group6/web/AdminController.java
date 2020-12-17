@@ -54,14 +54,12 @@ public class AdminController {
 
         int latestTagId = allTags.size()+1;
 
-        Tags newThought  = new Tags(latestTagId,"Thought Cloud",tagNameAdd);
+        Tags newThought  = new Tags(tagNameAdd);
 
        tagsService.saveTags(newThought);
 
-        getAllThoughtClouds(model);
 
-
-         return "admintags";
+         return getAllThoughtClouds(model);
     }
 
 //    This function deletes a tag

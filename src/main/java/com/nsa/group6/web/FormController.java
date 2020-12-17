@@ -6,7 +6,6 @@ import com.nsa.group6.service.UserService;
 import com.nsa.group6.service.*;
 
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -30,8 +29,6 @@ import com.nsa.group6.domain.Tags;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.*;
-
-import javax.swing.*;
 
 @Controller
 public class FormController {
@@ -57,8 +54,6 @@ public class FormController {
         this.reflectionService = reflectionService;
         this.apService = apService;
     }
-
-
 
     @GetMapping("form")
     public String runForm(Model model) {
@@ -284,6 +279,26 @@ public class FormController {
         return "reflection-list";
     }
 
+    @GetMapping("reflection/user/incomplete")
+    public String getIncompletes(Model model) {
+
+        User aUser = getCurrentUser();
+        List<Form> forms = formService.getAllIncomplete(aUser);
+
+        FiltersForm filters = new FiltersForm();
+        //Gets the tags for filters
+        model.addAttribute("othersInvolved", formHandler.findTagsByCategory("Others Involved"));
+        model.addAttribute("impact", formHandler.findTagsByCategory("Impact"));
+        model.addAttribute("learningTechnologies", formHandler.findTagsByCategory("Learning Technologies"));
+        model.addAttribute("thoughtCloud", formHandler.findTagsByCategory("Thought Cloud"));
+        model.addAttribute("ukpsf", formHandler.findTagsByCategory("UKPSF"));
+        model.addAttribute("user", aUser);
+        model.addAttribute("forms", forms);
+        model.addAttribute("filters",filters);
+
+        return "reflection-list";
+    }
+
 
     @GetMapping("/home")
     public String getHomeData(Model model) {
@@ -295,25 +310,62 @@ public class FormController {
 
         List<Form> form = formService.getRecent(aUser);
         List<Form> incompleteForm = formService.getIncomplete(aUser);
-        List<Tags> dimensionsToEvidence = formHandler.findTagsByCategory("UKPSF");
+
+        //Needs to be moved to form handler soon!
+        //Getting the UKPSF Stats - code adapted from https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/
+        HashMap<Tags,Integer> ukpsfStats = formHandler.findAllUKPSFStats(aUser);
+        List<Map.Entry<Tags, Integer> > list =
+                new LinkedList<Map.Entry<Tags, Integer> >(ukpsfStats.entrySet());
+        Collections.sort(list, new Comparator<Map.Entry<Tags, Integer> >() {
+            public int compare(Map.Entry<Tags, Integer> o1,
+                               Map.Entry<Tags, Integer> o2)
+            {
+                return (o1.getValue()).compareTo(o2.getValue());
+            }
+        });
+        HashMap<Tags, Integer> orderedUkpsfStats = new LinkedHashMap<Tags, Integer>();
+        for (Map.Entry<Tags, Integer> aa : list) {
+            orderedUkpsfStats.put(aa.getKey(), aa.getValue());
+        }
+
+        List<Tags> ukpsfOrdered = new ArrayList<Tags>(orderedUkpsfStats.keySet());
+        List<Integer> ukpsfValues = new ArrayList<Integer>(orderedUkpsfStats.values());
 
         List<ActionPoints> actionInput = apService.getRecent(aUser);
 
-        List<ActionPoints> actionpoints = new ArrayList<>();
-
-        for (int i = 0; i < actionInput.size(); i++) {
-            if (actionInput.get(i).getChecked() == 0) {
-                actionpoints.add(actionInput.get(i));
+        //ThoughtCloud Ordered List
+        HashMap<Tags,Integer> thoughtStats = formHandler.findAllThoughtCloudStats();
+        System.out.println("HEREEEEE REEEE");
+        System.out.println(thoughtStats.toString());
+        List<Map.Entry<Tags, Integer> > list2 =
+                new LinkedList<Map.Entry<Tags, Integer> >(thoughtStats.entrySet());
+        Collections.sort(list2, new Comparator<Map.Entry<Tags, Integer> >() {
+            public int compare(Map.Entry<Tags, Integer> o1,
+                               Map.Entry<Tags, Integer> o2)
+            {
+                return (o1.getValue()).compareTo(o2.getValue());
             }
+        });
+        HashMap<Tags, Integer> orderedthoughtStats = new LinkedHashMap<Tags, Integer>();
+        for (Map.Entry<Tags, Integer> aa : list2) {
+            orderedthoughtStats.put(aa.getKey(), aa.getValue());
         }
 
-        Collections.shuffle(dimensionsToEvidence);
+        List<Tags> thoughtOrdered = new ArrayList<Tags>(orderedthoughtStats.keySet());
+        List<Integer> thoughtValues = new ArrayList<Integer>(orderedthoughtStats.values());
 
-        model.addAttribute("ukpsf", dimensionsToEvidence);
+        model.addAttribute("ukpsf", ukpsfOrdered);
+        model.addAttribute("ukpsfcount", ukpsfValues);
+        model.addAttribute("thought", thoughtOrdered);
+        model.addAttribute("thoughtcount", thoughtValues);
         model.addAttribute("incompletes", incompleteForm);
         model.addAttribute("user", aUser);
         model.addAttribute("forms", form);
-        model.addAttribute("actionpoints", actionpoints);
+        model.addAttribute("actionpoints", actionInput);
+        System.out.println("look here bro");
+        System.out.println(thoughtOrdered.size());
+        System.out.println(thoughtOrdered.get(thoughtOrdered.size()-1).getTagName());
+
 
         return "home";
     }
@@ -323,10 +375,8 @@ public class FormController {
     public ResponseEntity<String> deleteFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
         // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
         formService.deleteForm(formID);
+
         return ResponseEntity.noContent().build();
-
-
-
     }
 
     @GetMapping("/addreflection/{formID}")
@@ -362,14 +412,14 @@ public class FormController {
             ActionPoints action1 = new ActionPoints(currentUser, reflectionForm.learningPoint1, 0);
             apService.saveAction(action1);
 
-            if (reflectionForm.learningPoint2 != null) {
+            if(!reflectionForm.learningPoint2.equals("")) {
                 ActionPoints action2 = new ActionPoints(currentUser, reflectionForm.learningPoint2, 0);
                 apService.saveAction(action2);
             }
 
-            if (reflectionForm.learningPoint3 != null) {
-                ActionPoints action3 = new ActionPoints(currentUser, reflectionForm.learningPoint3, 0);
-                apService.saveAction(action3);
+            if(!reflectionForm.learningPoint3.equals("")) {
+                    ActionPoints action3 = new ActionPoints(currentUser, reflectionForm.learningPoint3, 0);
+                    apService.saveAction(action3);
             }
 
             if (form.getReflectionID() != null){
@@ -395,14 +445,37 @@ public class FormController {
 
         for (int i = 0; i < aSubmittingAP.actionpoints.size(); i++) {
             Integer ActionID = aSubmittingAP.actionpoints.get(i);
-            ActionPoints actionEdit = new ActionPoints(currentUser, ActionID, 1);
-            apService.saveAction(actionEdit);
+            Optional<ActionPoints> editingAction = apService.getActionByID(ActionID);
+            editingAction.get().updateFields(currentUser, ActionID, 1);
+            apService.saveAction(editingAction.get());
         }
 
         return getHomeData(model);
     }
 
+    @GetMapping("/ukpsfCount")
+    public ResponseEntity<HashMap> getUKPSF() {
+        User aUser = getCurrentUser();
+        HashMap<Tags,Integer> ukpsfStats = formHandler.findAllUKPSFStats(aUser);
+        HashMap<String,Integer> graphData = new HashMap<>();
+        for (Map.Entry<Tags, Integer> entry : ukpsfStats.entrySet()) {
+            if (entry.getValue()!=0) {
+                graphData.put(entry.getKey().getShortenedTag(), entry.getValue());
+            }
+        }
 
+        Tags exampleTag = tagsService.getTagByID(32);
+
+        System.out.println(graphData);
+        System.out.println(formService.getTotalTagCount(exampleTag));
+        System.out.println(formService.getTotalTagCountByUser(exampleTag, aUser));
+
+        System.out.println(formService.getAllFormsByUsername(aUser));
+
+
+
+        return ResponseEntity.ok(graphData);
+    }
 
 
 

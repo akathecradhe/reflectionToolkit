@@ -49,7 +49,7 @@ public class Form {
     @ManyToMany
     @JoinTable(name = "Tagform"
             , joinColumns = @JoinColumn(name = "formID"),
-            inverseJoinColumns = @JoinColumn(name = "TagID"))
+            inverseJoinColumns = @JoinColumn(name = "tagID"))
     private List<Tags> tags;
 
 

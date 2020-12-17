@@ -125,4 +125,5 @@ public class DomainTests {
                Form form = new Form(event,"Test event", user, role, new Timestamp(5000),tags,activityDate);
         assertEquals("red",form.getCompletionLevel());
     }
+
 }

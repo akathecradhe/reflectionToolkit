@@ -6,6 +6,7 @@ import com.nsa.group6.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -48,6 +49,35 @@ public class DefaultFormHandler implements FormHandler {
                 .stream()
                 .filter(a -> completionStatus.contains(a.getCompletionLevel()))
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public HashMap<Tags, Integer> findAllUKPSFStats(User user) {
+        List<Tags> ukpsf = tagService.getTagByCategory("UKPSF");
+        HashMap<Tags, Integer> ukspfCount = new HashMap<>();
+        if (user.getRoles().equals("ADMIN")){
+            for (Tags tag: ukpsf) {
+                ukspfCount.put(tag,formService.getTotalTagCount(tag));
+            }
+        } else{
+            for (Tags tag: ukpsf) {
+                System.out.println(formService.getTotalTagCountByUser(tag,user));
+                ukspfCount.put(tag,formService.getTotalTagCountByUser(tag,user));
+            }
+        }
+        return ukspfCount;
+    }
+
+    @Override
+    public HashMap<Tags, Integer> findAllThoughtCloudStats() {
+        List<Tags> thoughtCloud = tagService.getTagByCategory("Thought Cloud");
+        HashMap<Tags, Integer> thoughtCount = new HashMap<>();
+            for (Tags tag: thoughtCloud) {
+                System.out.println("loop de loop");
+                thoughtCount.put(tag, formService.getTotalTagCount(tag));
+            }
+
+        return thoughtCount;
     }
 
     @Override
