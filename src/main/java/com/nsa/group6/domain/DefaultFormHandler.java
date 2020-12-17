@@ -31,7 +31,9 @@ public class DefaultFormHandler implements FormHandler {
     public List<Form> findFormsByMatchingTags(List<Tags> tags, String aUser) {
         Optional<User> aUsername = userService.findUserByUsername(aUser);
         User user = aUsername.get();
+        System.out.println(user);
         List<Form> forms = formService.getAllFormsByUsername(user);
+        System.out.println(forms);
         return forms
                 .stream()
                 .filter(a -> a.containsTags(tags))

@@ -261,9 +261,14 @@ public class FormController {
     public String submitFilters(@ModelAttribute("filters") FiltersForm filtersForm, Model model) {
 
         User aUser = getCurrentUser();
-        List<Form> forms = formHandler.findFormsByMatchingTagIDs(filtersForm.tags,aUser.getUsername());
 
-        forms = formHandler.filterByCompletionStatus(forms,filtersForm.completionStatus);
+        List<Tags> filtertags = tagsService.findAllTagsByID(filtersForm.tags);
+
+        List<Form> forms = formHandler.findFormsByMatchingTags(filtertags,aUser.getUsername());
+
+        if(filtersForm.completionStatus == null) {
+            forms = formHandler.filterByCompletionStatus(forms, filtersForm.completionStatus);
+        }
 
         FiltersForm filters = new FiltersForm();
         //Gets the tags for filters

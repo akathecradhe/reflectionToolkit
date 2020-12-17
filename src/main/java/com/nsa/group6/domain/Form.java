@@ -84,6 +84,7 @@ public class Form {
 
     //Does a loop through the filters and returns if form contains the exact same tags
     public boolean containsTags(List<Tags> filters) {
+        System.out.println(filters);
         return filters
                 .stream()
                 .filter(a -> containsTag(a))
@@ -93,6 +94,7 @@ public class Form {
     }
 
     public boolean containsTag(Tags tag) {
+        System.out.println(tags.contains(tag));
         return tags.contains(tag);
     }
 
