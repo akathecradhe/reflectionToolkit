@@ -339,7 +339,7 @@ public class FormController {
         System.out.println(thoughtStats.toString());
         List<Map.Entry<Tags, Integer> > list2 =
                 new LinkedList<Map.Entry<Tags, Integer> >(thoughtStats.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<Tags, Integer> >() {
+        Collections.sort(list2, new Comparator<Map.Entry<Tags, Integer> >() {
             public int compare(Map.Entry<Tags, Integer> o1,
                                Map.Entry<Tags, Integer> o2)
             {
@@ -375,10 +375,8 @@ public class FormController {
     public ResponseEntity<String> deleteFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
         // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
         formService.deleteForm(formID);
+
         return ResponseEntity.noContent().build();
-
-
-
     }
 
     @GetMapping("/addreflection/{formID}")
@@ -455,7 +453,29 @@ public class FormController {
         return getHomeData(model);
     }
 
+    @GetMapping("/ukpsfCount")
+    public ResponseEntity<HashMap> getUKPSF() {
+        User aUser = getCurrentUser();
+        HashMap<Tags,Integer> ukpsfStats = formHandler.findAllUKPSFStats(aUser);
+        HashMap<String,Integer> graphData = new HashMap<>();
+        for (Map.Entry<Tags, Integer> entry : ukpsfStats.entrySet()) {
+            if (entry.getValue()!=0) {
+                graphData.put(entry.getKey().getShortenedTag(), entry.getValue());
+            }
+        }
 
+        Tags exampleTag = tagsService.getTagByID(32);
+
+        System.out.println(graphData);
+        System.out.println(formService.getTotalTagCount(exampleTag));
+        System.out.println(formService.getTotalTagCountByUser(exampleTag, aUser));
+
+        System.out.println(formService.getAllFormsByUsername(aUser));
+
+
+
+        return ResponseEntity.ok(graphData);
+    }
 
 
 

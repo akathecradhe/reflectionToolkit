@@ -169,8 +169,11 @@ ul li a:hover .icon .fa
         display: none;
     }
     .widthfixoverride{
-        width:47.1%;
+        width:47.1%;}
+    .widthfixoverride2{
+        width: 94.8%;
     }
+
 }
 #filters li {
     margin-left: 5px;

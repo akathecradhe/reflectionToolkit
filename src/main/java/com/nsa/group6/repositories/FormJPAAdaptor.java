@@ -135,13 +135,15 @@ public class FormJPAAdaptor implements FormService {
 
     @Override
     public Integer getTotalTagCount(Tags tag) {
-        return formRepository.countByTagsContaining(tag);
+        return formRepository.countAllByTagsIsLike(tag);
     }
 
     @Override
     public Integer getTotalTagCountByUser(Tags tag, User user) {
-        return formRepository.countByTagsContainingAndUsername(tag,user);
+        return formRepository.countAllByTagsIsLikeAndUsernameLike(tag,user);
     }
+
+
 
     // TODO: 24/11/2020  order by tag/ orderby event type, Ukspsf element group,
 

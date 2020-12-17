@@ -1,6 +1,6 @@
 
 function getData(){
-    $.getJSON('http://localhost:8080/api/ukpsfCount', function(results) {
+    $.getJSON('http://localhost:8080/ukpsfCount', function(results) {
         titles = Object.keys(results);
         values = []
         colours = []
