@@ -200,5 +200,8 @@ GRANT EXECUTE ON PROCEDURE LoggingSystemDB.delete_activity TO 'administrator'@'l
 FLUSH PRIVILEGES;
 USE loggingsystemdb;
 
+SELECT * FROM tagform;
+select * from tags;
+
 
 
