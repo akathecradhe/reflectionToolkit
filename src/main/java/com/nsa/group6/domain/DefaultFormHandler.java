@@ -53,7 +53,7 @@ public class DefaultFormHandler implements FormHandler {
 
     @Override
     public HashMap<Tags, Integer> findAllUKPSFStats(User user) {
-        List<Tags> ukpsf = tagService.getTagByCategory("ukpsf");
+        List<Tags> ukpsf = tagService.getTagByCategory("UKPSF");
         HashMap<Tags, Integer> ukspfCount = new HashMap<>();
         if (user.getRoles().equals("ADMIN")){
             for (Tags tag: ukpsf) {
@@ -61,6 +61,7 @@ public class DefaultFormHandler implements FormHandler {
             }
         } else{
             for (Tags tag: ukpsf) {
+                System.out.println(formService.getTotalTagCountByUser(tag,user));
                 ukspfCount.put(tag,formService.getTotalTagCountByUser(tag,user));
             }
         }

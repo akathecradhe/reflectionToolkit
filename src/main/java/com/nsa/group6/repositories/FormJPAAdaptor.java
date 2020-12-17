@@ -135,6 +135,7 @@ public class FormJPAAdaptor implements FormService {
 
     @Override
     public Integer getTotalTagCount(Tags tag) {
+        System.out.println(formRepository.countByTagsContaining(tag));
         return formRepository.countByTagsContaining(tag);
     }
 
