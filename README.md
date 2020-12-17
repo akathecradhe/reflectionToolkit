@@ -16,3 +16,10 @@ HOW TO SETUP APPLICATION:
 15. Create multiple forms with some with no UKPSF, some with no reflection and some with neither - notice the traffic light implementation on the activities page.
 16. Look at the home page to see the corresponding data being displayed.
 17. Go to activities page and select one or multiple filters by clicking the drop down and see the corresponding activities appear.
+
+Application.properties file should be layed out like:
+spring.datasource.url=jdbc:mariadb://localhost:3306/loggingsystemdb
+spring.datasource.username=administrator
+spring.datasource.password=apassword
+#spring.jpa.hibernate.ddl-auto=update
+spring.datasource.platform=MARIADB
