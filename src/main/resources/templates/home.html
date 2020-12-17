@@ -96,9 +96,16 @@
 </header>
 
 <main sec:authorize="hasRole('USER')" role="main" class="container h-100">
-    <div class = 'row h-auto'>
-        <div class="col-auto m-3 p-3  bg-light rounded shadow-sm">
-            <strong  class="d-block text-gray-dark" th:text="'Currently Logged in as ' + ${user.name}"></strong>
+    <div class = 'row h-auto d-flex'>
+
+        <div class="flex-fill m-3 p-3  bg-light rounded shadow-sm ">
+            <div class="media-body ">
+                <img th:src="@{/images/img_avatar3.png}" class="mr-3 mt-3 rounded-circle" style="width:60px;" th:text="'Hello '">
+
+                <strong th:text=${user.name}> </strong> <p1> welcome to the UKPSF Toolkit</p1>
+
+            </div>
+
         </div>
     </div>
     <div class = 'row h-50'>
