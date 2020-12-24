@@ -48,7 +48,6 @@ public class FormApi {
             }
         }
 
-        System.out.println(graphData);
 
         return ResponseEntity.ok(graphData);
     }

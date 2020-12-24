@@ -37,7 +37,6 @@ public class AdminController {
     public String getAllThoughtClouds(Model model) {
 
         List<Tags> allThoughtClouds = tagsService.getTagByCategory("Thought Cloud");
-        System.out.println(allThoughtClouds);
         model.addAttribute("ThoughtTags",allThoughtClouds);
 
         return "admintags";
@@ -48,11 +47,7 @@ public class AdminController {
                                   @RequestParam String
                                           tagNameAdd) throws Exception {
 
-        System.out.println(tagNameAdd);
-
         List<Tags> allTags = tagsService.getAllTags();
-
-        int latestTagId = allTags.size()+1;
 
         Tags newThought  = new Tags(tagNameAdd);
 

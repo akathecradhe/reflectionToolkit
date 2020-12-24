@@ -14,4 +14,8 @@ public interface FormHandler {
     List<Form> filterByCompletionStatus(List<Form> forms, List<String> completionStatus);
 
     HashMap<Tags, Integer> findAllUKPSFStats(User user);
+
+    HashMap<Tags, Integer> getOrderedUKPSF(User aUser);
+
+    HashMap<Tags, Integer> findOrderedThoughtCloudStats();
 }

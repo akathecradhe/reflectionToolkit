@@ -1,5 +1,6 @@
 package com.nsa.group6.web;
 
+import com.nsa.group6.api.FormApi;
 import com.nsa.group6.domain.*;
 import com.nsa.group6.service.FormService;
 import com.nsa.group6.service.UserService;
@@ -41,10 +42,11 @@ public class FormController {
     private final EventService eventService;
     private final ReflectionService reflectionService;
     private final APService apService;
+    private final FormApi formApi;
 
     public FormController(FormService formService, UserService userService, FormHandler formHandler,
                           TagsService tagsService, RoleService roleService, EventService eventService,
-                          ReflectionService reflectionService, TagService tagService, APService apService) {
+                          ReflectionService reflectionService, TagService tagService, APService apService, FormApi formApi) {
         this.formService = formService;
         this.userService = userService;
         this.formHandler = formHandler;
@@ -53,6 +55,7 @@ public class FormController {
         this.eventService = eventService;
         this.reflectionService = reflectionService;
         this.apService = apService;
+        this.formApi = formApi;
     }
 
     @GetMapping("form")
@@ -156,7 +159,6 @@ public class FormController {
             } else if ("UKPSF".equals(whichCategory)){
                 dimensions.add(addingTag);
             }
-            else{}
 
         }
 
@@ -189,9 +191,6 @@ public class FormController {
 
         User userDetails = getCurrentUser();
 
-        // getUsername() - Returns the username used to authenticate the user.
-        System.out.println("User name: " + userDetails.getUsername());
-
 
         form = formService.getAllFormsByUsername(userDetails);
 
@@ -214,9 +213,6 @@ public class FormController {
     @GetMapping("/activityedit/{formID}")
     public String editForm(@PathVariable(name = "formID", required = true) int formID, Model model){
         Form editingForm = formService.getFormByID(formID);
-
-        editingForm.getTags();
-
         List<Integer> allTags = new ArrayList<Integer>();
 
         for (int i = 0; i < editingForm.getTags().size(); i++) {
@@ -225,13 +221,11 @@ public class FormController {
 
         Event eventInput = editingForm.getEventID();
         Role roleInput = editingForm.getRoleID();
-//        Reflection reflectionInput = editingForm.getReflectionID();
 
         model.addAttribute("tagsEdit", allTags);
         model.addAttribute("roleEdit", roleInput);
         model.addAttribute("eventEdit", eventInput);
         model.addAttribute("formEdit", editingForm);
-//        model.addAttribute("reflectionEdit", reflectionInput);
         model.addAttribute("formID", formID);
 
         return getString(model);
@@ -316,48 +310,16 @@ public class FormController {
         List<Form> form = formService.getRecent(aUser);
         List<Form> incompleteForm = formService.getIncomplete(aUser);
 
-        //Needs to be moved to form handler soon!
-        //Getting the UKPSF Stats - code adapted from https://www.geeksforgeeks.org/sorting-a-hashmap-according-to-values/
-        HashMap<Tags,Integer> ukpsfStats = formHandler.findAllUKPSFStats(aUser);
-        List<Map.Entry<Tags, Integer> > list =
-                new LinkedList<Map.Entry<Tags, Integer> >(ukpsfStats.entrySet());
-        Collections.sort(list, new Comparator<Map.Entry<Tags, Integer> >() {
-            public int compare(Map.Entry<Tags, Integer> o1,
-                               Map.Entry<Tags, Integer> o2)
-            {
-                return (o1.getValue()).compareTo(o2.getValue());
-            }
-        });
-        HashMap<Tags, Integer> orderedUkpsfStats = new LinkedHashMap<Tags, Integer>();
-        for (Map.Entry<Tags, Integer> aa : list) {
-            orderedUkpsfStats.put(aa.getKey(), aa.getValue());
-        }
-
+        HashMap<Tags, Integer> orderedUkpsfStats = formHandler.getOrderedUKPSF(aUser);
         List<Tags> ukpsfOrdered = new ArrayList<Tags>(orderedUkpsfStats.keySet());
         List<Integer> ukpsfValues = new ArrayList<Integer>(orderedUkpsfStats.values());
 
         List<ActionPoints> actionInput = apService.getRecent(aUser);
 
         //ThoughtCloud Ordered List
-        HashMap<Tags,Integer> thoughtStats = formHandler.findAllThoughtCloudStats();
-        System.out.println("HEREEEEE REEEE");
-        System.out.println(thoughtStats.toString());
-        List<Map.Entry<Tags, Integer> > list2 =
-                new LinkedList<Map.Entry<Tags, Integer> >(thoughtStats.entrySet());
-        Collections.sort(list2, new Comparator<Map.Entry<Tags, Integer> >() {
-            public int compare(Map.Entry<Tags, Integer> o1,
-                               Map.Entry<Tags, Integer> o2)
-            {
-                return (o1.getValue()).compareTo(o2.getValue());
-            }
-        });
-        HashMap<Tags, Integer> orderedthoughtStats = new LinkedHashMap<Tags, Integer>();
-        for (Map.Entry<Tags, Integer> aa : list2) {
-            orderedthoughtStats.put(aa.getKey(), aa.getValue());
-        }
-
-        List<Tags> thoughtOrdered = new ArrayList<Tags>(orderedthoughtStats.keySet());
-        List<Integer> thoughtValues = new ArrayList<Integer>(orderedthoughtStats.values());
+        HashMap<Tags,Integer> thoughtStats = formHandler.findOrderedThoughtCloudStats();
+        List<Tags> thoughtOrdered = new ArrayList<Tags>(thoughtStats.keySet());
+        List<Integer> thoughtValues = new ArrayList<Integer>(thoughtStats.values());
 
         model.addAttribute("ukpsf", ukpsfOrdered);
         model.addAttribute("ukpsfcount", ukpsfValues);
@@ -367,9 +329,6 @@ public class FormController {
         model.addAttribute("user", aUser);
         model.addAttribute("forms", form);
         model.addAttribute("actionpoints", actionInput);
-        System.out.println("look here bro");
-        System.out.println(thoughtOrdered.size());
-        System.out.println(thoughtOrdered.get(thoughtOrdered.size()-1).getTagName());
 
 
         return "home";
@@ -409,11 +368,13 @@ public class FormController {
             }
             return "form";
         }
-        else {
-            Form form = formService.getFormByID(formID);
 
+        else {
+            //Get Form
+            Form form = formService.getFormByID(formID);
             User currentUser = getCurrentUser();
 
+            //Save action points
             ActionPoints action1 = new ActionPoints(currentUser, reflectionForm.learningPoint1, 0);
             apService.saveAction(action1);
 
@@ -427,6 +388,7 @@ public class FormController {
                     apService.saveAction(action3);
             }
 
+            //Save reflection
             if (form.getReflectionID() != null){
                 Reflection reflection = form.getReflectionID();
                 reflection.updateFields(reflectionForm.box1, reflectionForm.box2, reflectionForm.box3, reflectionForm.box4,
@@ -458,29 +420,7 @@ public class FormController {
         return getHomeData(model);
     }
 
-    @GetMapping("/ukpsfCount")
-    public ResponseEntity<HashMap> getUKPSF() {
-        User aUser = getCurrentUser();
-        HashMap<Tags,Integer> ukpsfStats = formHandler.findAllUKPSFStats(aUser);
-        HashMap<String,Integer> graphData = new HashMap<>();
-        for (Map.Entry<Tags, Integer> entry : ukpsfStats.entrySet()) {
-            if (entry.getValue()!=0) {
-                graphData.put(entry.getKey().getShortenedTag(), entry.getValue());
-            }
-        }
 
-        Tags exampleTag = tagsService.getTagByID(32);
-
-        System.out.println(graphData);
-        System.out.println(formService.getTotalTagCount(exampleTag));
-        System.out.println(formService.getTotalTagCountByUser(exampleTag, aUser));
-
-        System.out.println(formService.getAllFormsByUsername(aUser));
-
-
-
-        return ResponseEntity.ok(graphData);
-    }
 
 
 
