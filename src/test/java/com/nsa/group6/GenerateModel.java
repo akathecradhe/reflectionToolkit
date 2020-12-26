@@ -92,13 +92,14 @@ public class GenerateModel {
                 new SpringComponentFinderStrategy(
                         new ReferencedTypesSupportingTypesStrategy()
                 ),
-                new SourceCodeComponentFinderStrategy(new File(sourceRoot, "/src/main/java/"), 150)
+                new SourceCodeComponentFinderStrategy(new File("C:\\Users\\c1919822\\Downloads\\test2\\group-6-logging-system\\src\\main\\java"), 150)
 
         );
 
-        componentFinder.findComponents();
-        System.out.println("working here");
 
+//        componentFinder.findComponents();
+//        System.out.println("working here");
+//
         // connect the customer to all of the Spring MVC controllers
         webApplication.getComponents().stream()
                 .filter(c -> c.getTechnology().equals(SpringComponentFinderStrategy.SPRING_MVC_CONTROLLER))
@@ -124,11 +125,11 @@ public class GenerateModel {
         Component reflectionTemplate = webApplication.addComponent("ReflectionList", "Template to show Reflections", "Thymeleaf");
         reflectionTemplate.addTags("Thymeleaf");
 
-        Component formController = webApplication.getComponentOfType("com.nsa.group6.web.FormController.");
-        formController.uses(reflectionTemplate, "as view", "Spring MVC");
-
-        Component adminController = webApplication.getComponentOfType("com.nsa.group6.web.AdminController");
-        adminController.uses(reflectionTemplate, "as view", "Spring MVC");
+//        Component formController = webApplication.getComponentOfType("com.nsa.group6.web.FormController");
+//        formController.uses(reflectionTemplate, "as view", "Spring MVC");
+//
+//        Component adminController = webApplication.getComponentOfType("com.nsa.group6.web.AdminController");
+//        adminController.uses(reflectionTemplate, "as view", "Spring MVC");
 
         ComponentView componentView = viewSet.createComponentView(webApplication, "components", "The Components diagram for the Reflection Toolkit web application.");
         componentView.addAllComponents();
