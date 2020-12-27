@@ -1,3 +1,6 @@
+/**
+ * Worked on by Tom
+ */
 $(document).ready(function(){
     $.ajaxSetup({
         headers: {

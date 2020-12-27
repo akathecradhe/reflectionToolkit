@@ -13,7 +13,9 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 
-
+/**
+ * Worked on by Tom, Jay, Brian
+ */
 public class GenerateModel {
 
     private final static int WORKSPACE_ID = 61718;
@@ -92,12 +94,13 @@ public class GenerateModel {
                 new SpringComponentFinderStrategy(
                         new ReferencedTypesSupportingTypesStrategy()
                 ),
-                new SourceCodeComponentFinderStrategy(new File("C:\\Users\\c1919822\\Downloads\\test2\\group-6-logging-system\\src\\main\\java"), 150)
+                new SourceCodeComponentFinderStrategy(new File("\\src\\main\\java"), 150)
 
         );
+        componentFinder.toString();
 
 
-//        componentFinder.findComponents();
+        componentFinder.findComponents();
 //        System.out.println("working here");
 //
         // connect the customer to all of the Spring MVC controllers
@@ -125,18 +128,18 @@ public class GenerateModel {
         Component reflectionTemplate = webApplication.addComponent("ReflectionList", "Template to show Reflections", "Thymeleaf");
         reflectionTemplate.addTags("Thymeleaf");
 
-//        Component formController = webApplication.getComponentOfType("com.nsa.group6.web.FormController");
-//        formController.uses(reflectionTemplate, "as view", "Spring MVC");
-//
-//        Component adminController = webApplication.getComponentOfType("com.nsa.group6.web.AdminController");
-//        adminController.uses(reflectionTemplate, "as view", "Spring MVC");
+        Component formController = webApplication.getComponentOfType("com.nsa.group6.web.FormController");
+        formController.uses(reflectionTemplate, "as view", "Spring MVC");
+
+        Component adminController = webApplication.getComponentOfType("com.nsa.group6.web.AdminController");
+        adminController.uses(reflectionTemplate, "as view", "Spring MVC");
 
         ComponentView componentView = viewSet.createComponentView(webApplication, "components", "The Components diagram for the Reflection Toolkit web application.");
         componentView.addAllComponents();
         componentView.addAllPeople();
         componentView.add(reflectionClient);
         componentView.add(relationalDatabase);
-        componentView.enableAutomaticLayout();
+//        componentView.enableAutomaticLayout();
 
         webApplication.getComponents().stream().filter(c -> c.getTechnology().equals(SpringComponentFinderStrategy.SPRING_MVC_CONTROLLER)).forEach(c -> c.addTags("Spring MVC Controller"));
         webApplication.getComponents().stream().filter(c -> c.getTechnology().equals(SpringComponentFinderStrategy.SPRING_REST_CONTROLLER)).forEach(c -> c.addTags("Spring REST Controller"));

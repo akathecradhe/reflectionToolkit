@@ -2,6 +2,9 @@ package com.nsa.group6.domain;
 
 import lombok.*;
 
+/**
+ * Worked on by Tom
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -1,3 +1,6 @@
+/**
+ * Worked on by Tom, Jay, Brian
+ */
 $(document).ready(function() {
     function menuSelect(element) {
         document.getElementById('activitydetails').style.display = 'none'

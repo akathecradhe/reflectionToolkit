@@ -7,6 +7,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Worked on by Brian and Clive
+ */
 @Service
 public class TagJPAAdaptor implements TagService {
     @Autowired

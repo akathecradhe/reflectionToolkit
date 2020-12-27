@@ -5,6 +5,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+/**
+ * Worked on by Brian and Clive
+ */
 @Service
 public interface TagService {
 

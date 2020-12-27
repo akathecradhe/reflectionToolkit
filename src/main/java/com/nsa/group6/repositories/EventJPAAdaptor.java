@@ -8,6 +8,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Worked on by Jay
+ */
 @Service
 public class EventJPAAdaptor implements EventService {
 

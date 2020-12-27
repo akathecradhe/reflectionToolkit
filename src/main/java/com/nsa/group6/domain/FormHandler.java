@@ -3,6 +3,9 @@ package com.nsa.group6.domain;
 import java.util.HashMap;
 import java.util.List;
 
+/**
+ * Worked on by Tom
+ */
 public interface FormHandler {
     HashMap<Tags, Integer> findAllThoughtCloudStats();
 

@@ -12,6 +12,9 @@ import java.nio.file.attribute.UserPrincipal;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Worked on by Clive
+ */
 @Service
 public class UserJPAAdaptor implements UserService {
 

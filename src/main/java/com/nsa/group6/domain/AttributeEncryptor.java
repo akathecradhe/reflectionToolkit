@@ -12,7 +12,9 @@ import java.security.InvalidKeyException;
 import java.security.Key;
 import java.util.Base64;
 
-
+/**
+ * Worked on by Jay
+ */
 public class AttributeEncryptor implements AttributeConverter<String, String> {
     //https://sultanov.dev/blog/database-column-level-encryption-with-spring-data-jpa/
 

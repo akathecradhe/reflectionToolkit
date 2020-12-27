@@ -8,7 +8,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+//@Repository
+/**
+ * Worked on by Brian and Clive
+ */
 public interface TagRepository extends JpaRepository<Tags,Integer> {
 
     Tags findByTagID(int aTagId);

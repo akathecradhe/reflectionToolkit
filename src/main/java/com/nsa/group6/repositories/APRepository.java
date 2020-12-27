@@ -9,7 +9,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+//@Repository
+/**
+ * Worked on by Jay
+ */
 public interface APRepository extends JpaRepository<ActionPoints,Integer> {
     List<ActionPoints> findAllByUsername(User aUsername, Sort lastEdited);
 }

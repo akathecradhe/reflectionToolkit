@@ -9,6 +9,9 @@ import javax.persistence.Persistence;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Worked on by Clive
+ */
 @Service
 public interface RoleService {
     public void saveRole(Role aRole);

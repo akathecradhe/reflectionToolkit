@@ -1,4 +1,6 @@
-
+/**
+ * Worked on by Tom, Clive, Jay
+ */
 function getData(){
     $.getJSON('http://localhost:8080/api/ukpsfCount', function(results) {
         titles = Object.keys(results);
