@@ -4,6 +4,7 @@ import com.nsa.group6.domain.Tags;
 import com.nsa.group6.repositories.TagsRepository;
 import com.nsa.group6.service.TagService;
 import com.nsa.group6.service.TagsService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,6 +22,7 @@ import java.util.List;
  * Worked on by Brian and Clive
  */
 @Controller
+@PreAuthorize("hasRole('ADMIN')")
 public class AdminController {
 
 

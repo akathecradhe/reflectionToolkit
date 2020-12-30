@@ -7,6 +7,7 @@ import com.nsa.group6.service.UserService;
 import com.nsa.group6.service.*;
 
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -61,11 +62,13 @@ public class FormController {
         this.formApi = formApi;
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("form")
     public String runForm(Model model) {
         return getString(model);
     }
 
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("form")
     public String submitForm(@ModelAttribute("form") SubmittingForm aSubmittingForm, BindingResult bindings, Model model) {
 
@@ -137,7 +140,7 @@ public class FormController {
     }
 
 
-
+    @PreAuthorize("hasRole('USER')")
     private String getString(Model model) {
         List<Tags> allTags = tagsService.getAllTags();
 
@@ -184,6 +187,7 @@ public class FormController {
 
 
     //This function retrieves the list of reflections by username
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/reflection/user")
     public String getFormsByUsername( Model model) {
 
@@ -213,6 +217,7 @@ public class FormController {
 
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/activityedit/{formID}")
     public String editForm(@PathVariable(name = "formID", required = true) int formID, Model model){
         Form editingForm = formService.getFormByID(formID);
@@ -234,6 +239,7 @@ public class FormController {
         return getString(model);
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/reflectionedit/{formID}")
     public String editReflection(@PathVariable(name = "formID", required = true) int formID, Model model){
         Form editingForm = formService.getFormByID(formID);
@@ -245,6 +251,7 @@ public class FormController {
     }
 
     //This function retrieves a form by the ID selected.
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/reflection/{formID}")
     public String getFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
     // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
@@ -254,6 +261,7 @@ public class FormController {
 
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("reflection/user/filters")
     public String submitFilters(@ModelAttribute("filters") FiltersForm filtersForm, Model model) {
 
@@ -281,6 +289,7 @@ public class FormController {
         return "reflection-list";
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("reflection/user/incomplete")
     public String getIncompletes(Model model) {
 
@@ -338,6 +347,7 @@ public class FormController {
     }
 
     //This function deletes a reflection
+    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/reflectionremove/{formID}")
     public ResponseEntity<String> deleteFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
         // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
@@ -346,6 +356,7 @@ public class FormController {
         return ResponseEntity.noContent().build();
     }
 
+    @PreAuthorize("hasRole('USER')")
     @GetMapping("/addreflection/{formID}")
     public String  addReflectionByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
         model.addAttribute("form", formService.getFormByID(formID));
@@ -362,6 +373,7 @@ public class FormController {
     }
 
 
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/addreflection/{formID}")
     public String postReflectionByID(@ModelAttribute("form") ReflectionForm reflectionForm, @PathVariable(name = "formID", required = true) int formID, BindingResult bindings, Model model) {
         if (bindings.hasErrors()) {
