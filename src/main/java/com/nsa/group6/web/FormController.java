@@ -221,6 +221,9 @@ public class FormController {
     @GetMapping("/activityedit/{formID}")
     public String editForm(@PathVariable(name = "formID", required = true) int formID, Model model){
         Form editingForm = formService.getFormByID(formID);
+        if (getCurrentUser()!= editingForm.getUsername()){
+            return "redirect:/403";
+        }
         List<Integer> allTags = new ArrayList<Integer>();
 
         for (int i = 0; i < editingForm.getTags().size(); i++) {
@@ -243,6 +246,9 @@ public class FormController {
     @GetMapping("/reflectionedit/{formID}")
     public String editReflection(@PathVariable(name = "formID", required = true) int formID, Model model){
         Form editingForm = formService.getFormByID(formID);
+        if (getCurrentUser()!= editingForm.getUsername()){
+            return "redirect:/403";
+        }
         Reflection reflectionInput = editingForm.getReflectionID();
         model.addAttribute("reflectionEdit", reflectionInput);
         model.addAttribute("form",editingForm);
@@ -254,9 +260,13 @@ public class FormController {
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/reflection/{formID}")
     public String getFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
+        Form editingForm = formService.getFormByID(formID);
+        if (getCurrentUser()!= editingForm.getUsername()){
+            return "redirect:/403";
+        }
     // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
         //Replace this with getFormbyFormID soon
-        model.addAttribute("form", formService.getFormByID(formID));
+        model.addAttribute("form", editingForm);
         return "form-view";
 
     }
@@ -351,7 +361,10 @@ public class FormController {
     @DeleteMapping("/reflectionremove/{formID}")
     public ResponseEntity<String> deleteFormByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
         // TODO: 26/11/2020 Validation- what to do when the formID entered in the url is not in the db.
-        formService.deleteForm(formID);
+        Form editingForm = formService.getFormByID(formID);
+        if (getCurrentUser()== editingForm.getUsername()){
+            formService.deleteForm(formID);
+        }
 
         return ResponseEntity.noContent().build();
     }
@@ -359,6 +372,10 @@ public class FormController {
     @PreAuthorize("hasRole('USER')")
     @GetMapping("/addreflection/{formID}")
     public String  addReflectionByID(@PathVariable(name = "formID", required = true) int formID, Model model) {
+        Form editingForm = formService.getFormByID(formID);
+        if (getCurrentUser()!= editingForm.getUsername()){
+            return "redirect:/403";
+        }
         model.addAttribute("form", formService.getFormByID(formID));
         return "formreflection";
     }
@@ -376,6 +393,10 @@ public class FormController {
     @PreAuthorize("hasRole('USER')")
     @PostMapping("/addreflection/{formID}")
     public String postReflectionByID(@ModelAttribute("form") ReflectionForm reflectionForm, @PathVariable(name = "formID", required = true) int formID, BindingResult bindings, Model model) {
+        Form form = formService.getFormByID(formID);
+        if (getCurrentUser()!= form.getUsername()){
+            return "redirect:/403";
+        }
         if (bindings.hasErrors()) {
             System.out.println("Errors:" + bindings.getFieldErrorCount());
             for (ObjectError oe : bindings.getAllErrors()) {
@@ -385,8 +406,6 @@ public class FormController {
         }
 
         else {
-            //Get Form
-            Form form = formService.getFormByID(formID);
             User currentUser = getCurrentUser();
 
             //Save action points
