@@ -2,7 +2,7 @@
  * Worked on by Tom, Clive, Jay
  */
 function getData(){
-    $.getJSON('http://localhost:8080/api/ukpsfCount', function(results) {
+    $.getJSON('https://localhost:8443/api/ukpsfCount', function(results) {
         titles = Object.keys(results);
         values = []
         colours = []

@@ -42,6 +42,7 @@ public class FormApi {
 
     @GetMapping("ukpsfCount")
     public ResponseEntity<HashMap> getUKPSF() {
+        System.out.println("hi");
         User aUser = getCurrentUser();
         HashMap<Tags,Integer> ukpsfStats = formHandler.findAllUKPSFStats(aUser);
         HashMap<String,Integer> graphData = new HashMap<>();
