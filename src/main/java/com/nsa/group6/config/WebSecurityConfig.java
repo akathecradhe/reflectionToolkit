@@ -51,8 +51,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "https://cdn.jsdelivr.net/npm/chart.js@2.8.0 " +
                 "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js " +
                 "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js; ");
-
-
+        http
+                .headers()
+                .httpStrictTransportSecurity()
+                .includeSubDomains(true)
+                .maxAgeInSeconds(31536000);
     }
 
     @Bean

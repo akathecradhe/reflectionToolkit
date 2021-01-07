@@ -1,9 +1,8 @@
-HOW TO SETUP APPLICATION:
-1. Open MySQLWorkbench with your root account details and make sure to adapt your application.properties to match the below format).
-2. Run schema.sql
-3. Run data.sql
+1. Open MySQLWorkbench with your root account details
+2. Run schema.sql located in the group-6-logging-system folder
+3. Run data.sql located in the group-6-logging-system folder
 4. Run the application through your preferred method ie. Bootrun or running the jar files.
-4.5 Go to localhost:8080
+4.5 Go to localhost:8443
 5. Log into a user account for example - rowbo:hello123 - A new version of a user account is juan10:youtube4
 6. Navigate through each page and create/delete thought clouds of your choice.
 7. Log out
@@ -19,9 +18,3 @@ HOW TO SETUP APPLICATION:
 17. Go to activities page and select one or multiple filters by clicking the drop down and see the corresponding activities appear
 18. Go to src\test\java\com\nsa\group6\DomainTests.java and make sure the tests run and pass
 
-Application.properties file should be layed out like:
-spring.datasource.url=jdbc:mariadb://localhost:3306/loggingsystemdb
-spring.datasource.username=administrator
-spring.datasource.password=apassword
-#spring.jpa.hibernate.ddl-auto=update
-spring.datasource.platform=MARIADB

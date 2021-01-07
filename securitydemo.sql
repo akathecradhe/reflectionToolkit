@@ -43,9 +43,11 @@ SELECT * FROM form;
 SELECT * FROM reflection;
 SELECT * FROM tagform;
 
+-- Switch to root account
 -- Showing why the previous function is bad practise
 REVOKE DELETE ON LoggingSystemDB.Tags FROM 'administrator'@'localhost';
-FLUSH privileges;
+
+-- Switch to admin account
 INSERT INTO Tags (Category, tag_name)
 VALUES ('Thought Cloud','Security Demo Test');
 CALL delete_thought_cloud_bad_practise(49); -- This works on administrator
