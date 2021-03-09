@@ -142,25 +142,25 @@ ADD FOREIGN KEY  (`tagId`) REFERENCES Tags(`tagId`);
 
 USE mysql;
 
-GRANT SELECT ON LoggingSystemDB.User to 'administrator'@'localhost';
-GRANT SELECT ON LoggingSystemDB.Role to 'administrator'@'localhost';
-GRANT SELECT ON LoggingSystemDB.Event to 'administrator'@'localhost';
-GRANT SELECT,INSERT,DELETE, UPDATE ON LoggingSystemDB.Tagform to 'administrator'@'localhost';
-GRANT SELECT,INSERT,UPDATE,DELETE ON LoggingSystemDB.Reflection to 'administrator'@'localhost';
-GRANT SELECT,INSERT,UPDATE,DELETE ON LoggingSystemDB.Action_points to 'administrator'@'localhost';
-GRANT SELECT,INSERT,UPDATE,DELETE ON LoggingSystemDB.Form to 'administrator'@'localhost';
-GRANT SELECT, INSERT, DELETE, UPDATE ON LoggingSystemDB.Tags to 'administrator'@'localhost';
+GRANT SELECT ON loggingsystemdb.User to 'administrator'@'localhost';
+GRANT SELECT ON loggingsystemdb.Role to 'administrator'@'localhost';
+GRANT SELECT ON loggingsystemdb.Event to 'administrator'@'localhost';
+GRANT SELECT,INSERT,DELETE, UPDATE ON loggingsystemdb.Tagform to 'administrator'@'localhost';
+GRANT SELECT,INSERT,UPDATE,DELETE ON loggingsystemdb.Reflection to 'administrator'@'localhost';
+GRANT SELECT,INSERT,UPDATE,DELETE ON loggingsystemdb.Action_points to 'administrator'@'localhost';
+GRANT SELECT,INSERT,UPDATE,DELETE ON loggingsystemdb.Form to 'administrator'@'localhost';
+GRANT SELECT, INSERT, DELETE, UPDATE ON loggingsystemdb.Tags to 'administrator'@'localhost';
 
 
 DELIMITER //
 
-USE LoggingSystemDB //
+USE loggingsystemdb //
 
 CREATE DEFINER = `root`@`localhost`
 PROCEDURE  delete_thought_cloud_bad_practise(IN id int)
 BEGIN
   IF ((SELECT category FROM Tags WHERE tagid = id) = "Thought Cloud") THEN
-    DELETE FROM LoggingSystemDB.Tags WHERE tagId = id;
+    DELETE FROM loggingsystemdb.Tags WHERE tagId = id;
   END IF;
 END//
 
@@ -169,12 +169,12 @@ PROCEDURE  delete_thought_cloud(IN id int)
 SQL SECURITY INVOKER
 BEGIN
   IF ((SELECT category FROM Tags WHERE tagid = id) = "Thought Cloud") THEN
-    DELETE FROM LoggingSystemDB.Tags WHERE tagId = id;
+    DELETE FROM loggingsystemdb.Tags WHERE tagId = id;
   END IF;
 
 END//
 DELIMITER ;
-GRANT EXECUTE ON PROCEDURE LoggingSystemDB.delete_thought_cloud_bad_practise TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE loggingsystemdb.delete_thought_cloud_bad_practise TO 'administrator'@'localhost';
 
 
 CREATE TRIGGER delete_associated_tags
@@ -189,16 +189,16 @@ CREATE DEFINER = `root`@`localhost`
 PROCEDURE  delete_activity(IN id int)
 SQL SECURITY INVOKER
 BEGIN
-DELETE FROM LoggingSystemDB.Tagform WHERE formId = id;
-  DELETE FROM LoggingSystemDB.Form WHERE formId = id;
-  SET @list = (SELECT reflectionId FROM LoggingSystemDB.Form WHERE formId = id);
-  DELETE FROM LoggingSystemDB.Reflection WHERE (reflectionId = @list);
+DELETE FROM loggingsystemdb.Tagform WHERE formId = id;
+  DELETE FROM loggingsystemdb.Form WHERE formId = id;
+  SET @list = (SELECT reflectionId FROM loggingsystemdb.Form WHERE formId = id);
+  DELETE FROM loggingsystemdb.Reflection WHERE (reflectionId = @list);
 END//
 
 DELIMITER ;
-GRANT EXECUTE ON PROCEDURE LoggingSystemDB.delete_activity TO 'administrator'@'localhost';
+GRANT EXECUTE ON PROCEDURE loggingsystemdb.delete_activity TO 'administrator'@'localhost';
 FLUSH PRIVILEGES;
-USE LoggingSystemDB;
+USE loggingsystemdb;
 
 
 
