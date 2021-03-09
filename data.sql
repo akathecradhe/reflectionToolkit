@@ -184,36 +184,36 @@ VALUES (3,'Held an in person seminar for Year 1 students on Agile Project Manage
 INSERT INTO Form (EventID, short_description,RoleID,ReflectionID,username, last_edited, activity_date)
 VALUES (2,'Attended a 2 hour long workshop on harvard referencing and how to not accidentally plagiarize work.',3,null,'rowbo',TIMESTAMP('2020-11-29 12:05:56'), DATE('2020-11-30'));
 
-INSERT INTO TagForm (TagID, FormID)
+INSERT INTO Tagform (TagID, FormID)
 VALUES (2,1);
-INSERT INTO TagForm (TagID, FormID)
+INSERT INTO Tagform (TagID, FormID)
 VALUES (43,1);
 
-INSERT INTO TagForm (TagID, FormID)
+INSERT INTO Tagform (TagID, FormID)
 VALUES (1,2);
 
-INSERT INTO TagForm (TagID, FormID)
+INSERT INTO Tagform (TagID, FormID)
 VALUES (6,2);
 
-INSERT INTO TagForm (TagID, FormID)
+INSERT INTO Tagform (TagID, FormID)
 VALUES (13,2);
 
-INSERT INTO TagForm (TagID, FormID)
+INSERT INTO Tagform (TagID, FormID)
 VALUES (31,2);
 
-INSERT INTO TagForm (TagID, FormID)
+INSERT INTO Tagform (TagID, FormID)
 VALUES (3,3);
 
-INSERT INTO TagForm (TagID, FormID)
+INSERT INTO Tagform (TagID, FormID)
 VALUES (5,3);
 
-INSERT INTO TagForm (TagID, FormID)
+INSERT INTO Tagform (TagID, FormID)
 VALUES (14,3);
 
-INSERT INTO TagForm (TagID, FormID)
+INSERT INTO Tagform (TagID, FormID)
 VALUES (31,3);
 
-INSERT INTO TagForm (TagID, FormID)
+INSERT INTO Tagform (TagID, FormID)
 VALUES (28,3);
 
 -- INSERT INTO action_points (username, learning_point, checked)
