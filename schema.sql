@@ -198,7 +198,7 @@ END//
 DELIMITER ;
 GRANT EXECUTE ON PROCEDURE LoggingSystemDB.delete_activity TO 'administrator'@'localhost';
 FLUSH PRIVILEGES;
-USE loggingsystemdb;
+USE LoggingSystemDB;
 
 
 
