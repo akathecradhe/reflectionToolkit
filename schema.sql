@@ -20,7 +20,7 @@ SHOW GRANTS FOR 'administrator'@'localhost';
 FLUSH PRIVILEGES;
 
 
-ALTER USER 'administrator'@'localhost' PASSWORD EXPIRE INTERVAL 15 DAY;
+-- ALTER USER 'administrator'@'localhost' PASSWORD EXPIRE INTERVAL 15 DAY;
 
 
 FLUSH PRIVILEGES;
