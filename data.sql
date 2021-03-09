@@ -1,4 +1,4 @@
-USE LoggingSystemDB;
+USE loggingsystemdb;
 INSERT INTO Event (Name)
 VALUES ('Teaching or Supervision');
 INSERT INTO Event (Name)

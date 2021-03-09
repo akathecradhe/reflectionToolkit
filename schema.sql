@@ -29,9 +29,9 @@ SELECT * FROM user;
 
 
 
-DROP SCHEMA IF EXISTS `LoggingSystemDB` ;
-CREATE SCHEMA `LoggingSystemDB`;
-USE LoggingSystemDB ;
+DROP SCHEMA IF EXISTS `loggingsystemdb` ;
+CREATE SCHEMA `loggingsystemdb`;
+USE loggingsystemdb ;
 DROP TABLE IF EXISTS Event;
 -- Let's create a new table now
 -- Data for all the tags
