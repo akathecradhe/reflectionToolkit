@@ -2,6 +2,8 @@ plugins {
     id 'org.springframework.boot' version '2.4.0'
     id 'io.spring.dependency-management' version '1.0.10.RELEASE'
     id 'java'
+    id 'jacoco'
+    id 'checkstyle'
 }
 
 group = 'com.nsa'
@@ -42,10 +44,44 @@ dependencies {
 
 test {
     useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+
+
 }
 
+checkstyle {
+    toolVersion = 8.25
+    checkstyleTest.enabled = false
+    maxErrors(1000)
+}
+
+jacocoTestReport {
+
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination file("${buildDir}/jacocoHtml")
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8
+            }
+        }
+    }
+}
 
 
 jar.into('templateswhi') {
     from('src/main/resources')
+}
+
+task buildAndReport {
+    dependsOn build, jacocoTestReport
 }
