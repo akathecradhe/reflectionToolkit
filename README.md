@@ -2,7 +2,7 @@
 2. Run schema.sql located in the group-6-logging-system folder
 3. Run data.sql located in the group-6-logging-system folder
 4. Run the application through your preferred method ie. Bootrun or running the jar file (in CMD: java -jar group6-2.4.0.jar).
-4.5 Go to localhost:8443
+4.5 Go to localhost:8080
 5. Log into a user account for example - rowbo:hello123 - A new version of a user account is juan10:youtube4
 6. Navigate through each page and create/delete thought clouds of your choice.
 7. Log out
